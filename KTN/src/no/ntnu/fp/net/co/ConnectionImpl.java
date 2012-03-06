@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+//import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import no.ntnu.fp.net.admin.Log;
 import no.ntnu.fp.net.cl.ClException;
@@ -36,6 +36,10 @@ import no.ntnu.fp.net.cl.KtnDatagram.Flag;
  */
 public class ConnectionImpl extends AbstractConnection {
 
+	
+	@SuppressWarnings("serial")
+	class NotImplementedException extends RuntimeException {}
+	
     /** Keeps track of the used ports for each server port. */
     private static Map<Integer, Boolean> usedPorts = Collections.synchronizedMap(new HashMap<Integer, Boolean>());
 
