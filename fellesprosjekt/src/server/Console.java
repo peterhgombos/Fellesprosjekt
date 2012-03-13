@@ -52,4 +52,9 @@ public class Console {
 			textarea.append(""+c);
 		}
 	}
+	public static synchronized void writeint(int i){
+		if(textarea != null){
+			textarea.append(""+i);
+		}
+	}
 }//END
