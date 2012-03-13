@@ -47,4 +47,9 @@ public class Console {
 			textarea.append(s+"\n");
 		}
 	}
+	public static synchronized void writechar(char c){
+		if(textarea != null){
+			textarea.append(""+c);
+		}
+	}
 }//END
