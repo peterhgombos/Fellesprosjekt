@@ -17,7 +17,7 @@ public class Console {
 	
 	public static void open(){
 		frame = new JFrame();
-		frame.setTitle("ArenaServer");
+		frame.setTitle("CalendarServer");
 		frame.setMinimumSize(new Dimension(500, 600));
 		
 		frame.setLayout(new GridLayout(1,1));
@@ -31,15 +31,15 @@ public class Console {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		frame.addWindowListener(new WindowListener() {
-			public void windowClosing(WindowEvent arg0){
+			public void windowClosing(WindowEvent e){
 				System.exit(0);
 			}
-			public void windowOpened(WindowEvent arg0){}
-			public void windowIconified(WindowEvent arg0){}
-			public void windowDeiconified(WindowEvent arg0){}
-			public void windowDeactivated(WindowEvent arg0){}
-			public void windowClosed(WindowEvent arg0){}
-			public void windowActivated(WindowEvent arg0){}
+			public void windowOpened(WindowEvent e){}
+			public void windowIconified(WindowEvent e){}
+			public void windowDeiconified(WindowEvent e){}
+			public void windowDeactivated(WindowEvent e){}
+			public void windowClosed(WindowEvent e){}
+			public void windowActivated(WindowEvent e){}
 		});
 	}
 	public static synchronized void writeline(String s){
