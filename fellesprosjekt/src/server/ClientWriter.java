@@ -12,6 +12,10 @@ public class ClientWriter{
 	private Socket socket;
 	private BufferedWriter writer;
 	
+	/**
+	 * en klasse som skriver til en klient, identifiserers vha Ip 
+	 * @param socket
+	 */
 	public ClientWriter(Socket socket) {
 		this.socket = socket;
 		
@@ -22,6 +26,10 @@ public class ClientWriter{
 		}
 	}
 	
+	/**
+	 * sender en melding som en tekststreng til klienten
+	 * @param message
+	 */
 	public void send(String message) {
 		try {
 			writer.write(message);
@@ -32,6 +40,10 @@ public class ClientWriter{
 		}
 	}
 	
+	/**
+	 * klientens ipadresse
+	 * @return  IP
+	 */
 	public InetAddress getIP(){
 		return socket.getInetAddress();
 	}
