@@ -2,7 +2,6 @@ package server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
@@ -23,6 +22,17 @@ public class ClientReader extends Thread{
 		
 	}
 	
+	private void disconnect(){
+		Console.writeline("Client has disconnected");
+		try {
+			reader.close();
+			socket.close();
+		} catch (IOException e) {
+			//nothing they are allready disconnected
+		}
+	}
+	
+	
 	@Override
 	public void run() {
 		while(true){
@@ -32,11 +42,11 @@ public class ClientReader extends Thread{
 					server.receiveMessage(message);
 				}
 				else {
-					Console.writeline("Client has disconnected");
+					disconnect();
 					return;
 				}
 			} catch (IOException e) {
-				Console.writeline("Client has disconnected");
+				disconnect();
 				return;
 			}
 			

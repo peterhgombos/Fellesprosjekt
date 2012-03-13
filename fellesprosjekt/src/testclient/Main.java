@@ -13,16 +13,25 @@ import java.net.UnknownHostException;
 public class Main {
 
 	public static void main(String[] args) throws UnknownHostException, IOException, InterruptedException{
-		Socket socket = new Socket("78.91.9.68", 4536);
+		Socket socket = new Socket("localhost", 4536);
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 		BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		
 		
-		writer.write("hei");
+		writer.write("Mari");
 		writer.newLine();
 		writer.flush();
+		String s = reader.readLine();
 		
-		System.out.println(reader.readLine());
+		
+		while (true) {
+			System.out.println(s);
+			if (s == null) {
+				break;
+			}
+			s = reader.readLine();
+			
+		}
 		
 		socket.close();
 	}	

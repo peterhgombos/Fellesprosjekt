@@ -6,7 +6,7 @@ public class Main {
 		Console.open();
 		
 		MessageReceiver server = new MessageReceiver();
-		
+
 		ConnectionReceiver connectionReceiver = new ConnectionReceiver(server);
 		connectionReceiver.start();
 		
