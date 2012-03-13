@@ -44,17 +44,7 @@ public class Console {
 	}
 	public static synchronized void writeline(String s){
 		if(textarea != null){
-			textarea.append(s+"\n");
-		}
-	}
-	public static synchronized void writechar(char c){
-		if(textarea != null){
-			textarea.append(""+c);
-		}
-	}
-	public static synchronized void writeint(int i){
-		if(textarea != null){
-			textarea.append(""+i);
+			textarea.setText(s + "\n" + textarea.getText());
 		}
 	}
 }//END
