@@ -6,6 +6,8 @@ import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
+import server.constants.ServerConstants;
+
 public class ClientWriter{
 	
 	
@@ -22,7 +24,7 @@ public class ClientWriter{
 		try {
 			writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 		} catch (IOException e) {
-			Console.writeline(e.getMessage());
+			ServerConstants.console.writeline(e.getMessage());
 		}
 	}
 	
@@ -36,7 +38,7 @@ public class ClientWriter{
 			writer.newLine();
 			writer.flush();
 		} catch (IOException e) {
-			Console.writeline(e.getMessage());
+			ServerConstants.console.writeline(e.getMessage());
 		}
 	}
 	
