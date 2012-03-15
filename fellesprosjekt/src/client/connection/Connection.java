@@ -5,6 +5,12 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.LinkedList;
 
+import nu.xom.Builder;
+import nu.xom.Document;
+import nu.xom.ParsingException;
+import nu.xom.ValidityException;
+import nu.xom.tests.XOMTestCase;
+
 import utilities.Console;
 import dataobjects.*;
 
@@ -35,7 +41,13 @@ public class Connection  {
 	
 	
 	public static void receiveMessage(String s) {
-		//TODO
+		Builder parser = new Builder(false);
+		try{
+			Document doc = parser.build(s);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public void requestPersonLoggedIn(String username) {
