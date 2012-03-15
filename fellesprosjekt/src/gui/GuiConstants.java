@@ -6,36 +6,36 @@ import javax.swing.JButton;
 
 public class GuiConstants {
 
-	private Font JButtonFont;
-	private int JButtonDistance;
-	private int JButtonGroupDistance;
+	private Font jButtonFont;
+	private int distance;
+	private int groupDistance;
 	
 	
 	public GuiConstants() {
 		JButton b = new JButton();
-		JButtonFont = new Font(b.getFont().getName(), 
+		jButtonFont = new Font(b.getFont().getName(), 
 				b.getFont().getStyle(), 14 );
 		
-		JButtonDistance = 10;
-		JButtonGroupDistance = 40;
+		distance = 10;
+		groupDistance = 40;
 	}
 
 	
 
-	public int getJButtonDistance() {
-		return JButtonDistance;
+	public int getDistance() {
+		return distance;
 	}
 
 
 
-	public int getJButtonGroupDistance() {
-		return JButtonGroupDistance;
+	public int getGroupDistance() {
+		return groupDistance;
 	}
 
 
 
 	public Font getJButtonFont() {
-		return JButtonFont;
+		return jButtonFont;
 	}
 	
 }
