@@ -44,7 +44,7 @@ public class ClientReader extends Thread {
 	}
 	
 	/**
-	 * run-metoden, leser meldinger fra servern og sender dem til message-recieveren
+	 * run-metoden, leser meldinger fra klienten og sender dem til message-recieveren
 	 */
 	public void run() {
 		while(true){
