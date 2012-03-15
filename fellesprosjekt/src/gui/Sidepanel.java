@@ -1,17 +1,17 @@
 package gui;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-public class Sidepanel extends JPanel implements MouseListener{
+@SuppressWarnings("serial")
+public class Sidepanel extends JPanel implements FocusListener{
 	
 	private JButton message;
 	private JButton newAppointment;
@@ -38,8 +38,6 @@ public class Sidepanel extends JPanel implements MouseListener{
 		employeeList = new JList();
 		selectedEmployeeList = new JList();
 		search = new JTextField();
-		
-		
 		setLayout(null);
 		resize();
 		
@@ -80,7 +78,7 @@ public class Sidepanel extends JPanel implements MouseListener{
 		
 		search.setBounds(guiConstants.getDistance(), employeesAppointments.getY() + guiConstants.getGroupDistance() + message.getHeight(), message.getWidth(), message.getHeight());
 		search.setText("Søk");
-		search.addMouseListener(this);
+		search.addFocusListener(this);
 		
 		
 		employeeList.setBounds(guiConstants.getDistance(), search.getY() + 2 + message.getHeight(), message.getWidth(), message.getHeight());
@@ -107,29 +105,23 @@ public class Sidepanel extends JPanel implements MouseListener{
 		test.pack();
 		test.setSize(700, 700);
 		test.setVisible(true);
+	}
+
+
+
+	@Override
+	public void focusGained(FocusEvent arg0) {
+		if (search.getText().equals("Søk")) {
+			search.setText("");
+		}
 		
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		if(search.getText().equals("S�k")){
-			search.setText("");
+	public void focusLost(FocusEvent arg0) {
+		if (!search.getText().equals("Søk")) {
+			search.setText("Søk");
 		}
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
+		
 	}
 }
