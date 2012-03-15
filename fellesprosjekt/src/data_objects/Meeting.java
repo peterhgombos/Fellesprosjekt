@@ -1,5 +1,5 @@
 package data_objects;
 
-public class Meeting {
-
+public class Meeting extends Appointment{
+	
 }
