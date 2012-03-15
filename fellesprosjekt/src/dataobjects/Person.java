@@ -3,17 +3,10 @@ package dataobjects;
 public class Person {
 	
 	private String firstname;
-	
 	private String sirname;
-	
 	private String email;
-	
 	private String username;
-	
-	private String password;
-	
 	private String telephone;
-	
 	private int id;
 	
 	
@@ -23,7 +16,6 @@ public class Person {
 		this.sirname = sirname;
 		this.email = email;
 		this.username = username;
-		this.password = password;
 		this.telephone = telephone;
 	}
 	
@@ -42,10 +34,6 @@ public class Person {
 	
 	public String getUsername() {
 		return username;
-	}
-	
-	public String getPassword(){
-		return password;
 	}
 	
 	public String getTelephone(){
