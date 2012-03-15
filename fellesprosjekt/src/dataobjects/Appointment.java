@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Appointment {
 
+	private Person appointmentLeader;
 	private String apponintmentTitle;
 	private String apponintmentDescription;
 	private Date startTime;
@@ -11,7 +12,8 @@ public class Appointment {
 	private String place;
 	
 	//Må sjekke start tid mot slutt tid
-	public Appointment(String aTitle, Date start, Date end) {
+	public Appointment(Person leader, String aTitle, Date start, Date end) {
+		this.appointmentLeader = leader;
 		this.apponintmentTitle = aTitle;
 		this.startTime = start;
 		this.endTime = end;
@@ -58,5 +60,11 @@ public class Appointment {
 	public void setPlace(String place) {
 		this.place = place;
 	}
+
+	public Person getAppointmentLeader() {
+		return appointmentLeader;
+	}
+	
+	
 	
 }
