@@ -2,6 +2,9 @@ package client.connection;
 
 import java.util.ArrayList;
 
+import nu.xom.Document;
+import nu.xom.Element;
+
 import dataobjects.*;
 
 public class ServerData {
@@ -22,4 +25,19 @@ public class ServerData {
 		messages = new ArrayList<Message>();
 		
 	}
+	
+	public static void receiveMessage(Document document){
+		Element rootElement = document.getRootElement();
+		Element typeElement = rootElement.getFirstChildElement(XMLElements.MESSAGE_TYPE);
+		int type = Integer.parseInt(typeElement.getValue());
+		
+		
+		if(type == MessageType.LOGIN_REJECTED){
+			
+		}else if(type == MessageType.LOGIN_ACCEPTED){
+			
+		}
+		
+	}
+	
 }

@@ -7,12 +7,10 @@ import java.util.LinkedList;
 
 import nu.xom.Builder;
 import nu.xom.Document;
-import nu.xom.ParsingException;
-import nu.xom.ValidityException;
-import nu.xom.tests.XOMTestCase;
-
 import utilities.Console;
-import dataobjects.*;
+import dataobjects.Appointment;
+import dataobjects.Meeting;
+import dataobjects.Person;
 
 public class Connection  {
 
@@ -41,13 +39,13 @@ public class Connection  {
 	
 	
 	public static void receiveMessage(String s) {
-		Builder parser = new Builder(false);
 		try{
+			Builder parser = new Builder(false);
 			Document doc = parser.build(s);
+			ServerData.receiveMessage(doc);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public void requestPersonLoggedIn(String username) {
