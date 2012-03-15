@@ -10,8 +10,9 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import no.ntnu.fp.model.Project;
-import no.ntnu.fp.model.Person;
+import data_objects.Person;
+import data_objects.Project;
+
 
 /**
  * Implements action for removing persons from the list.

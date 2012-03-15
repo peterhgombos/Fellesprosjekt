@@ -11,8 +11,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Icon;
 
-import no.ntnu.fp.model.Project;
-import no.ntnu.fp.model.Person;
+import data_objects.Person;
+import data_objects.Project;
+
 
 /**
  * Implements the action for creating a new group of persons.

@@ -1,8 +1,9 @@
-package no.ntnu.fp.model;
+package data_objects;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Iterator;
+
 
 /**
  * The <code>Project</code> class is a list of zero or more {@link Person} objects.
