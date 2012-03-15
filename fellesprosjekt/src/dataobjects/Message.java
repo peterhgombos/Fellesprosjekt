@@ -10,7 +10,6 @@ public class Message {
 	private String text;
 	private Appointment appointment;
 	
-	
 	public Message (String title, Date timeAdded, int id, String text, Appointment appointment){
 		this.title = title;
 		this.timeAdded = timeAdded;
@@ -18,7 +17,6 @@ public class Message {
 		this.text = text;
 		this.appointment = appointment;
 	}
-
 	
 	public String getText() {
 		return text;
@@ -32,7 +30,6 @@ public class Message {
 		return id;
 	}
 
-
 	public String getTitle() {
 		return title;
 	}
@@ -40,4 +37,5 @@ public class Message {
 	public Date getTimeAdded() {
 		return timeAdded;
 	}
+	
 }

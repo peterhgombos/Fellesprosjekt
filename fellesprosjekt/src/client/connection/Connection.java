@@ -19,7 +19,7 @@ public class Connection  {
 	public static ServerWriter writer;
 	LinkedList<ConnectionListener> listeners;
 
-	public static void connect() throws IOException {
+	public void connect() throws IOException {
 		console = new Console();
 		socket = new Socket();
 		socket.connect(new InetSocketAddress("localhost", server.ServerConstants.PORT));
@@ -80,8 +80,5 @@ public class Connection  {
 		//TODO
 	}
 	
-	public static void main(String[] args) throws IOException {
-		Connection.connect();
-	}
 
 }

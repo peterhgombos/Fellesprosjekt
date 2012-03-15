@@ -9,7 +9,6 @@ public class Person {
 	private String telephone;
 	private int id;
 	
-	
 	public Person(int id, String firstname, String surname, String email, String username, String password,String telephone ) {
 		this.id = id;
 		this.firstname = firstname;
@@ -18,7 +17,6 @@ public class Person {
 		this.username = username;
 		this.telephone = telephone;
 	}
-	
 	
 	public String getFirstname() {
 		return firstname;
@@ -43,10 +41,9 @@ public class Person {
 	public int getId() {
 		return id;
 	}
-
-
 	
 	public String toString() {
-		return getFirstname() + " " + getSurname();
+		return firstname + " " + surname;
 	}
+	
 }
