@@ -11,8 +11,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Icon;
 
-import data_objects.Person;
-import data_objects.Appointment;
+import dataobjects.Appointment;
+import dataobjects.Person;
 
 
 /**

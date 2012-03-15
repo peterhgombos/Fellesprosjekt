@@ -1,10 +1,6 @@
-package data_objects;
+package dataobjects;
 
-import java.beans.PropertyChangeSupport;
 import java.sql.Date;
-import java.util.Iterator;
-import java.util.ArrayList;
-
 
 public class Appointment {
 
@@ -15,14 +11,12 @@ public class Appointment {
 	private Date endTime;
 	private String place;
 	
-	
-	
 	//Må sjekke start tid mot slutt tid
-	public Appointment(String aTitle, Date start, Date end, Person leader) {
+	public Appointment(Person leader, String aTitle, Date start, Date end) {
+		this.appointmentLeader = leader;
 		this.apponintmentTitle = aTitle;
 		this.startTime = start;
 		this.endTime = end;
-		this.appointmentLeader = leader;
 	}
 	
 	public String getApponintmentTitle() {
@@ -72,21 +66,5 @@ public class Appointment {
 	}
 	
 	
-
-	
-//
-//	public void addPropertyChangeListener(PropertyChangeListener listener) {
-//		propChangeSupp.addPropertyChangeListener(listener);
-//	}
-//	
-//	public void removePropertyChangeListener(PropertyChangeListener listener) {
-//		propChangeSupp.removePropertyChangeListener(listener);
-//	}
-//
-//	public void propertyChange(PropertyChangeEvent event) {
-//		propChangeSupp.firePropertyChange(event);
-//	}
-//
-
 	
 }

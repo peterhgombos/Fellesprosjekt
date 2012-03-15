@@ -6,12 +6,12 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.KeyStroke;
 
-import data_objects.Person;
-import data_objects.Appointment;
+import dataobjects.Appointment;
+import dataobjects.Person;
 
 
 /**
- * Implements the command for adding new {@link data_objects.Person} objects.
+ * Implements the command for adding new {@link dataobjects.Person} objects.
  * 
  * @author Thomas &Oslash;sterlie
  *

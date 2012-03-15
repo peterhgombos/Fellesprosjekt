@@ -1,4 +1,4 @@
-package data_objects;
+package dataobjects;
 
 import java.sql.Date;
 

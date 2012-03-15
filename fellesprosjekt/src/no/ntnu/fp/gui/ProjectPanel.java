@@ -3,8 +3,8 @@ package no.ntnu.fp.gui;
 import javax.swing.*;
 import javax.swing.event.*;
 
-import data_objects.Person;
-import data_objects.Appointment;
+import dataobjects.Appointment;
+import dataobjects.Person;
 
 import java.awt.*;
 
@@ -94,7 +94,7 @@ public class ProjectPanel extends JPanel implements ListSelectionListener, ListD
     /**
      * Called when a Person is selected in (one of) the list(s).
      * 
-     * @param p The selected {@link data_objects.Person} object.
+     * @param p The selected {@link dataobjects.Person} object.
      */
     private void listElementSelected(Person p) {
         personPanel.setModel(p);

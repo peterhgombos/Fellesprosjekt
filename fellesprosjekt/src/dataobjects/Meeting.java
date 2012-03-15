@@ -1,4 +1,4 @@
-package data_objects;
+package dataobjects;
 
 import java.sql.Date;
 import java.util.HashMap;
@@ -11,8 +11,8 @@ public class Meeting extends Appointment{
 	private HashMap<Person, Integer> participants;
 	private int externalParticipants;
 	
-	public Meeting(String title, Date start, Date end, Person leader, HashMap<Person, Integer> participants){
-		super(title, start, end, leader);
+	public Meeting(Person leader, String title, Date start, Date end, HashMap<Person, Integer> participants){
+		super(leader, title, start, end);
 		this.participants = participants;
 	}
 
@@ -44,6 +44,5 @@ public class Meeting extends Appointment{
 	public void changeCountExternalParticipants(int num){
 		this.externalParticipants = num;
 	}
-	
 	
 }
