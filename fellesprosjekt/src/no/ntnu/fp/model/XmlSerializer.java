@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.Iterator;
 
 import data_objects.Person;
-import data_objects.Project;
+import data_objects.Appointment;
 
 import nu.xom.Builder;
 import nu.xom.Document;
@@ -29,7 +29,7 @@ import nu.xom.ParsingException;
  */
 public class XmlSerializer {
 
-	public Document toXml(Project aProject) {
+	public Document toXml(Appointment aProject) {
 		Element root = new Element("project");
 		
 		Iterator it = aProject.iterator();
@@ -42,8 +42,8 @@ public class XmlSerializer {
 		return new Document(root);
 	}
 	
-	public Project toProject(Document xmlDocument) throws ParseException {
-		Project aProject = new Project();
+	public Appointment toProject(Document xmlDocument) throws ParseException {
+		Appointment aProject = new Appointment();
 		Element groupElement = xmlDocument.getRootElement();
 		Elements personElements = groupElement.getChildElements("person");
 		

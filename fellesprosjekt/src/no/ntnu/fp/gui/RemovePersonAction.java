@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import data_objects.Person;
-import data_objects.Project;
+import data_objects.Appointment;
 
 
 /**
@@ -44,7 +44,7 @@ public class RemovePersonAction extends AbstractAction {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		PersonListModel plm = projectPanel.getModel();
-		Project project = plm.getProject();
+		Appointment project = plm.getProject();
 
 		int index = projectPanel.getSelectedElement();
 		Person person = project.getPerson(index);

@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 import data_objects.Person;
-import data_objects.Project;
+import data_objects.Appointment;
 
 import java.awt.*;
 
@@ -197,6 +197,6 @@ public class ProjectPanel extends JPanel implements ListSelectionListener, ListD
         frame.setSize (800,300);
         frame.setVisible(true);
 
-	projectPanel.setModel(new PersonListModel(new Project(), null));
+	projectPanel.setModel(new PersonListModel(new Appointment(), null));
     }
 }
