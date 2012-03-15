@@ -11,7 +11,7 @@ import no.ntnu.fp.storage.FileStorage;
 import no.ntnu.fp.swingutil.FPFileFilter;
 
 /**
- * Implements the action for saving {@link data_objects.Appointment} to an alternative file.
+ * Implements the action for saving {@link dataobjects.Appointment} to an alternative file.
  * 
  * @author Thomas &Oslash;sterlie
  * @author Rune Molden

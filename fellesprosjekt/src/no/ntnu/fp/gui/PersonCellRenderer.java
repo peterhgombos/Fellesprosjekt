@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.text.DateFormatter;
 
-import data_objects.Person;
+import dataobjects.Person;
 
 
 public class PersonCellRenderer extends DefaultListCellRenderer

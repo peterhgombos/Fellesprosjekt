@@ -14,8 +14,8 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.StringTokenizer;
 
-import data_objects.Person;
-import data_objects.Appointment;
+import dataobjects.Appointment;
+import dataobjects.Person;
 
 import no.ntnu.fp.model.XmlSerializer;
 import no.ntnu.fp.swingutil.FPFileFilter;
