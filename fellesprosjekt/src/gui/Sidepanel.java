@@ -107,6 +107,7 @@ public class Sidepanel extends JPanel implements MouseListener{
 		test.pack();
 		test.setSize(700, 700);
 		test.setVisible(true);
+		
 	}
 
 	@Override
