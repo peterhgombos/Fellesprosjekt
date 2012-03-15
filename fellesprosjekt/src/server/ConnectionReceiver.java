@@ -20,7 +20,7 @@ public class ConnectionReceiver extends Thread{
 		try {
 			serverSocket = new ServerSocket(ServerConstants.PORT);
 		} catch (IOException e) {
-			Console.writeline(e.getMessage());
+			ServerConstants.console.writeline(e.getMessage());
 		}
 		while (true) {
 			try {
@@ -32,7 +32,7 @@ public class ConnectionReceiver extends Thread{
 				clientReader.start();
 				
 			} catch (IOException e) {
-				Console.writeline(e.getMessage());
+				ServerConstants.console.writeline(e.getMessage());
 				
 			}
 			

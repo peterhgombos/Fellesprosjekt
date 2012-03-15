@@ -4,7 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
+import server.constants.ServerConstants;
 
 
 
@@ -21,13 +22,13 @@ public class Database {
 		ResultSet result;
 		String query = "SELECT FORNAVN FROM ANSATT;";
 
-		Console.writeline(query);
-		Console.writeline("resultat: ");
+		ServerConstants.console.writeline(query);
+		ServerConstants.console.writeline("resultat: ");
 		try {		
 			result = executeQuery(query);			
 			while (result.next()) {
 				String s = result.getString("fornavn");
-				Console.writeline(s);
+				ServerConstants.console.writeline(s);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

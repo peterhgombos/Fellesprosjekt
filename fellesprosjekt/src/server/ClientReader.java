@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+import server.constants.ServerConstants;
+import utilities.Console;
+
 public class ClientReader extends Thread {
 	
 	private BufferedReader reader;
@@ -22,7 +25,7 @@ public class ClientReader extends Thread {
 		try {
 			reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		} catch (IOException e) {
-			Console.writeline(e.getMessage());
+			ServerConstants.console.writeline(e.getMessage());
 		}
 	}
 	
@@ -30,7 +33,7 @@ public class ClientReader extends Thread {
 	 * metoden kobler fra klienten
 	 */
 	private void disconnect(){
-		Console.writeline("Client has disconnected");
+		ServerConstants.console.writeline("Client has disconnected");
 		try {
 			reader.close();
 			socket.close();
