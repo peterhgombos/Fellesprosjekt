@@ -112,7 +112,7 @@ public class Sidepanel extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		if(search.getText().equals("SÃ¸k")){
+		if(search.getText().equals("Søk")){
 			search.setText("");
 		}
 	}
