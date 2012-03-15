@@ -14,24 +14,12 @@ import java.util.Date;
  */
 public class Person {
 	
-	/**
-	 * This member variable holds the person's name.
-	 */
 	private String name;
 	
-	/**
-	 * This member variable holds the person's email address.
-	 */
 	private String email;
 	
-	/**
-	 * This member variable holds the person's date of birth.
-	 */
 	private Date dateOfBirth;
 	
-	/**
-	 * This member variable holds a unique identifier for this object.
-	 */
 	private long id;
 	
 	/**
