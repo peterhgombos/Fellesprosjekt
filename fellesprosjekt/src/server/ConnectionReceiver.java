@@ -10,6 +10,7 @@ public class ConnectionReceiver extends Thread{
 
 	private ServerSocket serverSocket;
 	private MessageReceiver server;
+	
 	public ConnectionReceiver(MessageReceiver server) {
 		this.server = server;
 	}
