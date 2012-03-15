@@ -2,6 +2,9 @@ package client.connection;
 
 import java.util.ArrayList;
 
+import nu.xom.Document;
+import nu.xom.Element;
+
 import dataobjects.*;
 
 public class ServerData {
@@ -21,5 +24,11 @@ public class ServerData {
 		persons = new ArrayList<Person>();
 		messages = new ArrayList<Message>();
 		
+	}
+	
+	public static void receiveMessage(Document doc) {
+		Element rootElement = doc.getRootElement();
+		Element typeElement = rootElement.getFirstChildElement("MessageType");
+		int type = Integer.parseInt(typeElement.getValue());
 	}
 }

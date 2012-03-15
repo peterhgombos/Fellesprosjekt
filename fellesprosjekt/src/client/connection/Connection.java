@@ -5,6 +5,9 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.LinkedList;
 
+import nu.xom.ParsingException;
+import nu.xom.ValidityException;
+
 import utilities.Console;
 import dataobjects.*;
 
@@ -35,7 +38,22 @@ public class Connection  {
 	
 	
 	public static void receiveMessage(String s) {
-		//TODO
+	   	nu.xom.Builder parser = new nu.xom.Builder(false);
+    	nu.xom.Document doc;
+		try {
+			doc = parser.build(s, "");
+		} catch (ValidityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParsingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	ServerData.receiveMessage(doc);
+
 	}
 	
 	public void requestPersonLoggedIn(String username) {
