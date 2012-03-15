@@ -1,6 +1,5 @@
 package server;
 
-import server.constants.ServerConstants;
 import utilities.Console;
 
 public class Main {

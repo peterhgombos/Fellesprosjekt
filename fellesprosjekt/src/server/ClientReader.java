@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-import server.constants.ServerConstants;
 import utilities.Console;
 
 public class ClientReader extends Thread {
@@ -15,7 +14,7 @@ public class ClientReader extends Thread {
 	private MessageReceiver server;
 	
 	/**
-	 * ClientReader er en tråd som kontinuerlig leser fra en klient og sender meldingene vidre til en sentral server
+	 * ClientReader er en trï¿½d som kontinuerlig leser fra en klient og sender meldingene vidre til en sentral server
 	 * @param socket - socketen som 
 	 * @param server - en messagereciever som leseren sender meldinger til
 	 */
@@ -38,7 +37,7 @@ public class ClientReader extends Thread {
 			reader.close();
 			socket.close();
 		} catch (IOException e) {
-			//ingenting, hvis det skjer noe her får det bare være, de er allerede frakoblet
+			//ingenting, hvis det skjer noe her fï¿½r det bare vï¿½re, de er allerede frakoblet
 			//egentlig kan man ikke annta dette, det kan skje skumle feil men det kan bli komplisert
 		}
 	}
