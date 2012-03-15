@@ -39,6 +39,7 @@ public class Connection  {
 	
 	public static void receiveMessage(String s) {
 	   	nu.xom.Builder parser = new nu.xom.Builder(false);
+	   	//TODO create doc properly
     	nu.xom.Document doc;
 		try {
 			doc = parser.build(s, "");
