@@ -31,36 +31,36 @@ public class XmlSerializer {
 
 	public Document toXml(Appointment aProject) {
 		Element root = new Element("project");
-		
+
 		Iterator it = aProject.iterator();
 		while (it.hasNext()) {
 			Person aPerson = (Person)it.next();
 			Element element = personToXml(aPerson);
 			root.appendChild(element);
 		}
-		
+
 		return new Document(root);
 	}
-	
+
 	public Appointment toProject(Document xmlDocument) throws ParseException {
 		Appointment aProject = new Appointment();
 		Element groupElement = xmlDocument.getRootElement();
 		Elements personElements = groupElement.getChildElements("person");
-		
+
 		for (int i = 0; i < personElements.size(); i++) {
 			Element childElement = personElements.get(i);
 			aProject.addPerson(assemblePerson(childElement));
 		}
-		
+
 		return aProject;
 	}
 
-    public Person toPerson(String xml) throws java.io.IOException, java.text.ParseException, nu.xom.ParsingException {
-	nu.xom.Builder parser = new nu.xom.Builder(false);
-	nu.xom.Document doc = parser.build(xml, "");
-	return assemblePerson(doc.getRootElement());
-    }
-	
+	public Person toPerson(String xml) throws java.io.IOException, java.text.ParseException, nu.xom.ParsingException {
+		nu.xom.Builder parser = new nu.xom.Builder(false);
+		nu.xom.Document doc = parser.build(xml, "");
+		return assemblePerson(doc.getRootElement());
+	}
+
 	private Element personToXml(Person aPerson) {
 		DateFormat format = DateFormat.getDateInstance(DateFormat.MEDIUM, java.util.Locale.US);
 		Element element = new Element("person");
@@ -75,7 +75,7 @@ public class XmlSerializer {
 		element.appendChild(dateOfBirth);
 		return element;
 	}
-	
+
 	private Person assemblePerson(Element personElement) throws ParseException {
 		String name = null, email = null;
 		Date date = null;
@@ -93,7 +93,7 @@ public class XmlSerializer {
 		}
 		return new Person(name, email, date);
 	}
-	
+
 	/**
 	 * TODO: handle this one to avoid duplicate code
 	 * 
