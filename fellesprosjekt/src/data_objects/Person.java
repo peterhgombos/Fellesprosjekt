@@ -1,4 +1,4 @@
-package no.ntnu.fp.model;
+package data_objects;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

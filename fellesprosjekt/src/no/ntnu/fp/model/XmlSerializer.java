@@ -12,6 +12,9 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Iterator;
 
+import data_objects.Person;
+import data_objects.Project;
+
 import nu.xom.Builder;
 import nu.xom.Document;
 import nu.xom.Element;

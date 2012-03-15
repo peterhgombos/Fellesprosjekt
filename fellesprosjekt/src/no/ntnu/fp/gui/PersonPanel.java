@@ -19,16 +19,18 @@ import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 
 import javax.swing.BorderFactory;
+
+import data_objects.Person;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-import no.ntnu.fp.model.Person;
 
 import no.ntnu.fp.swingutil.EmailFormatter;
 
 /**
- * A panel for viewing and editing {@link no.ntnu.fp.model.Person} objects. The various
+ * A panel for viewing and editing {@link data_objects.Person} objects. The various
  * interfaces are implemented to react to sub-components and model changes.
  * 
  * @author Hallvard Tr¾tteberg
@@ -40,7 +42,7 @@ public class PersonPanel extends JPanel
     implements PropertyChangeListener, ActionListener, ItemListener, FocusListener
 {
     /**
-     * The underlying data model is the {@link no.ntnu.fp.model.Person} class.
+     * The underlying data model is the {@link data_objects.Person} class.
      */
     private Person model;
 
@@ -118,7 +120,7 @@ public class PersonPanel extends JPanel
      * is called when a property of an object listened to is changed.<P>
      * 
      * Note that <code>PersonPanel</code> listens to both the underlying model object,
-     * i.e. {@link no.ntnu.fp.model.Person}, and to the value property of the 
+     * i.e. {@link data_objects.Person}, and to the value property of the 
      * {@link javax.swing.JFormattedTextField}, i.e. nameTextField, emailTextField, and
      * dateOfBirthTextField.
      * 
