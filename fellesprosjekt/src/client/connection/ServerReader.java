@@ -3,10 +3,7 @@ package client.connection;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.Socket;
-
-import server.ServerConstants;
 
 public class ServerReader extends Thread {
 	
@@ -44,7 +41,7 @@ public class ServerReader extends Thread {
 					return;
 				}
 				
-				Connection.console.writeline(message);
+				Connection.receiveMessage(message);
 				
 			} catch (IOException e) {
 				e.printStackTrace();
