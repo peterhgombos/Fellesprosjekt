@@ -14,7 +14,9 @@ import java.util.Date;
  */
 public class Person {
 	
-	private String name;
+	private String firstname;
+	
+	private String sirname;
 	
 	private String email;
 	
@@ -36,7 +38,9 @@ public class Person {
 	 * 
 	 * @see #setName(String) the setName(String) method
 	 */
-	public final static String NAME_PROPERTY_NAME = "name";
+	public final static String NAME_PROPERTY_FIRSTNAME = "firstname";
+	
+	public final static String NAME_PROPERTY_SIRNAME = "sirname";
 
 	/**
 	 * Constant used when calling 
@@ -65,7 +69,8 @@ public class Person {
 	 * {@linkplain #getId() id field} is set to current time when the object is created.
 	 */
 	public Person() {
-		name = "";
+		firstname = "";
+		sirname = "";
 		email = "";
 		dateOfBirth = new Date();
 		id = System.currentTimeMillis();
@@ -80,9 +85,10 @@ public class Person {
 	 * @param email The person's e-mail address
 	 * @param dateOfBirth The person's date of birth.
 	 */
-	public Person(String name, String email, Date dateOfBirth) {
+	public Person(String firstname, String sirname, String email, Date dateOfBirth) {
 		this();
-		this.name = name;
+		this.firstname = firstname;
+		this.sirname = sirname;
 		this.email = email;
 		this.dateOfBirth = dateOfBirth;
 	}
@@ -113,10 +119,17 @@ public class Person {
 	 * @see java.beans.PropertyChangeListener <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/beans/PropertyChangeListener.html">java.beans.PropertyChangeListener</a>
 	 * @see java.beans.PropertyChangeEvent <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/beans/PropertyChangeEvent.html">java.beans.PropertyChangeEvent</a>
 	 */
-	public void setName(String name) {
-		String oldName = this.name;
-		this.name = name;
-		PropertyChangeEvent event = new PropertyChangeEvent(this, NAME_PROPERTY_NAME, oldName, name);
+	public void setFirstname(String firstname) {
+		String oldName = this.firstname;
+		this.firstname = firstname;
+		PropertyChangeEvent event = new PropertyChangeEvent(this, NAME_PROPERTY_FIRSTNAME, oldName, firstname);
+		propChangeSupp.firePropertyChange(event);
+	}
+	
+	public void setSirname(String sirname){
+		String oldName = this.sirname;
+		this.sirname = sirname;
+		PropertyChangeEvent event = new PropertyChangeEvent(this, NAME_PROPERTY_SIRNAME, oldName, sirname);
 		propChangeSupp.firePropertyChange(event);
 	}
 	
@@ -192,8 +205,12 @@ public class Person {
 	 * 
 	 * @return The person's name.
 	 */
-	public String getName() {
-		return name;
+	public String getFirstname() {
+		return firstname;
+	}
+	
+	public String getSirname(){
+		return sirname;
 	}
 
 	/**
@@ -253,7 +270,9 @@ public class Person {
 		
 		Person aPerson = (Person)obj;
 		
-		if (aPerson.getName().compareTo(getName()) != 0) 
+		if (aPerson.getFirstname().compareTo(getFirstname()) != 0) 
+			return false;
+		if(aPerson.getSirname().compareTo(getSirname()) != 0)
 			return false;
 		if (aPerson.getEmail().compareTo(getEmail()) != 0)
 			return false;
@@ -267,7 +286,8 @@ public class Person {
 	 * {@inheritDoc}
 	 */
 	public String toString() {
-		String s = "Name: " + getName() + "; ";
+		String s = "Firstname: " + getFirstname() + "; ";
+		s += "Sirname: " + getSirname() + ";";
 		s += "Email: " + getEmail() + "; ";
 		s += "Date of birth: " + getDateOfBirth().toString();
 		return s;
