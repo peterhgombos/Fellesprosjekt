@@ -15,6 +15,7 @@ public class Appointment {
 	private String place;
 	
 	
+	
 	//Må sjekke start tid mot slutt tid
 	public Appointment(String aTitle, Date start, Date end) {
 		this.apponintmentTitle = aTitle;
