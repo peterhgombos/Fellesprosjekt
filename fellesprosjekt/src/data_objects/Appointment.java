@@ -5,13 +5,6 @@ import java.beans.PropertyChangeListener;
 import java.util.Iterator;
 
 
-/**
- * The <code>Project</code> class is a list of zero or more {@link Person} objects.
- * 
- * @author Thomas &Oslash;sterlie
- * @version $Revision: 1.9 $ - $Date: 2005/02/22 07:53:33 $
- *
- */
 public class Appointment implements PropertyChangeListener {
 
 	/**
