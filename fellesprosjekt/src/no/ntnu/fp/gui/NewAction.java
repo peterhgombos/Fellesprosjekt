@@ -12,7 +12,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Icon;
 
 import data_objects.Person;
-import data_objects.Project;
+import data_objects.Appointment;
 
 
 /**
@@ -45,7 +45,7 @@ public class NewAction extends AbstractAction {
 	 * @param e The action event.
 	 */
 	public void actionPerformed(ActionEvent arg0) {
-		Project project = new Project();
+		Appointment project = new Appointment();
 		project.addPerson(new Person());
 		projectPanel.setModel(new PersonListModel(project, null));
 	}

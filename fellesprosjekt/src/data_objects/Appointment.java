@@ -12,7 +12,7 @@ import java.util.Iterator;
  * @version $Revision: 1.9 $ - $Date: 2005/02/22 07:53:33 $
  *
  */
-public class Project implements PropertyChangeListener {
+public class Appointment implements PropertyChangeListener {
 
 	/**
 	 * The member variable storing all registered {@link Person} objects.
@@ -29,7 +29,7 @@ public class Project implements PropertyChangeListener {
 	 * Default constructor.  Must be called to initialise the object's member variables.
 	 *
 	 */
-	public Project() {
+	public Appointment() {
 		personList = new java.util.ArrayList();
 		propChangeSupp = new java.beans.PropertyChangeSupport(this);
 	}
@@ -93,7 +93,7 @@ public class Project implements PropertyChangeListener {
 	 * <ul>
 	 * <li>the <code>getNewValue()</code> method returns the {@link Person} object added</li>
 	 * <li>the <code>getOldValue()</code> method returns <code>null</code></li>
-	 * <li>the <code>getSource()</code> method returns this {@link Project} object
+	 * <li>the <code>getSource()</code> method returns this {@link Appointment} object
 	 * </ul>
 	 * 
 	 * @param person The {@link Person} object added.
@@ -122,7 +122,7 @@ public class Project implements PropertyChangeListener {
 	 * <li>the <code>getNewValue()</code> method returns an {@link java.lang.Integer} object 
 	 *     with the index of the removed element</li>
 	 * <li>the <code>getOldValue()</code> method returns the {@link Person} object added</li>
-	 * <li>the <code>getSource()</code> method returns this {@link Project} object
+	 * <li>the <code>getSource()</code> method returns this {@link Appointment} object
 	 * </ul>
 	 * 
 	 * @param person The {@link Person} object to be removed.
@@ -170,7 +170,7 @@ public class Project implements PropertyChangeListener {
 		if (o.getClass() != this.getClass())
 			return false;
 		
-		Project aProject = (Project)o;
+		Appointment aProject = (Appointment)o;
 		
 		if (aProject.getPersonCount() != getPersonCount())
 			return false;

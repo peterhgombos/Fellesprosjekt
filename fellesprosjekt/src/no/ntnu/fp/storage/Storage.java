@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.net.URL;
 
-import data_objects.Project;
+import data_objects.Appointment;
 
 
 /**
@@ -21,8 +21,8 @@ import data_objects.Project;
  */
 public interface Storage {
 
-	Project load(URL url) throws IOException, ParseException;
+	Appointment load(URL url) throws IOException, ParseException;
 	
-	void save(URL url, Project project) throws IOException, ParseException;
+	void save(URL url, Appointment project) throws IOException, ParseException;
 
 }

@@ -7,7 +7,7 @@ import javax.swing.Action;
 import javax.swing.KeyStroke;
 
 import data_objects.Person;
-import data_objects.Project;
+import data_objects.Appointment;
 
 
 /**
@@ -44,7 +44,7 @@ public class AddPersonAction extends AbstractAction {
      */
 	public void actionPerformed(ActionEvent event) {
 		PersonListModel plm = projectPanel.getModel();
-		Project project = plm.getProject();
+		Appointment project = plm.getProject();
 		project.addPerson(new Person());
 	}
 	

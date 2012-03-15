@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.StringTokenizer;
 
 import data_objects.Person;
-import data_objects.Project;
+import data_objects.Appointment;
 
 import no.ntnu.fp.model.XmlSerializer;
 import no.ntnu.fp.swingutil.FPFileFilter;
@@ -45,7 +45,7 @@ public class FileStorage implements Storage {
 	}
 	
 	/**
-	 * Loads a file from the system and returns an instanciated {@link Project}
+	 * Loads a file from the system and returns an instanciated {@link Appointment}
 	 * object if the operation was successfully executed. This method handles both
 	 * flat data file types (<code>*.data</code>) and XML files (<code>*.xml</code>).
 	 *  
@@ -55,7 +55,7 @@ public class FileStorage implements Storage {
 	 * @throws ParseException If the content of the file could not be properly
 	 *         parsed.
 	 */
-	public Project load(File aFile) throws IllegalArgumentException, IOException, ParseException {
+	public Appointment load(File aFile) throws IllegalArgumentException, IOException, ParseException {
 	    String extension = FPFileFilter.getExtension(aFile);
 	    if (extension != null && extension.toLowerCase().equals(XML_FILE_EXTENSION)) {
             return loadXOMFile(aFile);
@@ -84,11 +84,11 @@ public class FileStorage implements Storage {
 
 	/**
 	 * Loads a file from a network resource and returns an instanciated 
-	 * {@link Project} object if the operation performed successful.
+	 * {@link Appointment} object if the operation performed successful.
 	 * 
 	 * @see #load(File)
 	 */
-	public Project load(URL url) throws IOException, ParseException {
+	public Appointment load(URL url) throws IOException, ParseException {
 		return load(getURLFile(url));
 	}
 
@@ -113,16 +113,16 @@ public class FileStorage implements Storage {
 	}
 	
 	/**
-	 * A {@link Project} is stored to a proper file format based on it's 
+	 * A {@link Appointment} is stored to a proper file format based on it's 
 	 * storage representation. If the extension indicates it is to be stored as 
 	 * (<code>*.xml</code>), the representation will be in XML. Otherwise, the 
-	 * {@link Project} is stored in a flat file format (<code>*.data</code>).
+	 * {@link Appointment} is stored in a flat file format (<code>*.data</code>).
 	 * 
 	 * @param aProject The project to save.
 	 * @param aFile The file to save the project to.
 	 * @throws IOException If file I/O in some way fails
 	 */
-	public void save(Project aProject, File aFile) throws IOException {
+	public void save(Appointment aProject, File aFile) throws IOException {
 	    String extension = FPFileFilter.getExtension(aFile);
 	    if (extension != null && extension.equals("data")) {
 	        saveFlatFile(aProject, aFile);
@@ -142,7 +142,7 @@ public class FileStorage implements Storage {
 	 * @param aFile The file to store the project to.
 	 * @throws IOException If some file I/O fails.
 	 */
-	private void saveXmlFile(Project aProject, File aFile) throws IOException {
+	private void saveXmlFile(Appointment aProject, File aFile) throws IOException {
 		Serializer serial = 
 		    new Serializer(new FileOutputStream(aFile), "iso-8859-1");
 		serial.setIndent(5);
@@ -156,11 +156,11 @@ public class FileStorage implements Storage {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public void save(URL url, Project aProject) throws IOException {
+	public void save(URL url, Appointment aProject) throws IOException {
 		save(aProject, getURLFile(url));
 	}
 
-	private void saveFlatFile(Project aProject, File aFile) throws IOException {
+	private void saveFlatFile(Appointment aProject, File aFile) throws IOException {
 		FileWriter aFileWriter = new FileWriter(aFile);
 		BufferedWriter aWriter = new BufferedWriter(aFileWriter);
 		PrintWriter printWriter = new PrintWriter(aWriter);
@@ -179,8 +179,8 @@ public class FileStorage implements Storage {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	private Project loadFlatFile(File aFile) throws java.io.IOException, ParseException {
-		Project aProject = new Project();
+	private Appointment loadFlatFile(File aFile) throws java.io.IOException, ParseException {
+		Appointment aProject = new Appointment();
 		FileReader aFileReader = new FileReader(aFile);
 		BufferedReader aReader = new BufferedReader(aFileReader);
 		String line = aReader.readLine();
@@ -192,7 +192,7 @@ public class FileStorage implements Storage {
 		return aProject;
 	}
 	
-	private Project loadXOMFile(File aFile) throws java.io.IOException, ParseException {
+	private Appointment loadXOMFile(File aFile) throws java.io.IOException, ParseException {
 		Document doc = null;
 		try {
 			doc = new Builder().build(aFile);

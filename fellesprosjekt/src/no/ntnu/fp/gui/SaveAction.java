@@ -8,7 +8,7 @@ import javax.swing.AbstractAction;
 import no.ntnu.fp.storage.FileStorage;
 
 /**
- * Implements the command for saving the {@link data_objects.Project}.
+ * Implements the command for saving the {@link data_objects.Appointment}.
  * 
  * @author Thomas &Oslash;sterlie
  * 
