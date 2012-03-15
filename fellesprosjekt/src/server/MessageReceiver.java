@@ -3,6 +3,7 @@ package server;
 import java.net.InetAddress;
 import java.util.HashMap;
 
+import server.constants.ServerConstants;
 
 public class MessageReceiver {
 	
@@ -15,7 +16,7 @@ public class MessageReceiver {
 	}
 	
 	public synchronized void receiveMessage(String message){
-		Console.writeline(message);
+		ServerConstants.console.writeline(message);
 		sendToAll(message);
 	}
 	
@@ -24,9 +25,9 @@ public class MessageReceiver {
 	}
 	
 	public synchronized void sendToAll(String message){
-		Console.writeline("send to all");
+		ServerConstants.console.writeline("send to all");
 		for (ClientWriter client : clients.values()) {
-			Console.writeline("send to: "+client.getIP());
+			ServerConstants.console.writeline("send to: " + client.getIP());
 			client.send(message);
 		}
 	}

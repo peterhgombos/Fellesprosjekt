@@ -1,9 +1,12 @@
 package server;
 
+import server.constants.ServerConstants;
+import utilities.Console;
+
 public class Main {
 	
 	public Main() {
-		Console.open();
+		ServerConstants.console = new Console();
 		
 		MessageReceiver server = new MessageReceiver();
 
