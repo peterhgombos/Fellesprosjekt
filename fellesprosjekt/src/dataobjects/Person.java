@@ -3,27 +3,19 @@ package dataobjects;
 public class Person {
 	
 	private String firstname;
-	
-	private String sirname;
-	
+	private String surname;
 	private String email;
-	
 	private String username;
-	
-	private String password;
-	
 	private String telephone;
-	
 	private int id;
 	
 	
-	public Person(int id, String firstname, String sirname, String email, String username, String password,String telephone ) {
+	public Person(int id, String firstname, String surname, String email, String username, String password,String telephone ) {
 		this.id = id;
 		this.firstname = firstname;
-		this.sirname = sirname;
+		this.surname = surname;
 		this.email = email;
 		this.username = username;
-		this.password = password;
 		this.telephone = telephone;
 	}
 	
@@ -32,8 +24,8 @@ public class Person {
 		return firstname;
 	}
 	
-	public String getSirname(){
-		return sirname;
+	public String getSurname(){
+		return surname;
 	}
 
 	public String getEmail() {
@@ -42,10 +34,6 @@ public class Person {
 	
 	public String getUsername() {
 		return username;
-	}
-	
-	public String getPassword(){
-		return password;
 	}
 	
 	public String getTelephone(){
@@ -59,6 +47,6 @@ public class Person {
 
 	
 	public String toString() {
-		return getFirstname() + " " + getSirname();
+		return getFirstname() + " " + getSurname();
 	}
 }
