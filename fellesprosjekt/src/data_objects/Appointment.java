@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class Appointment {
 
+	private Person appointmentLeader;
 	private String apponintmentTitle;
 	private String apponintmentDescription;
 	private Date startTime;
@@ -17,10 +18,11 @@ public class Appointment {
 	
 	
 	//Må sjekke start tid mot slutt tid
-	public Appointment(String aTitle, Date start, Date end) {
+	public Appointment(String aTitle, Date start, Date end, Person leader) {
 		this.apponintmentTitle = aTitle;
 		this.startTime = start;
 		this.endTime = end;
+		this.appointmentLeader = leader;
 	}
 	
 	public String getApponintmentTitle() {
@@ -64,6 +66,12 @@ public class Appointment {
 	public void setPlace(String place) {
 		this.place = place;
 	}
+
+	public Person getAppointmentLeader() {
+		return appointmentLeader;
+	}
+	
+	
 
 	
 //

@@ -11,8 +11,8 @@ public class Meeting extends Appointment{
 	private HashMap<Person, Integer> participants;
 	private int externalParticipants;
 	
-	public Meeting(String title, Date start, Date end, HashMap<Person, Integer> participants){
-		super(title, start, end);
+	public Meeting(String title, Date start, Date end, Person leader, HashMap<Person, Integer> participants){
+		super(title, start, end, leader);
 		this.participants = participants;
 	}
 
