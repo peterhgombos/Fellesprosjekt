@@ -10,6 +10,7 @@ import server.constants.ServerConstants;
 
 
 public class Database {
+	
 	private String mysqlDriver="com.mysql.jdbc.Driver"; 
 	private String url="jdbc:mysql://mysql.stud.ntnu.no/martedl_kalender"; 
 	private String user = "martedl_admin";
