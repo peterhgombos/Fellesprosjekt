@@ -12,8 +12,8 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Iterator;
 
-import data_objects.Person;
-import data_objects.Appointment;
+import dataobjects.Appointment;
+import dataobjects.Person;
 
 import nu.xom.Builder;
 import nu.xom.Document;

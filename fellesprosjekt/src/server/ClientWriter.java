@@ -6,7 +6,6 @@ import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
-import server.constants.ServerConstants;
 
 public class ClientWriter{
 	

@@ -7,8 +7,8 @@ import java.net.URL;
 
 import javax.swing.AbstractListModel;
 
-import data_objects.Person;
-import data_objects.Appointment;
+import dataobjects.Appointment;
+import dataobjects.Person;
 
 
 /**

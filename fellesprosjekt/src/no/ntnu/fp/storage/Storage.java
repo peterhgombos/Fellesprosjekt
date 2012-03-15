@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.net.URL;
 
-import data_objects.Appointment;
+import dataobjects.Appointment;
 
 
 /**

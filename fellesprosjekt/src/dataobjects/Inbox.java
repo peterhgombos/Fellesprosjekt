@@ -1,4 +1,4 @@
-package data_objects;
+package dataobjects;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

@@ -3,7 +3,6 @@ package server;
 import java.net.InetAddress;
 import java.util.HashMap;
 
-import server.constants.ServerConstants;
 
 public class MessageReceiver {
 	
