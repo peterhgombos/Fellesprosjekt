@@ -60,27 +60,25 @@ public class ServerData {
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			Document doc = document;
 	     
-			doc.getDocumentElement().normalize();
-	     
 			// Henter ut alle elementer for typen
-			NodeList nodeLst = doc.getElementsByTagName(XMLElements.MESSAGE_TYPE);
+			NodeList nodeList = doc.getElementsByTagName(XMLElements.MESSAGE_TYPE);
 	     
-			for (int s = 0; s < nodeLst.getLength(); s++) {
-				Node fstNode = nodeLst.item(s); 
+			for (int s = 0; s < nodeList.getLength(); s++) {
+				Node fstNode = nodeList.item(s); 
 	    
 				if (fstNode.getNodeType() == Node.ELEMENT_NODE) {
 	  	            
 					Element fstElmnt = (Element) fstNode;
-	  	            NodeList fstNmElmntLst = fstElmnt.getElementsByTagName("firstname");
+	  	            NodeList fstNmElmntLst = fstElmnt.getElementsByTagName(XMLElements.MESSAGE_TYPE);
 	  	            Element fstNmElmnt = (Element) fstNmElmntLst.item(0);
 	  	            NodeList fstNm = fstNmElmnt.getChildNodes();
 	  	            
-	  	            int type = Integer.parseInt(typeElement.getValue());
+	  	            int type = Integer.parseInt(fstElmnt.getNodeValue());
 	  			
 	  	          	if(type == MessageType.RECEIVE_LOGIN){
-	  				
+	  	          		
 	  	          		Element loginresult = rootElement.getFirstChildElement("result");
-	  				  	int result = Integer.parseInt(loginresult.getValue());
+	  				  	int result = Integer.parseInt(loginresult.getNodeValue());
 	  				
 	  	          	}else if(type == MessageType.RECEIVE_APPOINTMENTS){
 	  				
