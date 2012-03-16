@@ -42,7 +42,7 @@ public class Connection  {
 		try{
 			Builder parser = new Builder(false);
 			Document doc = parser.build(s);
-			ServerData.receiveMessage(doc);
+			//ServerData.receiveMessage(doc);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

@@ -5,9 +5,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
-
-
 public class Database {
 	
 	private String mysqlDriver="com.mysql.jdbc.Driver"; 
@@ -33,8 +30,6 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
-		
-
 	}
 
 	private void connect(){
@@ -50,7 +45,9 @@ public class Database {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		} 
-	} 
+	}
+	
+	
 
 	private ResultSet executeQuery(String query) throws SQLException{
 		return connection.createStatement().executeQuery(query);
