@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<Root>
+		<Messagetype>
+			<Value></Value>
+		</Messagetype>
+		<Person>
+			<Username></Usename>
+			<Id></Id>
+			<Firstname></Firstname>
+			<Surname></Surname>
+			<Email></Email>
+			<Telephone></Telephone>
+		</Person>
+	</Root>
