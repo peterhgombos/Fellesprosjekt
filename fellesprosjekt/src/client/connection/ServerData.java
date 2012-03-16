@@ -61,6 +61,56 @@ public class ServerData {
 			Document doc = document;
 	     
 			// Henter ut alle elementer for typen
+			Element messageType = doc.getDocumentElement();
+			
+			if(messageType.getNodeName().equals("0")){
+				
+			}
+			else if(messageType.getNodeName().equals("1")){
+				
+			}
+			else if(messageType.getNodeName().equals("2")){
+				
+			}
+			else if(messageType.getNodeName().equals("3")){
+				
+			}
+			else if(messageType.getNodeName().equals("4")){
+				NodeList nodeList = doc.getElementsByTagName(XMLElements.APPOINTMENT);
+				
+				for (int i = 0; i < nodeList.getLength(); i++) {
+					Node firstNode = nodeList.item(i);
+					
+				}
+			}
+			else if(messageType.getNodeName().equals("5")){
+				
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 
 			NodeList nodeList = doc.getElementsByTagName(XMLElements.MESSAGE_TYPE);
 	     
 			for (int s = 0; s < nodeList.getLength(); s++) {
@@ -74,7 +124,7 @@ public class ServerData {
 	  	            NodeList fstNm = fstNmElmnt.getChildNodes();
 	  	            
 	  	            int type = Integer.parseInt(fstElmnt.getNodeValue());
-	  			
+	  			    
 	  	          	if(type == MessageType.RECEIVE_LOGIN){
 	  	          		
 	  	          		Element loginresult = rootElement.getFirstChildElement("result");
@@ -110,6 +160,29 @@ public class ServerData {
 		}else if(type == MessageType.RECEIVE_APPOINTMENTS){
 			
 		}else if(type == MessageType.RECEIVE_MEETINGS){
+			
+			
+			
+			
+			
+			
+			if (firstNode.getNodeType() == Node.ELEMENT_NODE) {
+		  	            Element firstElmnt = (Element) firstNode;
+		  	            NodeList firstNmElmntLst = firstElmnt.getElementsByTagName("title");
+		  	            Element fstNmElmnt = (Element) firstNmElmntLst.item(0);
+		  	            NodeList fstNm = fstNmElmnt.getChildNodes();
+		  	            
+		  	            System.out.println("First Name : "  + ((Node) fstNm.item(0)).getNodeValue());
+		  	            NodeList lstNmElmntLst = firstElmnt.getElementsByTagName("lastname");
+		  	            Element lstNmElmnt = (Element) lstNmElmntLst.item(0);
+		  	            NodeList lstNm = lstNmElmnt.getChildNodes();
+		  	            System.out.println("Last Name : " + ((Node) lstNm.item(0)).getNodeValue());
+					} 
+			
+			
+			
+			
+			
 			
 		}*/		
 	}
