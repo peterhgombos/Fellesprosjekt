@@ -52,11 +52,14 @@ public class MessageReceiver {
 			Element personidelement = rootElement.getFirstChildElement("Personid");
 			int personid = Integer.parseInt(personidelement.getValue());
 			
+			
+			@SuppressWarnings("unused")
 			String appointmentsAsParticipants;
+			@SuppressWarnings("unused")
 			String appointmentsAsLeader;
 			
 			try{
-				ResultSet result = database.executeQuery(Queries.getMeetingsAsParticipant(personid));		
+				ResultSet result = database.executeQuery(Queries.getMeetingsAsParticipant(personid)); //Get the meetings where the person is a participants		
 				appointmentsAsParticipants = XmlUtilities.appointmentsToXml(result);
 
 			}catch(SQLException e){
@@ -64,7 +67,7 @@ public class MessageReceiver {
 			}
 			
 			try{
-				ResultSet result = database.executeQuery(Queries.getAppointmentsAsLeader(personid));		
+				ResultSet result = database.executeQuery(Queries.getAppointmentsAsLeader(personid));	//Get appointments (no participants )for the relevant person 	
 				appointmentsAsLeader = XmlUtilities.appointmentsToXml(result);
 
 			}catch(SQLException e){
