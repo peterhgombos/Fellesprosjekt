@@ -49,7 +49,7 @@ public class Database {
 	
 	
 
-	private ResultSet executeQuery(String query) throws SQLException{
+	public ResultSet executeQuery(String query) throws SQLException{
 		return connection.createStatement().executeQuery(query);
 	}
 
