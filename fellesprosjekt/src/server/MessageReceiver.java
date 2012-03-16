@@ -63,6 +63,7 @@ public class MessageReceiver {
 				appointmentsAsParticipants = XmlUtilities.appointmentsToXml(result);
 
 			}catch(SQLException e){
+				//TODO Better error handling
 				e.printStackTrace();
 			}
 			
@@ -71,6 +72,7 @@ public class MessageReceiver {
 				appointmentsAsLeader = XmlUtilities.appointmentsToXml(result);
 
 			}catch(SQLException e){
+				//TODO Better error handling
 				e.printStackTrace();
 			}
 			

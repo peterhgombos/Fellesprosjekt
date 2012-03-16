@@ -7,10 +7,10 @@ public class Person {
 	private String email;
 	private String username;
 	private String telephone;
-	private int id;
+	private int personID;
 	
 	public Person(int id, String firstname, String surname, String email, String username, String password,String telephone ) {
-		this.id = id;
+		this.personID = id;
 		this.firstname = firstname;
 		this.surname = surname;
 		this.email = email;
@@ -38,8 +38,8 @@ public class Person {
 		return telephone;
 	}
 
-	public int getId() {
-		return id;
+	public int getPersonID() {
+		return personID;
 	}
 	
 	public String toString() {
