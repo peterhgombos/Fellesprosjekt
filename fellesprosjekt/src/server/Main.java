@@ -11,9 +11,7 @@ public class Main {
 
 		ConnectionReceiver connectionReceiver = new ConnectionReceiver(server);
 		connectionReceiver.start();
-		
 	}
-	
 	
 	
 	public static void main(String[] args) {

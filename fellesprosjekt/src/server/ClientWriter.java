@@ -28,13 +28,12 @@ public class ClientWriter{
 	}
 	
 	/**
-	 * sender en melding som en tekststreng til klienten
+	 * sender en melding som en xmlstreng til klienten
 	 * @param message
 	 */
-	public void send(String message) {
+	public void send(String xml) {
 		try {
-			writer.write(message);
-			writer.newLine();
+			writer.write(xml + "\0");
 			writer.flush();
 		} catch (IOException e) {
 			ServerConstants.console.writeline(e.getMessage());
