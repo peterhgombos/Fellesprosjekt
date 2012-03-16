@@ -52,6 +52,9 @@ public class ServerData {
 		
 		if(type == MessageType.RECEIVE_LOGIN){
 			
+			Element loginresult = rootElement.getFirstChildElement("result");
+			int result = Integer.parseInt(loginresult.getValue());
+			
 		}else if(type == MessageType.RECEIVE_APPOINTMENTS){
 			
 		}else if(type == MessageType.RECEIVE_MEETINGS){
