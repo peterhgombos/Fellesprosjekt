@@ -23,9 +23,9 @@ public class Queries {
 				");";
 	}
 	public static String getMeetingsAsParticipant(int personid){
-		return 	"SELECT AVTALE.* FROM AVTALE, LEDER " +
-				"WHERE LEDER.ANSATTNR = " + personid + " " +
-				"AND LEDER.AVTALEID = AVTALE.AVTALEID;";
+		return 	"SELECT AVTALE.* FROM AVTALE, DELTAKER " +
+				"WHERE DELTAKER.ANSATTNR = " + personid + " " +
+				"AND DELTAKER.AVTALEID = AVTALE.AVTALEID;";
 	}
 
 	public static String getParticipantsForMeeting(int meetingid){

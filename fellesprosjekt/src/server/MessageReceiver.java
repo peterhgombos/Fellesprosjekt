@@ -52,10 +52,21 @@ public class MessageReceiver {
 			Element personidelement = rootElement.getFirstChildElement("Personid");
 			int personid = Integer.parseInt(personidelement.getValue());
 			
-			ResultSet result = null;
+			String appointmentsAsParticipants;
+			String appointmentsAsLeader;
+			
 			try{
-				result = database.executeQuery(Queries.getAppointmentsAsPartcipant(personid));		
-				XmlUtilities.appointmentAsParticipant(result);
+				ResultSet result = database.executeQuery(Queries.getMeetingsAsParticipant(personid));		
+				appointmentsAsParticipants = XmlUtilities.appointmentsToXml(result);
+
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+			
+			try{
+				ResultSet result = database.executeQuery(Queries.getAppointmentsAsLeader(personid));		
+				appointmentsAsLeader = XmlUtilities.appointmentsToXml(result);
+
 			}catch(SQLException e){
 				e.printStackTrace();
 			}

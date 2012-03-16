@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class XmlUtilities {
 	
-	public static String appointmentAsParticipant(ResultSet rs) throws SQLException {
+	public static String appointmentsToXml(ResultSet rs) throws SQLException {
 		while (rs.next()) {
 			int id = rs.getInt(DatabaseColumns.AVTALEID);
 			String tittel = rs.getString(DatabaseColumns.TITTEL);
