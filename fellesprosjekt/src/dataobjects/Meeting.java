@@ -7,10 +7,11 @@ public class Meeting extends Appointment{
 	
 	
 	private Room room;
+	private int meetingId;
 	//Integer er svaret fra person
 	private HashMap<Person, Integer> participants;
 	private int externalParticipants;
-	
+		
 	public Meeting(Person leader, String title, Date start, Date end, HashMap<Person, Integer> participants){
 		super(leader, title, start, end);
 		this.participants = participants;
@@ -24,11 +25,19 @@ public class Meeting extends Appointment{
 		this.room = room;
 	}
 	
+	public int getMeetingId(){
+		return meetingId;
+	}
+	
+	public void setMeetingId(int id){
+		this.meetingId = id;
+	}
+	
 	public HashMap<Person, Integer> getParticipants() {
 		return participants;
 	}
 	
-	//Sjekke om deltakeren er med fra før?
+	//Sjekke om deltakeren er med fra fï¿½r?
 	public void addParticipant(Person person, int answear) {
 		participants.put(person, answear);
 	}

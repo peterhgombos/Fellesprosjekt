@@ -25,10 +25,10 @@ public class MessageReceiver {
 	public MessageReceiver() {
 		clients = new HashMap<InetAddress, ClientWriter>();
 		database = new Database();
-		
+		//TODO change hardcodes below
 		receiveMessage(null, "<?xml version='1.0' encoding='UTF-8'?><" + 
 		MessageType.REQUEST_APPOINTMENTS + ">" +
-		"<Personid>123</Personid>"	+	
+		"<Personid>1234</Personid>"	+										//Hardcoded personid 1234. Change to relative
 		"</" + MessageType.REQUEST_APPOINTMENTS + ">");
 	}
 	
@@ -46,23 +46,35 @@ public class MessageReceiver {
 		
 		String messageType = rootElement.getLocalName();
 		
+		
+		//TODO methods for each messagetype
 		if(messageType.equals(MessageType.REQUEST_APPOINTMENTS)){
-			int personid = Integer.parseInt(rootElement.getAttributeValue("Personid"));
+			Element personidelement = rootElement.getFirstChildElement("Personid");
+			int personid = Integer.parseInt(personidelement.getValue());
 			
-			ResultSet result = null;
+			
+			@SuppressWarnings("unused")
+			String appointmentsAsParticipants;
+			@SuppressWarnings("unused")
+			String appointmentsAsLeader;
+			
 			try{
-				result = database.executeQuery(Queries.getAppointmentsAsLeader(personid));
-				XmlUtilities.appointmentResultSet(result);
+				ResultSet result = database.executeQuery(Queries.getMeetingsAsParticipant(personid)); //Get the meetings where the person is a participants		
+				appointmentsAsParticipants = XmlUtilities.appointmentsToXml(result);
+
 			}catch(SQLException e){
 				e.printStackTrace();
 			}
 			
-			
-			
+			try{
+				ResultSet result = database.executeQuery(Queries.getAppointmentsAsLeader(personid));	//Get appointments (no participants )for the relevant person 	
+				appointmentsAsLeader = XmlUtilities.appointmentsToXml(result);
+
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
 			
 		}
-		
-		
 		
 	}
 	

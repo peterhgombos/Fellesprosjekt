@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Appointment {
 
+	private int appointmentId; 
 	private Person appointmentLeader;
 	private String apponintmentTitle;
 	private String apponintmentDescription;
@@ -11,7 +12,7 @@ public class Appointment {
 	private Date endTime;
 	private String place;
 	
-	//Må sjekke start tid mot slutt tid
+	//Mï¿½ sjekke start tid mot slutt tid
 	public Appointment(Person leader, String aTitle, Date start, Date end) {
 		this.appointmentLeader = leader;
 		this.apponintmentTitle = aTitle;
@@ -19,6 +20,22 @@ public class Appointment {
 		this.endTime = end;
 	}
 	
+	
+	public int getAppointmentId() {
+		return appointmentId;
+	}
+
+
+	public void setAppointmentId(int appointmentId) {
+		this.appointmentId = appointmentId;
+	}
+
+
+	public void setAppointmentLeader(Person appointmentLeader) {
+		this.appointmentLeader = appointmentLeader;
+	}
+
+
 	public String getApponintmentTitle() {
 		return apponintmentTitle;
 	}
