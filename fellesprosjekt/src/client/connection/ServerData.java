@@ -59,6 +59,7 @@ public class ServerData {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			Document doc = document;
+			doc.get
 	     
 			// Henter ut alle elementer for typen
 			NodeList nodeList = doc.getElementsByTagName(XMLElements.MESSAGE_TYPE);
