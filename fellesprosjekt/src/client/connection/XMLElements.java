@@ -23,6 +23,7 @@ public class XMLElements {
 	public static final String APPOINTMENT_ID = "appointmentID";
 	
 	public static final String MEETING = "meeting";
+	public static final String MEETING_ID = "meetingID";
 	public static final String PARTICIPANT = "participant";
 	public static final String ROOM = "room";
 	

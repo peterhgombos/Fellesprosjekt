@@ -10,5 +10,6 @@ public class MessageType {
 	public static final String REQUEST_MEETINGS = "RequestMeeting";
 	public static final String RECEIVE_APPOINTMENTS = "ReceiveAppointment";
 	public static final String RECEIVE_MEETINGS = "ReceiveMeeting";
+	public static final String RECEIVE_PARTICIPANTS = "receiveParticipants";
 	
 }
