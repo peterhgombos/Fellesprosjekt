@@ -174,31 +174,6 @@ public class XMLReader {
 					NodeList surnameList = surname.getChildNodes();
 					System.out.println("Etternavn : "  + ((Node) surnameList.item(0)).getNodeValue());
 					
-					NodeList firstnameElementList = e.getElementsByTagName(XMLElements.FIRSTNAME);
-					Element firstname = (Element) firstnameElementList.item(0);
-					NodeList firstnameList = firstname.getChildNodes();
-					System.out.println("Fornavns : "  + ((Node) firstnameList.item(0)).getNodeValue());
-					
-					NodeList firstnameElementList = e.getElementsByTagName(XMLElements.FIRSTNAME);
-					Element firstname = (Element) firstnameElementList.item(0);
-					NodeList firstnameList = firstname.getChildNodes();
-					System.out.println("Fornavns : "  + ((Node) firstnameList.item(0)).getNodeValue());
-					
-					NodeList firstnameElementList = e.getElementsByTagName(XMLElements.FIRSTNAME);
-					Element firstname = (Element) firstnameElementList.item(0);
-					NodeList firstnameList = firstname.getChildNodes();
-					System.out.println("Fornavns : "  + ((Node) firstnameList.item(0)).getNodeValue());
-					
-					NodeList firstnameElementList = e.getElementsByTagName(XMLElements.FIRSTNAME);
-					Element firstname = (Element) firstnameElementList.item(0);
-					NodeList firstnameList = firstname.getChildNodes();
-					System.out.println("Fornavns : "  + ((Node) firstnameList.item(0)).getNodeValue());
-					
-					NodeList firstnameElementList = e.getElementsByTagName(XMLElements.FIRSTNAME);
-					Element firstname = (Element) firstnameElementList.item(0);
-					NodeList firstnameList = firstname.getChildNodes();
-					System.out.println("Fornavns : "  + ((Node) firstnameList.item(0)).getNodeValue());
-					
 				}
 			}
 
