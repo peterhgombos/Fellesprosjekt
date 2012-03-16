@@ -3,8 +3,16 @@ package client.connection;
 import java.io.IOException;
 import java.util.HashMap;
 
-import nu.xom.Document;
-import nu.xom.Element;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 import dataobjects.Appointment;
 import dataobjects.Calender;
 import dataobjects.Inbox;
@@ -46,7 +54,37 @@ public class ServerData {
 	}
 	
 	public static void receiveMessage(Document document){
-		Element rootElement = document.getRootElement();
+		
+		try {
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document doc = document;
+	     
+			doc.getDocumentElement().normalize();
+	     
+			NodeList nodeLst = doc.getElementsByTagName("employee");
+	     
+			for (int s = 0; s < nodeLst.getLength(); s++) {
+				Node fstNode = nodeLst.item(s); 
+	    
+				if (fstNode.getNodeType() == Node.ELEMENT_NODE) {
+	  	            Element fstElmnt = (Element) fstNode;
+	  	            NodeList fstNmElmntLst = fstElmnt.getElementsByTagName("firstname");
+	  	            Element fstNmElmnt = (Element) fstNmElmntLst.item(0);
+	  	            NodeList fstNm = fstNmElmnt.getChildNodes();
+
+	  	            NodeList lstNmElmntLst = fstElmnt.getElementsByTagName("lastname");
+	  	            Element lstNmElmnt = (Element) lstNmElmntLst.item(0);
+	  	            NodeList lstNm = lstNmElmnt.getChildNodes();
+				} 
+
+			}
+			} catch(ParserConfigurationException pce) {
+				pce.printStackTrace();
+			}
+		
+		
+	/*	Element rootElement = document.getRootElement();
 		Element typeElement = rootElement.getFirstChildElement(XMLElements.MESSAGE_TYPE);
 		int type = Integer.parseInt(typeElement.getValue());
 		
@@ -59,7 +97,8 @@ public class ServerData {
 			
 		}else if(type == MessageType.RECEIVE_MEETINGS){
 			
-		}
+		}*/
+		
+		
 	}
-	
 }

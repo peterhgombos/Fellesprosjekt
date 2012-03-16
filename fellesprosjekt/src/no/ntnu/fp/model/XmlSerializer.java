@@ -105,6 +105,4 @@ public class XmlSerializer {
 		DateFormat format = DateFormat.getDateInstance(DateFormat.MEDIUM, java.util.Locale.US);
 		return format.parse(date);
 	}
-
 }
-
