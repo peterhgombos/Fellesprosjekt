@@ -2,7 +2,7 @@ package server;
 
 public class Queries {
 
-	public static String getAppointmentsAsPartitioner(int personid){
+	public static String getAppointmentsAsPartcipant(int personid){
 		return 	"SELECT AVTALE.* FROM AVTALE, DELTAKER " +
 				"WHERE DELTAKER.ANSATTNR = " + personid + " "+
 				"AND DELTAKER.AVTALEID = AVTALE.AVTALEID;";
