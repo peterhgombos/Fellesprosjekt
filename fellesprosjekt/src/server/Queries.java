@@ -2,17 +2,33 @@ package server;
 
 public class Queries {
 
-	public static String getAppointmentsAsPartcipant(int personid){
-		return 	"SELECT AVTALE.* FROM AVTALE, DELTAKER " +
-				"WHERE DELTAKER.ANSATTNR = " + personid + " "+
-				"AND DELTAKER.AVTALEID = AVTALE.AVTALEID;";
-	}
 	public static String getAppointmentsAsLeader(int personid){
+		return 	"SELECT AVTALE.* FROM AVTALE, LEDER " +
+				"WHERE LEDER.ANSATTNR = " + personid + " " +
+				"AND LEDER.AVTALEID = AVTALE.AVTALEID " +
+				"AND NOT EXISTS( " +
+				"SELECT * " +
+				"FROM DELTAKER " +
+				"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID " +
+				");";
+	}
+	public static String getMeetingsAsLeader(int personid){
+		return 	"SELECT AVTALE.* FROM AVTALE, LEDER " +
+				"WHERE LEDER.ANSATTNR = " + personid + " " +
+				"AND LEDER.AVTALEID = AVTALE.AVTALEID " +
+				"AND EXISTS( " +
+				"SELECT * " +
+				"FROM DELTAKER " +
+				"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID " +
+				");";
+	}
+	public static String getMeetingsAsParticipant(int personid){
 		return 	"SELECT AVTALE.* FROM AVTALE, LEDER " +
 				"WHERE LEDER.ANSATTNR = " + personid + " " +
 				"AND LEDER.AVTALEID = AVTALE.AVTALEID;";
 	}
-	public static String getPartitionersForMeeting(int meetingid){
+
+	public static String getParticipantsForMeeting(int meetingid){
 		return 	"SELECT ANSATT.* FROM ANSATT, DELTAKER " +
 				"WHERE DELTAKER.AVTALEID = " + meetingid + " " +
 				"AND DELTAKER.ANSATTNR = ANSATT.ANSATTNR";
