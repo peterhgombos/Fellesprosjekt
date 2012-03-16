@@ -3,6 +3,7 @@ package client.connection;
 import java.io.IOException;
 import java.util.HashMap;
 
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -11,7 +12,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import dataobjects.Appointment;
 import dataobjects.Calender;
@@ -62,16 +62,32 @@ public class ServerData {
 	     
 			doc.getDocumentElement().normalize();
 	     
-			NodeList nodeLst = doc.getElementsByTagName("employee");
+			// Henter ut alle elementer for typen
+			NodeList nodeLst = doc.getElementsByTagName(XMLElements.MESSAGE_TYPE);
 	     
 			for (int s = 0; s < nodeLst.getLength(); s++) {
 				Node fstNode = nodeLst.item(s); 
 	    
 				if (fstNode.getNodeType() == Node.ELEMENT_NODE) {
-	  	            Element fstElmnt = (Element) fstNode;
+	  	            
+					Element fstElmnt = (Element) fstNode;
 	  	            NodeList fstNmElmntLst = fstElmnt.getElementsByTagName("firstname");
 	  	            Element fstNmElmnt = (Element) fstNmElmntLst.item(0);
 	  	            NodeList fstNm = fstNmElmnt.getChildNodes();
+	  	            
+	  	            int type = Integer.parseInt(typeElement.getValue());
+	  			
+	  	          	if(type == MessageType.RECEIVE_LOGIN){
+	  				
+	  	          		Element loginresult = rootElement.getFirstChildElement("result");
+	  				  	int result = Integer.parseInt(loginresult.getValue());
+	  				
+	  	          	}else if(type == MessageType.RECEIVE_APPOINTMENTS){
+	  				
+	  	          	}else if(type == MessageType.RECEIVE_MEETINGS){
+	  				
+	  	          	}
+	  	            
 
 	  	            NodeList lstNmElmntLst = fstElmnt.getElementsByTagName("lastname");
 	  	            Element lstNmElmnt = (Element) lstNmElmntLst.item(0);
@@ -97,8 +113,6 @@ public class ServerData {
 			
 		}else if(type == MessageType.RECEIVE_MEETINGS){
 			
-		}*/
-		
-		
+		}*/		
 	}
 }
