@@ -123,6 +123,13 @@ public class NewMeeting extends JPanel{
 		titleLabel.setBounds(guiConstants.getDistance()+50, headlineLabel.getY() + headlineLabel.getHeight() + guiConstants.getGroupDistance(), 100, 25);
 		titleLabel.setFont(new Font(headlineLabel.getFont().getName(), 0, 16));
 		
+		
+		//Marte bare tester litt, kan tas bort
+		System.out.println("headline X: " + headlineLabel.getX() + " headline Y: " + headlineLabel.getY());
+		System.out.println("TitleLabel X: " + titleLabel.getX() + " TitleLabel Y: " + titleLabel.getY());
+		
+		
+		
 		nameField.setBounds(guiConstants.getDistance()+40 + titleLabel.getY(), titleLabel.getY(), 160, 35);
 		
 		dateLabel.setBounds(guiConstants.getDistance()+50, titleLabel.getY() + titleLabel.getHeight() + guiConstants.getDistance(), 100, 25);
@@ -177,7 +184,8 @@ public class NewMeeting extends JPanel{
 		frame.pack();
 		frame.setSize(700, 700);
 		frame.setVisible(true);
-		
 	}
+	
+	
 
 }
