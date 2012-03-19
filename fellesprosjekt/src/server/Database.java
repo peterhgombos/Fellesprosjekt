@@ -7,11 +7,20 @@ import java.sql.SQLException;
 
 public class Database {
 	
+	public static final String COL_APPOINTMENTID = "AVTALEID";
 	public static final String COL_TITLE = "TITTEL";
 	public static final String COL_DESCRIPTION = "BESKRIVELSE";
 	public static final String COL_FROM = "TIDSPUNKT";
 	public static final String COL_TO = "SLUTTTIDSPUNKT";
 	public static final String COL_PLACE = "STED";
+	
+	public static final String COL_ANSWER = "SVAR";
+	public static final String COL_PERSONID = "ANSATTNR";
+	public static final String COL_FORNAVN = "FORNAVN";
+	public static final String COL_ETTERNAVN = "ETTERNAVN";
+	public static final String COL_BRUKERNAVN = "BRUKERNAVN";
+	public static final String COL_EPOST = "EPOST";
+	public static final String COL_TLF = "TELEFONNR";
 	
 	
 	
