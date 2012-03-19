@@ -28,4 +28,12 @@ public class XMLElements {
 	public static final String ROOM = "room";
 	
 	public static final String MESSAGE = "message";
+	
+	public static String openXML(String XMLElement){
+		return "<" + XMLElement + ">";
+	}
+	
+	public static String closeXML(String XMLElemnt){
+		return "</" + XMLElemnt + ">";
+	}
 }

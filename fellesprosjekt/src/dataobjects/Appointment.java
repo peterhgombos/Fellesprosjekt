@@ -2,6 +2,8 @@ package dataobjects;
 
 import java.sql.Date;
 
+import client.connection.XMLElements;
+
 public class Appointment {
 
 	private int appointmentId; 
@@ -82,6 +84,12 @@ public class Appointment {
 		return appointmentLeader;
 	}
 	
-	
+	public String toXML(){
+		StringBuilder xml = new StringBuilder();
+		xml.append(XMLElements.openXML(XMLElements.APPOINTMENT));
+		xml.append(XMLElements.openXML(XMLElements.APPOINTMENT_ID) + getAppointmentId() + XMLElements.closeXML(XMLElements.APPOINTMENT_ID));
+		
+		return xml.toString();
+	}
 	
 }
