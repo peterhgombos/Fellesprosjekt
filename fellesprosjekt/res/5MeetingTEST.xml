@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReceiveMeeting>
+	<meeting>
+		<meetingID>4</meetingID>
+		<leader>Marte</leader>
+		<title>Fellesprosjekt</title>
+		<description>Hei!</description>
+		<startTime>02.02.2012 12:00:00</startTime>
+		<endTime>02.02.2012 15:00:00</endTime>
+		<place> </place>
+		<room>H029</room>
+		<participant>
+			<personID>123</personID>
+			<firstname>Marthe</firstname>
+			<surname>Bekkevold</surname>
+			<email>marthe@ntnu.no</email>
+			<username>martheB</username>
+			<telephone>23542345</telephone>
+		</participant>
+	</meeting>
+</ReceiveMeeting>

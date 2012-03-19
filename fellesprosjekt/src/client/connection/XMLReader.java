@@ -20,7 +20,8 @@ public class XMLReader {
 
 
 		String doc2 = "res/4AppointmentTEST.xml";
-		readXML(doc2);
+		String doc3 = "res/5meetingTEST.xml";
+		readXML(doc3);
 
 	}
 
@@ -39,7 +40,7 @@ public class XMLReader {
 
 			}
 			else if(messageType.getNodeName().equals(MessageType.RECEIVE_MEETINGS)){
-
+				xml.receiveMeeting(doc);
 			}
 			else if (messageType.getNodeName().equals(MessageType.RECEIVE_PARTICIPANTS)){
 				NodeList nodeList = doc.getElementsByTagName(XMLElements.PARTICIPANT);
@@ -193,6 +194,7 @@ public class XMLReader {
 
 		}
 	}
+
 
 }
 
