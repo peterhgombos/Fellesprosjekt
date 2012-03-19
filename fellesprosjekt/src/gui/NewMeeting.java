@@ -120,21 +120,21 @@ public class NewMeeting extends JPanel{
 		headlineLabel.setFont(new Font(headlineLabel.getFont().getName(), 0, 30));
 		
 
-		titleLabel.setBounds(guiConstants.getDistance(), headlineLabel.getY() + headlineLabel.getHeight() + guiConstants.getGroupDistance(), 100, 25);
+		titleLabel.setBounds(guiConstants.getDistance()+50, headlineLabel.getY() + headlineLabel.getHeight() + guiConstants.getGroupDistance(), 100, 25);
 		titleLabel.setFont(new Font(headlineLabel.getFont().getName(), 0, 16));
 		
-		nameField.setBounds(guiConstants.getDistance() + titleLabel.getY(), titleLabel.getY(), 160, 35);
+		nameField.setBounds(guiConstants.getDistance()+40 + titleLabel.getY(), titleLabel.getY(), 160, 35);
 		
-		dateLabel.setBounds(guiConstants.getDistance(), titleLabel.getY() + titleLabel.getHeight() + guiConstants.getDistance(), 100, 25);
+		dateLabel.setBounds(guiConstants.getDistance()+50, titleLabel.getY() + titleLabel.getHeight() + guiConstants.getDistance(), 100, 25);
 		dateLabel.setFont(new Font(dateLabel.getFont().getName(), 0, 16));
 		
-		dateField.setBounds( 100, dateLabel.getY(), 160, 35);
+		dateField.setBounds( 100+40, dateLabel.getY(), 160, 35);
 		
-		startTimeLabel.setBounds(guiConstants.getDistance(), dateLabel.getY() + dateLabel.getHeight() + guiConstants.getDistance(), 100, 25);
+		startTimeLabel.setBounds(guiConstants.getDistance()+60, dateLabel.getY() + dateLabel.getHeight() + guiConstants.getDistance(), 100, 25);
 		startTimeLabel.setFont(new Font(startTimeLabel.getFont().getName(), 0, 16));
 		
-		startTimeHoursField.setBounds(titleLabel.getY(), startTimeLabel.getY(), 70, 30);
-		startTimeMinField.setBounds(titleLabel.getY()+70, startTimeHoursField.getY(), 70, 30);
+		startTimeHoursField.setBounds(titleLabel.getY() + 47, startTimeLabel.getY(), 70, 30);
+		startTimeMinField.setBounds(titleLabel.getY()+120, startTimeHoursField.getY(), 70, 30);
 		
 		endTimeLabel.setBounds(startTimeHoursField.getX() + 150, startTimeHoursField.getY(), 160, 35);
 		endTimeLabel.setFont(new Font(endTimeLabel.getFont().getName(), 0, 16));
