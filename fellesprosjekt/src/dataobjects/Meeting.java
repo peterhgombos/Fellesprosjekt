@@ -3,6 +3,8 @@ package dataobjects;
 import java.sql.Date;
 import java.util.HashMap;
 
+import client.connection.XMLElements;
+
 public class Meeting extends Appointment{
 	
 	
@@ -52,6 +54,20 @@ public class Meeting extends Appointment{
 	
 	public void changeCountExternalParticipants(int num){
 		this.externalParticipants = num;
+	}
+	
+	public String toXML(){
+		StringBuilder xml = new StringBuilder();
+		xml.append(XMLElements.openXML(XMLElements.MEETING));
+		xml.append(XMLElements.openXML(XMLElements.MEETING_ID) + getMeetingId() + XMLElements.closeXML(XMLElements.MEETING_ID));
+		xml.append(XMLElements.openXML(XMLElements.TITLE)+getApponintmentTitle() + XMLElements.closeXML(XMLElements.TITLE));
+		xml.append(XMLElements.openXML(XMLElements.LEADER) + " " + XMLElements.closeXML(XMLElements.LEADER));
+		xml.append(XMLElements.openXML(XMLElements.STARTTIME) + getStartTime() + XMLElements.closeXML(XMLElements.STARTTIME));
+		xml.append(XMLElements.openXML(XMLElements.ENDTIME) + getEndTime() + XMLElements.closeXML(XMLElements.ENDTIME));
+		xml.append(XMLElements.openXML(XMLElements.ROOM) + getRoom() + XMLElements.closeXML(XMLElements.ROOM));
+		xml.append(XMLElements.openXML(XMLElements.PLACE) + getPlace() + XMLElements.closeXML(XMLElements.PLACE));
+		xml.append(XMLElements.openXML(XMLElements.PARTICIPANT) + " " + XMLElements.closeXML(XMLElements.PARTICIPANT));
+		return xml.toString();
 	}
 	
 }
