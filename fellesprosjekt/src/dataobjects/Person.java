@@ -1,5 +1,7 @@
 package dataobjects;
 
+import client.connection.XMLElements;
+
 public class Person {
 	
 	private String firstname;
@@ -46,4 +48,16 @@ public class Person {
 		return firstname + " " + surname;
 	}
 	
+	public String toXML(){
+		StringBuilder xml = new StringBuilder();
+		xml.append(XMLElements.openXML(XMLElements.PERSON));
+		xml.append(XMLElements.openXML(XMLElements.PERSON_ID) + getPersonID() + XMLElements.closeXML(XMLElements.PERSON_ID));
+		xml.append(XMLElements.openXML(XMLElements.FIRSTNAME) + getFirstname() + XMLElements.closeXML(XMLElements.FIRSTNAME));
+		xml.append(XMLElements.openXML(XMLElements.SURNAME) + getSurname() + XMLElements.closeXML(XMLElements.SURNAME));
+		xml.append(XMLElements.openXML(XMLElements.EMAIL) + getEmail() + XMLElements.closeXML(XMLElements.EMAIL));
+		xml.append(XMLElements.openXML(XMLElements.USERNAME) + getUsername() + XMLElements.closeXML(XMLElements.USERNAME));
+		xml.append(XMLElements.openXML(XMLElements.TELEPHONE) + getTelephone() + XMLElements.closeXML(XMLElements.TELEPHONE));
+		xml.append(XMLElements.closeXML(XMLElements.PERSON));
+		return xml.toString();
+	}
 }
