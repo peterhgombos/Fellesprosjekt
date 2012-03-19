@@ -33,7 +33,7 @@ public class XMLElements {
 		return "<" + XMLElement + ">";
 	}
 	
-	public static String closeXML(String XMLElemnt){
-		return "</" + XMLElemnt + ">";
+	public static String closeXML(String XMLElement){
+		return "</" + XMLElement + ">";
 	}
 }
