@@ -12,6 +12,7 @@ public class Queries {
 				"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID " +
 				");";
 	}
+	
 	public static String getMeetingsAsLeader(int personid){
 		return 	"SELECT AVTALE.* FROM AVTALE, LEDER " +
 				"WHERE LEDER.ANSATTNR = " + personid + " " +
@@ -22,6 +23,16 @@ public class Queries {
 				"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID " +
 				");";
 	}
+
+
+//	public static String getParticipantsForMeeting(int motenr) {
+//		return "SELECT * " +
+//				"FROM ANSATT " +
+//				"JOIN DELTAKER ON DELTAKER.ANSATTNR = ANSATT.ANSATTNR "+
+//				"WHERE DELTAKER.AVTALEID = " + motenr;
+//		
+//	}
+	
 	public static String getMeetingsAsParticipant(int personid){
 		return 	"SELECT AVTALE.* FROM AVTALE, DELTAKER " +
 				"WHERE DELTAKER.ANSATTNR = " + personid + " " +
