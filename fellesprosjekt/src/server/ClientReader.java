@@ -14,7 +14,7 @@ public class ClientReader extends Thread {
 	private MessageReceiver server;
 	
 	/**
-	 * ClientReader er en tråd som kontinuerlig leser fra en klient og sender meldingene vidre til en sentral server
+	 * ClientReader er en trï¿½d som kontinuerlig leser fra en klient og sender meldingene vidre til en sentral server
 	 * @param socket - socketen som 
 	 * @param server - en messagereciever som leseren sender meldinger til
 	 */
@@ -53,7 +53,7 @@ public class ClientReader extends Thread {
 					disconnect();
 					return;
 				}
-				server.receiveMessage(message);
+				server.receiveMessage(socket.getInetAddress(), message);
 			} catch (IOException e) {
 				disconnect();
 				return;
