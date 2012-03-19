@@ -89,8 +89,7 @@ public class Appointment {
 		StringBuilder xml = new StringBuilder();
 		xml.append(XMLElements.openXML(XMLElements.APPOINTMENT));
 		xml.append(XMLElements.openXML(XMLElements.APPOINTMENT_ID) + getAppointmentId() + XMLElements.closeXML(XMLElements.APPOINTMENT_ID));
-		//TODO add leader stuff for XML
-		xml.append(XMLElements.openXML(XMLElements.LEADER) + " " + XMLElements.closeXML(XMLElements.LEADER));
+		xml.append(XMLElements.openXML(XMLElements.LEADER) + getAppointmentLeader().toXML() + XMLElements.closeXML(XMLElements.LEADER));
 		xml.append(XMLElements.openXML(XMLElements.TITLE) + getApponintmentTitle() + XMLElements.closeXML(XMLElements.TITLE));
 		xml.append(XMLElements.openXML(XMLElements.DESCRIPTION) + getApponintmentDescription() + XMLElements.closeXML(XMLElements.DESCRIPTION));
 		xml.append(XMLElements.openXML(XMLElements.STARTTIME) + getStartTime() + XMLElements.closeXML(XMLElements.STARTTIME));
