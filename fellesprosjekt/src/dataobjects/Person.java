@@ -20,6 +20,10 @@ public class Person {
 		this.telephone = telephone;
 	}
 	
+	public Person() {
+		
+	}
+	
 	public String getFirstname() {
 		return firstname;
 	}
@@ -59,5 +63,29 @@ public class Person {
 		xml.append(XMLElements.openXML(XMLElements.TELEPHONE) + getTelephone() + XMLElements.closeXML(XMLElements.TELEPHONE));
 		xml.append(XMLElements.closeXML(XMLElements.PERSON));
 		return xml.toString();
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public void setPersonID(int personID) {
+		this.personID = personID;
 	}
 }

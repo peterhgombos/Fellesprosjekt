@@ -55,7 +55,7 @@ public class Meeting extends Appointment{
 		StringBuilder xml = new StringBuilder();
 		xml.append(XMLElements.openXML(XMLElements.MEETING));
 		xml.append(XMLElements.openXML(XMLElements.MEETING_ID) + getId() + XMLElements.closeXML(XMLElements.MEETING_ID));
-		xml.append(XMLElements.openXML(XMLElements.TITLE)+getApponintmentTitle() + XMLElements.closeXML(XMLElements.TITLE));
+		xml.append(XMLElements.openXML(XMLElements.TITLE)+getTitle() + XMLElements.closeXML(XMLElements.TITLE));
 		xml.append(XMLElements.openXML(XMLElements.LEADER) + getAppointmentLeader().toXML() + XMLElements.closeXML(XMLElements.LEADER));
 		xml.append(XMLElements.openXML(XMLElements.STARTTIME) + getStartTime() + XMLElements.closeXML(XMLElements.STARTTIME));
 		xml.append(XMLElements.openXML(XMLElements.ENDTIME) + getEndTime() + XMLElements.closeXML(XMLElements.ENDTIME));

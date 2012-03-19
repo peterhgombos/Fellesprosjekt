@@ -5,8 +5,9 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.LinkedList;
 
-import nu.xom.Builder;
-import nu.xom.Document;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
 import utilities.Console;
 import dataobjects.Appointment;
 import dataobjects.Meeting;
@@ -38,15 +39,20 @@ public class Connection  {
 	}
 	
 	
-	public static void receiveMessage(String s) {
+	public static synchronized void receiveMessage(String s) {
 		try{
-			Builder parser = new Builder(false);
-			Document doc = parser.build(s);
-			//ServerData.receiveMessage(doc);
+
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db;
+			db = dbf.newDocumentBuilder();
+			Document doc = db.parse(s);
+			ServerData.receiveMessage(doc);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 	public void requestPersonLoggedIn(String username) {
 		//TODO

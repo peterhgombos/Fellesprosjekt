@@ -35,13 +35,13 @@ public class ServerReader extends Thread {
 	public void run() {
 		while (true) {
 			try {
-				String message = reader.readLine();
-				if (message == null) {
+				String xml = readXML();
+				if (xml == null) {
 					disconnect();
 					return;
 				}
 				
-				Connection.receiveMessage(message);
+				Connection.receiveMessage(xml);
 				
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -49,5 +49,19 @@ public class ServerReader extends Thread {
 				return;
 			}
 		}
+	}
+	private String readXML() throws IOException{
+		StringBuilder builder = new StringBuilder();
+		char end = 1;
+		while (end != 0) {
+			if (end == -1) {
+				return null;
+			}
+			end = (char) reader.read();
+			builder.append(end);
+		}
+		
+		return builder.toString();
+		
 	}
 }

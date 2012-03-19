@@ -25,6 +25,9 @@ public class Appointment {
 		this.endTime = end;
 	}
 	
+	public Appointment() {
+		
+	}
 	
 	public int getId() {
 		return id;
@@ -35,27 +38,6 @@ public class Appointment {
 		this.id = appointmentId;
 	}
 
-
-	public void setAppointmentLeader(Person appointmentLeader) {
-		this.leader = appointmentLeader;
-	}
-
-
-	public String getApponintmentTitle() {
-		return title;
-	}
-
-	public void setApponintmentTitle(String apponintmentTitle) {
-		this.title = apponintmentTitle;
-	}
-
-	public String getApponintmentDescription() {
-		return description;
-	}
-
-	public void setApponintmentDescription(String apponintmentDescription) {
-		this.description = apponintmentDescription;
-	}
 
 	public Date getStartTime() {
 		return startTime;
@@ -70,7 +52,7 @@ public class Appointment {
 		return endTime;
 	}
 	
-	//Sjekke at det er lovlig sluttid
+	//TODO Sjekke at det er lovlig sluttid
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
@@ -93,13 +75,42 @@ public class Appointment {
 		xml.append(XMLElements.openXML(XMLElements.APPOINTMENT));
 		xml.append(XMLElements.openXML(XMLElements.APPOINTMENT_ID) + getId() + XMLElements.closeXML(XMLElements.APPOINTMENT_ID));
 		xml.append(XMLElements.openXML(XMLElements.LEADER) + getAppointmentLeader().toXML() + XMLElements.closeXML(XMLElements.LEADER));
-		xml.append(XMLElements.openXML(XMLElements.TITLE) + getApponintmentTitle() + XMLElements.closeXML(XMLElements.TITLE));
-		xml.append(XMLElements.openXML(XMLElements.DESCRIPTION) + getApponintmentDescription() + XMLElements.closeXML(XMLElements.DESCRIPTION));
+		xml.append(XMLElements.openXML(XMLElements.TITLE) + getTitle() + XMLElements.closeXML(XMLElements.TITLE));
+		xml.append(XMLElements.openXML(XMLElements.DESCRIPTION) + getDescription() + XMLElements.closeXML(XMLElements.DESCRIPTION));
 		xml.append(XMLElements.openXML(XMLElements.STARTTIME) + getStartTime() + XMLElements.closeXML(XMLElements.STARTTIME));
 		xml.append(XMLElements.openXML(XMLElements.ENDTIME) + getEndTime() + XMLElements.closeXML(XMLElements.ENDTIME));
 		xml.append(XMLElements.openXML(XMLElements.PLACE) + getPlace() + XMLElements.closeXML(XMLElements.PLACE));
 		xml.append(XMLElements.closeXML(XMLElements.APPOINTMENT));
 		return xml.toString();
+	}
+
+
+	public Person getLeader() {
+		return leader;
+	}
+
+
+	public void setLeader(Person leader) {
+		this.leader = leader;
+	}
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 }

@@ -13,6 +13,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import utilities.XMLElements;
+import utilities.XMLReader;
+
 import dataobjects.Appointment;
 import dataobjects.Calender;
 import dataobjects.Inbox;
@@ -53,7 +56,18 @@ public class ServerData {
 		messages = new HashMap<Integer, Message>();
 	}
 	
-	public static void receiveMessage(Document document){
+	public static void receiveMessage(Document doc){
+		Element messageTypeElement = doc.getDocumentElement();
+		String messageType = messageTypeElement.getNodeName();
 		
+		if(messageType.equals(MessageType.RECEIVE_APPOINTMENTS)){
+
+		}
+		else if(messageType.equals(MessageType.RECEIVE_MEETINGS)){
+			
+		}
+		else if (messageType.equals(MessageType.RECEIVE_PARTICIPANTS)){
+			
+		}
 	}
 }
