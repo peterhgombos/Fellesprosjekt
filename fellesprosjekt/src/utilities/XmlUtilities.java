@@ -6,6 +6,8 @@ import java.sql.SQLException;
 
 public class XmlUtilities {
 	
+	public static final String XMLHEADER = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
+	
 	public static String appointmentsToXml(ResultSet rs) throws SQLException {
 		while (rs.next()) {
 			int id = rs.getInt(DatabaseColumns.AVTALEID);
