@@ -11,7 +11,7 @@ public class XMLElements {
 	public static final String EMAIL = "email";
 	public static final String USERNAME = "username";
 	public static final String TELEPHONE = "telephone";
-	public static final String PERSON_ID = "pesonID";
+	public static final String PERSON_ID = "personID";
 	
 	public static final String APPOINTMENT = "appointment";
 	public static final String LEADER = "leader";
