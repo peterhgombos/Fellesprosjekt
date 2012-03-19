@@ -1,7 +1,7 @@
 package gui;
 
 import java.awt.Font;
-import java.util.ArrayList;
+
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -31,11 +31,11 @@ public class NewMeeting extends JPanel{
 	private JTextField placeField;
 	private JTextArea descriptionArea;
 	
-	private JComboBox<String> startTimeHoursField;
-	private JComboBox<String> endTimeHoursField;
-	private JComboBox<String> startTimeMinField;
-	private JComboBox<String> endTimeMinField;
-	private JComboBox<String> roomPicker;
+	private JComboBox startTimeHoursField;
+	private JComboBox endTimeHoursField;
+	private JComboBox startTimeMinField;
+	private JComboBox endTimeMinField;
+	private JComboBox roomPicker;
 	
 	private JRadioButton bookMeetingroomRadioButton;
 	private JRadioButton otherPlaceRadioButton;
@@ -68,6 +68,8 @@ public class NewMeeting extends JPanel{
 		
 		bookMeetingroomRadioButton = new JRadioButton();
 		otherPlaceRadioButton = new JRadioButton();
+		bookMeetingroomRadioButton.setText("Book møterom");
+		otherPlaceRadioButton.setText("Annet sted");
 		radioButtonGroup = new ButtonGroup();
 		radioButtonGroup.add(bookMeetingroomRadioButton);
 		radioButtonGroup.add(otherPlaceRadioButton);
@@ -76,34 +78,37 @@ public class NewMeeting extends JPanel{
 		saveButton = new JButton("Lagre");
 		cancelButton = new JButton("Avbryt");
 		
-		startTimeHoursField = new JComboBox<String>(hours);
-		endTimeHoursField = new JComboBox<String>(min);
-		startTimeMinField = new JComboBox<String>(hours);
-		endTimeMinField = new JComboBox<String>(min);
+		startTimeHoursField = new JComboBox(hours);
+		endTimeHoursField = new JComboBox(hours);
+		startTimeMinField = new JComboBox(min);
+		endTimeMinField = new JComboBox(min);
+		roomPicker = new JComboBox();
 		
 		add(headlineLabel);
 		add(titleLabel);
-//		add(dateLabel);
-//		add(startTimeLabel);
-//		add(endTimeLabel);
-//		add(descriptionLabel);
-//		add(participantsLabel);
-//		add(placeLabel);
-//		add(roomInformationLabel);
-//		add(nameField);
-//		add(dateField);
-//		add(placeField);
-//		add(descriptionArea);
-//		add(bookMeetingroomRadioButton);
-//		add(otherPlaceRadioButton);
-//		add(addParticipantsButton);
-//		add(saveButton);
-//		add(cancelButton);
-//		add(startTimeHoursField);
-//		add(startTimeMinField);
-//		add(endTimeHoursField);
-//		add(endTimeMinField);
+		add(dateLabel);
+		add(startTimeLabel);
+		add(endTimeLabel);
+		add(descriptionLabel);
+		add(participantsLabel);
+		add(placeLabel);
+		add(roomInformationLabel);
+		add(nameField);
+		add(dateField);
+		add(roomPicker);
+		add(placeField);
+		add(descriptionArea);
+		add(bookMeetingroomRadioButton);
+		add(otherPlaceRadioButton);
+		add(addParticipantsButton);
+		add(saveButton);
+		add(cancelButton);
+		add(startTimeHoursField);
+		add(startTimeMinField);
+		add(endTimeHoursField);
+		add(endTimeMinField);
 		
+		setLayout(null);
 		resize();
 		
 	}
@@ -111,17 +116,56 @@ public class NewMeeting extends JPanel{
 	public void resize(){
 		GuiConstants guiConstants = new GuiConstants();
 		
-		headlineLabel.setBounds(guiConstants.getDistance()*5, guiConstants.getDistance()*5, 100, 100);
+		headlineLabel.setBounds(guiConstants.getDistance()*27, guiConstants.getDistance(), 300, 40);
 		headlineLabel.setFont(new Font(headlineLabel.getFont().getName(), 0, 30));
 		
 
 		titleLabel.setBounds(guiConstants.getDistance(), headlineLabel.getY() + headlineLabel.getHeight() + guiConstants.getGroupDistance(), 100, 25);
+		titleLabel.setFont(new Font(headlineLabel.getFont().getName(), 0, 16));
 		
-
-		System.out.println("gui dis: " + guiConstants.getDistance());
-		System.out.println("headline x: " + headlineLabel.getX());
-		System.out.println("headline y:" + headlineLabel.getY());
-		System.out.println("Y: " + headlineLabel.getY() + headlineLabel.getHeight() + guiConstants.getGroupDistance());
+		nameField.setBounds(guiConstants.getDistance() + titleLabel.getY(), titleLabel.getY(), 160, 35);
+		
+		dateLabel.setBounds(guiConstants.getDistance(), titleLabel.getY() + titleLabel.getHeight() + guiConstants.getDistance(), 100, 25);
+		dateLabel.setFont(new Font(dateLabel.getFont().getName(), 0, 16));
+		
+		dateField.setBounds( 100, dateLabel.getY(), 160, 35);
+		
+		startTimeLabel.setBounds(guiConstants.getDistance(), dateLabel.getY() + dateLabel.getHeight() + guiConstants.getDistance(), 100, 25);
+		startTimeLabel.setFont(new Font(startTimeLabel.getFont().getName(), 0, 16));
+		
+		startTimeHoursField.setBounds(titleLabel.getY(), startTimeLabel.getY(), 70, 30);
+		startTimeMinField.setBounds(titleLabel.getY()+70, startTimeHoursField.getY(), 70, 30);
+		
+		endTimeLabel.setBounds(startTimeHoursField.getX() + 150, startTimeHoursField.getY(), 160, 35);
+		endTimeLabel.setFont(new Font(endTimeLabel.getFont().getName(), 0, 16));
+		
+		endTimeHoursField.setBounds(endTimeLabel.getX() + 70, endTimeLabel.getY(), 70, 30);
+		endTimeMinField.setBounds(endTimeHoursField.getX() + 70, endTimeHoursField.getY(), 70, 30);
+		
+		descriptionLabel.setBounds(guiConstants.getDistance(), startTimeLabel.getY() + startTimeLabel.getHeight() + guiConstants.getGroupDistance(), 100, 25);
+		descriptionLabel.setFont(new Font(descriptionLabel.getFont().getName(), 0, 16));
+		
+		descriptionArea.setBounds(descriptionLabel.getX() + 120, descriptionLabel.getY(), 200, 100);
+		
+		participantsLabel.setBounds(guiConstants.getDistance(), descriptionLabel.getY() + descriptionArea.getHeight() + guiConstants.getGroupDistance(), 100, 25);
+		participantsLabel.setFont(new Font(participantsLabel.getFont().getName(), 0, 16));
+		
+		addParticipantsButton.setBounds(participantsLabel.getX() + 120, participantsLabel.getY(), 160, 35);
+		
+		placeLabel.setBounds(guiConstants.getDistance(), participantsLabel.getY() + participantsLabel.getHeight() + guiConstants.getGroupDistance(), 100, 25);
+		placeLabel.setFont(new Font(placeLabel.getFont().getName(), 0, 16));
+		
+		bookMeetingroomRadioButton.setBounds(placeLabel.getX() + 70, placeLabel.getY(), 150, 25);
+		roomPicker.setBounds(bookMeetingroomRadioButton.getX() + 140, placeLabel.getY(), 80, 25);
+		roomInformationLabel.setBounds(roomPicker.getX() + 100, placeLabel.getY(), 160, 25);
+		
+		otherPlaceRadioButton.setBounds(bookMeetingroomRadioButton.getX(), placeLabel.getY()+ guiConstants.getDistance() + 20, 150, 25);
+		placeField.setBounds(otherPlaceRadioButton.getX() + 140, placeLabel.getY() + guiConstants.getDistance() + 20 , 160, 25);
+		
+		saveButton.setBounds(otherPlaceRadioButton.getX(), placeField.getY() + placeField.getHeight() + guiConstants.getGroupDistance(), 100, 25);
+		saveButton.setFont(new Font(saveButton.getFont().getName(), 0, 14));
+		
+		cancelButton.setBounds(saveButton.getX() *2 + guiConstants.getGroupDistance(), placeField.getY() + placeField.getHeight() +40, 100, 25);
 	}
 	
 	public static void main(String[] args) {

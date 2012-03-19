@@ -1,5 +1,7 @@
 package server;
 
+import java.sql.Date;
+
 public class Queries {
 
 	public static String getAppointmentsAsLeader(int personid){
@@ -57,6 +59,13 @@ public class Queries {
 				"OR (MATCH(FORNAVN,ETTERNAVN) " +
 				"AGAINST ('%" + search +"%' " +
 				"IN BOOLEAN MODE));";
+	}
+	
+	public static String createNewAppointment(String title, String description, Date startTime, Date endTime, String place){
+		return  "INSERT INTO AVTALE (TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED)" +
+				"VALUES ('" + title + "', '" + description + ", " + startTime +
+				", " + endTime + "," + place + ");";
+				
 	}
 
 
