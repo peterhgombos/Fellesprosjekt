@@ -6,5 +6,6 @@
 *.exe
 *.o
 *.so
+.classpath
 
 .git
