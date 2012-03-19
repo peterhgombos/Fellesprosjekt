@@ -84,6 +84,7 @@ public class Appointment {
 		return appointmentLeader;
 	}
 	
+	// makes XML for appointment class
 	public String toXML(){
 		StringBuilder xml = new StringBuilder();
 		xml.append(XMLElements.openXML(XMLElements.APPOINTMENT));
