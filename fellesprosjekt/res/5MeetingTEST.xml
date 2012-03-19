@@ -10,12 +10,14 @@
 		<place> </place>
 		<room>H029</room>
 		<participant>
+			<person>
 			<personID>123</personID>
 			<firstname>Marthe</firstname>
 			<surname>Bekkevold</surname>
 			<email>marthe@ntnu.no</email>
 			<username>martheB</username>
 			<telephone>23542345</telephone>
+			</person>
 		</participant>
 	</meeting>
 </ReceiveMeeting>

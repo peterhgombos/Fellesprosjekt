@@ -2,6 +2,8 @@ package dataobjects;
 
 import java.sql.Date;
 
+import client.connection.XMLElements;
+
 public class Appointment {
 
 	private int appointmentId; 
@@ -82,6 +84,19 @@ public class Appointment {
 		return appointmentLeader;
 	}
 	
-	
+	// makes XML for appointment class
+	public String toXML(){
+		StringBuilder xml = new StringBuilder();
+		xml.append(XMLElements.openXML(XMLElements.APPOINTMENT));
+		xml.append(XMLElements.openXML(XMLElements.APPOINTMENT_ID) + getAppointmentId() + XMLElements.closeXML(XMLElements.APPOINTMENT_ID));
+		xml.append(XMLElements.openXML(XMLElements.LEADER) + getAppointmentLeader().toXML() + XMLElements.closeXML(XMLElements.LEADER));
+		xml.append(XMLElements.openXML(XMLElements.TITLE) + getApponintmentTitle() + XMLElements.closeXML(XMLElements.TITLE));
+		xml.append(XMLElements.openXML(XMLElements.DESCRIPTION) + getApponintmentDescription() + XMLElements.closeXML(XMLElements.DESCRIPTION));
+		xml.append(XMLElements.openXML(XMLElements.STARTTIME) + getStartTime() + XMLElements.closeXML(XMLElements.STARTTIME));
+		xml.append(XMLElements.openXML(XMLElements.ENDTIME) + getEndTime() + XMLElements.closeXML(XMLElements.ENDTIME));
+		xml.append(XMLElements.openXML(XMLElements.PLACE) + getPlace() + XMLElements.closeXML(XMLElements.PLACE));
+		xml.append(XMLElements.closeXML(XMLElements.APPOINTMENT));
+		return xml.toString();
+	}
 	
 }
