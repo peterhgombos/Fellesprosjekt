@@ -2,13 +2,17 @@ package server;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import utilities.XmlUtilities;
 
 import client.connection.MessageType;
+import dataobjects.Meeting;
+import dataobjects.Person;
 
 import nu.xom.Builder;
 import nu.xom.Document;
@@ -58,23 +62,43 @@ public class MessageReceiver {
 				ResultSet result = database.executeQuery(Queries.getMeetingsAsParticipant(personid)); //Get the meetings where the person is a participants		
 				
 				while(result.next()){
-					int id = 
+					int id = result.getInt(Database.COL_APPOINTMENTID);
 					String title = result.getString(Database.COL_TITLE);
-					Sresult.get
+					String description = result.getString(Database.COL_DESCRIPTION);
+					Date start = result.getDate(Database.COL_FROM);
+					Date end = result.getDate(Database.COL_TO);
 					
+					
+					ResultSet leaderRes = database.executeQuery(Queries.getLeaderForMeeting(id));
+					Person leader = resultSetToPerson(leaderRes, true).keySet().iterator().next();
+					
+					ResultSet participantRes = database.executeQuery(Queries.getParticipantsForMeeting(id));
+					HashMap<Person, Integer> participants = resultSetToPerson(participantRes, false);
+					
+					Meeting meeting = new Meeting(id, leader, title, description, start, end, participants);
 				}
-				
-				
-				
-				
 			}catch(SQLException e){
 				//TODO Better error handling
 				e.printStackTrace();
 			}
 			
 			try{
-				ResultSet result = database.executeQuery(Queries.getMeetingsAsLeader(personid); //Get the meetings where the person is a participants		
+				ResultSet result = database.executeQuery(Queries.getMeetingsAsLeader(personid)); //Get the meetings where the person is a participants		
 
+				int id = result.getInt(Database.COL_APPOINTMENTID);
+				String title = result.getString(Database.COL_TITLE);
+				String description = result.getString(Database.COL_DESCRIPTION);
+				Date start = result.getDate(Database.COL_FROM);
+				Date end = result.getDate(Database.COL_TO);
+				
+				ResultSet leaderRes = database.executeQuery(Queries.getLeaderForMeeting(id));
+				Person leader = resultSetToPerson(leaderRes, true).keySet().iterator().next();
+				
+				ResultSet participantRes = database.executeQuery(Queries.getParticipantsForMeeting(id));
+				HashMap<Person, Integer> participants = resultSetToPerson(participantRes, false);
+				
+				Meeting meeting = new Meeting(id, leader, title, description, start, end, participants);
+				
 			}catch(SQLException e){
 				//TODO Better error handling
 				e.printStackTrace();
@@ -90,6 +114,26 @@ public class MessageReceiver {
 			
 		}
 		
+	}
+	private HashMap<Person, Integer> resultSetToPerson(ResultSet rs, boolean leder){
+		HashMap<Person, Integer> returnthis = new HashMap<Person, Integer>();
+		try{
+			while(rs.next()){
+				int id = rs.getInt(Database.COL_PERSONID);
+				String fornavn = rs.getString(Database.COL_FORNAVN);
+				String etternavn = rs.getString(Database.COL_ETTERNAVN);
+				String epost = rs.getString(Database.COL_EPOST);
+				String brukernavn = rs.getString(Database.COL_BRUKERNAVN);
+				String tlf = rs.getString(Database.COL_TLF);
+				
+				int svar = leder ? Meeting.SVAR_OK : rs.getInt(Database.COL_ANSWER);
+				
+				returnthis.put(new Person(id, fornavn, etternavn, epost, brukernavn, tlf), svar);
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return returnthis;
 	}
 	
 	

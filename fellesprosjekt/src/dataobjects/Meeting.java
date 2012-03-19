@@ -3,10 +3,14 @@ package dataobjects;
 import java.sql.Date;
 import java.util.HashMap;
 
-import client.connection.XMLElements;
+import utilities.XMLElements;
+
 
 public class Meeting extends Appointment{
 	
+	public static final int SVAR_BLANK = 0;
+	public static final int SVAR_OK = 1;
+	public static final int SVAR_NEI = 2;
 	
 	private Room room;
 	//Integer er svaret fra person

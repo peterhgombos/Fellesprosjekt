@@ -1,4 +1,4 @@
-package client.connection;
+package utilities;
 
 public class XMLElements {
 

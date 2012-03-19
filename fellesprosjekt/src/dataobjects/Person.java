@@ -1,6 +1,6 @@
 package dataobjects;
 
-import client.connection.XMLElements;
+import utilities.XMLElements;
 
 public class Person {
 	
@@ -11,7 +11,7 @@ public class Person {
 	private String telephone;
 	private int personID;
 	
-	public Person(int id, String firstname, String surname, String email, String username, String password,String telephone ) {
+	public Person(int id, String firstname, String surname, String email, String username,String telephone ) {
 		this.personID = id;
 		this.firstname = firstname;
 		this.surname = surname;

@@ -2,7 +2,8 @@ package dataobjects;
 
 import java.sql.Date;
 
-import client.connection.XMLElements;
+import utilities.XMLElements;
+
 
 public class Appointment {
 
