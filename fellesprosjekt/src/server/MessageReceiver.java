@@ -1,25 +1,21 @@
 package server;
 
-import java.io.IOException;
 import java.net.InetAddress;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
-
-import utilities.XmlUtilities;
-
-import client.connection.MessageType;
-import dataobjects.Appointment;
-import dataobjects.Meeting;
-import dataobjects.Person;
 
 import nu.xom.Builder;
 import nu.xom.Document;
 import nu.xom.Element;
-import nu.xom.ParsingException;
-import nu.xom.ValidityException;
+import utilities.XmlUtilities;
+import client.connection.MessageType;
+import dataobjects.Appointment;
+import dataobjects.Meeting;
+import dataobjects.Person;
 
 
 public class MessageReceiver {
@@ -51,43 +47,47 @@ public class MessageReceiver {
 
 		String messageType = rootElement.getLocalName();
 
-
-		//TODO methods for each messagetype
+		//TODO metoder for alle messagetype
 		if(messageType.equals(MessageType.REQUEST_APPOINTMENTS)){
 			Element personidelement = rootElement.getFirstChildElement("Personid");
 			int personid = Integer.parseInt(personidelement.getValue());
 
 			try{
-				ResultSet result = database.executeQuery(Queries.getMeetingsAsParticipant(personid)); //Get the meetings where the person is a participants		
-				ArrayList<Meeting> meetings = resultSetToMeeting(result);
+				ResultSet result;
+				Collection<Appointment> appointments;
+				ClientWriter writer = clients.get(ip);
 				
-			}catch(SQLException e){
-				e.printStackTrace();
-			}
+				result = database.executeQuery(Queries.getMeetingsAsParticipant(personid)); //Get the meetings where the person is a participants		
+				appointments = resultSetToMeeting(result);
+				writer.send(buildAppointmentXML(appointments));
 
-			try{
-				ResultSet result = database.executeQuery(Queries.getMeetingsAsLeader(personid)); //Get the meetings where the person is a participants		
-				ArrayList<Meeting> meetings = resultSetToMeeting(result);
+				result = database.executeQuery(Queries.getMeetingsAsLeader(personid)); //Get the meetings where the person is a participants		
+				appointments = resultSetToMeeting(result);
+				writer.send(buildAppointmentXML(appointments));
 
-			}catch(SQLException e){
-				e.printStackTrace();
-			}
-
-			try{
-				ResultSet result = database.executeQuery(Queries.getAppointmentsAsLeader(personid));	//Get appointments (no participants )for the relevant person 	
-				ArrayList<Appointment> appoitments= resultSetToAppointment(result);
+				result = database.executeQuery(Queries.getAppointmentsAsLeader(personid));	//Get appointments (no participants )for the relevant person 	
+				appointments= resultSetToAppointment(result);
+				writer.send(buildAppointmentXML(appointments));
 				
 			}catch(SQLException e){
 				//TODO Better error handling
 				e.printStackTrace();
 			}
-
 		}
-
+	}
+	
+	private String buildAppointmentXML(Collection<Appointment> appointments){
+		StringBuilder xml = new StringBuilder();
+		xml.append(XmlUtilities.XMLHEADER);
+		for(Appointment a : appointments){
+			xml.append(a.toXML());
+		}
+		xml.append((char)0);
+		return xml.toString();
 	}
 
-	private ArrayList<Meeting> resultSetToMeeting(ResultSet result){
-		ArrayList<Meeting> returnthis = new ArrayList<Meeting>();
+	private ArrayList<Appointment> resultSetToMeeting(ResultSet result){
+		ArrayList<Appointment> returnthis = new ArrayList<Appointment>();
 		try{
 			while(result.next()){
 				int id = result.getInt(Database.COL_APPOINTMENTID);
