@@ -9,13 +9,12 @@ public class Meeting extends Appointment{
 	
 	
 	private Room room;
-	private int meetingId;
 	//Integer er svaret fra person
 	private HashMap<Person, Integer> participants;
 	private int externalParticipants;
 		
-	public Meeting(Person leader, String title, Date start, Date end, HashMap<Person, Integer> participants){
-		super(leader, title, start, end);
+	public Meeting(int id, Person leader, String title, String description, Date start, Date end, HashMap<Person, Integer> participants){
+		super(id, leader, title, description, start, end);
 		this.participants = participants;
 	}
 
@@ -25,14 +24,6 @@ public class Meeting extends Appointment{
 	
 	public void setRoom(Room room) {
 		this.room = room;
-	}
-	
-	public int getMeetingId(){
-		return meetingId;
-	}
-	
-	public void setMeetingId(int id){
-		this.meetingId = id;
 	}
 	
 	public HashMap<Person, Integer> getParticipants() {
@@ -59,7 +50,7 @@ public class Meeting extends Appointment{
 	public String toXML(){
 		StringBuilder xml = new StringBuilder();
 		xml.append(XMLElements.openXML(XMLElements.MEETING));
-		xml.append(XMLElements.openXML(XMLElements.MEETING_ID) + getMeetingId() + XMLElements.closeXML(XMLElements.MEETING_ID));
+		xml.append(XMLElements.openXML(XMLElements.MEETING_ID) + getId() + XMLElements.closeXML(XMLElements.MEETING_ID));
 		xml.append(XMLElements.openXML(XMLElements.TITLE)+getApponintmentTitle() + XMLElements.closeXML(XMLElements.TITLE));
 		xml.append(XMLElements.openXML(XMLElements.LEADER) + " " + XMLElements.closeXML(XMLElements.LEADER));
 		xml.append(XMLElements.openXML(XMLElements.STARTTIME) + getStartTime() + XMLElements.closeXML(XMLElements.STARTTIME));

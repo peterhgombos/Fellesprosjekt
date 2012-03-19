@@ -53,14 +53,27 @@ public class MessageReceiver {
 			int personid = Integer.parseInt(personidelement.getValue());
 			
 			
-			@SuppressWarnings("unused")
-			String appointmentsAsParticipants;
-			@SuppressWarnings("unused")
-			String appointmentsAsLeader;
 			
 			try{
 				ResultSet result = database.executeQuery(Queries.getMeetingsAsParticipant(personid)); //Get the meetings where the person is a participants		
-				appointmentsAsParticipants = XmlUtilities.appointmentsToXml(result);
+				
+				while(result.next()){
+					int id = 
+					String title = result.getString(Database.COL_TITLE);
+					Sresult.get
+					
+				}
+				
+				
+				
+				
+			}catch(SQLException e){
+				//TODO Better error handling
+				e.printStackTrace();
+			}
+			
+			try{
+				ResultSet result = database.executeQuery(Queries.getMeetingsAsLeader(personid); //Get the meetings where the person is a participants		
 
 			}catch(SQLException e){
 				//TODO Better error handling
@@ -69,7 +82,6 @@ public class MessageReceiver {
 			
 			try{
 				ResultSet result = database.executeQuery(Queries.getAppointmentsAsLeader(personid));	//Get appointments (no participants )for the relevant person 	
-				appointmentsAsLeader = XmlUtilities.appointmentsToXml(result);
 
 			}catch(SQLException e){
 				//TODO Better error handling

@@ -6,52 +6,54 @@ import client.connection.XMLElements;
 
 public class Appointment {
 
-	private int appointmentId; 
-	private Person appointmentLeader;
-	private String apponintmentTitle;
-	private String apponintmentDescription;
+	private int id; 
+	private Person leader;
+	private String title;
+	private String description;
 	private Date startTime;
 	private Date endTime;
 	private String place;
 	
 	//M� sjekke start tid mot slutt tid
-	public Appointment(Person leader, String aTitle, Date start, Date end) {
-		this.appointmentLeader = leader;
-		this.apponintmentTitle = aTitle;
+	public Appointment(int id, Person leader, String title, String description, Date start, Date end) {
+		this.id = id;
+		this.leader = leader;
+		this.title = title;
+		this.description = description;
 		this.startTime = start;
 		this.endTime = end;
 	}
 	
 	
-	public int getAppointmentId() {
-		return appointmentId;
+	public int getId() {
+		return id;
 	}
 
 
-	public void setAppointmentId(int appointmentId) {
-		this.appointmentId = appointmentId;
+	public void setId(int appointmentId) {
+		this.id = appointmentId;
 	}
 
 
 	public void setAppointmentLeader(Person appointmentLeader) {
-		this.appointmentLeader = appointmentLeader;
+		this.leader = appointmentLeader;
 	}
 
 
 	public String getApponintmentTitle() {
-		return apponintmentTitle;
+		return title;
 	}
 
 	public void setApponintmentTitle(String apponintmentTitle) {
-		this.apponintmentTitle = apponintmentTitle;
+		this.title = apponintmentTitle;
 	}
 
 	public String getApponintmentDescription() {
-		return apponintmentDescription;
+		return description;
 	}
 
 	public void setApponintmentDescription(String apponintmentDescription) {
-		this.apponintmentDescription = apponintmentDescription;
+		this.description = apponintmentDescription;
 	}
 
 	public Date getStartTime() {
@@ -81,14 +83,14 @@ public class Appointment {
 	}
 
 	public Person getAppointmentLeader() {
-		return appointmentLeader;
+		return leader;
 	}
 	
 	// makes XML for appointment class
 	public String toXML(){
 		StringBuilder xml = new StringBuilder();
 		xml.append(XMLElements.openXML(XMLElements.APPOINTMENT));
-		xml.append(XMLElements.openXML(XMLElements.APPOINTMENT_ID) + getAppointmentId() + XMLElements.closeXML(XMLElements.APPOINTMENT_ID));
+		xml.append(XMLElements.openXML(XMLElements.APPOINTMENT_ID) + getId() + XMLElements.closeXML(XMLElements.APPOINTMENT_ID));
 		xml.append(XMLElements.openXML(XMLElements.LEADER) + getAppointmentLeader().toXML() + XMLElements.closeXML(XMLElements.LEADER));
 		xml.append(XMLElements.openXML(XMLElements.TITLE) + getApponintmentTitle() + XMLElements.closeXML(XMLElements.TITLE));
 		xml.append(XMLElements.openXML(XMLElements.DESCRIPTION) + getApponintmentDescription() + XMLElements.closeXML(XMLElements.DESCRIPTION));

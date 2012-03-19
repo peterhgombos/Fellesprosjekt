@@ -7,6 +7,14 @@ import java.sql.SQLException;
 
 public class Database {
 	
+	public static final String COL_TITLE = "TITTEL";
+	public static final String COL_DESCRIPTION = "BESKRIVELSE";
+	public static final String COL_FROM = "TIDSPUNKT";
+	public static final String COL_TO = "SLUTTTIDSPUNKT";
+	public static final String COL_PLACE = "STED";
+	
+	
+	
 	private String mysqlDriver="com.mysql.jdbc.Driver"; 
 	private String url="jdbc:mysql://mysql.stud.ntnu.no/martedl_kalender"; 
 	private String user = "martedl_admin";
