@@ -61,12 +61,14 @@ public class Meeting extends Appointment{
 		xml.append(XMLElements.openXML(XMLElements.MEETING));
 		xml.append(XMLElements.openXML(XMLElements.MEETING_ID) + getMeetingId() + XMLElements.closeXML(XMLElements.MEETING_ID));
 		xml.append(XMLElements.openXML(XMLElements.TITLE)+getApponintmentTitle() + XMLElements.closeXML(XMLElements.TITLE));
-		xml.append(XMLElements.openXML(XMLElements.LEADER) + " " + XMLElements.closeXML(XMLElements.LEADER));
+		xml.append(XMLElements.openXML(XMLElements.LEADER) + getAppointmentLeader().toXML() + XMLElements.closeXML(XMLElements.LEADER));
 		xml.append(XMLElements.openXML(XMLElements.STARTTIME) + getStartTime() + XMLElements.closeXML(XMLElements.STARTTIME));
 		xml.append(XMLElements.openXML(XMLElements.ENDTIME) + getEndTime() + XMLElements.closeXML(XMLElements.ENDTIME));
 		xml.append(XMLElements.openXML(XMLElements.ROOM) + getRoom() + XMLElements.closeXML(XMLElements.ROOM));
 		xml.append(XMLElements.openXML(XMLElements.PLACE) + getPlace() + XMLElements.closeXML(XMLElements.PLACE));
-		xml.append(XMLElements.openXML(XMLElements.PARTICIPANT) + " " + XMLElements.closeXML(XMLElements.PARTICIPANT));
+		xml.append(XMLElements.openXML(XMLElements.PARTICIPANT));
+		for(Person p : participants.keySet()) xml.append(p.toXML()); 
+		xml.append(XMLElements.closeXML(XMLElements.PARTICIPANT));
 		xml.append(XMLElements.closeXML(XMLElements.MEETING));
 		return xml.toString();
 	}
