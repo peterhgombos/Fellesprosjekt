@@ -1,12 +1,15 @@
 package dataobjects;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import utilities.XMLElements;
 
 
-public class Appointment {
+public class Appointment implements Serializable{
 
+	private static final long serialVersionUID = 3662988846703010000L;
+	
 	private int id; 
 	private Person leader;
 	private String title;

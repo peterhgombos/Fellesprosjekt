@@ -1,12 +1,15 @@
 package dataobjects;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.HashMap;
 
 import utilities.XMLElements;
 
 
-public class Meeting extends Appointment{
+public class Meeting extends Appointment implements Serializable{
+	
+	private static final long serialVersionUID = -8326127541644962045L;
 	
 	public static final int SVAR_BLANK = 0;
 	public static final int SVAR_OK = 1;
