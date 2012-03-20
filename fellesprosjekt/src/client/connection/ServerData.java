@@ -61,7 +61,7 @@ public class ServerData {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static void receiveMessage(ComMessage message){
+	public static synchronized void receiveMessage(ComMessage message){
 		String messageType = message.getType();
 		
 		Client.console.writeline("received message: " + messageType);
