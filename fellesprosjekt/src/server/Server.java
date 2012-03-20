@@ -5,12 +5,9 @@ import common.utilities.Console;
 public class Server {
 	
 	public static final int PORT = 4536;
-	public static Console console;
+	public static Console console = new Console("Server");
 	
 	public Server() {
-		console = new Console();
-		console.setTitle("Server");
-		
 		MessageReceiver server = new MessageReceiver();
 
 		ConnectionReceiver connectionReceiver = new ConnectionReceiver(server);

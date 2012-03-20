@@ -13,15 +13,13 @@ import common.utilities.Console;
 
 public class Client {
 	
-	public static Console console;
+	public static Console console = new Console("Client");
 	
 	public static void main(String[] args) throws IOException {
 		new Client();
 	}
 	
 	public Client() {
-		console = new Console();
-		console.setTitle("Client");
 		ServerData.initialize();
 		ServerData.addMessageListener(new TestListener());
 		Person p = new Person(123, "", "", "", "", "");

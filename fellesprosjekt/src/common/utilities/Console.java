@@ -12,7 +12,17 @@ public class Console {
 	private JTextArea textarea;
 	private JFrame frame;
 	
+
 	public Console(){
+		init();
+	}
+	
+	public Console(String title){
+		init();
+		frame.setTitle(title);
+	}
+	
+	private void init(){
 		frame = new JFrame();
 		frame.setMinimumSize(new Dimension(500, 600));
 		frame.setLayout(new GridLayout(1,1));
@@ -34,7 +44,4 @@ public class Console {
 		}
 	}
 	
-	public void setTitle(String s) {
-		frame.setTitle(s);
-	}
 }//END
