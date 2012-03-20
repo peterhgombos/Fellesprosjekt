@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 
 import dataobjects.Appointment;
@@ -57,7 +58,9 @@ public class Appointments extends JPanel{
         list.setSelectedIndex(0);
         //Add listener
         list.setVisibleRowCount(5);
-        JScrollPane listScrollPane = new JScrollPane(list);
+        JScrollPane listScrollPane = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+        		ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        
 		
 		toCalendarButton = new JButton("Til Kalender");
 		
