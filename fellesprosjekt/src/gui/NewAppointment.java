@@ -131,7 +131,7 @@ public class NewAppointment extends JPanel{
 		
 		scrollPane.setBounds(guiConstants.getDistance()*2+ titleLabel.getWidth() + titleLabel.getX(), descriptionLabel.getY(), 200, 100);
 		
-		placeLabel.setBounds(titleLabel.getX() + 10, scrollPane.getY() + scrollPane.getHeight() + guiConstants.getGroupDistance(), 100, 25);
+		placeLabel.setBounds(titleLabel.getX(), scrollPane.getY() + scrollPane.getHeight() + guiConstants.getGroupDistance(), 100, 25);
 		placeLabel.setFont(new Font(placeLabel.getFont().getName(), 0, 16));
 		
 		placeField.setBounds(placeLabel.getX() + placeLabel.getWidth() + guiConstants.getDistance(), placeLabel.getY(), 160, 25);
