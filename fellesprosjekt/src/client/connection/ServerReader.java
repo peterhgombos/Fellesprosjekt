@@ -19,12 +19,12 @@ public class ServerReader extends Thread {
 			reader = new ObjectInputStream(socket.getInputStream());
 		} catch (IOException e) {
 			e.printStackTrace();
-			Connection.console.writeline(e.getMessage());
+			//Connection.console.writeline(e.getMessage());
 		}
 	}
 	
 	private void disconnect(){
-		Connection.console.writeline("Client has disconnected");
+		//Connection.console.writeline("Client has disconnected");
 		try {
 			reader.close();
 			socket.close();

@@ -37,10 +37,10 @@ public class MessageReceiver {
 			try{
 				ResultSet appointmentResult = database.executeQuery(Queries.getAppointments(personid)); //Get the meetings where the person is a participants	
 				ResultSet meetingResult = database.executeQuery(Queries.getMeetings(personid)); //Get the meetings where the person is a participants	
-				
+
 				Collection<Appointment> appointments = resultSetToAppointment(appointmentResult);
 				Collection<Meeting> meetings = resultSetToMeeting(meetingResult);
-				
+
 				for(Meeting m: meetings){
 					ServerConstants.console.writeline(m.getTitle());
 					ServerConstants.console.writeline(m.getAppointmentLeader().getFirstname());
@@ -48,10 +48,10 @@ public class MessageReceiver {
 						ServerConstants.console.writeline("\t" + pp.getFirstname());
 					}
 				}
-				
+
 				ComMessage sendapp = new ComMessage(appointments, MessageType.RECEIVE_APPOINTMENTS);
 				ComMessage sendmeet = new ComMessage(meetings, MessageType.RECEIVE_MEETINGS);
-				
+
 				clientWriter.send(sendapp);
 				clientWriter.send(sendmeet);
 
@@ -65,16 +65,14 @@ public class MessageReceiver {
 			clientWriter.send(sendLogin);
 		}
 	}
-	
+
 	private Person requestLogin(ComMessage message){
 		Login login = (Login) message.getData();
-		Person person;
 		try{
 			ResultSet personResult = database.executeQuery(Queries.loginAuthentication(login.getUserName(), login.getPasswordHash()));
-			
-			return person = resultSetToPerson(personResult).keySet().iterator().next();
 
-			
+			return resultSetToLoginPerson(personResult);
+
 		}catch(SQLException e){
 			e.printStackTrace();
 			return null;
@@ -100,7 +98,7 @@ public class MessageReceiver {
 						leader = p;
 					}
 				}
-				
+
 				returnthis.add(new Meeting(id, leader, title, description, start, end, participants));
 			}
 		}catch(SQLException e){
@@ -108,7 +106,7 @@ public class MessageReceiver {
 		}
 		return returnthis;
 	}
-	
+
 	private ArrayList<Appointment> resultSetToAppointment(ResultSet result){
 		ArrayList<Appointment> returnthis = new ArrayList<Appointment>();
 		try{
@@ -121,7 +119,7 @@ public class MessageReceiver {
 
 				ResultSet participantRes = database.executeQuery(Queries.getParticipantsForMeeting(id));
 				Person leader = resultSetToPerson(participantRes).keySet().iterator().next();
-				
+
 				returnthis.add(new Appointment(id, leader, title, description, start, end));
 			}
 		}catch(SQLException e){
@@ -148,6 +146,22 @@ public class MessageReceiver {
 			e.printStackTrace();
 		}
 		return returnthis;
+	}
+
+	private Person resultSetToLoginPerson(ResultSet rs){
+		try{
+			rs.next();
+			int id = rs.getInt(Database.COL_PERSONID);
+			String fornavn = rs.getString(Database.COL_FORNAVN);
+			String etternavn = rs.getString(Database.COL_ETTERNAVN);
+			String epost = rs.getString(Database.COL_EPOST);
+			String brukernavn = rs.getString(Database.COL_BRUKERNAVN);
+			String tlf = rs.getString(Database.COL_TLF);
+			return new Person(id, fornavn, etternavn, epost, brukernavn, tlf);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public synchronized void addClient(ClientWriter clientWriter){
