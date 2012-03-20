@@ -18,12 +18,14 @@ public class Appointment implements Serializable{
 	private Date endTime;
 	private String place;
 	
-	//M� sjekke start tid mot slutt tid
-	public Appointment(int id, Person leader, String title, String description, Date start, Date end) {
+	public Appointment(int id, Person leader, String title, String description, Date start, Date end) throws RuntimeException {
 		this.id = id;
 		this.leader = leader;
 		this.title = title;
 		this.description = description;
+		if(start.after(end)){
+			throw new RuntimeException("Start date must be before end date");
+		}
 		this.startTime = start;
 		this.endTime = end;
 	}
