@@ -8,12 +8,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+import server.database.Database;
+import server.database.Queries;
+
+import common.dataobjects.Appointment;
+import common.dataobjects.ComMessage;
+import common.dataobjects.Meeting;
+import common.dataobjects.Person;
+
 import client.authentication.Login;
 import client.connection.MessageType;
-import dataobjects.Appointment;
-import dataobjects.ComMessage;
-import dataobjects.Meeting;
-import dataobjects.Person;
 
 public class MessageReceiver {
 

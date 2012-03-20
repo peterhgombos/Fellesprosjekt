@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
-import dataobjects.ComMessage;
+import common.dataobjects.ComMessage;
+
 
 public class ServerReader extends Thread {
 	

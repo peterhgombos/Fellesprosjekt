@@ -1,6 +1,6 @@
 package server;
 
-import utilities.Console;
+import common.utilities.Console;
 
 public class Main {
 	

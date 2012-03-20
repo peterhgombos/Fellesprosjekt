@@ -1,6 +1,6 @@
 package server;
 
-import utilities.Console;
+import common.utilities.Console;
 
 public class ServerConstants {
 	public static final int PORT = 4536;

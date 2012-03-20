@@ -1,6 +1,6 @@
 package client.connection;
 
-import dataobjects.ComMessage;
+import common.dataobjects.ComMessage;
 
 public interface MessageListener {
 	

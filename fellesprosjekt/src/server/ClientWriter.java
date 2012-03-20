@@ -5,7 +5,8 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 
-import dataobjects.ComMessage;
+import common.dataobjects.ComMessage;
+
 
 
 public class ClientWriter{

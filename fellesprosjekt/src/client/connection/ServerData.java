@@ -5,14 +5,17 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import dataobjects.Appointment;
-import dataobjects.InternalCalendar;
-import dataobjects.ComMessage;
-import dataobjects.Inbox;
-import dataobjects.Meeting;
-import dataobjects.Message;
-import dataobjects.Person;
-import dataobjects.Room;
+import client.Main;
+
+import common.dataobjects.Appointment;
+import common.dataobjects.ComMessage;
+import common.dataobjects.Inbox;
+import common.dataobjects.InternalCalendar;
+import common.dataobjects.Meeting;
+import common.dataobjects.Message;
+import common.dataobjects.Person;
+import common.dataobjects.Room;
+
 
 public class ServerData {
 	

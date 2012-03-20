@@ -5,11 +5,12 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.LinkedList;
 
+import common.dataobjects.Appointment;
+import common.dataobjects.ComMessage;
+import common.dataobjects.Meeting;
+import common.dataobjects.Person;
+
 import client.authentication.Login;
-import dataobjects.Appointment;
-import dataobjects.ComMessage;
-import dataobjects.Meeting;
-import dataobjects.Person;
 
 public class Connection  {
 
