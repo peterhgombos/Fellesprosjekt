@@ -4,19 +4,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.annotation.processing.Messager;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import common.dataobjects.ComMessage;
-import common.dataobjects.Person;
-
 import client.Client;
 import client.connection.MessageListener;
 import client.connection.MessageType;
 import client.connection.ServerData;
+
+import common.dataobjects.ComMessage;
+import common.dataobjects.Person;
 
 @SuppressWarnings("serial")
 public class LogIn extends JPanel implements MessageListener {
