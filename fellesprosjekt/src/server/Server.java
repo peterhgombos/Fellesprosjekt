@@ -2,11 +2,15 @@ package server;
 
 import common.utilities.Console;
 
-public class Main {
+public class Server {
 	
-	public Main() {
-		ServerConstants.console = new Console();
-		ServerConstants.console.setTitle("Server");
+	public static final int PORT = 4536;
+	public static Console console;
+	
+	public Server() {
+		console = new Console();
+		console.setTitle("Server");
+		
 		MessageReceiver server = new MessageReceiver();
 
 		ConnectionReceiver connectionReceiver = new ConnectionReceiver(server);
@@ -15,7 +19,7 @@ public class Main {
 	
 	
 	public static void main(String[] args) {
-		new Main();
+		new Server();
 	}
 
 }

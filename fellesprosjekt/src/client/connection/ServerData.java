@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import client.Main;
+import client.Client;
 
 import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
@@ -32,7 +32,7 @@ public class ServerData {
 	static LinkedList<MessageListener> listeners;
 	
 	
-	public static void initialise() {
+	public static void initialize() {
 		connection = new Connection();
 		try{
 			connection.connect();
@@ -62,7 +62,7 @@ public class ServerData {
 	public static void receiveMessage(ComMessage message){
 		String messageType = message.getType();
 		
-		Main.c.writeline(messageType);
+		Client.c.writeline(messageType);
 		
 		if(messageType.equals(MessageType.RECEIVE_APPOINTMENTS)){
 			Collection<Appointment> apps = (Collection<Appointment>)message.getData();

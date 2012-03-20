@@ -11,23 +11,22 @@ import common.dataobjects.Person;
 import common.utilities.Console;
 
 
-public class Main {
+public class Client {
 	
-	public static Console c ;
+	public static Console console;
 	
 	public static void main(String[] args) throws IOException {
-		new Main();
+		new Client();
 	}
 	
-	public Main() {
-		c = new Console();
-		c.setTitle("Client");
-		ServerData.initialise();
+	public Client() {
+		console = new Console();
+		console.setTitle("Client");
+		ServerData.initialize();
 		ServerData.addMessageListener(new TestListener());
 		Person p = new Person(123, "", "", "", "", "");
 		
 		ServerData.requestLogin("martedl", "ntnu");
-		
 		
 	}
 
