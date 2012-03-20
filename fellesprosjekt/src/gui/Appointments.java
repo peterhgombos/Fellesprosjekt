@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.util.ArrayList;
 
@@ -51,15 +52,18 @@ public class Appointments extends JPanel{
 		startDateField = new JTextField();
 		endDateField = new JTextField();
 		
+		String[]listeTest = {"Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei"};
 		listModel = new DefaultListModel();
-		list = new JList(listModel);
+		list = new JList(listeTest);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setSelectedIndex(0);
         //Add listener
         list.setVisibleRowCount(5);
         JScrollPane listScrollPane = new JScrollPane(list);
+        
 		
 		toCalendarButton = new JButton("Til Kalender");
+		
 		
 		add(headlineLabel);
 		add(dateLabel);
@@ -71,7 +75,7 @@ public class Appointments extends JPanel{
 		add(endDateField);
 		add(toCalendarButton);
 		add(list);
-		
+
 		setLayout(null);
 		resize();
 		
