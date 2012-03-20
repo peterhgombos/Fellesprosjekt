@@ -47,9 +47,19 @@ public class ServerData {
 		calendar = new InternalCalendar();
 	}
 	
+	public static void requestLogin(String user, String password){
+		connection.login("martedl", "ntnu");
+	}
+	public static void requestAppointmentsAndMeetings(Person p){
+		connection.requestMeetingsAndAppointments(p);
+	}
+	
+	
 	@SuppressWarnings("unchecked")
 	public static void receiveMessage(ComMessage message){
 		String messageType = message.getType();
+		
+		Main.c.writeline(messageType);
 		
 		if(messageType.equals(MessageType.RECEIVE_APPOINTMENTS)){
 			Collection<Appointment> apps = (Collection<Appointment>)message.getData();

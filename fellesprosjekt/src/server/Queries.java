@@ -36,7 +36,7 @@ public class Queries {
 	
 	public static String loginAuthentication(String username, String passwordHash){
 		return 	"SELECT ANSATT.* " +
-				"FROM ANSATT" +
+				"FROM ANSATT " +
 				"WHERE ANSATT.BRUKERNAVN = \"" + username + "\" " +
 				"AND ANSATT.PASSORD = \"" + passwordHash + "\";";
 	}
