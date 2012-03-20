@@ -17,7 +17,7 @@ public class GuiConstants {
 				b.getFont().getStyle(), 14 );
 		
 		distance = 10;
-		groupDistance = 40;
+		groupDistance = 30;
 	}
 
 	
