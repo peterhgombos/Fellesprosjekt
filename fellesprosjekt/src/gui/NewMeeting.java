@@ -152,14 +152,14 @@ public class NewMeeting extends JPanel{
 		descriptionLabel.setBounds(guiConstants.getDistance(), startTimeLabel.getY() + startTimeLabel.getHeight() + guiConstants.getGroupDistance(), 100, 25);
 		descriptionLabel.setFont(new Font(descriptionLabel.getFont().getName(), 0, 16));
 		
-		descriptionArea.setBounds(descriptionLabel.getX() + 120, descriptionLabel.getY(), 200, 100);
+		descriptionArea.setBounds(descriptionLabel.getX() + 130, descriptionLabel.getY(), 200, 100);
 		
-		participantsLabel.setBounds(guiConstants.getDistance(), descriptionLabel.getY() + descriptionArea.getHeight() + guiConstants.getGroupDistance(), 100, 25);
+		participantsLabel.setBounds(guiConstants.getDistance() + 10, descriptionLabel.getY() + descriptionArea.getHeight() + guiConstants.getGroupDistance(), 100, 25);
 		participantsLabel.setFont(new Font(participantsLabel.getFont().getName(), 0, 16));
 		
-		addParticipantsButton.setBounds(participantsLabel.getX() + 120, participantsLabel.getY(), 160, 35);
+		addParticipantsButton.setBounds(participantsLabel.getX() + 115, participantsLabel.getY(), 160, 35);
 		
-		placeLabel.setBounds(guiConstants.getDistance(), participantsLabel.getY() + participantsLabel.getHeight() + guiConstants.getGroupDistance(), 100, 25);
+		placeLabel.setBounds(guiConstants.getDistance() + 50, participantsLabel.getY() + participantsLabel.getHeight() + guiConstants.getGroupDistance(), 100, 25);
 		placeLabel.setFont(new Font(placeLabel.getFont().getName(), 0, 16));
 		
 		bookMeetingroomRadioButton.setBounds(placeLabel.getX() + 70, placeLabel.getY(), 150, 25);
