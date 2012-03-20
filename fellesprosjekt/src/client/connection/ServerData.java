@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import dataobjects.Appointment;
-import dataobjects.Calender;
+import dataobjects.InternalCalendar;
 import dataobjects.ComMessage;
 import dataobjects.Inbox;
 import dataobjects.Meeting;
@@ -15,7 +15,7 @@ import dataobjects.Room;
 
 public class ServerData {
 	
-	private static Calender calender;
+	private static InternalCalendar calendar;
 	private static Inbox inbox;
 	
 	private static HashMap<Integer, Appointment> appointments;
