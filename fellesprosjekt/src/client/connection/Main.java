@@ -20,7 +20,6 @@ public class Main {
 
 	private class TestListener implements MessageListener {
 		public void receiveMessage(ComMessage m) {
-			ServerData.calendar = new InternalCalendar(ServerData.appointments.values(), ServerData.meetings.values());
 			System.out.println();
 		}
 		

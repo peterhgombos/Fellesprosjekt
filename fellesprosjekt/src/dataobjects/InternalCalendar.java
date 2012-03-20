@@ -15,27 +15,18 @@ public class InternalCalendar {
 	
 	private HashMap<Integer, HashMap<Integer, ArrayList<Appointment>[]>> apps;
 	
-	@SuppressWarnings("unchecked")
-	public InternalCalendar(Collection<Appointment> appointments, Collection<Meeting> meetings) {
-
+	public InternalCalendar() {
 		calendar = new GregorianCalendar();
 		calendar.setTimeZone(TimeZone.getDefault());
 		calendar.setMinimalDaysInFirstWeek(4);
 		
 		calendar.setFirstDayOfWeek(Calendar.MONDAY);
 		calendar.setTimeInMillis(System.currentTimeMillis());
-
 		
 		apps = new HashMap<Integer, HashMap<Integer,ArrayList<Appointment>[]>>();
-		
-		for(Appointment app: appointments){
-			addToCal(app);
-		}
-		for(Meeting mee: meetings){
-			addToCal(mee);
-		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void addToCal(Appointment app){
 		calendar.setTime(new Date(app.getStartTime().getTime()));
 		int year = calendar.get(Calendar.YEAR);
@@ -95,5 +86,15 @@ public class InternalCalendar {
 	
 	public void addMeeting(Meeting meeting){
 		addToCal(meeting);
+	}
+	public void addAppointments(Collection<Appointment> appointments){
+		for(Appointment a: appointments){
+			addToCal(a);
+		}
+	}
+	public void addMeetings(Collection<Meeting> meetings){
+		for(Appointment a: meetings){
+			addToCal(a);
+		}
 	}
 }

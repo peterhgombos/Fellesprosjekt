@@ -16,7 +16,7 @@ import dataobjects.Room;
 
 public class ServerData {
 	
-	static InternalCalendar calendar;
+	private static InternalCalendar calendar;
 	private static Inbox inbox;
 	
 	static HashMap<Integer, Appointment> appointments;
@@ -43,6 +43,8 @@ public class ServerData {
 		rooms = new HashMap<Integer, Room>();
 		persons = new HashMap<Integer, Person>();
 		messages = new HashMap<Integer, Message>();
+		
+		calendar = new InternalCalendar();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -55,6 +57,7 @@ public class ServerData {
 				appointments.put(a.getId(), a);
 				persons.put(a.getLeader().getPersonID(), a.getLeader());
 			}
+			calendar.addAppointments(apps);
 		}
 		else if(messageType.equals(MessageType.RECEIVE_MEETINGS)){
 			Collection<Meeting> meets = (Collection<Meeting>)message.getData();
@@ -65,6 +68,7 @@ public class ServerData {
 					persons.put(p.getPersonID(), p);
 				}
 			}
+			calendar.addMeetings(meets);
 		}
 		
 		
