@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.util.ArrayList;
 
@@ -12,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.WindowConstants;
@@ -37,6 +35,8 @@ public class Appointments extends JPanel{
 	
 	private JButton toCalendarButton;
 	
+	private JScrollPane listScrollPane;
+	
 	public Appointments(){
 		
 		ArrayList<Appointment> appointmentArrayList = new ArrayList<Appointment>();
@@ -56,11 +56,10 @@ public class Appointments extends JPanel{
 		listModel = new DefaultListModel();
 		list = new JList(listeTest);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setSelectedIndex(0);
+        //list.setSelectedIndex(0);
         //Add listener
-        list.setVisibleRowCount(5);
-        JScrollPane listScrollPane = new JScrollPane(list);
-        
+        //list.setVisibleRowCount(5);
+        listScrollPane = new JScrollPane(list);
 		
 		toCalendarButton = new JButton("Til Kalender");
 		

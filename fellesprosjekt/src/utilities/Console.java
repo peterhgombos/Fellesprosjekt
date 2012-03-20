@@ -20,7 +20,7 @@ public class Console {
 		textarea.setEditable(false);
 		
 		JScrollPane scrollpane = new JScrollPane(textarea);
-		frame.add(scrollpane);
+		frame.add(scrollpane);	
 		
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
