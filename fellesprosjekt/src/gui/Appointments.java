@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.util.ArrayList;
 
@@ -12,10 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 
 import dataobjects.Appointment;
@@ -38,6 +35,8 @@ public class Appointments extends JPanel{
 	
 	private JButton toCalendarButton;
 	
+	private JScrollPane listScrollPane;
+	
 	public Appointments(){
 		
 		ArrayList<Appointment> appointmentArrayList = new ArrayList<Appointment>();
@@ -57,16 +56,10 @@ public class Appointments extends JPanel{
 		listModel = new DefaultListModel();
 		list = new JList(listeTest);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setSelectedIndex(0);
+        //list.setSelectedIndex(0);
         //Add listener
-        list.setVisibleRowCount(5);
-<<<<<<< HEAD
-        JScrollPane listScrollPane = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-        		ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-=======
-        JScrollPane listScrollPane = new JScrollPane(list);
->>>>>>> branch 'master' of ssh://git@github.com/calibwam/Fellesprosjekt.git
-        
+        //list.setVisibleRowCount(5);
+        listScrollPane = new JScrollPane(list);
 		
 		toCalendarButton = new JButton("Til Kalender");
 		
