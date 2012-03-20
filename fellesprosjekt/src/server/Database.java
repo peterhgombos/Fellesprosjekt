@@ -8,10 +8,11 @@ import java.sql.SQLException;
 public class Database {
 	
 	public static final String COL_APPOINTMENTID = "AVTALEID";
+	public static final String COL_LEADER = "LEDER";
 	public static final String COL_TITLE = "TITTEL";
 	public static final String COL_DESCRIPTION = "BESKRIVELSE";
 	public static final String COL_FROM = "TIDSPUNKT";
-	public static final String COL_TO = "SLUTTTIDSPUNKT";
+	public static final String COL_TO = "SLUTTIDSPUNKT";
 	public static final String COL_PLACE = "STED";
 	
 	public static final String COL_ANSWER = "SVAR";

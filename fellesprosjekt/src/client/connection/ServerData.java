@@ -1,23 +1,12 @@
 package client.connection;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
-
-import javax.xml.bind.annotation.XmlElements;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
-import utilities.XMLElements;
-import utilities.XMLReader;
 
 import dataobjects.Appointment;
 import dataobjects.Calender;
+import dataobjects.ComMessage;
 import dataobjects.Inbox;
 import dataobjects.Meeting;
 import dataobjects.Message;
@@ -39,6 +28,8 @@ public class ServerData {
 	
 	public static void main(String[] args) throws IOException {
 		initialise();
+		
+		connection.requestMeetingsAndAppointments(new Person(123, "", "", "", "", ""));
 	}
 	
 	public static void initialise() {
@@ -56,18 +47,26 @@ public class ServerData {
 		messages = new HashMap<Integer, Message>();
 	}
 	
-	public static void receiveMessage(Document doc){
-		Element messageTypeElement = doc.getDocumentElement();
-		String messageType = messageTypeElement.getNodeName();
+	@SuppressWarnings("unchecked")
+	public static void receiveMessage(ComMessage message){
+		String messageType = message.getType();
 		
 		if(messageType.equals(MessageType.RECEIVE_APPOINTMENTS)){
-
+			Collection<Appointment> apps = (Collection<Appointment>)message.getData();
+			for(Appointment a: apps){
+				appointments.put(a.getId(), a);
+				persons.put(a.getLeader().getPersonID(), a.getLeader());
+			}
 		}
 		else if(messageType.equals(MessageType.RECEIVE_MEETINGS)){
-			
-		}
-		else if (messageType.equals(MessageType.RECEIVE_PARTICIPANTS)){
-			
+			Collection<Meeting> meets = (Collection<Meeting>)message.getData();
+			for(Meeting m: meets){
+				meetings.put(m.getId(), m);
+				persons.put(m.getLeader().getPersonID(), m.getLeader());
+				for(Person p : m.getParticipants().keySet()){
+					persons.put(p.getPersonID(), p);
+				}
+			}
 		}
 	}
 }

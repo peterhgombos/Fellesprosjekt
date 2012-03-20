@@ -5,29 +5,27 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.LinkedList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import org.w3c.dom.Document;
 import utilities.Console;
 import dataobjects.Appointment;
+import dataobjects.ComMessage;
 import dataobjects.Meeting;
 import dataobjects.Person;
 
 public class Connection  {
 
-	private static Socket socket;
 	public static Console console;
-	public static ServerWriter writer;
-	LinkedList<ConnectionListener> listeners;
+	
+	private Socket socket;
+	private ServerWriter writer;
+	private LinkedList<ConnectionListener> listeners;
 
 	public void connect() throws IOException {
 		console = new Console();
 		socket = new Socket();
 		socket.connect(new InetSocketAddress("localhost", server.ServerConstants.PORT));
-		ServerReader serverReader = new ServerReader(socket);
+		ServerReader serverReader = new ServerReader(socket, this);
 		serverReader.start();
 		writer = new ServerWriter(socket);
-		writer.send("melding");
 	}
 	
 	public void addConnectionListener(ConnectionListener listener) {
@@ -39,14 +37,9 @@ public class Connection  {
 	}
 	
 	
-	public static synchronized void receiveMessage(String s) {
+	public synchronized void receiveMessage(ComMessage s) {
 		try{
-
-			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-			DocumentBuilder db;
-			db = dbf.newDocumentBuilder();
-			Document doc = db.parse(s);
-			ServerData.receiveMessage(doc);
+			ServerData.receiveMessage(s);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -62,12 +55,10 @@ public class Connection  {
 		//TODO
 	}
 	
-	public void requestAppointments(Person p) {
-		//TODO
-	}
 	
-	public void requestMeetings(Person p) {
-		//TODO
+	public void requestMeetingsAndAppointments(Person p) {
+		System.out.println(p);
+		writer.send(new ComMessage(p, MessageType.REQUEST_APPOINTMENTS_AND_MEETINGS));
 	}
 	
 	public void requestLeader(Appointment a) {

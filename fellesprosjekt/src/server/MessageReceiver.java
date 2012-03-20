@@ -8,15 +8,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-import nu.xom.Builder;
-import nu.xom.Document;
-import nu.xom.Element;
-import utilities.XmlUtilities;
 import client.connection.MessageType;
 import dataobjects.Appointment;
+import dataobjects.ComMessage;
 import dataobjects.Meeting;
 import dataobjects.Person;
-
 
 public class MessageReceiver {
 
@@ -26,82 +22,64 @@ public class MessageReceiver {
 	public MessageReceiver() {
 		clients = new HashMap<InetAddress, ClientWriter>();
 		database = new Database();
-		//TODO change hardcodes below
-		receiveMessage(null, "<?xml version='1.0' encoding='UTF-8'?><" + 
-				MessageType.REQUEST_APPOINTMENTS + ">" +
-				"<Personid>1234</Personid>"	+										//Hardcoded personid 1234. Change to relative
-				"</" + MessageType.REQUEST_APPOINTMENTS + ">");
 	}
 
-	public synchronized void receiveMessage(InetAddress ip, String message){
-		ServerConstants.console.writeline(message);
+	public synchronized void receiveMessage(InetAddress ip, ComMessage message){
+		String messageType = message.getType();
+		ClientWriter clientWriter = clients.get(ip);
 
-		Builder parser = new Builder(false);
-		Document doc = null;
-		try{
-			doc = parser.build(message, "");
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		Element rootElement = doc.getRootElement();
+		if(messageType.equals(MessageType.REQUEST_APPOINTMENTS_AND_MEETINGS)){
 
-		String messageType = rootElement.getLocalName();
-
-		//TODO metoder for alle messagetype
-		if(messageType.equals(MessageType.REQUEST_APPOINTMENTS)){
-			Element personidelement = rootElement.getFirstChildElement("Personid");
-			int personid = Integer.parseInt(personidelement.getValue());
+			Person p = (Person)message.getData();
+			int personid = p.getPersonID();
 
 			try{
-				ResultSet result;
-				Collection<Appointment> appointments;
-				ClientWriter writer = clients.get(ip);
+				ResultSet appointmentResult = database.executeQuery(Queries.getAppointments(personid)); //Get the meetings where the person is a participants	
+				ResultSet meetingResult = database.executeQuery(Queries.getMeetings(personid)); //Get the meetings where the person is a participants	
 				
-				result = database.executeQuery(Queries.getMeetingsAsParticipant(personid)); //Get the meetings where the person is a participants		
-				appointments = resultSetToMeeting(result);
-				writer.send(buildAppointmentXML(appointments));
-
-				result = database.executeQuery(Queries.getMeetingsAsLeader(personid)); //Get the meetings where the person is a participants		
-				appointments = resultSetToMeeting(result);
-				writer.send(buildAppointmentXML(appointments));
-
-				result = database.executeQuery(Queries.getAppointmentsAsLeader(personid));	//Get appointments (no participants )for the relevant person 	
-				appointments= resultSetToAppointment(result);
-				writer.send(buildAppointmentXML(appointments));
+				Collection<Appointment> appointments = resultSetToAppointment(appointmentResult);
+				Collection<Meeting> meetings = resultSetToMeeting(meetingResult);
 				
+				for(Meeting m: meetings){
+					ServerConstants.console.writeline(m.getTitle());
+					ServerConstants.console.writeline(m.getAppointmentLeader().getFirstname());
+					for(Person pp : m.getParticipants().keySet()){
+						ServerConstants.console.writeline("\t" + pp.getFirstname());
+					}
+				}
+				
+				ComMessage sendapp = new ComMessage(appointments, MessageType.RECEIVE_APPOINTMENTS);
+				ComMessage sendmeet = new ComMessage(meetings, MessageType.RECEIVE_MEETINGS);
+				
+				clientWriter.send(sendapp);
+				clientWriter.send(sendmeet);
+
 			}catch(SQLException e){
-				//TODO Better error handling
 				e.printStackTrace();
 			}
 		}
 	}
-	
-	private String buildAppointmentXML(Collection<Appointment> appointments){
-		StringBuilder xml = new StringBuilder();
-		xml.append(XmlUtilities.XMLHEADER);
-		for(Appointment a : appointments){
-			xml.append(a.toXML());
-		}
-		xml.append((char)0);
-		return xml.toString();
-	}
 
-	private ArrayList<Appointment> resultSetToMeeting(ResultSet result){
-		ArrayList<Appointment> returnthis = new ArrayList<Appointment>();
+	private ArrayList<Meeting> resultSetToMeeting(ResultSet result){
+		ArrayList<Meeting> returnthis = new ArrayList<Meeting>();
 		try{
 			while(result.next()){
 				int id = result.getInt(Database.COL_APPOINTMENTID);
+				int leaderid = result.getInt(Database.COL_LEADER);
 				String title = result.getString(Database.COL_TITLE);
 				String description = result.getString(Database.COL_DESCRIPTION);
 				Date start = result.getDate(Database.COL_FROM);
 				Date end = result.getDate(Database.COL_TO);
 
-				ResultSet leaderRes = database.executeQuery(Queries.getLeaderForMeeting(id));
-				Person leader = resultSetToPerson(leaderRes, true).keySet().iterator().next();
-
 				ResultSet participantRes = database.executeQuery(Queries.getParticipantsForMeeting(id));
-				HashMap<Person, Integer> participants = resultSetToPerson(participantRes, false);
-
+				HashMap<Person, Integer> participants = resultSetToPerson(participantRes);
+				Person leader = null;
+				for(Person p : participants.keySet()){
+					if(p.getPersonID() == leaderid){
+						leader = p;
+					}
+				}
+				
 				returnthis.add(new Meeting(id, leader, title, description, start, end, participants));
 			}
 		}catch(SQLException e){
@@ -109,6 +87,7 @@ public class MessageReceiver {
 		}
 		return returnthis;
 	}
+	
 	private ArrayList<Appointment> resultSetToAppointment(ResultSet result){
 		ArrayList<Appointment> returnthis = new ArrayList<Appointment>();
 		try{
@@ -119,9 +98,9 @@ public class MessageReceiver {
 				Date start = result.getDate(Database.COL_FROM);
 				Date end = result.getDate(Database.COL_TO);
 
-				ResultSet leaderRes = database.executeQuery(Queries.getLeaderForMeeting(id));
-				Person leader = resultSetToPerson(leaderRes, true).keySet().iterator().next();
-
+				ResultSet participantRes = database.executeQuery(Queries.getParticipantsForMeeting(id));
+				Person leader = resultSetToPerson(participantRes).keySet().iterator().next();
+				
 				returnthis.add(new Appointment(id, leader, title, description, start, end));
 			}
 		}catch(SQLException e){
@@ -130,8 +109,7 @@ public class MessageReceiver {
 		return returnthis;
 	}
 
-
-	private HashMap<Person, Integer> resultSetToPerson(ResultSet rs, boolean leder){
+	private HashMap<Person, Integer> resultSetToPerson(ResultSet rs){
 		HashMap<Person, Integer> returnthis = new HashMap<Person, Integer>();
 		try{
 			while(rs.next()){
@@ -141,8 +119,7 @@ public class MessageReceiver {
 				String epost = rs.getString(Database.COL_EPOST);
 				String brukernavn = rs.getString(Database.COL_BRUKERNAVN);
 				String tlf = rs.getString(Database.COL_TLF);
-
-				int svar = leder ? Meeting.SVAR_OK : rs.getInt(Database.COL_ANSWER);
+				int svar = rs.getInt(Database.COL_ANSWER);
 
 				returnthis.put(new Person(id, fornavn, etternavn, epost, brukernavn, tlf), svar);
 			}
@@ -152,13 +129,11 @@ public class MessageReceiver {
 		return returnthis;
 	}
 
-
-
 	public synchronized void addClient(ClientWriter clientWriter){
 		clients.put(clientWriter.getIP(), clientWriter);
 	}
 
-	public synchronized void sendToAll(String message){
+	public synchronized void sendToAll(ComMessage message){
 		ServerConstants.console.writeline("send to all");
 		for (ClientWriter client : clients.values()) {
 			ServerConstants.console.writeline("send to: " + client.getIP());

@@ -1,17 +1,18 @@
 package server;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
+
+import dataobjects.ComMessage;
 
 
 public class ClientWriter{
 	
 	
 	private Socket socket;
-	private BufferedWriter writer;
+	private ObjectOutputStream writer;
 	
 	/**
 	 * en klasse som skriver til en klient, identifiserers vha Ip 
@@ -21,22 +22,19 @@ public class ClientWriter{
 		this.socket = socket;
 		
 		try {
-			writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+			writer = new ObjectOutputStream(socket.getOutputStream());
 		} catch (IOException e) {
 			ServerConstants.console.writeline(e.getMessage());
 		}
 	}
 	
-	/**
-	 * sender en melding som en xmlstreng til klienten
-	 * @param message
-	 */
-	public void send(String xml) {
-		try {
-			writer.write(xml + "\0");
+	public void send(ComMessage message){
+		try{
+			writer.writeObject(message);
 			writer.flush();
-		} catch (IOException e) {
-			ServerConstants.console.writeline(e.getMessage());
+		}catch(IOException e){
+			//TODO
+			e.printStackTrace();
 		}
 	}
 	
