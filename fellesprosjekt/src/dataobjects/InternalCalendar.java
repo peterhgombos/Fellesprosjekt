@@ -2,22 +2,21 @@ package dataobjects;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 
 public class InternalCalendar {
 	
-	private int weeknumber;
 	private GregorianCalendar calendar;
 	
 	
 	private HashMap<Integer, HashMap<Integer, ArrayList<Appointment>[]>> apps;
 	
 	@SuppressWarnings("unchecked")
-	public InternalCalendar(ArrayList<Appointment> appointments, ArrayList<Meeting> meetings, int weeknumber) {
+	public InternalCalendar(Collection<Appointment> appointments, Collection<Meeting> meetings) {
 
 		calendar = new GregorianCalendar();
 		calendar.setTimeZone(TimeZone.getDefault());
@@ -25,8 +24,7 @@ public class InternalCalendar {
 		
 		calendar.setFirstDayOfWeek(Calendar.MONDAY);
 		calendar.setTimeInMillis(System.currentTimeMillis());
-		
-		this.weeknumber = weeknumber;
+
 		
 		apps = new HashMap<Integer, HashMap<Integer,ArrayList<Appointment>[]>>();
 		
@@ -89,14 +87,6 @@ public class InternalCalendar {
 			return true;
 		}
 		return false;
-	}
-	
-	public int nextWeek(){
-		return weeknumber+1;
-	}
-	
-	public int lastWeek(){
-		return weeknumber-1;
 	}
 	
 	public void addAppointment(Appointment appointment){
