@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -37,6 +38,8 @@ public class Sidepanel extends JPanel implements FocusListener{
 	private JCheckBox checkBox;
 	private JLabel nameLabel;
 	private JScrollPane scroll;
+	private JScrollPane scrollSelectedEmployee;
+	private DefaultListModel listModel;
 	
 	public Sidepanel() {
 		countEmployee = 10;
@@ -45,23 +48,47 @@ public class Sidepanel extends JPanel implements FocusListener{
 		width = 30;
 		height = 30;
 		
-		
+		listModel = new DefaultListModel();
 		message = new JButton("Meldinger");
 		newAppointment = new JButton("Ny Avtale");
 		newMeeting = new JButton("Nytt møte");
 		myAppointments = new JButton("Mine Avtaler");
 		employeesAppointments = new JButton("Ansattes Avtaler");
 		logOut = new JButton("Logg Ut");
-		
 		addEmployee = new JButton("Legg Til");
 		guiConstants = new GuiConstants();
 		employeeList = new JPanel();
 		employeeList.setBackground(Color.WHITE);
 		employeeList.setLayout(null);
 		selectedEmployeeList = new JList();
+		selectedEmployeeList.setCellRenderer(new EmployeeListCellRenderer());
 		search = new JTextField();
 		
 		scroll = new JScrollPane(employeeList);
+		
+		selectedEmployeeList.setModel(listModel);
+		scrollSelectedEmployee = new JScrollPane(selectedEmployeeList);
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		
 		
 		setLayout(null);
 		//employeeList.setLayout(null);
@@ -77,9 +104,10 @@ public class Sidepanel extends JPanel implements FocusListener{
 		add(logOut);
 		add(addEmployee);
 		//add(employeeList);
-		add(selectedEmployeeList);
+		//add(selectedEmployeeList);
 		add(search);
 		add(scroll);
+		add(scrollSelectedEmployee);
 	}
 	
 	public void resize(){
@@ -130,11 +158,11 @@ public class Sidepanel extends JPanel implements FocusListener{
 				
 		addEmployee.setBounds(guiConstants.getDistance(), scroll.getY() + guiConstants.getDistance() + scroll.getHeight(), message.getWidth()/2, message.getHeight());
 		
+		scrollSelectedEmployee.setBounds(guiConstants.getDistance(), addEmployee.getY() + guiConstants.getDistance() + message.getHeight(), message.getWidth(), message.getHeight()*4);
+//		selectedEmployeeList.setBounds(guiConstants.getDistance(), addEmployee.getY() + guiConstants.getDistance() + message.getHeight(), message.getWidth(), selectedEmployeeList.getHeight());
+//		selectedEmployeeList.setPreferredSize(employeeList.getSize());
 		
-		selectedEmployeeList.setBounds(guiConstants.getDistance(), addEmployee.getY() + guiConstants.getDistance() + message.getHeight(), message.getWidth(), message.getHeight());
-		
-		
-		logOut.setBounds(guiConstants.getDistance(), selectedEmployeeList.getY() + guiConstants.getGroupDistance() + message.getHeight(), message.getWidth(), message.getHeight());
+		logOut.setBounds(guiConstants.getDistance(), scrollSelectedEmployee.getY() + scrollSelectedEmployee.getHeight() + guiConstants.getDistance(), message.getWidth(), message.getHeight());
 		logOut.setFont(guiConstants.getJButtonFont());
 	}
 	

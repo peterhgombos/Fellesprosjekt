@@ -3,6 +3,7 @@ package client.connection;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import dataobjects.Appointment;
 import dataobjects.InternalCalendar;
@@ -15,22 +16,18 @@ import dataobjects.Room;
 
 public class ServerData {
 	
-	private static InternalCalendar calendar;
+	static InternalCalendar calendar;
 	private static Inbox inbox;
 	
-	private static HashMap<Integer, Appointment> appointments;
-	private static HashMap<Integer, Meeting> meetings;
+	static HashMap<Integer, Appointment> appointments;
+	static HashMap<Integer, Meeting> meetings;
 	private static HashMap<Integer, Room> rooms;
 	private static HashMap<Integer, Person> persons;
 	private static HashMap<Integer, Message> messages;
 	
-	private static Connection connection;
+	static Connection connection;
+	static LinkedList<MessageListener> listeners;
 	
-	public static void main(String[] args) throws IOException {
-		initialise();
-		
-		connection.requestMeetingsAndAppointments(new Person(123, "", "", "", "", ""));
-	}
 	
 	public static void initialise() {
 		connection = new Connection();
@@ -40,6 +37,7 @@ public class ServerData {
 			e.printStackTrace();
 		}
 		
+		listeners = new LinkedList<MessageListener>();
 		appointments = new HashMap<Integer, Appointment>();
 		meetings = new HashMap<Integer, Meeting>();
 		rooms = new HashMap<Integer, Room>();
@@ -68,5 +66,16 @@ public class ServerData {
 				}
 			}
 		}
+		
+		
+		for (MessageListener l : listeners) {
+			l.receiveMessage(message);
+		}
 	}
+	
+	public static void addMessageListener(MessageListener listener) {
+		ServerData.listeners.add(listener);
+	}
+	
+	
 }
