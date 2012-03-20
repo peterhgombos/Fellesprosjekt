@@ -20,6 +20,8 @@ import no.ntnu.fp.net.cl.ClException;
 import no.ntnu.fp.net.cl.ClSocket;
 import no.ntnu.fp.net.cl.KtnDatagram;
 import no.ntnu.fp.net.cl.KtnDatagram.Flag;
+import no.ntnu.fp.net.co.ReceiveConnectionWorker.ConnectionListener;
+import no.ntnu.fp.net.co.ReceiveMessageWorker.MessageListener;
 
 /**
  * Implementation of the Connection-interface. <br>
@@ -30,11 +32,17 @@ import no.ntnu.fp.net.cl.KtnDatagram.Flag;
  * of the functionality, leaving message passing and error handling to this
  * implementation.
  * 
- * @author Sebjørn Birkeland and Stein Jakob Nordbø
+ * @author Sebjï¿½rn Birkeland and Stein Jakob Nordbï¿½
  * @see no.ntnu.fp.net.co.Connection
  * @see no.ntnu.fp.net.cl.ClSocket
  */
 public class ConnectionImpl extends AbstractConnection {
+	
+	private ClSocket clientSocket;
+	private int myPort;
+	protected State state;
+	private MessageListener msgListener;
+	private ConnectionListener connListener;
 
 	
 	@SuppressWarnings("serial")
@@ -50,6 +58,9 @@ public class ConnectionImpl extends AbstractConnection {
      *            - the local port to associate with this connection
      */
     public ConnectionImpl(int myPort) {
+    	this.state = State.CLOSED;
+    	this.myPort = myPort;
+    	
         throw new NotImplementedException();
     }
 
@@ -87,6 +98,7 @@ public class ConnectionImpl extends AbstractConnection {
      * @see Connection#accept()
      */
     public Connection accept() throws IOException, SocketTimeoutException {
+    	ReceiveConnectionWorker recieveConn = new ReceiveConnectionWorker(this, listener); //??
         throw new NotImplementedException();
     }
 
@@ -115,6 +127,7 @@ public class ConnectionImpl extends AbstractConnection {
      * @see AbstractConnection#sendAck(KtnDatagram, boolean)
      */
     public String receive() throws ConnectException, IOException {
+    	ReceiveMessageWorker msgWorker = new ReceiveMessageWorker(this); //??
         throw new NotImplementedException();
     }
 
@@ -124,7 +137,25 @@ public class ConnectionImpl extends AbstractConnection {
      * @see Connection#close()
      */
     public void close() throws IOException {
+    	
+    	
+    	//Finally
+    	this.state = State.CLOSED;
         throw new NotImplementedException();
+    }
+    
+    protected KtnDatagram constructDataPacket(String payload) {
+    	KtnDatagram packet = super.constructDataPacket(payload);
+    	packet.setChecksum(packet.calculateChecksum());
+		return packet;
+    	
+    }
+    
+    protected KtnDatagram constructInternalPacket(Flag flag) {
+    	KtnDatagram packet = super.constructInternalPacket(flag);
+    	packet.setChecksum(packet.calculateChecksum());
+		return packet;
+    	
     }
 
     /**
@@ -136,6 +167,11 @@ public class ConnectionImpl extends AbstractConnection {
      * @return true if packet is free of errors, false otherwise.
      */
     protected boolean isValid(KtnDatagram packet) {
-        throw new NotImplementedException();
+    	if (packet.calculateChecksum() == packet.getChecksum()) {
+    		return true;
+    	}
+    	return false;
+        //throw new NotImplementedException();
     }
+    
 }
