@@ -16,9 +16,8 @@ public class SHAHasher {
 			return hexString.toString();
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
-			return "";
+			return null;
 		}
-		
 	}
 	public static void main(String[] args) {
 		System.out.println(SHAHash("ntnu"));
