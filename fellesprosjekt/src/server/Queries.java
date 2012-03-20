@@ -1,6 +1,6 @@
 package server;
 
-
+//Comment for change
 public class Queries {
 
 	public static String getAppointments(int personid){
