@@ -32,10 +32,9 @@ public class Client {
 
 	private class TestListener implements MessageListener {
 		public void receiveMessage(ComMessage m) {
-			System.out.println();
-			c.writeline("recmess");
+			console.writeline("recmess");
 			if (m.getType().equals(MessageType.RECEIVE_LOGIN)) {
-				c.writeline(""+m.getData());
+				console.writeline(""+m.getData());
 			}
 		}
 		
