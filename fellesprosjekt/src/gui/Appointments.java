@@ -73,7 +73,7 @@ public class Appointments extends JPanel{
 		add(startDateField);
 		add(endDateField);
 		add(toCalendarButton);
-		add(list);
+		add(listScrollPane);
 
 		setLayout(null);
 		resize();
@@ -105,22 +105,12 @@ public class Appointments extends JPanel{
 		list.setBounds(appointmentCheckBox.getX(), appointmentCheckBox.getY() + appointmentCheckBox.getHeight() + guiConstants.getDistance(), 
 		endDateField.getX() + startDateLabel.getX() , 200);
 		
+		listScrollPane.setBounds(appointmentCheckBox.getX(), appointmentCheckBox.getY() + appointmentCheckBox.getHeight() + guiConstants.getDistance(), 
+		endDateField.getX() + startDateLabel.getX() , 200);
+		
 		toCalendarButton.setBounds(list.getX(), list.getY() + guiConstants.getDistance() + list.getHeight(), 160, 35);
 		
 		
-//		System.out.println("headline X: " + headlineLabel.getX() + " headline Y: " + headlineLabel.getY());
-//		System.out.println("Datelabel X: " + dateLabel.getX() + " datelabel Y: " + dateLabel.getY());
-//		System.out.println("StartDateLabel X: " + startDateLabel.getX() + " StartDateLabel Y: " + startDateLabel.getY());
-//		System.out.println("StartDateField X: " + startDateField.getX() + " StartDateField Y: " + startDateField.getY());
-//		System.out.println("endDateLabel X: " + endDateLabel.getX() + " endDateLabel Y: " + endDateLabel.getY());
-//		System.out.println("endDateField X: " + endDateField.getX() + " endDateField Y: " + endDateField.getY());
-//		
-//		
-//		System.out.println("Fra width: " + startDateLabel.getWidth() + " Til width: " + endDateLabel.getWidth());
-//		System.out.println("DateField width: " + startDateField.getWidth() + " EndDateField width: " + endDateField.getWidth());
-//		System.out.println("appointmentCheckBox X: " + appointmentCheckBox.getX() + " AppointmentCheckBox Y: " + appointmentCheckBox.getY());
-//		System.out.println("meetingCheckBox X: " + meetingCheckBox.getX() + " meetingChecBox Y: " + meetingCheckBox.getY());
-//		
 	}
 	
 	public static void main(String[] args) {
