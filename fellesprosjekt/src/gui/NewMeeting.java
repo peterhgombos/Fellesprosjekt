@@ -120,21 +120,28 @@ public class NewMeeting extends JPanel{
 		headlineLabel.setFont(new Font(headlineLabel.getFont().getName(), 0, 30));
 		
 
-		titleLabel.setBounds(guiConstants.getDistance(), headlineLabel.getY() + headlineLabel.getHeight() + guiConstants.getGroupDistance(), 100, 25);
+		titleLabel.setBounds(guiConstants.getDistance()+50, headlineLabel.getY() + headlineLabel.getHeight() + guiConstants.getGroupDistance(), 100, 25);
 		titleLabel.setFont(new Font(headlineLabel.getFont().getName(), 0, 16));
 		
-		nameField.setBounds(guiConstants.getDistance() + titleLabel.getY(), titleLabel.getY(), 160, 35);
 		
-		dateLabel.setBounds(guiConstants.getDistance(), titleLabel.getY() + titleLabel.getHeight() + guiConstants.getDistance(), 100, 25);
+		//Marte bare tester litt, kan tas bort
+		System.out.println("headline X: " + headlineLabel.getX() + " headline Y: " + headlineLabel.getY());
+		System.out.println("TitleLabel X: " + titleLabel.getX() + " TitleLabel Y: " + titleLabel.getY());
+		
+		
+		
+		nameField.setBounds(guiConstants.getDistance()+40 + titleLabel.getY(), titleLabel.getY(), 160, 35);
+		
+		dateLabel.setBounds(guiConstants.getDistance()+50, titleLabel.getY() + titleLabel.getHeight() + guiConstants.getDistance(), 100, 25);
 		dateLabel.setFont(new Font(dateLabel.getFont().getName(), 0, 16));
 		
-		dateField.setBounds( 100, dateLabel.getY(), 160, 35);
+		dateField.setBounds( 100+40, dateLabel.getY(), 160, 35);
 		
-		startTimeLabel.setBounds(guiConstants.getDistance(), dateLabel.getY() + dateLabel.getHeight() + guiConstants.getDistance(), 100, 25);
+		startTimeLabel.setBounds(guiConstants.getDistance()+60, dateLabel.getY() + dateLabel.getHeight() + guiConstants.getDistance(), 100, 25);
 		startTimeLabel.setFont(new Font(startTimeLabel.getFont().getName(), 0, 16));
 		
-		startTimeHoursField.setBounds(titleLabel.getY(), startTimeLabel.getY(), 70, 30);
-		startTimeMinField.setBounds(titleLabel.getY()+70, startTimeHoursField.getY(), 70, 30);
+		startTimeHoursField.setBounds(titleLabel.getY() + 47, startTimeLabel.getY(), 70, 30);
+		startTimeMinField.setBounds(titleLabel.getY()+120, startTimeHoursField.getY(), 70, 30);
 		
 		endTimeLabel.setBounds(startTimeHoursField.getX() + 150, startTimeHoursField.getY(), 160, 35);
 		endTimeLabel.setFont(new Font(endTimeLabel.getFont().getName(), 0, 16));
@@ -145,14 +152,14 @@ public class NewMeeting extends JPanel{
 		descriptionLabel.setBounds(guiConstants.getDistance(), startTimeLabel.getY() + startTimeLabel.getHeight() + guiConstants.getGroupDistance(), 100, 25);
 		descriptionLabel.setFont(new Font(descriptionLabel.getFont().getName(), 0, 16));
 		
-		descriptionArea.setBounds(descriptionLabel.getX() + 120, descriptionLabel.getY(), 200, 100);
+		descriptionArea.setBounds(descriptionLabel.getX() + 130, descriptionLabel.getY(), 200, 100);
 		
-		participantsLabel.setBounds(guiConstants.getDistance(), descriptionLabel.getY() + descriptionArea.getHeight() + guiConstants.getGroupDistance(), 100, 25);
+		participantsLabel.setBounds(guiConstants.getDistance() + 10, descriptionLabel.getY() + descriptionArea.getHeight() + guiConstants.getGroupDistance(), 100, 25);
 		participantsLabel.setFont(new Font(participantsLabel.getFont().getName(), 0, 16));
 		
-		addParticipantsButton.setBounds(participantsLabel.getX() + 120, participantsLabel.getY(), 160, 35);
+		addParticipantsButton.setBounds(participantsLabel.getX() + 115, participantsLabel.getY(), 160, 35);
 		
-		placeLabel.setBounds(guiConstants.getDistance(), participantsLabel.getY() + participantsLabel.getHeight() + guiConstants.getGroupDistance(), 100, 25);
+		placeLabel.setBounds(guiConstants.getDistance() + 50, participantsLabel.getY() + participantsLabel.getHeight() + guiConstants.getGroupDistance(), 100, 25);
 		placeLabel.setFont(new Font(placeLabel.getFont().getName(), 0, 16));
 		
 		bookMeetingroomRadioButton.setBounds(placeLabel.getX() + 70, placeLabel.getY(), 150, 25);
@@ -177,7 +184,8 @@ public class NewMeeting extends JPanel{
 		frame.pack();
 		frame.setSize(700, 700);
 		frame.setVisible(true);
-		
 	}
+	
+	
 
 }
