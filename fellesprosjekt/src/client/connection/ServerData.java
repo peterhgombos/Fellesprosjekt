@@ -62,7 +62,7 @@ public class ServerData {
 	public static void receiveMessage(ComMessage message){
 		String messageType = message.getType();
 		
-		Client.c.writeline(messageType);
+		Client.console.writeline(messageType);
 		
 		if(messageType.equals(MessageType.RECEIVE_APPOINTMENTS)){
 			Collection<Appointment> apps = (Collection<Appointment>)message.getData();

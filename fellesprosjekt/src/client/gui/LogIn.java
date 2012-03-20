@@ -37,16 +37,15 @@ public class LogIn extends JPanel{
 	}
 
 	private void resize() {
-		GuiConstants guiConstants = new GuiConstants();
 		
-		nameLabel.setBounds(guiConstants.getDistance()*15, guiConstants.getDistance()*15, 90, 25);
-		nameField.setBounds(nameLabel.getX() + nameLabel.getWidth() + guiConstants.getDistance(), nameLabel.getY(), 300, 40);
+		nameLabel.setBounds(GuiConstants.DISTANCE*15, GuiConstants.DISTANCE*15, 90, 25);
+		nameField.setBounds(nameLabel.getX() + nameLabel.getWidth() + GuiConstants.DISTANCE, nameLabel.getY(), 300, 40);
 		
-		passwordLabel.setBounds(nameLabel.getX(), guiConstants.getDistance() + nameField.getY() + nameField.getHeight(), nameLabel.getWidth(), nameLabel.getHeight());
+		passwordLabel.setBounds(nameLabel.getX(), GuiConstants.DISTANCE + nameField.getY() + nameField.getHeight(), nameLabel.getWidth(), nameLabel.getHeight());
 		passwordField.setBounds(nameField.getX(), passwordLabel.getY(), nameField.getWidth(), nameField.getHeight());
 		
-		loginButton.setBounds(nameField.getX(), guiConstants.getDistance() + passwordField.getY() + passwordField.getHeight(), 160, 35);
-		loginButton.setBounds(nameField.getX() + (passwordField.getWidth() - loginButton.getWidth()), guiConstants.getDistance() + passwordField.getY() + passwordField.getHeight(), 160, 35);
+		loginButton.setBounds(nameField.getX(), GuiConstants.DISTANCE + passwordField.getY() + passwordField.getHeight(), 160, 35);
+		loginButton.setBounds(nameField.getX() + (passwordField.getWidth() - loginButton.getWidth()), GuiConstants.DISTANCE + passwordField.getY() + passwordField.getHeight(), 160, 35);
 		
 	}
 	

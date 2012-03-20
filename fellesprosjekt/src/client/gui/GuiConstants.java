@@ -6,36 +6,10 @@ import javax.swing.JButton;
 
 public class GuiConstants {
 
-	private Font jButtonFont;
-	private int distance;
-	private int groupDistance;
+	private static final JButton b = new JButton();
 	
-	
-	public GuiConstants() {
-		JButton b = new JButton();
-		jButtonFont = new Font(b.getFont().getName(), 
-				b.getFont().getStyle(), 14 );
-		
-		distance = 10;
-		groupDistance = 30;
-	}
+	public static final Font BUTTON_FONT = new Font(b.getFont().getName(), b.getFont().getStyle(), 14 );
+	public static final int DISTANCE = 10;
+	public static final int GROUP_DISTANCE = 30;
 
-	
-
-	public int getDistance() {
-		return distance;
-	}
-
-
-
-	public int getGroupDistance() {
-		return groupDistance;
-	}
-
-
-
-	public Font getJButtonFont() {
-		return jButtonFont;
-	}
-	
 }

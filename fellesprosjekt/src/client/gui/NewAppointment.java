@@ -99,47 +99,45 @@ public class NewAppointment extends JPanel{
 	}
 	
 	public void resize(){
-		GuiConstants guiConstants = new GuiConstants();
-		
-		headlineLabel.setBounds(guiConstants.getDistance()*27, guiConstants.getDistance(), 300, 40);
+		headlineLabel.setBounds(GuiConstants.DISTANCE*27, GuiConstants.DISTANCE, 300, 40);
 		headlineLabel.setFont(new Font(headlineLabel.getFont().getName(), 0, 30));
 		
-		titleLabel.setBounds(guiConstants.getDistance(), headlineLabel.getY() + headlineLabel.getHeight() + guiConstants.getGroupDistance(), 100, 25);
+		titleLabel.setBounds(GuiConstants.DISTANCE, headlineLabel.getY() + headlineLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 100, 25);
 		titleLabel.setFont(new Font(headlineLabel.getFont().getName(), 0, 16));
 		
-		nameField.setBounds(guiConstants.getDistance()*2+ titleLabel.getWidth() + titleLabel.getX(), titleLabel.getY(), 160, 25);
+		nameField.setBounds(GuiConstants.DISTANCE*2+ titleLabel.getWidth() + titleLabel.getX(), titleLabel.getY(), 160, 25);
 		
-		dateLabel.setBounds(titleLabel.getX(), titleLabel.getY() + titleLabel.getHeight() + guiConstants.getDistance(), 100, 25);
+		dateLabel.setBounds(titleLabel.getX(), titleLabel.getY() + titleLabel.getHeight() + GuiConstants.DISTANCE, 100, 25);
 		dateLabel.setFont(new Font(dateLabel.getFont().getName(), 0, 16));
 		
-		dateField.setBounds(guiConstants.getDistance()*2 + titleLabel.getWidth() + titleLabel.getX(), dateLabel.getY(), 160, 25);
+		dateField.setBounds(GuiConstants.DISTANCE*2 + titleLabel.getWidth() + titleLabel.getX(), dateLabel.getY(), 160, 25);
 		
-		startTimeLabel.setBounds(titleLabel.getX(), dateLabel.getY() + dateLabel.getHeight() + guiConstants.getDistance(), 100, 25);
+		startTimeLabel.setBounds(titleLabel.getX(), dateLabel.getY() + dateLabel.getHeight() + GuiConstants.DISTANCE, 100, 25);
 		startTimeLabel.setFont(new Font(startTimeLabel.getFont().getName(), 0, 16));
 		
-		startTimeHoursField.setBounds(guiConstants.getDistance()*2+ titleLabel.getWidth() + titleLabel.getX() , startTimeLabel.getY(), 70, 30);
+		startTimeHoursField.setBounds(GuiConstants.DISTANCE*2+ titleLabel.getWidth() + titleLabel.getX() , startTimeLabel.getY(), 70, 30);
 		startTimeMinField.setBounds(startTimeHoursField.getX() + 2 + startTimeHoursField.getWidth(), startTimeHoursField.getY(), 70, 30);
 		
-		endTimeLabel.setBounds(startTimeHoursField.getX() + startTimeMinField.getWidth() + guiConstants.getDistance(), startTimeHoursField.getY(), 100, 25);
+		endTimeLabel.setBounds(startTimeHoursField.getX() + startTimeMinField.getWidth() + GuiConstants.DISTANCE, startTimeHoursField.getY(), 100, 25);
 		endTimeLabel.setFont(new Font(endTimeLabel.getFont().getName(), 0, 16));
 		
-		endTimeHoursField.setBounds(endTimeLabel.getX() + endTimeLabel.getWidth() + guiConstants.getDistance(), endTimeLabel.getY(), 70, 30);
+		endTimeHoursField.setBounds(endTimeLabel.getX() + endTimeLabel.getWidth() + GuiConstants.DISTANCE, endTimeLabel.getY(), 70, 30);
 		endTimeMinField.setBounds(endTimeHoursField.getX() + 2 + endTimeHoursField.getWidth(), endTimeHoursField.getY(), 70, 30);
 		
-		descriptionLabel.setBounds(titleLabel.getX(), startTimeLabel.getY() + startTimeLabel.getHeight() + guiConstants.getGroupDistance(), 100, 25);
+		descriptionLabel.setBounds(titleLabel.getX(), startTimeLabel.getY() + startTimeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 100, 25);
 		descriptionLabel.setFont(new Font(descriptionLabel.getFont().getName(), 0, 16));
 		
-		scrollPane.setBounds(guiConstants.getDistance()*2+ titleLabel.getWidth() + titleLabel.getX(), descriptionLabel.getY(), 200, 100);
+		scrollPane.setBounds(GuiConstants.DISTANCE*2+ titleLabel.getWidth() + titleLabel.getX(), descriptionLabel.getY(), 200, 100);
 		
-		placeLabel.setBounds(titleLabel.getX(), scrollPane.getY() + scrollPane.getHeight() + guiConstants.getGroupDistance(), 100, 25);
+		placeLabel.setBounds(titleLabel.getX(), scrollPane.getY() + scrollPane.getHeight() + GuiConstants.GROUP_DISTANCE, 100, 25);
 		placeLabel.setFont(new Font(placeLabel.getFont().getName(), 0, 16));
 		
-		placeField.setBounds(placeLabel.getX() + placeLabel.getWidth() + guiConstants.getDistance(), placeLabel.getY(), 160, 25);
+		placeField.setBounds(placeLabel.getX() + placeLabel.getWidth() + GuiConstants.DISTANCE, placeLabel.getY(), 160, 25);
 		
-		saveButton.setBounds(placeField.getX(), placeField.getY() + placeField.getHeight() + guiConstants.getDistance(), 100, 25);
+		saveButton.setBounds(placeField.getX(), placeField.getY() + placeField.getHeight() + GuiConstants.DISTANCE, 100, 25);
 		saveButton.setFont(new Font(saveButton.getFont().getName(), 0, 14));
 		
-		cancelButton.setBounds(saveButton.getX() + saveButton.getWidth() + guiConstants.getDistance(), saveButton.getY(), 100, 25);
+		cancelButton.setBounds(saveButton.getX() + saveButton.getWidth() + GuiConstants.DISTANCE, saveButton.getY(), 100, 25);
 	}
 	
 	public static void main(String[] args) {

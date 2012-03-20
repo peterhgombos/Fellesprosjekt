@@ -4,6 +4,7 @@ import java.awt.Font;
 
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class AddRemoveParticipants extends JPanel{
 	
 	
@@ -66,31 +67,30 @@ public class AddRemoveParticipants extends JPanel{
 	}
 	
 	public void resize(){
-		GuiConstants guiConstants = new GuiConstants();
 		
-		headline.setBounds(guiConstants.getDistance()*15, guiConstants.getDistance(), 400, 40);
+		headline.setBounds(GuiConstants.DISTANCE*15, GuiConstants.DISTANCE, 400, 40);
 		headline.setFont(new Font(headline.getFont().getName(), 0, 30));
 		
-		searchField.setBounds(guiConstants.getDistance()*5, headline.getHeight() + guiConstants.getDistance()*5, 210, 35);
+		searchField.setBounds(GuiConstants.DISTANCE*5, headline.getHeight() + GuiConstants.DISTANCE*5, 210, 35);
 		
-		employeeList.setBounds(searchField.getX(), searchField.getY() + searchField.getHeight() + guiConstants.getDistance(), 210, 300);
+		employeeList.setBounds(searchField.getX(), searchField.getY() + searchField.getHeight() + GuiConstants.DISTANCE, 210, 300);
 		
-		add.setBounds(employeeList.getX() + employeeList.getWidth() + guiConstants.getDistance(),
-				employeeList.getY() + guiConstants.getDistance()*10, 50, 30);
-		remove.setBounds(add.getX(), add.getY() + add.getHeight() + guiConstants.getDistance(), 50, 30);
+		add.setBounds(employeeList.getX() + employeeList.getWidth() + GuiConstants.DISTANCE,
+				employeeList.getY() + GuiConstants.DISTANCE*10, 50, 30);
+		remove.setBounds(add.getX(), add.getY() + add.getHeight() + GuiConstants.DISTANCE, 50, 30);
 		
-		addedParticipantsList.setBounds(add.getX() + add.getWidth() + guiConstants.getDistance(), employeeList.getY(), 210, 300);
+		addedParticipantsList.setBounds(add.getX() + add.getWidth() + GuiConstants.DISTANCE, employeeList.getY(), 210, 300);
 		
-		externalParticipantsField.setBounds(employeeList.getX(), employeeList.getY() + employeeList.getHeight() + guiConstants.getDistance(), 
+		externalParticipantsField.setBounds(employeeList.getX(), employeeList.getY() + employeeList.getHeight() + GuiConstants.DISTANCE, 
 				60, 35);
 		
-		externalParticipantsLabel.setBounds(externalParticipantsField.getX() + externalParticipantsField.getWidth() + guiConstants.getDistance(),
+		externalParticipantsLabel.setBounds(externalParticipantsField.getX() + externalParticipantsField.getWidth() + GuiConstants.DISTANCE,
 				externalParticipantsField.getY(), 160, 35);
 		externalParticipantsLabel.setFont(new Font(externalParticipantsLabel.getFont().getName(), 0, 15));
 		
-		save.setBounds(externalParticipantsField.getX(), externalParticipantsField.getY() + externalParticipantsField.getHeight() + guiConstants.getDistance(),
+		save.setBounds(externalParticipantsField.getX(), externalParticipantsField.getY() + externalParticipantsField.getHeight() + GuiConstants.DISTANCE,
 				100, 30);
-		cancel.setBounds(save.getX() + save.getWidth() + guiConstants.getDistance(), save.getY(), 100, 30);
+		cancel.setBounds(save.getX() + save.getWidth() + GuiConstants.DISTANCE, save.getY(), 100, 30);
 		
 	}
 	
@@ -103,7 +103,6 @@ public class AddRemoveParticipants extends JPanel{
 		frame.pack();
 		frame.setSize(650, 600);
 		frame.setVisible(true);
-		
 	}
 	
 }

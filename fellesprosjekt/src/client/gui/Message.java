@@ -67,17 +67,15 @@ public class Message extends JPanel{
 	
 	public void resize(){
 		
-		GuiConstants guiConstants = new GuiConstants();
-		
-		headLine.setBounds(guiConstants.getDistance()*27, guiConstants.getDistance(), 300, 40);
+		headLine.setBounds(GuiConstants.DISTANCE*27, GuiConstants.DISTANCE, 300, 40);
 		headLine.setFont(new Font(headLine.getFont().getName(), 0, 30));
 		
-		all.setBounds(guiConstants.getDistance()+60, headLine.getY() + headLine.getHeight() + guiConstants.getGroupDistance(), 25, 25);
+		all.setBounds(GuiConstants.DISTANCE+60, headLine.getY() + headLine.getHeight() + GuiConstants.GROUP_DISTANCE, 25, 25);
 		
-		searchfield.setBounds(all.getY() + guiConstants.getGroupDistance(), all.getY(), 383, 25);
-		searchfield.setFont(guiConstants.getJButtonFont());
+		searchfield.setBounds(all.getY() + GuiConstants.GROUP_DISTANCE, all.getY(), 383, 25);
+		searchfield.setFont(GuiConstants.BUTTON_FONT);
 		
-		scroll.setBounds(guiConstants.getDistance()+55, all.getY() + searchfield.getHeight() + guiConstants.getDistance(), 425, 200);
+		scroll.setBounds(GuiConstants.DISTANCE+55, all.getY() + searchfield.getHeight() + GuiConstants.DISTANCE, 425, 200);
 		
 		for (int i = 0; i < sizeValue; i++) {
 			checkBox = new JCheckBox();
@@ -91,13 +89,13 @@ public class Message extends JPanel{
 			y+=22;
 			messageList.setSize(messageList.getWidth(), y);
 		}
-		messageList.setBounds(guiConstants.getDistance()+55, all.getY() + searchfield.getHeight() + guiConstants.getDistance(), 425, messageList.getHeight());
+		messageList.setBounds(GuiConstants.DISTANCE+55, all.getY() + searchfield.getHeight() + GuiConstants.DISTANCE, 425, messageList.getHeight());
 		messageList.setPreferredSize(messageList.getSize());
 		
-		delete.setBounds(guiConstants.getDistance() + 50, scroll.getY() + scroll.getHeight() + guiConstants.getDistance(),  150, 35);
-		delete.setFont(guiConstants.getJButtonFont());
+		delete.setBounds(GuiConstants.DISTANCE + 50, scroll.getY() + scroll.getHeight() + GuiConstants.DISTANCE,  150, 35);
+		delete.setFont(GuiConstants.BUTTON_FONT);
 		
-		toCalender.setBounds(delete.getWidth() + guiConstants.getDistance() + delete.getX(), delete.getY(), 150, 35);
+		toCalender.setBounds(delete.getWidth() + GuiConstants.DISTANCE + delete.getX(), delete.getY(), 150, 35);
 	}
 
 	

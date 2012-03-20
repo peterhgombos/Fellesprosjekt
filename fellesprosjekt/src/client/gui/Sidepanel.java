@@ -25,7 +25,6 @@ public class Sidepanel extends JPanel implements FocusListener{
 	private JButton myAppointments;
 	private JButton employeesAppointments;
 	private JButton logOut;
-	private GuiConstants guiConstants;
 	private JButton addEmployee;
 	private JPanel employeeList;
 	private JList selectedEmployeeList;
@@ -56,7 +55,6 @@ public class Sidepanel extends JPanel implements FocusListener{
 		employeesAppointments = new JButton("Ansattes Avtaler");
 		logOut = new JButton("Logg Ut");
 		addEmployee = new JButton("Legg Til");
-		guiConstants = new GuiConstants();
 		employeeList = new JPanel();
 		employeeList.setBackground(Color.WHITE);
 		employeeList.setLayout(null);
@@ -111,35 +109,35 @@ public class Sidepanel extends JPanel implements FocusListener{
 	}
 	
 	public void resize(){
-		message.setBounds(guiConstants.getDistance(), guiConstants.getDistance(), 160, 35);
-		message.setFont(guiConstants.getJButtonFont());
+		message.setBounds(GuiConstants.DISTANCE, GuiConstants.DISTANCE, 160, 35);
+		message.setFont(GuiConstants.BUTTON_FONT);
 		
-		newAppointment.setBounds(guiConstants.getDistance(), message.getY() + message.getHeight()+
-				guiConstants.getGroupDistance(), 
+		newAppointment.setBounds(GuiConstants.DISTANCE, message.getY() + message.getHeight()+
+				GuiConstants.GROUP_DISTANCE, 
 				message.getWidth(), message.getHeight());
-		newAppointment.setFont(guiConstants.getJButtonFont());
+		newAppointment.setFont(GuiConstants.BUTTON_FONT);
 		
 		
-		newMeeting.setBounds(guiConstants.getDistance(), newAppointment.getY() + guiConstants.getDistance()
+		newMeeting.setBounds(GuiConstants.DISTANCE, newAppointment.getY() + GuiConstants.DISTANCE
 				+ message.getHeight(), message.getWidth(), message.getHeight());
-		newMeeting.setFont(guiConstants.getJButtonFont());
+		newMeeting.setFont(GuiConstants.BUTTON_FONT);
 
 		
-		myAppointments.setBounds(guiConstants.getDistance(), newMeeting.getY() + guiConstants.getDistance() + message.getHeight(), message.getWidth(), message.getHeight());
-		myAppointments.setFont(guiConstants.getJButtonFont());
+		myAppointments.setBounds(GuiConstants.DISTANCE, newMeeting.getY() + GuiConstants.DISTANCE + message.getHeight(), message.getWidth(), message.getHeight());
+		myAppointments.setFont(GuiConstants.BUTTON_FONT);
 		
 		
-		employeesAppointments.setBounds(guiConstants.getDistance(), myAppointments.getY() + guiConstants.getDistance() + message.getHeight(), message.getWidth(), message.getHeight());
-		employeesAppointments.setFont(guiConstants.getJButtonFont());
+		employeesAppointments.setBounds(GuiConstants.DISTANCE, myAppointments.getY() + GuiConstants.DISTANCE + message.getHeight(), message.getWidth(), message.getHeight());
+		employeesAppointments.setFont(GuiConstants.BUTTON_FONT);
 		
 		
-		search.setBounds(guiConstants.getDistance(), employeesAppointments.getY() + guiConstants.getGroupDistance() + message.getHeight(), message.getWidth(), message.getHeight());
+		search.setBounds(GuiConstants.DISTANCE, employeesAppointments.getY() + GuiConstants.GROUP_DISTANCE + message.getHeight(), message.getWidth(), message.getHeight());
 		search.setText("Søk");
 		search.addFocusListener(this);
 		
 		//legge til scrolling
 		
-		scroll.setBounds(guiConstants.getDistance(), search.getY() + 2 + message.getHeight(), message.getWidth(), message.getHeight()*4);
+		scroll.setBounds(GuiConstants.DISTANCE, search.getY() + 2 + message.getHeight(), message.getWidth(), message.getHeight()*4);
 		
 		
 		for (int i = 0; i < countEmployee; i++) {
@@ -153,17 +151,17 @@ public class Sidepanel extends JPanel implements FocusListener{
 			y+=22;
 			employeeList.setSize(employeeList.getWidth(), y);
 		}
-		employeeList.setBounds(guiConstants.getDistance(), search.getY() + 2 + message.getHeight(), message.getWidth(), employeeList.getHeight());
+		employeeList.setBounds(GuiConstants.DISTANCE, search.getY() + 2 + message.getHeight(), message.getWidth(), employeeList.getHeight());
 		employeeList.setPreferredSize(employeeList.getSize());
 				
-		addEmployee.setBounds(guiConstants.getDistance(), scroll.getY() + guiConstants.getDistance() + scroll.getHeight(), message.getWidth()/2, message.getHeight());
+		addEmployee.setBounds(GuiConstants.DISTANCE, scroll.getY() + GuiConstants.DISTANCE + scroll.getHeight(), message.getWidth()/2, message.getHeight());
 		
-		scrollSelectedEmployee.setBounds(guiConstants.getDistance(), addEmployee.getY() + guiConstants.getDistance() + message.getHeight(), message.getWidth(), message.getHeight()*4);
-//		selectedEmployeeList.setBounds(guiConstants.getDistance(), addEmployee.getY() + guiConstants.getDistance() + message.getHeight(), message.getWidth(), selectedEmployeeList.getHeight());
+		scrollSelectedEmployee.setBounds(GuiConstants.DISTANCE, addEmployee.getY() + GuiConstants.DISTANCE + message.getHeight(), message.getWidth(), message.getHeight()*4);
+//		selectedEmployeeList.setBounds(guiConstants.DISTANCE, addEmployee.getY() + guiConstants.DISTANCE + message.getHeight(), message.getWidth(), selectedEmployeeList.getHeight());
 //		selectedEmployeeList.setPreferredSize(employeeList.getSize());
 		
-		logOut.setBounds(guiConstants.getDistance(), scrollSelectedEmployee.getY() + scrollSelectedEmployee.getHeight() + guiConstants.getDistance(), message.getWidth(), message.getHeight());
-		logOut.setFont(guiConstants.getJButtonFont());
+		logOut.setBounds(GuiConstants.DISTANCE, scrollSelectedEmployee.getY() + scrollSelectedEmployee.getHeight() + GuiConstants.DISTANCE, message.getWidth(), message.getHeight());
+		logOut.setFont(GuiConstants.BUTTON_FONT);
 	}
 	
 	

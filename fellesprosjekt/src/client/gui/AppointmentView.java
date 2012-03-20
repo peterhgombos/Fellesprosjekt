@@ -104,56 +104,54 @@ public class AppointmentView extends JPanel{
 	
 	public void resize(){
 		
-		GuiConstants guiConstants = new GuiConstants();
-		
-		headline.setBounds(guiConstants.getDistance()*30, guiConstants.getDistance(), 400, 40);
+		headline.setBounds(GuiConstants.DISTANCE*30, GuiConstants.DISTANCE, 400, 40);
 		headline.setFont(new Font(headline.getFont().getName(),0,30));
 		
-		dateLabel.setBounds(guiConstants.getDistance()*5, headline.getHeight() + guiConstants.getDistance()*5, 80, 30);
+		dateLabel.setBounds(GuiConstants.DISTANCE*5, headline.getHeight() + GuiConstants.DISTANCE*5, 80, 30);
 		dateLabel.setFont(new Font(dateLabel.getFont().getName(),0,15));
 		dateLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		dateInput.setBounds(dateLabel.getX()+ dateLabel.getWidth() + guiConstants.getDistance(),
+		dateInput.setBounds(dateLabel.getX()+ dateLabel.getWidth() + GuiConstants.DISTANCE,
 				dateLabel.getY(), 300, 30);
 		dateInput.setFont(new Font(dateInput.getFont().getName(),0,15));
 		
-		timeLabel.setBounds(dateLabel.getX(), dateLabel.getY() + dateLabel.getHeight() + guiConstants.getDistance(), 80, 30);
+		timeLabel.setBounds(dateLabel.getX(), dateLabel.getY() + dateLabel.getHeight() + GuiConstants.DISTANCE, 80, 30);
 		timeLabel.setFont(new Font(timeLabel.getFont().getName(),0,15));
 		timeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		timeInput.setBounds(dateInput.getX(), dateLabel.getY() + dateLabel.getHeight() + guiConstants.getDistance(), 300, 30);
+		timeInput.setBounds(dateInput.getX(), dateLabel.getY() + dateLabel.getHeight() + GuiConstants.DISTANCE, 300, 30);
 		timeInput.setFont(new Font(timeInput.getFont().getName(),0,15));
 		
-		descriptionLabel.setBounds(timeLabel.getX(), timeLabel.getY() + timeLabel.getHeight() + guiConstants.getDistance(), 80, 30);
+		descriptionLabel.setBounds(timeLabel.getX(), timeLabel.getY() + timeLabel.getHeight() + GuiConstants.DISTANCE, 80, 30);
 		descriptionLabel.setFont(new Font(descriptionLabel.getFont().getName(),0,15));
 		descriptionLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		//TODO: Må legge til scrollbar		
-		descriptionInput.setBounds(timeInput.getX(),timeLabel.getY() + timeLabel.getHeight() + guiConstants.getDistance() , 290, 150 );
+		descriptionInput.setBounds(timeInput.getX(),timeLabel.getY() + timeLabel.getHeight() + GuiConstants.DISTANCE , 290, 150 );
 		descriptionInput.setLineWrap(true);
-		textAreaScrollPane.setBounds(timeInput.getX(),timeLabel.getY() + timeLabel.getHeight() + guiConstants.getDistance() , 290, 150 );
+		textAreaScrollPane.setBounds(timeInput.getX(),timeLabel.getY() + timeLabel.getHeight() + GuiConstants.DISTANCE , 290, 150 );
 		
 		
-		placeLabel.setBounds(timeLabel.getX(), descriptionInput.getY() + descriptionInput.getHeight() + guiConstants.getDistance(), 80, 30);
+		placeLabel.setBounds(timeLabel.getX(), descriptionInput.getY() + descriptionInput.getHeight() + GuiConstants.DISTANCE, 80, 30);
 		placeLabel.setFont(new Font(placeLabel.getFont().getName(),0,15));
 		placeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		placeInput.setBounds(timeInput.getX(), descriptionInput.getY() + descriptionInput.getHeight() + guiConstants.getDistance(), 300, 30);
+		placeInput.setBounds(timeInput.getX(), descriptionInput.getY() + descriptionInput.getHeight() + GuiConstants.DISTANCE, 300, 30);
 		placeInput.setFont(new Font(placeInput.getFont().getName(),0,15));
 		
 		if(isLeader){
-			cancelButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + guiConstants.getDistance(), 80, 35);
-			editButton.setBounds(cancelButton.getX() + cancelButton.getWidth() + guiConstants.getDistance(), 
-					placeLabel.getY() + placeLabel.getHeight() + guiConstants.getDistance(), 80, 35);
-			toCalendarButton.setBounds(editButton.getX() + editButton.getWidth() + guiConstants.getDistance(), 
-					placeLabel.getY() + placeLabel.getHeight() + guiConstants.getDistance(), 110, 35);
+			cancelButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.DISTANCE, 80, 35);
+			editButton.setBounds(cancelButton.getX() + cancelButton.getWidth() + GuiConstants.DISTANCE, 
+					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.DISTANCE, 80, 35);
+			toCalendarButton.setBounds(editButton.getX() + editButton.getWidth() + GuiConstants.DISTANCE, 
+					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.DISTANCE, 110, 35);
 		}
 		else{
-			rejectButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + guiConstants.getDistance(), 80, 35);
-			accpectButton.setBounds(rejectButton.getX() + rejectButton.getWidth() + guiConstants.getDistance(), 
-					placeLabel.getY() + placeLabel.getHeight() + guiConstants.getDistance(), 80, 35);
-			toCalendarButton.setBounds(accpectButton.getX() + accpectButton.getWidth() + guiConstants.getDistance(), 
-					placeLabel.getY() + placeLabel.getHeight() + guiConstants.getDistance(), 110, 35);
+			rejectButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.DISTANCE, 80, 35);
+			accpectButton.setBounds(rejectButton.getX() + rejectButton.getWidth() + GuiConstants.DISTANCE, 
+					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.DISTANCE, 80, 35);
+			toCalendarButton.setBounds(accpectButton.getX() + accpectButton.getWidth() + GuiConstants.DISTANCE, 
+					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.DISTANCE, 110, 35);
 			
 		}
 		
