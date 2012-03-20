@@ -24,7 +24,7 @@ public class ClientReader extends Thread {
 		try {
 			reader = new ObjectInputStream(socket.getInputStream());
 		} catch (IOException e) {
-			ServerConstants.console.writeline(e.getMessage());
+			Server.console.writeline(e.getMessage());
 		}
 	}
 	
@@ -32,7 +32,7 @@ public class ClientReader extends Thread {
 	 * metoden kobler fra klienten
 	 */
 	private void disconnect(){
-		ServerConstants.console.writeline("Client has disconnected");
+		Server.console.writeline("Client has disconnected");
 		try {
 			reader.close();
 			socket.close();

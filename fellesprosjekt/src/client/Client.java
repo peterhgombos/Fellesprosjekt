@@ -2,41 +2,41 @@ package client;
 
 import java.io.IOException;
 
-import client.connection.MessageListener;
-import client.connection.MessageType;
-import client.connection.ServerData;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.WindowConstants;
 
-import common.dataobjects.ComMessage;
+import client.gui.LogIn;
+
 import common.dataobjects.Person;
 import common.utilities.Console;
 
-
 public class Client {
 	
-	public static Console console = new Console("Client");
+	public static final Console console = new Console("Client");
 	
-	public static void main(String[] args) throws IOException {
-		new Client();
-	}
+	private JFrame frame;
+	private Person user;
 	
 	public Client() {
-		ServerData.initialize();
-		ServerData.addMessageListener(new TestListener());
-		Person p = new Person(123, "", "", "", "", "");
+		frame = new JFrame("Client");
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		frame.setSize(1000, 700);
 		
-		ServerData.requestLogin("martedl", "ntnu");
-		
-	}
-
-	private class TestListener implements MessageListener {
-		public void receiveMessage(ComMessage m) {
-			console.writeline("recmess");
-			if (m.getType().equals(MessageType.RECEIVE_LOGIN)) {
-				console.writeline(""+m.getData());
-			}
-		}
-		
+		frame.add(new LogIn(this));
+		frame.setVisible(true);
 	}
 	
-
+	public void setUser(Person user){
+		this.user = user;
+	}
+	
+	public Person getUser(){
+		return user;
+	}
+	
+	public static void main(String[] args) throws IOException {
+		try{UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}catch(Exception e){}
+		new Client();
+	}
 }

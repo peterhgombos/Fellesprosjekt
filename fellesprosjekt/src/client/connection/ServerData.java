@@ -22,25 +22,28 @@ public class ServerData {
 	private static InternalCalendar calendar;
 	private static Inbox inbox;
 	
-	static HashMap<Integer, Appointment> appointments;
-	static HashMap<Integer, Meeting> meetings;
+	private static HashMap<Integer, Appointment> appointments;
+	private static HashMap<Integer, Meeting> meetings;
 	private static HashMap<Integer, Room> rooms;
 	private static HashMap<Integer, Person> persons;
 	private static HashMap<Integer, Message> messages;
 	
-	static Connection connection;
-	static LinkedList<MessageListener> listeners;
+	private static Connection connection;
+	private static LinkedList<MessageListener> listeners = new LinkedList<MessageListener>();
 	
+	private static boolean connected = false;
 	
-	public static void initialize() {
+	public static boolean isConnected(){
+		return connected;
+	}
+	
+	public static void connect() throws IOException {
 		connection = new Connection();
-		try{
-			connection.connect();
-		}catch(IOException e){
-			e.printStackTrace();
-		}
 		
-		listeners = new LinkedList<MessageListener>();
+		connection.connect();
+		
+		connected = true;
+		
 		appointments = new HashMap<Integer, Appointment>();
 		meetings = new HashMap<Integer, Meeting>();
 		rooms = new HashMap<Integer, Room>();
@@ -51,18 +54,17 @@ public class ServerData {
 	}
 	
 	public static void requestLogin(String user, String password){
-		connection.login("martedl", "ntnu");
+		connection.login(user, password);
 	}
 	public static void requestAppointmentsAndMeetings(Person p){
 		connection.requestMeetingsAndAppointments(p);
 	}
 	
-	
 	@SuppressWarnings("unchecked")
 	public static void receiveMessage(ComMessage message){
 		String messageType = message.getType();
 		
-		Client.console.writeline(messageType);
+		Client.console.writeline("received message: " + messageType);
 		
 		if(messageType.equals(MessageType.RECEIVE_APPOINTMENTS)){
 			Collection<Appointment> apps = (Collection<Appointment>)message.getData();
@@ -92,6 +94,9 @@ public class ServerData {
 	
 	public static void addMessageListener(MessageListener listener) {
 		ServerData.listeners.add(listener);
+	}
+	public static void removeMessageListener(MessageListener listener) {
+		ServerData.listeners.remove(listener);
 	}
 	
 	

@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import server.ServerConstants;
+import server.Server;
 
 public class Database {
 	
@@ -33,26 +33,7 @@ public class Database {
 	private String password = "ntnu";
 	private Connection connection;
 
-	public Database() {
-		connect();
-
-		ResultSet result;
-		String query = "SELECT FORNAVN FROM ANSATT;";
-
-		ServerConstants.console.writeline(query);
-		ServerConstants.console.writeline("resultat: ");
-		try {		
-			result = executeQuery(query);			
-			while (result.next()) {
-				String s = result.getString("fornavn");
-				ServerConstants.console.writeline(s);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
-	}
-
-	private void connect(){
+	public void connect(){
 		try {
 			Class.forName(mysqlDriver).newInstance();
 			connection = DriverManager.getConnection(url, user, password);

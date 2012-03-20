@@ -17,9 +17,9 @@ public class ConnectionReceiver extends Thread{
 	@Override
 	public void run() {
 		try {
-			serverSocket = new ServerSocket(ServerConstants.PORT);
+			serverSocket = new ServerSocket(Server.PORT);
 		} catch (IOException e) {
-			ServerConstants.console.writeline(e.getMessage());
+			Server.console.writeline(e.getMessage());
 		}
 		while (true) {
 			try {
@@ -31,7 +31,7 @@ public class ConnectionReceiver extends Thread{
 				clientReader.start();
 				
 			} catch (IOException e) {
-				ServerConstants.console.writeline(e.getMessage());
+				Server.console.writeline(e.getMessage());
 				
 			}
 			

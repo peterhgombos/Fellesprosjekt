@@ -25,7 +25,7 @@ public class ClientWriter{
 		try {
 			writer = new ObjectOutputStream(socket.getOutputStream());
 		} catch (IOException e) {
-			ServerConstants.console.writeline(e.getMessage());
+			Server.console.writeline(e.getMessage());
 		}
 	}
 	

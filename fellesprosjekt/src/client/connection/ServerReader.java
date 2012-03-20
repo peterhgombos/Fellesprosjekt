@@ -3,6 +3,7 @@ package client.connection;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.net.SocketException;
 
 import common.dataobjects.ComMessage;
 
@@ -46,7 +47,11 @@ public class ServerReader extends Thread {
 				}
 				
 				connection.receiveMessage(message);
-			} catch (IOException e) {
+			}catch (SocketException e) {
+				e.printStackTrace();
+				disconnect();
+				return;
+			}catch (IOException e) {
 				e.printStackTrace();
 				disconnect();
 				return;

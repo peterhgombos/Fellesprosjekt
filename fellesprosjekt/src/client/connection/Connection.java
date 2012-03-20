@@ -5,6 +5,8 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.LinkedList;
 
+import server.Server;
+
 import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
 import common.dataobjects.Meeting;
@@ -21,7 +23,7 @@ public class Connection  {
 
 	public void connect() throws IOException {
 		socket = new Socket();
-		socket.connect(new InetSocketAddress("localhost", server.ServerConstants.PORT));
+		socket.connect(new InetSocketAddress("localhost", Server.PORT));
 		ServerReader serverReader = new ServerReader(socket, this);
 		serverReader.start();
 		writer = new ServerWriter(socket);

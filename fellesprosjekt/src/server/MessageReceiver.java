@@ -27,6 +27,7 @@ public class MessageReceiver {
 	public MessageReceiver() {
 		clients = new HashMap<InetAddress, ClientWriter>();
 		database = new Database();
+		database.connect();
 	}
 
 	public synchronized void receiveMessage(InetAddress ip, ComMessage message){
@@ -46,10 +47,10 @@ public class MessageReceiver {
 				Collection<Meeting> meetings = resultSetToMeeting(meetingResult);
 
 				for(Meeting m: meetings){
-					ServerConstants.console.writeline(m.getTitle());
-					ServerConstants.console.writeline(m.getAppointmentLeader().getFirstname());
+					Server.console.writeline(m.getTitle());
+					Server.console.writeline(m.getAppointmentLeader().getFirstname());
 					for(Person pp : m.getParticipants().keySet()){
-						ServerConstants.console.writeline("\t" + pp.getFirstname());
+						Server.console.writeline("  " + pp.getFirstname());
 					}
 				}
 
@@ -154,14 +155,15 @@ public class MessageReceiver {
 
 	private Person resultSetToLoginPerson(ResultSet rs){
 		try{
-			rs.next();
-			int id = rs.getInt(Database.COL_PERSONID);
-			String fornavn = rs.getString(Database.COL_FORNAVN);
-			String etternavn = rs.getString(Database.COL_ETTERNAVN);
-			String epost = rs.getString(Database.COL_EPOST);
-			String brukernavn = rs.getString(Database.COL_BRUKERNAVN);
-			String tlf = rs.getString(Database.COL_TLF);
-			return new Person(id, fornavn, etternavn, epost, brukernavn, tlf);
+			while(rs.next()){
+				int id = rs.getInt(Database.COL_PERSONID);
+				String fornavn = rs.getString(Database.COL_FORNAVN);
+				String etternavn = rs.getString(Database.COL_ETTERNAVN);
+				String epost = rs.getString(Database.COL_EPOST);
+				String brukernavn = rs.getString(Database.COL_BRUKERNAVN);
+				String tlf = rs.getString(Database.COL_TLF);
+				return new Person(id, fornavn, etternavn, epost, brukernavn, tlf);
+			}
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -173,9 +175,9 @@ public class MessageReceiver {
 	}
 
 	public synchronized void sendToAll(ComMessage message){
-		ServerConstants.console.writeline("send to all");
+		Server.console.writeline("send to all");
 		for (ClientWriter client : clients.values()) {
-			ServerConstants.console.writeline("send to: " + client.getIP());
+			Server.console.writeline("send to: " + client.getIP());
 			client.send(message);
 		}
 	}
