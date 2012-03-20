@@ -1,15 +1,14 @@
 package server;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.net.Socket;
 
-import utilities.Console;
+import dataobjects.ComMessage;
 
 public class ClientReader extends Thread {
 	
-	private BufferedReader reader;
+	private ObjectInputStream reader;
 	private Socket socket;
 	private MessageReceiver server;
 	
@@ -22,7 +21,7 @@ public class ClientReader extends Thread {
 		this.server = server;
 		this.socket = socket;
 		try {
-			reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			reader = new ObjectInputStream(socket.getInputStream());
 		} catch (IOException e) {
 			ServerConstants.console.writeline(e.getMessage());
 		}
@@ -48,13 +47,16 @@ public class ClientReader extends Thread {
 	public void run() {
 		while(true){
 			try {
-				String message = reader.readLine();
+				ComMessage message = (ComMessage)reader.readObject();
 				if(message == null){
 					disconnect();
 					return;
 				}
 				server.receiveMessage(socket.getInetAddress(), message);
 			} catch (IOException e) {
+				disconnect();
+				return;
+			}catch(ClassNotFoundException e){
 				disconnect();
 				return;
 			}

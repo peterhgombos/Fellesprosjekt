@@ -1,31 +1,29 @@
 package client.connection;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
+
+import dataobjects.ComMessage;
 
 public class ServerWriter {
 
-
 	private Socket socket;
-	private BufferedWriter writer;
+	private ObjectOutputStream writer;
 
 	public ServerWriter(Socket socket) {
 		this.socket = socket;
 		try {
-			writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+			writer = new ObjectOutputStream(socket.getOutputStream());
 		} catch (IOException e) {
 			e.printStackTrace();
 			Connection.console.writeline(e.getMessage());
 		}
 	}
-
 	
-	public void send(String s) {
+	public void send(ComMessage m) {
 		try {
-			writer.write(s);
-			writer.newLine();
+			writer.writeObject(m);
 			writer.flush();
 		} catch (IOException e) {
 			e.printStackTrace();

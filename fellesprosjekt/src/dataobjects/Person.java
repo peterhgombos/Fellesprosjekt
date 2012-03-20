@@ -1,8 +1,12 @@
 package dataobjects;
 
+import java.io.Serializable;
+
 import utilities.XMLElements;
 
-public class Person {
+public class Person implements Serializable {
+	
+	private static final long serialVersionUID = -4926065805520400335L;
 	
 	private String firstname;
 	private String surname;
