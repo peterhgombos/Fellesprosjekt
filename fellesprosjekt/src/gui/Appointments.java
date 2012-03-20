@@ -42,7 +42,7 @@ public class Appointments extends JPanel{
 		ArrayList<Appointment> appointmentArrayList = new ArrayList<Appointment>();
 		
 		headlineLabel = new JLabel("Mine Avtaler");
-		dateLabel = new JLabel("Dato");
+		dateLabel = new JLabel("Dato:");
 		startDateLabel = new JLabel("Fra"); 	//DATEPICKER
 		endDateLabel = new JLabel("Til");		//DATEPICKER
 		
@@ -100,7 +100,7 @@ public class Appointments extends JPanel{
 		
 		endDateField.setBounds(endDateLabel.getX() + endDateLabel.getWidth() + guiConstants.getDistance(), endDateLabel.getY(), 160, 35);
 		
-		appointmentCheckBox.setBounds(startDateField.getX(), startDateLabel.getY() + startDateLabel.getHeight(), 130, 30);
+		appointmentCheckBox.setBounds(startDateField.getX(), startDateLabel.getY() + startDateLabel.getHeight() + guiConstants.getDistance()*2, 130, 30);
 		meetingCheckBox.setBounds(appointmentCheckBox.getX() + appointmentCheckBox.getWidth() + guiConstants.getDistance(), appointmentCheckBox.getY(), 130, 30);
 		
 		list.setBounds(appointmentCheckBox.getX(), appointmentCheckBox.getY() + appointmentCheckBox.getHeight() + guiConstants.getDistance(), 
