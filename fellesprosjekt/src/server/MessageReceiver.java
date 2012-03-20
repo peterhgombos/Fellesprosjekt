@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+import client.authentication.Login;
 import client.connection.MessageType;
 import dataobjects.Appointment;
 import dataobjects.ComMessage;
@@ -57,6 +58,26 @@ public class MessageReceiver {
 			}catch(SQLException e){
 				e.printStackTrace();
 			}
+		}
+		else if(messageType.equals(MessageType.REQUEST_LOGIN)){
+			Person authenticatedPerson = requestLogin(message);
+			ComMessage sendLogin = new ComMessage(authenticatedPerson, MessageType.RECEIVE_LOGIN);
+			clientWriter.send(sendLogin);
+		}
+	}
+	
+	private Person requestLogin(ComMessage message){
+		Login login = (Login) message.getData();
+		Person person;
+		try{
+			ResultSet personResult = database.executeQuery(Queries.loginAuthentication(login.getUserName(), login.getPasswordHash()));
+			
+			return person = resultSetToPerson(personResult).keySet().iterator().next();
+
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+			return null;
 		}
 	}
 

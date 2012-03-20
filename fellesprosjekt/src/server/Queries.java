@@ -1,6 +1,6 @@
 package server;
 
-//Comment for change
+
 public class Queries {
 
 	public static String getAppointments(int personid){
@@ -34,6 +34,12 @@ public class Queries {
 				"AND DELTAKER.ANSATTNR = ANSATT.ANSATTNR";
 	}
 	
+	public static String loginAuthentication(String username, String passwordHash){
+		return 	"SELECT ANSATT.* " +
+				"FROM ANSATT" +
+				"WHERE ANSATT.BRUKERNAVN = \"" + username + "\" " +
+				"AND ANSATT.PASSORD = \"" + passwordHash + "\";";
+	}
 	//	
 	//
 	//	public static String getAppointmentsAsLeader(int personid){
