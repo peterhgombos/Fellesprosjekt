@@ -5,6 +5,8 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.LinkedList;
 
+import client.authentication.Login;
+
 import utilities.Console;
 import dataobjects.Appointment;
 import dataobjects.ComMessage;
@@ -52,7 +54,8 @@ public class Connection  {
 	}
 	
 	public void login(String username, String password) {
-		//TODO
+		Login login = new Login(username, password);
+		writer.send(new ComMessage(login, MessageType.REQUEST_LOGIN));
 	}
 	
 	
