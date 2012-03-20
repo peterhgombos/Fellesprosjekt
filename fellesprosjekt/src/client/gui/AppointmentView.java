@@ -1,11 +1,15 @@
 package client.gui;
 
 import java.awt.Font;
-import java.nio.channels.AcceptPendingException;
-import java.sql.Date;
 
-import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 
 public class AppointmentView extends JPanel{
 	
