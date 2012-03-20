@@ -10,9 +10,10 @@ import javax.swing.JTextArea;
 public class Console {
 	
 	private JTextArea textarea;
+	private JFrame frame;
 	
 	public Console(){
-		JFrame frame = new JFrame();
+		frame = new JFrame();
 		frame.setMinimumSize(new Dimension(500, 600));
 		frame.setLayout(new GridLayout(1,1));
 		
@@ -31,5 +32,9 @@ public class Console {
 			textarea.append(s + "\n");
 			textarea.setCaretPosition(textarea.getText().length()-1);
 		}
+	}
+	
+	public void setTitle(String s) {
+		frame.setTitle(s);
 	}
 }//END

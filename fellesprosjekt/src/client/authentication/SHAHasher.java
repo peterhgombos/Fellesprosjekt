@@ -20,5 +20,8 @@ public class SHAHasher {
 		}
 		
 	}
+	public static void main(String[] args) {
+		System.out.println(SHAHash("ntnu"));
+	}
 	
 }
