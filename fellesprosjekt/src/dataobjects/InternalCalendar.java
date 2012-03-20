@@ -5,18 +5,26 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.SimpleTimeZone;
+import java.util.TimeZone;
 
-public class Calender {
+public class InternalCalendar {
 	
 	private int weeknumber;
+	private GregorianCalendar calendar;
 	
-	private GregorianCalendar calendar = new GregorianCalendar();
 	
 	private HashMap<Integer, HashMap<Integer, ArrayList<Appointment>[]>> apps;
 	
 	@SuppressWarnings("unchecked")
-	public Calender(ArrayList<Appointment> appointments, ArrayList<Meeting> meetings, int weeknumber) {
+	public InternalCalendar(ArrayList<Appointment> appointments, ArrayList<Meeting> meetings, int weeknumber) {
+
+		calendar = new GregorianCalendar();
+		calendar.setTimeZone(TimeZone.getDefault());
+		calendar.setMinimalDaysInFirstWeek(4);
+		
 		calendar.setFirstDayOfWeek(Calendar.MONDAY);
+		calendar.setTimeInMillis(System.currentTimeMillis());
 		
 		this.weeknumber = weeknumber;
 		
@@ -28,7 +36,6 @@ public class Calender {
 		for(Meeting mee: meetings){
 			addToCal(mee);
 		}
-		calendar.setTimeInMillis(System.currentTimeMillis());
 	}
 	
 	private void addToCal(Appointment app){
