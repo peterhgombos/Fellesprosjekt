@@ -9,15 +9,20 @@ public class EmployeeListCellRenderer extends JLabel implements ListCellRenderer
 	
 	private JButton x;
 	
-	public EmployeeListCellRenderer() {
-		x = new JButton();
-	}
+
 	
 	@Override
 	public Component getListCellRendererComponent(JList list, Object value,
 			int index, boolean isSelected, boolean cellHasFocus) {
+		ImageIcon i = new ImageIcon("res/kryss.gif");
+		setIcon(i);
+		setText("hei");
 		
-		x.setIcon(new ImageIcon("Bilder/female.png"));
+		
+		if (isSelected) {
+			setText("");
+			setIcon(null);
+		}
 		
 		return this;
 	}

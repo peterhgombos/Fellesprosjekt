@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -37,6 +38,7 @@ public class Sidepanel extends JPanel implements FocusListener{
 	private JCheckBox checkBox;
 	private JLabel nameLabel;
 	private JScrollPane scroll;
+	private DefaultListModel listModel;
 	
 	public Sidepanel() {
 		countEmployee = 10;
@@ -45,7 +47,7 @@ public class Sidepanel extends JPanel implements FocusListener{
 		width = 30;
 		height = 30;
 		
-		
+		listModel = new DefaultListModel();
 		message = new JButton("Meldinger");
 		newAppointment = new JButton("Ny Avtale");
 		newMeeting = new JButton("Nytt møte");
@@ -59,9 +61,19 @@ public class Sidepanel extends JPanel implements FocusListener{
 		employeeList.setBackground(Color.WHITE);
 		employeeList.setLayout(null);
 		selectedEmployeeList = new JList();
+		selectedEmployeeList.setCellRenderer(new EmployeeListCellRenderer());
 		search = new JTextField();
 		
 		scroll = new JScrollPane(employeeList);
+		selectedEmployeeList.setModel(listModel);
+		
+		
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		listModel.addElement("");
+		
 		
 		setLayout(null);
 		//employeeList.setLayout(null);
