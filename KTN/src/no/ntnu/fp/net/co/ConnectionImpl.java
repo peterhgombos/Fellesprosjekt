@@ -39,10 +39,7 @@ import no.ntnu.fp.net.co.ReceiveMessageWorker.MessageListener;
 public class ConnectionImpl extends AbstractConnection {
 	
 	private ClSocket clientSocket;
-	private int myPort;
-	protected State state;
-	private MessageListener msgListener;
-	private ConnectionListener connListener;
+	private ConnectionListener connListener; //TODO Initialize
 
 	
 	@SuppressWarnings("serial")
@@ -60,6 +57,8 @@ public class ConnectionImpl extends AbstractConnection {
     public ConnectionImpl(int myPort) {
     	this.state = State.CLOSED;
     	this.myPort = myPort;
+    	this.myAddress = getIPv4Address();
+    	
     	
         throw new NotImplementedException();
     }
@@ -98,7 +97,7 @@ public class ConnectionImpl extends AbstractConnection {
      * @see Connection#accept()
      */
     public Connection accept() throws IOException, SocketTimeoutException {
-    	ReceiveConnectionWorker recieveConn = new ReceiveConnectionWorker(this, listener); //??
+    	ReceiveConnectionWorker recieveConn = new ReceiveConnectionWorker(this, connListener); //??
         throw new NotImplementedException();
     }
 
