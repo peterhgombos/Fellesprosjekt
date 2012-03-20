@@ -6,8 +6,6 @@ import java.net.Socket;
 import java.util.LinkedList;
 
 import client.authentication.Login;
-
-import utilities.Console;
 import dataobjects.Appointment;
 import dataobjects.ComMessage;
 import dataobjects.Meeting;
@@ -15,14 +13,12 @@ import dataobjects.Person;
 
 public class Connection  {
 
-	public static Console console;
 	
 	private Socket socket;
 	private ServerWriter writer;
 	private LinkedList<ConnectionListener> listeners;
 
 	public void connect() throws IOException {
-		console = new Console();
 		socket = new Socket();
 		socket.connect(new InetSocketAddress("localhost", server.ServerConstants.PORT));
 		ServerReader serverReader = new ServerReader(socket, this);

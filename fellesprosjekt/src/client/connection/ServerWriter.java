@@ -17,7 +17,7 @@ public class ServerWriter {
 			writer = new ObjectOutputStream(socket.getOutputStream());
 		} catch (IOException e) {
 			e.printStackTrace();
-			Connection.console.writeline(e.getMessage());
+			//Connection.console.writeline(e.getMessage());
 		}
 	}
 	
@@ -27,7 +27,7 @@ public class ServerWriter {
 			writer.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
-			Connection.console.writeline(e.getMessage());
+			//Connection.console.writeline(e.getMessage());
 		}
 	}
 }

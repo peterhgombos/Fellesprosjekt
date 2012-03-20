@@ -6,7 +6,7 @@ public class Main {
 	
 	public Main() {
 		ServerConstants.console = new Console();
-		
+		ServerConstants.console.setTitle("Server");
 		MessageReceiver server = new MessageReceiver();
 
 		ConnectionReceiver connectionReceiver = new ConnectionReceiver(server);

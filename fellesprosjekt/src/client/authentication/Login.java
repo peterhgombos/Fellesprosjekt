@@ -1,6 +1,11 @@
 package client.authentication;
 
-public class Login {
+import java.io.Serializable;
+
+public class Login implements Serializable{
+	
+	private static final long serialVersionUID = 2968544862788609989L;
+	
 	String userName, passwordHash;
 	
 	public Login(String userName, String password){
