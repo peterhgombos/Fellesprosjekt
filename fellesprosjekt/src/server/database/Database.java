@@ -53,5 +53,9 @@ public class Database {
 	public ResultSet executeQuery(String query) throws SQLException{
 		return connection.createStatement().executeQuery(query);
 	}
+	
+	public int updateDB(String query) throws SQLException{
+		return connection.createStatement().executeUpdate(query);
+	}
 
 }
