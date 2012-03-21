@@ -1,6 +1,8 @@
 package client.gui;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 import javax.swing.ButtonGroup;
@@ -48,8 +50,11 @@ public class NewMeeting extends JPanel{
 	private JButton saveButton;
 	private JButton cancelButton;
 	private ButtonGroup radioButtonGroup;
+	
+	private CalendarPanel calendarpanel;
+	
 
-	public NewMeeting(){
+	public NewMeeting(CalendarPanel calendarPanel){
 		String[] min = {"00", "15", "30", "45"};
 		String[] hours= {"00","01","02","03","04","05","06","07","08","09","10",
 						"11","12","13","14","15","16","17","18","19","20","21","22","23"};
@@ -70,7 +75,6 @@ public class NewMeeting extends JPanel{
 		descriptionArea = new JTextArea();
 		descriptionArea.setLineWrap(true);
 		
-		
 		bookMeetingroomRadioButton = new JRadioButton();
 		otherPlaceRadioButton = new JRadioButton();
 		bookMeetingroomRadioButton.setText("Book møterom");
@@ -79,9 +83,42 @@ public class NewMeeting extends JPanel{
 		radioButtonGroup.add(bookMeetingroomRadioButton);
 		radioButtonGroup.add(otherPlaceRadioButton);
 		
+		bookMeetingroomRadioButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				roomPicker.setEditable(true);
+				placeField.setEditable(false);
+			}
+		});
+		otherPlaceRadioButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				roomPicker.setEditable(false);
+				placeField.setEditable(true);
+			}
+		});
+		
 		addParticipantsButton = new JButton("Legg til/fjern");
+		addParticipantsButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			//	calendarpanel.goTo  AddRemoveParticipants();
+			}
+		});
 		saveButton = new JButton("Lagre");
+		saveButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				calendarpanel.goToCalender();
+			}
+		});
 		cancelButton = new JButton("Avbryt");
+		cancelButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				calendarpanel.goToCalender();
+			}
+		});
 		
 		startTimeHoursField = new JComboBox(hours);
 		endTimeHoursField = new JComboBox(hours);
