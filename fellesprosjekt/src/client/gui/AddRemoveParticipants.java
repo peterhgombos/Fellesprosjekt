@@ -1,6 +1,8 @@
 package client.gui;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
@@ -9,23 +11,27 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class AddRemoveParticipants extends JPanel implements FocusListener{
 	
-	JLabel headline;
-	JLabel externalParticipantsLabel;
-	JTextField searchField;
-	JTextField externalParticipantsField;
+	private JLabel headline;
+	private JLabel externalParticipantsLabel;
+	private JTextField searchField;
+	private JTextField externalParticipantsField;
 	
-	DefaultListModel listmodel1;
-	DefaultListModel listmodel2;
-	JList addedParticipantsList;
-	JList employeeList;
+	private DefaultListModel listmodel1;
+	private DefaultListModel listmodel2;
+	private JList addedParticipantsList;
+	private JList employeeList;
 	
-	JButton add;
-	JButton remove;
-	JButton save;
-	JButton cancel;	
+	private JButton add;
+	private JButton remove;
+	private JButton save;
+	private JButton cancel;
+	
+	private CalendarPanel calendarpanel;
 
 	
-	public AddRemoveParticipants() {
+	public AddRemoveParticipants(CalendarPanel calendarPanel) {
+		calendarpanel = calendarPanel;
+		
 		headline = new JLabel("Legge Til/Fjerne Deltakere");
 		searchField = new JTextField();
 		
@@ -46,9 +52,33 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 		JScrollPane employeeListScroll = new JScrollPane(employeeList);
 		
 		add = new JButton(">");
+		add.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//legge deltakere over til lista
+			}
+		});
 		remove = new JButton("<");
+		remove.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Fjerne deltakre
+			}
+		});
 		save = new JButton("Lagre");
+		save.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				calendarpanel.goToNewMeeting();
+			}
+		});
 		cancel = new JButton("Avbryt");
+		cancel..addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				calendarpanel.goToNewMeeting();
+			}
+		});
 		
 		add(headline);
 		add(searchField);
@@ -95,17 +125,6 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 		
 	}
 	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame("Legge til/fjerne deltakere");
-		AddRemoveParticipants addRemoveParticipants = new AddRemoveParticipants();
-		frame.add(addRemoveParticipants);
-		frame.getContentPane();
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.pack();
-		frame.setSize(650, 600);
-		frame.setVisible(true);
-	}
-
 	@Override
 	public void focusGained(FocusEvent arg0) {
 		if (searchField.getText().equals("Søk")) {
