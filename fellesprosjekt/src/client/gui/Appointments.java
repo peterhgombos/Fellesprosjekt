@@ -93,20 +93,20 @@ public class Appointments extends JPanel{
 	
 	public void resize(){
 		
-		headlineLabel.setBounds(GuiConstants.DISTANCE*27, GuiConstants.DISTANCE, 300, 40);
+		headlineLabel.setBounds(GuiConstants.DISTANCE*27, GuiConstants.DISTANCE, GuiConstants.HEADLINE_LENGTH, GuiConstants.HEADLINE_HEIGTH);
 		headlineLabel.setFont(new Font(headlineLabel.getFont().getName(), 0, 30));
 		
-		startDateLabel.setBounds(GuiConstants.DISTANCE*5, headlineLabel.getHeight() + GuiConstants.DISTANCE*5 , 25, 35);
+		startDateLabel.setBounds(GuiConstants.DISTANCE*5, headlineLabel.getHeight() + GuiConstants.DISTANCE*5 , 25, GuiConstants.LABEL_HEIGTH);
 		startDateLabel.setFont(new Font(startDateLabel.getFont().getName(), 0, 16));
 		
-		datepickerFromDate.setBounds(startDateLabel.getX() + startDateLabel.getWidth() + GuiConstants.DISTANCE, startDateLabel.getY(), 160, 35);
+		datepickerFromDate.setBounds(startDateLabel.getX() + startDateLabel.getWidth() + GuiConstants.DISTANCE, startDateLabel.getY(), 160, GuiConstants.TEXTFIELD_HEIGTH);
 		
-		endDateLabel.setBounds(datepickerFromDate.getX() + datepickerFromDate.getWidth() + GuiConstants.DISTANCE, datepickerFromDate.getY(), 25, 30);
+		endDateLabel.setBounds(datepickerFromDate.getX() + datepickerFromDate.getWidth() + GuiConstants.DISTANCE, datepickerFromDate.getY(), 25, GuiConstants.LABEL_HEIGTH);
 		endDateLabel.setFont(new Font(endDateLabel.getFont().getName(), 0, 16));
 		
-		datepickerToDate.setBounds(endDateLabel.getX() + endDateLabel.getWidth() + GuiConstants.DISTANCE, endDateLabel.getY(), 160, 35);
+		datepickerToDate.setBounds(endDateLabel.getX() + endDateLabel.getWidth() + GuiConstants.DISTANCE, endDateLabel.getY(), 160, GuiConstants.TEXTFIELD_HEIGTH);
 				
-		appointmentCheckBox.setBounds(datepickerFromDate.getX(), startDateLabel.getY() + startDateLabel.getHeight() + GuiConstants.DISTANCE*2, 150, 30);
+		appointmentCheckBox.setBounds(datepickerFromDate.getX(), startDateLabel.getY() + startDateLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 150, 30);
 		meetingCheckBox.setBounds(appointmentCheckBox.getX() + appointmentCheckBox.getWidth() + GuiConstants.DISTANCE, appointmentCheckBox.getY(), 130, 30);
 		
 		list.setBounds(appointmentCheckBox.getX(), appointmentCheckBox.getY() + appointmentCheckBox.getHeight() + GuiConstants.DISTANCE, 
@@ -115,7 +115,7 @@ public class Appointments extends JPanel{
 		listScrollPane.setBounds(appointmentCheckBox.getX(), appointmentCheckBox.getY() + appointmentCheckBox.getHeight() + GuiConstants.DISTANCE, 
 		datepickerToDate.getX() + startDateLabel.getX() + 25 , 200);
 		
-		toCalendarButton.setBounds(list.getX(), list.getY() + GuiConstants.DISTANCE + list.getHeight(), 160, 35);
+		toCalendarButton.setBounds(list.getX(), list.getY() + GuiConstants.GROUP_DISTANCE + list.getHeight(), 140, GuiConstants.BUTTON_HEIGTH);
 		
 		System.out.println(datepickerToDate.getX() + " " + datepickerToDate.getWidth() + " " + list.getX() );
 		
