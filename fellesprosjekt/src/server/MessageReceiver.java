@@ -126,6 +126,7 @@ public class MessageReceiver {
 				int leaderid = result.getInt(Database.COL_LEADER);
 				String title = result.getString(Database.COL_TITLE);
 				String description = result.getString(Database.COL_DESCRIPTION);
+				String place = result.getString(Database.COL_PLACE);
 				DateString start = new DateString(result.getString(Database.COL_FROM));
 				DateString end = new DateString(result.getString(Database.COL_TO));
 
@@ -138,7 +139,7 @@ public class MessageReceiver {
 					}
 				}
 
-				returnthis.add(new Meeting(id, leader, title, description, start, end, participants));
+				returnthis.add(new Meeting(id, leader, title, description, place, start, end, participants));
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -153,13 +154,14 @@ public class MessageReceiver {
 				int id = result.getInt(Database.COL_APPOINTMENTID);
 				String title = result.getString(Database.COL_TITLE);
 				String description = result.getString(Database.COL_DESCRIPTION);
+				String place = result.getString(Database.COL_PLACE);
 				DateString start = new DateString(result.getString(Database.COL_FROM));
 				DateString end = new DateString(result.getString(Database.COL_TO));
 
 				ResultSet participantRes = database.executeQuery(Queries.getParticipantsForMeeting(id));
 				Person leader = resultSetToPerson(participantRes).keySet().iterator().next();
 
-				returnthis.add(new Appointment(id, leader, title, description, start, end));
+				returnthis.add(new Appointment(id, leader, title, description, place, start, end));
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
