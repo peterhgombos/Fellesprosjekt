@@ -17,7 +17,12 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
+import client.Client;
+import client.connection.ServerData;
+
 import com.toedter.calendar.JDateChooser;
+import common.dataobjects.Appointment;
+import common.utilities.DateString;
 
 public class NewAppointment extends JPanel{
 	
@@ -76,6 +81,31 @@ public class NewAppointment extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String title = nameField.getText();
+				
+				//String date = 
+				//TODO legg til en datePicker til
+				String dateStart = "";
+				String dateEnd = "";
+				
+				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem();
+				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem();
+				
+				String description = descriptionArea.getText();
+				
+				String place = placeField.getText();
+				
+				
+				if(title.trim().equals("")){
+					UserInformationMessages.showErrormessage("Du må lage en tittel");
+				}
+//				TODO Datoene
+//				else if(){
+//					
+//				}
+				Appointment a = new Appointment(-1, Client.user, title, description, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
+				ServerData.requestNewAppointment(a);
+				
 				calendar.goToCalender();
 				
 			}
