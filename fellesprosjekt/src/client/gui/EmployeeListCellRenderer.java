@@ -9,8 +9,6 @@ public class EmployeeListCellRenderer extends JLabel implements ListCellRenderer
 	
 	private JButton x;
 	
-
-	
 	@Override
 	public Component getListCellRendererComponent(JList list, Object value,
 			int index, boolean isSelected, boolean cellHasFocus) {
