@@ -101,10 +101,10 @@ public class Queries {
 	//				"IN BOOLEAN MODE));";
 	//	}
 	//	
-		public static String createNewAppointment(String title, String description, Date startTime, Date endTime, String place){
-			return  "INSERT INTO AVTALE (TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED) " +
+		public static String createNewAppointment(String title, String description, Date startTime, Date endTime, String place, int leader){
+			return  "INSERT INTO AVTALE (TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED, LEDER) " +
 					"VALUES ('" + title + "', '" + description + "', " + startTime +
-					", " + endTime + ",'" + place + "');";
+					", " + endTime + ",'" + place + "', " + leader +");";
 					
 		}
 	//

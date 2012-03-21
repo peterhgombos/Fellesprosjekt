@@ -90,7 +90,7 @@ public class MessageReceiver {
 	private void newAppointment(ComMessage message){
 		Appointment newApp = (Appointment) message.getData();
 		try{
-			database.updateDB(Queries.createNewAppointment(newApp.getTitle(), newApp.getDescription(), newApp.getStartTime(), newApp.getEndTime(),newApp.getPlace()));
+			database.updateDB(Queries.createNewAppointment(newApp.getTitle(), newApp.getDescription(), newApp.getStartTime(), newApp.getEndTime(),newApp.getPlace(), newApp.getLeader().getPersonID()));
 			ComMessage comMesNewApp = new ComMessage(newApp, MessageType.RECEIVE_NEW_APPOINTMENT);
 			sendToAll(comMesNewApp);
 		}catch(SQLException e){
