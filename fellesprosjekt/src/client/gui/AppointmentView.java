@@ -5,6 +5,8 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -63,9 +65,10 @@ public class AppointmentView extends JPanel{
 	private DefaultListModel deniedModel;
 	private DefaultListModel notAnsweredModel;
 	private String numberOfParticipants;
+	private CalendarPanel calendarpanel;
 	
 	
-	public AppointmentView() {
+	public AppointmentView(CalendarPanel calendarPanel) {
 		
 		//TESTER
 		appointmentName = "TEST";
@@ -76,6 +79,8 @@ public class AppointmentView extends JPanel{
 		place = "NTNU";
 		numberOfParticipants = "123";
 		//TESTER
+		
+		calendarpanel = calendarPanel;
 		
 		headline = new JLabel(appointmentName);
 		timeLabel = new JLabel("Tid");
@@ -106,10 +111,40 @@ public class AppointmentView extends JPanel{
 		
 		
 		accpectButton = new JButton("Godta");
+		accpectButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				calendarpanel.goToCalender();
+			}
+		});
 		rejectButton = new JButton("Avslå");
+		rejectButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				calendarpanel.goToCalender();
+			}
+		});
 		toCalendarButton = new JButton("Til Kalender");
+		toCalendarButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				calendarpanel.goToCalender();
+			}
+		});
 		editButton = new JButton("Rediger");
+		editButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				calendarpanel.goToNewAppointment();
+			}
+		});
 		cancelButton = new JButton("Avlys");
+		cancelButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				calendarpanel.goToCalender();
+			}
+		});
 		
 		leaderList = new JList();
 		acceptedList = new JList();
