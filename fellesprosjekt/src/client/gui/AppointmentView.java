@@ -150,7 +150,6 @@ public class AppointmentView extends JPanel{
 		add(dateInput);
 		add(timeInput);
 		add(placeInput);
-		//add(descriptionInput);
 		add(textAreaScrollPane);
 		add(numberOfParticipantsField);
 		add(leaderList);
@@ -211,9 +210,7 @@ public class AppointmentView extends JPanel{
 		descriptionLabel.setBounds(timeLabel.getX(), timeLabel.getY() + timeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 100, 30);
 		descriptionLabel.setFont(new Font(descriptionLabel.getFont().getName(),0,15));
 		descriptionLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		
-		//TODO: Må legge til scrollbar		
-		descriptionInput.setBounds(timeInput.getX(), timeInput.getY()+ timeInput.getHeight() + GuiConstants.GROUP_DISTANCE, 300, descriptionInput.getHeight());
+			
 		descriptionInput.setLineWrap(true);
 		textAreaScrollPane.setBounds(timeInput.getX(), timeInput.getY()+ timeInput.getHeight() + GuiConstants.GROUP_DISTANCE, 300, 100 );
 		
