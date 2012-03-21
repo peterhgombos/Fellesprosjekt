@@ -11,6 +11,7 @@ import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
 import common.dataobjects.Meeting;
 import common.dataobjects.Person;
+import common.utilities.MessageType;
 
 import client.authentication.Login;
 
@@ -37,6 +38,9 @@ public class Connection  {
 		this.removeConnectionListener(listener);
 	}
 	
+	public void requestNewAppointment(Appointment newAppointment){
+		writer.send(new ComMessage(newAppointment, MessageType.REQUEST_NEW_APPOINTMENT));
+	}
 	
 	public synchronized void receiveMessage(ComMessage s) {
 		try{

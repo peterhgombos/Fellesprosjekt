@@ -15,9 +15,9 @@ import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
 import common.dataobjects.Meeting;
 import common.dataobjects.Person;
+import common.utilities.MessageType;
 
 import client.authentication.Login;
-import client.connection.MessageType;
 
 public class MessageReceiver {
 
@@ -69,6 +69,9 @@ public class MessageReceiver {
 			ComMessage sendLogin = new ComMessage(authenticatedPerson, MessageType.RECEIVE_LOGIN);
 			clientWriter.send(sendLogin);
 		}
+		else if(messageType.equals(MessageType.REQUEST_NEW_APPOINTMENT)){
+			newAppointment(message);
+		}
 	}
 
 	private Person requestLogin(ComMessage message){
@@ -83,7 +86,19 @@ public class MessageReceiver {
 			return null;
 		}
 	}
-
+	
+	private void newAppointment(ComMessage message){
+		Appointment newApp = (Appointment) message.getData();
+		try{
+			database.executeQuery(Queries.createNewAppointment(newApp.getTitle(), newApp.getDescription(), newApp.getStartTime(), newApp.getEndTime(),newApp.getPlace()));
+			ComMessage comMesNewApp = new ComMessage(newApp, MessageType.RECEIVE_NEW_APPOINTMENT);
+			sendToAll(comMesNewApp);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	}
+	
+	
 	private ArrayList<Meeting> resultSetToMeeting(ResultSet result){
 		ArrayList<Meeting> returnthis = new ArrayList<Meeting>();
 		try{
