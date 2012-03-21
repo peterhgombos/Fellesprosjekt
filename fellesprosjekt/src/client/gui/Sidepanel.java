@@ -1,6 +1,8 @@
 package client.gui;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
@@ -17,7 +19,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 
 @SuppressWarnings("serial")
-public class Sidepanel extends JPanel implements FocusListener{
+public class Sidepanel extends JPanel implements FocusListener, ActionListener{
 	
 	private JButton message;
 	private JButton newAppointment;
@@ -193,6 +195,12 @@ public class Sidepanel extends JPanel implements FocusListener{
 		if (!search.getText().equals("Søk")) {
 			search.setText("Søk");
 		}
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }
