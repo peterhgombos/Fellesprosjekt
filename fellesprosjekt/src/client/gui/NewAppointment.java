@@ -1,6 +1,8 @@
 package client.gui;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -44,8 +46,9 @@ public class NewAppointment extends JPanel{
 	
 	private JButton saveButton;
 	private JButton cancelButton;
+	private CalendarPanel calendar;
 
-	public NewAppointment(){
+	public NewAppointment(CalendarPanel calendarPanel){
 		String[] min = {"00", "15", "30", "45"};
 		String[] hours= {"00","01","02","03","04","05","06","07","08","09","10",
 						"11","12","13","14","15","16","17","18","19","20","21","22","23"};
@@ -58,7 +61,7 @@ public class NewAppointment extends JPanel{
 		descriptionLabel = new JLabel("Beskrivelse", SwingConstants.RIGHT);
 		placeLabel = new JLabel("Sted", SwingConstants.RIGHT);
 		roomInformationLabel =  new JLabel("(min 2 deltakere)", SwingConstants.RIGHT);
-				
+		calendar = calendarPanel;		
 		
 		nameField = new JTextField();
 		dateField = new JTextField();
@@ -69,7 +72,23 @@ public class NewAppointment extends JPanel{
 		descriptionArea.setLineWrap(true);
 		
 		saveButton = new JButton("Lagre");
+		saveButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				calendar.goToCalender();
+				
+			}
+		});
 		cancelButton = new JButton("Avbryt");
+		cancelButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				calendar.goToCalender();
+				
+			}
+		});
 		
 		startTimeHoursField = new JComboBox(hours);
 		endTimeHoursField = new JComboBox(hours);
@@ -149,16 +168,6 @@ public class NewAppointment extends JPanel{
 		cancelButton.setFont(new Font(cancelButton.getFont().getName(), 0, 14));
 	}
 	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame("NewMeeting");
-		NewAppointment appointment = new NewAppointment();
-		frame.add(appointment);
-		frame.getContentPane();
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.pack();
-		frame.setSize(700, 700);
-		frame.setVisible(true);
-	}
 	
 	
 	
