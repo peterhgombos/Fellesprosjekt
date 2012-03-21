@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.HashMap;
 
+import common.utilities.DateString;
+
 import xml.XMLElements;
 
 
@@ -20,7 +22,7 @@ public class Meeting extends Appointment implements Serializable{
 	private HashMap<Person, Integer> participants;
 	private int externalParticipants;
 		
-	public Meeting(int id, Person leader, String title, String description, Date start, Date end, HashMap<Person, Integer> participants){
+	public Meeting(int id, Person leader, String title, String description, DateString start, DateString end, HashMap<Person, Integer> participants){
 		super(id, leader, title, description, start, end);
 		this.participants = participants;
 	}

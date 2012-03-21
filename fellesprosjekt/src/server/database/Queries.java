@@ -2,6 +2,8 @@ package server.database;
 
 import java.sql.Date;
 
+import common.utilities.DateString;
+
 
 public class Queries {
 
@@ -101,10 +103,10 @@ public class Queries {
 	//				"IN BOOLEAN MODE));";
 	//	}
 	//	
-		public static String createNewAppointment(String title, String description, Date startTime, Date endTime, String place, int leader){
+		public static String createNewAppointment(String title, String description, DateString startTime, DateString endTime, String place, int leader){
 			return  "INSERT INTO AVTALE (TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED, LEDER) " +
-					"VALUES ('" + title + "', '" + description + "', " + startTime +
-					", " + endTime + ",'" + place + "', " + leader +");";
+					"VALUES ('" + title + "', '" + description + "', '" + startTime.toString() +
+					"', '" + endTime.toString() + "', '" + place + "', '" + leader +"');";
 					
 		}
 	//

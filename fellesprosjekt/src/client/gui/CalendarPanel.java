@@ -13,6 +13,10 @@ public class CalendarPanel extends JPanel {
 	
 	private SidePanel sidePanel;
 	private Calendar calendarPanel;
+	private Message messagePanel;
+	private NewAppointment newAppointmentPanel;
+	private NewMeeting newMeetingPanel;
+	private Appointments myAppointments; 
 	
 	private JFrame frame;
 	
@@ -22,7 +26,11 @@ public class CalendarPanel extends JPanel {
 		
 		setLayout(null);
 		
-		sidePanel = new SidePanel();
+		goToCalender();
+	}
+	
+	public void goToCalender(){
+		sidePanel = new SidePanel(this);
 		sidePanel.setBounds(0, 0, 180, 700);
 		
 		calendarPanel = new Calendar();
@@ -33,5 +41,66 @@ public class CalendarPanel extends JPanel {
 		add(sidePanel);
 		add(calendarPanel);
 	}
+	
+	public void goToMessages(){
+		
+		sidePanel = new SidePanel(this);
+		sidePanel.setBounds(0, 0, 180, 700);
+		
+		messagePanel = new Message();
+		messagePanel.setBounds(sidePanel.getX() + sidePanel.getWidth(), 0, 900, 700);
+		
+		removeAll();
+		add(sidePanel);
+		add(messagePanel);
+		
+		frame.repaint();
+		
+	}
+	
+	public void goToNewAppointment(){
+		sidePanel = new SidePanel(this);
+		sidePanel.setBounds(0, 0, 180, 700);
+		
+		newAppointmentPanel = new NewAppointment();
+		newAppointmentPanel.setBounds(sidePanel.getX() + sidePanel.getWidth(), 0, 900, 700);
+		
+		removeAll();
+		add(sidePanel);
+		add(newAppointmentPanel);
+		frame.repaint();
+	}
+	
+	public void goToNewMeeting(){
+		sidePanel = new SidePanel(this);
+		sidePanel.setBounds(0, 0, 180, 700);
+		
+		newMeetingPanel = new NewMeeting();
+		newMeetingPanel.setBounds(sidePanel.getX()+ sidePanel.getWidth(), 0, 900, 700);
+		
+		removeAll();
+		add(sidePanel);
+		add(newMeetingPanel);
+		frame.repaint();
+	}
+	
+	public void goToMyAppointments(){
+		sidePanel = new SidePanel(this);
+		sidePanel.setBounds(0, 0, 180, 700);
+		
+		myAppointments = new Appointments();
+		myAppointments.setBounds(sidePanel.getX() + sidePanel.getWidth(), 0, 900, 700);
+		
+		removeAll();
+		add(sidePanel);
+		add(myAppointments);
+		frame.repaint();
+	}
+	
+	public void goToEmployeesAppointments(){
+		
+	}
+	
+	
 	
 }
