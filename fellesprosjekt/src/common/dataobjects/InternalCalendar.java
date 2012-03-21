@@ -36,15 +36,16 @@ public class InternalCalendar {
 		
 		Client.console.writeline(app.getStartTime().getYear() + " " + app.getStartTime().getMonth() + " " + app.getStartTime().getDay() + " " + app.getStartTime().getHour());
 		
-		calendar.setTimeInMillis(app.getStartTime().getMillis());
+		calendar.set(app.getStartTime().getYear(), app.getStartTime().getMonth() -1, app.getStartTime().getDay(), app.getStartTime().getHour(), 0);
 		int year = calendar.get(Calendar.YEAR);
 		int week = calendar.get(Calendar.WEEK_OF_YEAR);
 		int day = dayToWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
 		int hourInWeek = day * 24 + calendar.get(Calendar.HOUR);
 		
+		Client.console.writeline("Raw: " + calendar.get(Calendar.YEAR) + " " + calendar.get(Calendar.MONTH) + " " + calendar.get(Calendar.DAY_OF_MONTH) + " " + calendar.get(Calendar.HOUR_OF_DAY));
 		Client.console.writeline("formatert: " +year + " " + week + " " + day + " " + hourInWeek);
 		
-		calendar.setTimeInMillis(app.getEndTime().getMillis());
+		calendar.set(app.getEndTime().getYear(), app.getEndTime().getMonth() -1, app.getEndTime().getDay(), app.getEndTime().getHour(), 0);
 		int eDay = dayToWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
 		int eHourInWeek = eDay * 24 + calendar.get(Calendar.HOUR);
 		int duration = eHourInWeek - hourInWeek;
@@ -89,9 +90,17 @@ public class InternalCalendar {
 		}
 		return arr[day*24 + hour];
 	}
-	public boolean startsInHour(Appointment a, int hour){
-		calendar.setTimeInMillis(a.getStartTime().getMillis());
-		if(hour == calendar.get(Calendar.HOUR_OF_DAY)){
+	public boolean startsInHour(Appointment a, int year, int month, int day, int hour){
+		calendar.set(a.getStartTime().getYear(), a.getStartTime().getMonth(), a.getStartTime().getDay(), a.getStartTime().getHour(), 0);
+		long startMs = calendar.getTimeInMillis();
+		
+		calendar.set(a.getEndTime().getYear(), a.getEndTime().getMonth(), a.getEndTime().getDay(), a.getEndTime().getHour(), 0);
+		long endMs = calendar.getTimeInMillis();
+		
+		calendar.set(year, month, day, hour, 0);
+		long currentMs = calendar.getTimeInMillis();
+		
+		if(currentMs >= startMs && currentMs < endMs){
 			return true;
 		}
 		return false;

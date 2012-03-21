@@ -93,18 +93,4 @@ public class DateString implements Serializable {
 		
 	}
 
-	public long getMillis() {
-		
-		Date d = new Date(year, month, day, hour, minute, second);
-//		long millis = d.getTime();;
-		long millis = 0;
-		millis += (year - 1970)*31556926000l;
-		millis += month*31556926000l;
-		millis += day*86400000l;
-		millis += hour*3600000l;
-		millis += minute*60000l;
-		millis += second*1000l;
-		return millis;
-	}
-	
 }
