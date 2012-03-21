@@ -46,6 +46,7 @@ public class CalendarPanel extends JPanel {
 		
 		
 		add(calendarPanel);
+		
 	}
 	
 	public void goToMessages(){

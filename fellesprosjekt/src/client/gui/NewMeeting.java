@@ -51,14 +51,15 @@ public class NewMeeting extends JPanel{
 	private JButton cancelButton;
 	private ButtonGroup radioButtonGroup;
 	
-	private CalendarPanel calendarpanel;
+	private CalendarPanel calendar;
 	
 
 	public NewMeeting(CalendarPanel calendarPanel){
 		String[] min = {"00", "15", "30", "45"};
 		String[] hours= {"00","01","02","03","04","05","06","07","08","09","10",
 						"11","12","13","14","15","16","17","18","19","20","21","22","23"};
-
+		
+		calendar = calendarPanel;
 		headlineLabel = new JLabel("Nytt Møte");
 		titleLabel = new JLabel("Tittel", SwingConstants.RIGHT);
 		dateLabel = new JLabel("Dato", SwingConstants.RIGHT);
@@ -109,14 +110,14 @@ public class NewMeeting extends JPanel{
 		saveButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				calendarpanel.goToCalender();
+				calendar.goToCalender();
 			}
 		});
 		cancelButton = new JButton("Avbryt");
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				calendarpanel.goToCalender();
+				calendar.goToCalender();
 			}
 		});
 		

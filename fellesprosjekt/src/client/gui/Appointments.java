@@ -131,16 +131,5 @@ public class Appointments extends JPanel{
 		System.out.println(datepickerToDate.getX() + " " + datepickerToDate.getWidth() + " " + list.getX() );
 		
 	}
-	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame("Appointments");
-		Appointments appointments = new Appointments();
-		frame.add(appointments);
-		frame.getContentPane();
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.pack();
-		frame.setSize(700, 700);
-		frame.setVisible(true);
-	}
-	
+
 }
