@@ -1,6 +1,7 @@
 package client.gui;
 
 import java.awt.Font;
+import java.beans.*;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
@@ -15,10 +16,16 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.WindowConstants;
 
+import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
+
 import common.dataobjects.Appointment;
 
 
 public class Appointments extends JPanel{
+	
+	private JDateChooser datepickerFromDate;
+	private JDateChooser datepickerToDate;
 	
 	private JLabel headlineLabel;
 	private JLabel dateLabel;
@@ -41,6 +48,9 @@ public class Appointments extends JPanel{
 	public Appointments(){
 		
 		ArrayList<Appointment> appointmentArrayList = new ArrayList<Appointment>();
+		
+		datepickerFromDate = new JDateChooser();
+		datepickerToDate = new JDateChooser();
 		
 		headlineLabel = new JLabel("Mine Avtaler");
 		dateLabel = new JLabel("Dato:");
@@ -75,6 +85,9 @@ public class Appointments extends JPanel{
 		add(endDateField);
 		add(toCalendarButton);
 		add(listScrollPane);
+		add(datepickerFromDate);
+		add(datepickerToDate);
+		
 
 		setLayout(null);
 		resize();
@@ -91,23 +104,27 @@ public class Appointments extends JPanel{
 		startDateLabel.setBounds(GuiConstants.DISTANCE + 50, dateLabel.getX() + dateLabel.getWidth(), 25, 35);
 		startDateLabel.setFont(new Font(startDateLabel.getFont().getName(), 0, 16));
 		
-		startDateField.setBounds(startDateLabel.getX() + GuiConstants.GROUP_DISTANCE, startDateLabel.getY(), 160, 35);
+		datepickerFromDate.setBounds(startDateLabel.getX() + GuiConstants.GROUP_DISTANCE, startDateLabel.getY(), 160, 35);
+		//startDateField.setBounds(startDateLabel.getX() + GuiConstants.GROUP_DISTANCE, startDateLabel.getY(), 160, 35);
 		
-		endDateLabel.setBounds(startDateField.getX() + startDateField.getWidth() + GuiConstants.DISTANCE, startDateField.getY(), 25, 30);
+		endDateLabel.setBounds(datepickerFromDate.getX() + datepickerFromDate.getWidth() + GuiConstants.DISTANCE, datepickerFromDate.getY(), 25, 30);
 		endDateLabel.setFont(new Font(endDateLabel.getFont().getName(), 0, 16));
 		
-		endDateField.setBounds(endDateLabel.getX() + endDateLabel.getWidth() + GuiConstants.DISTANCE, endDateLabel.getY(), 160, 35);
+		datepickerToDate.setBounds(endDateLabel.getX() + endDateLabel.getWidth() + GuiConstants.DISTANCE, endDateLabel.getY(), 160, 35);
+		//endDateField.setBounds(endDateLabel.getX() + endDateLabel.getWidth() + GuiConstants.DISTANCE, endDateLabel.getY(), 160, 35);
 		
-		appointmentCheckBox.setBounds(startDateField.getX(), startDateLabel.getY() + startDateLabel.getHeight() + GuiConstants.DISTANCE*2, 130, 30);
+		appointmentCheckBox.setBounds(datepickerFromDate.getX(), startDateLabel.getY() + startDateLabel.getHeight() + GuiConstants.DISTANCE*2, 130, 30);
 		meetingCheckBox.setBounds(appointmentCheckBox.getX() + appointmentCheckBox.getWidth() + GuiConstants.DISTANCE, appointmentCheckBox.getY(), 130, 30);
 		
 		list.setBounds(appointmentCheckBox.getX(), appointmentCheckBox.getY() + appointmentCheckBox.getHeight() + GuiConstants.DISTANCE, 
-		endDateField.getX() + startDateLabel.getX() , 200);
+		datepickerToDate.getX() + startDateLabel.getX() + 10 , 200);
 		
 		listScrollPane.setBounds(appointmentCheckBox.getX(), appointmentCheckBox.getY() + appointmentCheckBox.getHeight() + GuiConstants.DISTANCE, 
-		endDateField.getX() + startDateLabel.getX() , 200);
+		datepickerToDate.getX() + startDateLabel.getX() + 10 , 200);
 		
 		toCalendarButton.setBounds(list.getX(), list.getY() + GuiConstants.DISTANCE + list.getHeight(), 160, 35);
+		
+		System.out.println(datepickerToDate.getX() + " " + datepickerToDate.getWidth() + " " + list.getX() );
 		
 	}
 	
