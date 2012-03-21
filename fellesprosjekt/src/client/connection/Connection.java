@@ -46,12 +46,6 @@ public class Connection  {
 		}
 	}
 	
-	
-	
-	public void requestPersonLoggedIn(String username) {
-		//TODO
-	}
-	
 	public void login(String username, String password) {
 		Login login = new Login(username, password);
 		writer.send(new ComMessage(login, MessageType.REQUEST_LOGIN));
