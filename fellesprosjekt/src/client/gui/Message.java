@@ -50,6 +50,23 @@ public class Message extends JPanel implements FocusListener{
 		calendar = calendarPanel;
 		
 		all = new JCheckBox();
+		all.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				if(all.isSelected()){
+					for (int i=0; i<boxList.size();i++){
+						boxList.get(i).setSelected(true);					
+					}
+				}
+				else{
+					for (int i=0; i<boxList.size();i++){
+						boxList.get(i).setSelected(false);					
+					}
+				}
+				
+			}
+		});
+		
 		searchfield = new JTextField("Søk");
 		delete = new JButton("Slett");
 		toCalender = new JButton("Til Kalender");
