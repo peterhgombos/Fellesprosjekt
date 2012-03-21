@@ -3,6 +3,7 @@ package client.connection;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 
