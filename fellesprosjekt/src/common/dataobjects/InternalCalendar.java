@@ -34,20 +34,22 @@ public class InternalCalendar {
 	private void addToCal(Appointment app){
 		Client.console.writeline("addtocal");
 		
+		Client.console.writeline(app.getStartTime().getYear() + " " + app.getStartTime().getMonth());
+		
 		calendar.setTimeInMillis(app.getStartTime().getMillis());
 		int year = calendar.get(Calendar.YEAR);
 		int week = calendar.get(Calendar.WEEK_OF_YEAR);
 		int day = dayToWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
 		int hourInWeek = day * 24 + calendar.get(Calendar.HOUR);
 		
-		Client.console.writeline(year + " " + week + " " + day + " " + hourInWeek);
+		Client.console.writeline("formatert: " +year + " " + week + " " + day + " " + hourInWeek);
 		
 		calendar.setTimeInMillis(app.getEndTime().getMillis());
 		int eDay = dayToWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
 		int eHourInWeek = eDay * 24 + calendar.get(Calendar.HOUR);
 		int duration = eHourInWeek - hourInWeek;
 		
-		Client.console.writeline(year + " " + week + " " + eDay + " " + eHourInWeek);
+		Client.console.writeline("formatert: " + year + " " + week + " " + eDay + " " + eHourInWeek);
 		
 		HashMap<Integer, ArrayList<Appointment>[]> tempyear = apps.get(year);
 		if(tempyear == null){
