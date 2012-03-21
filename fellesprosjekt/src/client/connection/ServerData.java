@@ -37,6 +37,10 @@ public class ServerData {
 		return connected;
 	}
 	
+	public static InternalCalendar getCalendar(){
+		return calendar;
+	}
+	
 	public static void connect() throws IOException {
 		connection = new Connection();
 		
