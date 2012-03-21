@@ -15,6 +15,7 @@ import common.dataobjects.Meeting;
 import common.dataobjects.Message;
 import common.dataobjects.Person;
 import common.dataobjects.Room;
+import common.utilities.MessageType;
 
 
 public class ServerData {
@@ -88,6 +89,12 @@ public class ServerData {
 				}
 			}
 			calendar.addMeetings(meets);
+		}
+		else if(messageType.equals(MessageType.RECEIVE_NEW_APPOINTMENT)){
+			Appointment app = (Appointment)message.getData();
+			appointments.put(app.getId(), app);
+			persons.put(app.getLeader().getPersonID(), app.getLeader());
+			calendar.addAppointment(app);
 		}
 		
 		Collection<MessageListener> clone = (Collection<MessageListener>)listeners.clone();
