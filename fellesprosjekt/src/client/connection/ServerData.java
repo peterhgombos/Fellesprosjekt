@@ -65,6 +65,11 @@ public class ServerData {
 		connection.requestMeetingsAndAppointments(p);
 	}
 	
+	public static void requestNewAppointment(Appointment a){
+		connection.requestNewAppointment(a);
+	}
+	
+	
 	@SuppressWarnings("unchecked")
 	public static synchronized void receiveMessage(ComMessage message){
 		String messageType = message.getType();
