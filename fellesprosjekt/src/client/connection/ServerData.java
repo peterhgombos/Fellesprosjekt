@@ -1,6 +1,7 @@
 package client.connection;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -113,6 +114,17 @@ public class ServerData {
 	}
 	public static void removeMessageListener(MessageListener listener) {
 		ServerData.listeners.remove(listener);
+	}
+	
+	public static void main(String[] args) throws IOException {
+		
+		connect();
+		Person testp = new Person(123, "Marte", "Løge", "marte.loge@gmail.com", "martedl", "98404380");
+		Date start = new Date(System.currentTimeMillis());
+		Date end = new Date(System.currentTimeMillis()+ 3600000);
+		Appointment testA = new Appointment(1111, testp, "test", "testdesc", start, end);
+		
+		requestNewAppointment(testA);
 	}
 	
 	
