@@ -14,6 +14,13 @@ public class Note {
 		this.appointment = appointment;
 	}
 	
+	public Note(int id, String title, Date timeAdded, Appointment appointment){
+		this.id = id;
+		this.title = title;
+		this.timeAdded = timeAdded;
+		this.appointment = appointment;
+	}
+	
 	public Appointment getAppointment() {
 		return appointment;
 	}
