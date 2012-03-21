@@ -1,5 +1,6 @@
 package client.gui;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -77,9 +78,11 @@ public class LogIn extends JPanel implements MessageListener {
 
 	private void resize() {
 		nameLabel.setBounds(GuiConstants.DISTANCE*15, GuiConstants.DISTANCE*15, 90, 25);
+		nameLabel.setFont(new Font(nameLabel.getFont().getName(), 0, 16));
 		nameField.setBounds(nameLabel.getX() + nameLabel.getWidth() + GuiConstants.DISTANCE, nameLabel.getY(), 300, 40);
 		
 		passwordLabel.setBounds(nameLabel.getX(), GuiConstants.DISTANCE + nameField.getY() + nameField.getHeight(), nameLabel.getWidth(), nameLabel.getHeight());
+		passwordLabel.setFont(new Font(nameLabel.getFont().getName(), 0, 16));
 		passwordField.setBounds(nameField.getX(), passwordLabel.getY(), nameField.getWidth(), nameField.getHeight());
 		
 		loginButton.setBounds(nameField.getX(), GuiConstants.DISTANCE + passwordField.getY() + passwordField.getHeight(), 160, 35);
