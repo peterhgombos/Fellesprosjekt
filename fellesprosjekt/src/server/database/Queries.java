@@ -102,7 +102,7 @@ public class Queries {
 	//	}
 	//	
 		public static String createNewAppointment(String title, String description, Date startTime, Date endTime, String place){
-			return  "INSERT INTO AVTALE (TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED)" +
+			return  "INSERT INTO AVTALE (TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED) " +
 					"VALUES ('" + title + "', '" + description + ", " + startTime +
 					", " + endTime + "," + place + ");";
 					
