@@ -3,7 +3,6 @@ package common.dataobjects;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.TimeZone;
@@ -13,7 +12,6 @@ import client.Client;
 public class InternalCalendar {
 	
 	private GregorianCalendar calendar;
-	
 	
 	private HashMap<Integer, HashMap<Integer, ArrayList<Appointment>[]>> apps;
 	
@@ -26,31 +24,19 @@ public class InternalCalendar {
 		calendar.setTimeInMillis(System.currentTimeMillis());
 		
 		apps = new HashMap<Integer, HashMap<Integer,ArrayList<Appointment>[]>>();
-		
-		
 	}
 	
 	@SuppressWarnings("unchecked")
 	private void addToCal(Appointment app){
-		Client.console.writeline("addtocal");
-		
-		Client.console.writeline(app.getStartTime().getYear() + " " + app.getStartTime().getMonth() + " " + app.getStartTime().getDay() + " " + app.getStartTime().getHour());
-		
 		calendar.set(app.getStartTime().getYear(), app.getStartTime().getMonth() -1, app.getStartTime().getDay(), app.getStartTime().getHour(), 0);
 		int year = calendar.get(Calendar.YEAR);
 		int week = calendar.get(Calendar.WEEK_OF_YEAR);
 		int day = dayToWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
-		int hourInWeek = day * 24 + calendar.get(Calendar.HOUR);
-		
-		Client.console.writeline("Raw: " + calendar.get(Calendar.YEAR) + " " + calendar.get(Calendar.MONTH) + " " + calendar.get(Calendar.DAY_OF_MONTH) + " " + calendar.get(Calendar.HOUR_OF_DAY));
-		Client.console.writeline("formatert: " +year + " " + week + " " + day + " " + hourInWeek);
+		int hourInWeek = day * 24 + calendar.get(Calendar.HOUR_OF_DAY);
 		
 		calendar.set(app.getEndTime().getYear(), app.getEndTime().getMonth() -1, app.getEndTime().getDay(), app.getEndTime().getHour(), 0);
 		int eDay = dayToWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
-		int eHourInWeek = eDay * 24 + calendar.get(Calendar.HOUR);
-		int duration = eHourInWeek - hourInWeek;
-		
-		Client.console.writeline("formatert: " + year + " " + week + " " + eDay + " " + eHourInWeek);
+		int eHourInWeek = eDay * 24 + calendar.get(Calendar.HOUR_OF_DAY);
 		
 		HashMap<Integer, ArrayList<Appointment>[]> tempyear = apps.get(year);
 		if(tempyear == null){
@@ -65,13 +51,12 @@ public class InternalCalendar {
 		}else {
 			tempyear.put(week, arr);
 		}
-		System.out.println(hourInWeek + " " + (hourInWeek + duration));
-		for(int i = hourInWeek; i < hourInWeek + duration; i++){
+		System.out.println(hourInWeek + " " + eHourInWeek);
+		for(int i = hourInWeek; i < eHourInWeek; i++){
 			if(arr[i] == null){
 				arr[i] = new ArrayList<Appointment>(1);
 			}
 			arr[i].add(app);
-			Client.console.writeline(app.getTitle() + " " + year + " " + week);
 		}
 	}
 	
@@ -90,6 +75,8 @@ public class InternalCalendar {
 		}
 		return arr[day*24 + hour];
 	}
+	
+	//TODO helt feil, denne metoden skal returnere om en app starter i en time, eikke om det finnes i en
 	public boolean startsInHour(Appointment a, int year, int month, int day, int hour){
 		calendar.set(a.getStartTime().getYear(), a.getStartTime().getMonth(), a.getStartTime().getDay(), a.getStartTime().getHour(), 0);
 		long startMs = calendar.getTimeInMillis();

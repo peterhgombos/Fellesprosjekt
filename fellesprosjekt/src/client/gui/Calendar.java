@@ -17,6 +17,8 @@ public class Calendar extends JPanel implements MessageListener {
 	private JTable table;
 	private JScrollPane scrollPane;
 	
+	private String[] dayName = {"", "Mandag", "Tirsdag", "Onsag", "Torsdag", "Fredag", "Lørdag", "Søndag"};
+	
 	public Calendar(){
 		setLayout(null);
 		
@@ -31,7 +33,9 @@ public class Calendar extends JPanel implements MessageListener {
 		for(int i = 0; i < table.getModel().getColumnCount(); i++){
 			TableColumn col = table.getColumnModel().getColumn(i);
 			col.setWidth(80);
+			col.setHeaderValue(dayName[i]);
 		}
+		
 		scrollPane = new JScrollPane(table);
 		
 		

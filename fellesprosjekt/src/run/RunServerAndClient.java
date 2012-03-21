@@ -20,7 +20,6 @@ public class RunServerAndClient {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				
 			}
 		});
 		
