@@ -99,7 +99,7 @@ public class SidePanel extends JPanel implements FocusListener{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// calendarPanel
+				calendarpanel.logout();
 				
 			}
 		});
@@ -156,6 +156,8 @@ public class SidePanel extends JPanel implements FocusListener{
 		add(search);
 		add(scroll);
 		add(scrollSelectedEmployee);
+		
+		System.out.println("model"+selectedEmployeeList.getModel());
 	}
 	
 	public void resize(){
@@ -185,7 +187,6 @@ public class SidePanel extends JPanel implements FocusListener{
 		search.setText("Søk");
 		search.addFocusListener(this);
 		
-		//legge til scrolling
 		scroll.setBounds(GuiConstants.DISTANCE, search.getY() +2 + message.getHeight(), message.getWidth(), message.getHeight()*5);
 		
 		for (int i = 0; i < countEmployee; i++) {
@@ -213,15 +214,6 @@ public class SidePanel extends JPanel implements FocusListener{
 	}
 	
 	
-	public static void main(String[] args) {
-		JFrame test = new JFrame();
-		SidePanel s = new SidePanel(null);
-		test.add(s);
-		
-		test.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		test.setSize(700, 700);
-		test.setVisible(true);
-	}
 
 
 

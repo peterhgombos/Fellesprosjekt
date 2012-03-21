@@ -29,13 +29,26 @@ public class Client {
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setSize(1096, 739);
 		frame.setLocationRelativeTo(null);
-		
+		showLogin();
+	}
+	public void showLogin(){
+		if(calendarpanel != null){
+			frame.remove(calendarpanel);
+		}
+		user = null;
 		loginPanel = new LogIn(this);
-		
-		calendarpanel = new CalendarPanel(this);
-		
 		frame.add(loginPanel);
 		frame.setVisible(true);
+		frame.repaint();
+	}
+	public void showCalPan(){
+		if(loginPanel != null){
+			frame.remove(loginPanel);
+		}
+		calendarpanel = new CalendarPanel(this);
+		frame.add(calendarpanel);
+		frame.setVisible(true);
+		frame.repaint();
 	}
 	
 	public JFrame getFrame (){
@@ -44,14 +57,8 @@ public class Client {
 	
 	public void loggedIn(Person user){
 		this.user = user;
-		
 		ServerData.requestAppointmentsAndMeetings(user);
-		
-		frame.remove(loginPanel);
-		frame.add(calendarpanel);
-		frame.repaint();
-		frame.setVisible(true);
-		
+		showCalPan();
 	}
 	
 	public Person getUser(){

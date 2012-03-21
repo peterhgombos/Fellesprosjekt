@@ -16,7 +16,8 @@ public class CalendarPanel extends JPanel {
 	private Message messagePanel;
 	private NewAppointment newAppointmentPanel;
 	private NewMeeting newMeetingPanel;
-	private Appointments myAppointments; 
+	private Appointments myAppointments;
+	private LogIn login;
 	
 	private JFrame frame;
 	
@@ -97,8 +98,11 @@ public class CalendarPanel extends JPanel {
 		frame.repaint();
 	}
 	
-	public void goToEmployeesAppointments(){
-		
+	public void logout(){
+
+		removeAll();
+		client.showLogin();
+
 	}
 	
 	
