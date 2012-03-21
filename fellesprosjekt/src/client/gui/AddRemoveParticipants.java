@@ -73,7 +73,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 			}
 		});
 		cancel = new JButton("Avbryt");
-		cancel..addActionListener(new ActionListener() {
+		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				calendarpanel.goToNewMeeting();
