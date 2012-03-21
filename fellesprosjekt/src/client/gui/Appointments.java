@@ -16,10 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.WindowConstants;
 
-import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
-
-import common.dataobjects.Appointment;
 
 
 public class Appointments extends JPanel{
@@ -47,7 +44,7 @@ public class Appointments extends JPanel{
 	
 	public Appointments(){
 		
-		ArrayList<Appointment> appointmentArrayList = new ArrayList<Appointment>();
+		//ArrayList<Appointment> appointmentArrayList = new ArrayList<Appointment>();
 		
 		datepickerFromDate = new JDateChooser();
 		datepickerToDate = new JDateChooser();

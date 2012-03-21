@@ -40,23 +40,29 @@ public class InternalCalendar {
 		int day = dayToWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
 		int hourInWeek = day * 24 + calendar.get(Calendar.HOUR);
 		
-		Client.console.writeline(year + " " + week + " " + day + " " + hourInWeek) ;
+		Client.console.writeline(year + " " + week + " " + day + " " + hourInWeek);
 		
 		calendar.setTime(new Date(app.getEndTime().getTime()));
 		int eDay = dayToWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
 		int eHourInWeek = eDay * 24 + calendar.get(Calendar.HOUR);
 		int duration = eHourInWeek - hourInWeek;
 		
+		Client.console.writeline(year + " " + week + " " + eDay + " " + eHourInWeek);
+		
 		HashMap<Integer, ArrayList<Appointment>[]> tempyear = apps.get(year);
 		if(tempyear == null){
 			tempyear = new HashMap<Integer, ArrayList<Appointment>[]>();
+			apps.put(year, tempyear);
 		}
 		
 		ArrayList<Appointment>[] arr = tempyear.get(week);
 		if(arr == null){
 			arr = (ArrayList<Appointment>[]) new ArrayList[24*7];
 			tempyear.put(week, arr);
+		}else {
+			tempyear.put(week, arr);
 		}
+		System.out.println(hourInWeek + " " + (hourInWeek + duration));
 		for(int i = hourInWeek; i < hourInWeek + duration; i++){
 			if(arr[i] == null){
 				arr[i] = new ArrayList<Appointment>(1);
