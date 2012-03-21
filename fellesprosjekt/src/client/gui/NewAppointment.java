@@ -15,7 +15,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
+import com.toedter.calendar.JDateChooser;
+
 public class NewAppointment extends JPanel{
+	
+	private JDateChooser datepicker;
 	
 	private JLabel headlineLabel;
 	private JLabel titleLabel;
