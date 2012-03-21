@@ -19,7 +19,7 @@ import common.dataobjects.ComMessage;
 import common.dataobjects.Person;
 
 @SuppressWarnings("serial")
-public class LogIn extends JPanel implements MessageListener {
+public class LogIn extends JPanel implements MessageListener, ActionListener{
 	
 	private JLabel nameLabel;
 	private JLabel passwordLabel;
@@ -53,21 +53,10 @@ public class LogIn extends JPanel implements MessageListener {
 		
 		ServerData.addMessageListener(this);
 		
-		loginButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){
-				try{
-					if(!ServerData.isConnected()){
-						ServerData.connect();
-					}
-				}catch(IOException e1){
-					Client.console.writeline("kunne ikke koble til");
-					//TODO feilmelding kunne ikke koble til
-					return;
-				}
-				logIn();
-				loginButton.setEnabled(false);
-			}
-		});
+		
+		passwordField.addActionListener(this);
+		nameField.addActionListener(this);
+		loginButton.addActionListener(this);
 		
 		resize();
 	}
@@ -103,6 +92,22 @@ public class LogIn extends JPanel implements MessageListener {
 			ServerData.removeMessageListener(this);
 			client.setUser(user);
 		}
+	}
+	
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		try{
+			if(!ServerData.isConnected()){
+				ServerData.connect();
+			}
+		}catch(IOException e1){
+			Client.console.writeline("kunne ikke koble til");
+			//TODO feilmelding kunne ikke koble til
+			return;
+		}
+		logIn();
+		loginButton.setEnabled(false);
 	}
 	
 }

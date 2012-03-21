@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.ScrollPane;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -15,7 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
-public class Message extends JPanel{
+public class Message extends JPanel implements FocusListener{
 
 	private JCheckBox all;
 	private JTextField searchfield;
@@ -74,6 +76,8 @@ public class Message extends JPanel{
 		
 		searchfield.setBounds(all.getY() + GuiConstants.GROUP_DISTANCE, all.getY(), 383, 25);
 		searchfield.setFont(GuiConstants.BUTTON_FONT);
+		searchfield.setText("Søk");
+		searchfield.addFocusListener(this);
 		
 		scroll.setBounds(GuiConstants.DISTANCE+55, all.getY() + searchfield.getHeight() + GuiConstants.DISTANCE, 425, 200);
 		
@@ -109,6 +113,22 @@ public class Message extends JPanel{
 		frame.pack();
 		frame.setSize(700, 700);
 		frame.setVisible(true);
+	}
+
+	@Override
+	public void focusGained(FocusEvent arg0) {
+		if (searchfield.getText().equals("Søk")) {
+			searchfield.setText("");
+		}
+		
+	}
+
+	@Override
+	public void focusLost(FocusEvent arg0) {
+		if (!searchfield.getText().equals("Søk")) {
+			searchfield.setText("Søk");
+		}
+		
 	}
 
 }
