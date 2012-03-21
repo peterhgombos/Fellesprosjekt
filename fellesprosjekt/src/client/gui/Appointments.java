@@ -1,6 +1,8 @@
 package client.gui;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.*;
 import java.util.ArrayList;
 
@@ -42,9 +44,13 @@ public class Appointments extends JPanel{
 	
 	private JScrollPane listScrollPane;
 	
-	public Appointments(){
+	private CalendarPanel calendarpanel;
+	
+	
+	public Appointments(CalendarPanel calendarPanel){
 		
 		//ArrayList<Appointment> appointmentArrayList = new ArrayList<Appointment>();
+		calendarpanel = calendarPanel;
 		
 		datepickerFromDate = new JDateChooser();
 		datepickerToDate = new JDateChooser();
@@ -70,7 +76,12 @@ public class Appointments extends JPanel{
         listScrollPane = new JScrollPane(list);
 		
 		toCalendarButton = new JButton("Til Kalender");
-		
+		toCalendarButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				calendarpanel.goToCalender();
+			}
+		});
 		
 		add(headlineLabel);
 		add(dateLabel);
