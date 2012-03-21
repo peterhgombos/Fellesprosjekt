@@ -1,9 +1,7 @@
 package client.gui;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
-import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -15,10 +13,11 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
+@SuppressWarnings("serial")
 public class Message extends JPanel implements FocusListener{
 
 	private JCheckBox all;
@@ -27,7 +26,7 @@ public class Message extends JPanel implements FocusListener{
 	private JButton toCalender;
 	private JLabel headLine;
 	private JPanel messageList;
-	private ScrollPane scroll;
+	private JScrollPane scroll;
 	private int sizeValue;
 	private int x;
 	private int y;
@@ -54,12 +53,12 @@ public class Message extends JPanel implements FocusListener{
 			
 			public void actionPerformed(ActionEvent e) {
 				if(all.isSelected()){
-					for (int i=0; i<boxList.size();i++){
+					for (int i=0; i< boxList.size();i++){
 						boxList.get(i).setSelected(true);					
 					}
 				}
 				else{
-					for (int i=0; i<boxList.size();i++){
+					for (int i=0; i< boxList.size();i++){
 						boxList.get(i).setSelected(false);					
 					}
 				}
@@ -80,7 +79,7 @@ public class Message extends JPanel implements FocusListener{
 		});
 		headLine = new JLabel("Meldinger");
 		messageList = new JPanel();
-		scroll = new ScrollPane();
+		scroll = new JScrollPane(messageList);
 		
 		
 		add(all);
@@ -91,9 +90,9 @@ public class Message extends JPanel implements FocusListener{
 		add(scroll);
 		messageList.setLayout(null);
 		messageList.setBackground(Color.WHITE);
-		scroll.add(messageList);
 		setLayout(null);
 		resize();
+		
 	}
 	
 	public void resize(){
@@ -108,21 +107,21 @@ public class Message extends JPanel implements FocusListener{
 		searchfield.setText("Søk");
 		searchfield.addFocusListener(this);
 		
-		scroll.setBounds(GuiConstants.DISTANCE+55, all.getY() + searchfield.getHeight() + GuiConstants.DISTANCE, 425, 200);
+		scroll.setBounds(GuiConstants.DISTANCE+55, all.getY() + searchfield.getHeight() + GuiConstants.DISTANCE, 435, 250);
 		
 		for (int i = 0; i < sizeValue; i++) {
 			checkBox = new JCheckBox();
 			nameLabel = new JLabel();
 			nameLabel.setText("hei");
-			checkBox.setBounds(x, y, width, height);
-			nameLabel.setBounds(x+width, y, width*2, height);
+			checkBox.setBounds(x, y, width-8, height);
+			nameLabel.setBounds(x+width, y, width, height);
 			messageList.add(checkBox);
 			boxList.add(i,checkBox);
 			messageList.add(nameLabel);
 			y+=22;
 			messageList.setSize(messageList.getWidth(), y);
 		}
-		messageList.setBounds(GuiConstants.DISTANCE+55, all.getY() + searchfield.getHeight() + GuiConstants.DISTANCE, 425, messageList.getHeight());
+		messageList.setBounds(GuiConstants.DISTANCE+55, all.getY() + searchfield.getHeight() + GuiConstants.DISTANCE, 325, messageList.getHeight());
 		messageList.setPreferredSize(messageList.getSize());
 		
 		delete.setBounds(GuiConstants.DISTANCE + 50, scroll.getY() + scroll.getHeight() + GuiConstants.DISTANCE,  150, 35);

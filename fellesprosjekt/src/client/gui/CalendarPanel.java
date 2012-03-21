@@ -49,6 +49,7 @@ public class CalendarPanel extends JPanel {
 		
 	}
 	
+	
 	public void goToMessages(){
 		removeAllComponents();
 		
@@ -57,7 +58,7 @@ public class CalendarPanel extends JPanel {
 		
 
 		add(messagePanel);
-		
+		messagePanel.repaint();
 		frame.repaint();
 		
 	}

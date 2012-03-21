@@ -25,6 +25,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 	private JButton remove;
 	private JButton save;
 	private JButton cancel;
+	private JFrame frame;
 	
 	private CalendarPanel calendarpanel;
 
@@ -37,6 +38,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 		
 		externalParticipantsField = new JTextField();
 		externalParticipantsLabel = new JLabel("Antall eksterne deltakere");
+		frame = new JFrame();
 		
 		listmodel1 = new DefaultListModel();
 		listmodel2 = new DefaultListModel();
@@ -93,6 +95,11 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 		
 		setLayout(null);
 		resize();
+		
+		frame.add(this);
+		frame.setVisible(true);
+		frame.setSize(700, 700);
+		
 	}
 	
 	public void resize(){
@@ -116,7 +123,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 				60, 35);
 		
 		externalParticipantsLabel.setBounds(externalParticipantsField.getX() + externalParticipantsField.getWidth() + GuiConstants.DISTANCE,
-				externalParticipantsField.getY(), 160, 35);
+				externalParticipantsField.getY(), 180, 35);
 		externalParticipantsLabel.setFont(new Font(externalParticipantsLabel.getFont().getName(), 0, 15));
 		
 		save.setBounds(externalParticipantsField.getX(), externalParticipantsField.getY() + externalParticipantsField.getHeight() + GuiConstants.DISTANCE,

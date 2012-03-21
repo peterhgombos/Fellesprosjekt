@@ -85,7 +85,7 @@ public class LogIn extends JPanel implements MessageListener, ActionListener{
 			if(user == null){
 				loginButton.setEnabled(true);
 				Client.console.writeline("ugyldig login");
-				//TODO feilmelding ugyldig login
+				UserInformationMessages.showErrormessage("Ugyldig brukernavn eller passord");
 				return;
 			}
 			Client.console.writeline("logget inn som bruker " + user.getUsername());
@@ -94,7 +94,6 @@ public class LogIn extends JPanel implements MessageListener, ActionListener{
 		}
 	}
 	
-
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		try{
@@ -103,7 +102,7 @@ public class LogIn extends JPanel implements MessageListener, ActionListener{
 			}
 		}catch(IOException e1){
 			Client.console.writeline("kunne ikke koble til");
-			//TODO feilmelding kunne ikke koble til
+			UserInformationMessages.showErrormessage("Kunne ikke koble til");
 			return;
 		}
 		logIn();
