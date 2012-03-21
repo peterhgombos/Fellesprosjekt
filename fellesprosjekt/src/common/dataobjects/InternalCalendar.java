@@ -34,7 +34,7 @@ public class InternalCalendar {
 	private void addToCal(Appointment app){
 		Client.console.writeline("addtocal");
 		
-		calendar.setTime(new Date(app.getStartTime().getTime()));
+		calendar.setTimeInMillis(app.getStartTime().getMillis());
 		int year = calendar.get(Calendar.YEAR);
 		int week = calendar.get(Calendar.WEEK_OF_YEAR);
 		int day = dayToWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
@@ -42,7 +42,7 @@ public class InternalCalendar {
 		
 		Client.console.writeline(year + " " + week + " " + day + " " + hourInWeek);
 		
-		calendar.setTime(new Date(app.getEndTime().getTime()));
+		calendar.setTimeInMillis(app.getEndTime().getMillis());
 		int eDay = dayToWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
 		int eHourInWeek = eDay * 24 + calendar.get(Calendar.HOUR);
 		int duration = eHourInWeek - hourInWeek;
@@ -88,7 +88,7 @@ public class InternalCalendar {
 		return arr[day*24 + hour];
 	}
 	public boolean startsInHour(Appointment a, int hour){
-		calendar.setTime(new Date(a.getStartTime().getTime()));
+		calendar.setTimeInMillis(a.getStartTime().getMillis());
 		if(hour == calendar.get(Calendar.HOUR_OF_DAY)){
 			return true;
 		}
