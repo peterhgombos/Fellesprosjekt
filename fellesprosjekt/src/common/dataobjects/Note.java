@@ -29,5 +29,4 @@ public class Note {
 	public Date getTimeAdded() {
 		return timeAdded;
 	}
-	
 }
