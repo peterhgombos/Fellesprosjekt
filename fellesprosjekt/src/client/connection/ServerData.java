@@ -14,7 +14,7 @@ import common.dataobjects.ComMessage;
 import common.dataobjects.Inbox;
 import common.dataobjects.InternalCalendar;
 import common.dataobjects.Meeting;
-import common.dataobjects.Message;
+import common.dataobjects.Note;
 import common.dataobjects.Person;
 import common.dataobjects.Room;
 import common.utilities.MessageType;
@@ -29,7 +29,7 @@ public class ServerData {
 	private static HashMap<Integer, Meeting> meetings;
 	private static HashMap<Integer, Room> rooms;
 	private static HashMap<Integer, Person> persons;
-	private static HashMap<Integer, Message> messages;
+	private static HashMap<Integer, Note> messages;
 	
 	private static Connection connection;
 	private static LinkedList<MessageListener> listeners = new LinkedList<MessageListener>();
@@ -55,7 +55,7 @@ public class ServerData {
 		meetings = new HashMap<Integer, Meeting>();
 		rooms = new HashMap<Integer, Room>();
 		persons = new HashMap<Integer, Person>();
-		messages = new HashMap<Integer, Message>();
+		messages = new HashMap<Integer, Note>();
 		
 		calendar = new InternalCalendar();
 	}
