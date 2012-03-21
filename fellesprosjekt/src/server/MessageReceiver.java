@@ -15,9 +15,9 @@ import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
 import common.dataobjects.Meeting;
 import common.dataobjects.Person;
+import common.utilities.MessageType;
 
 import client.authentication.Login;
-import client.connection.MessageType;
 
 public class MessageReceiver {
 
@@ -40,7 +40,7 @@ public class MessageReceiver {
 			int personid = p.getPersonID();
 
 			try{
-				ResultSet appointmentResult = database.executeQuery(Queries.getAppointments(personid)); //Get the meetings where the person is a participants	
+				ResultSet appointmentResult = database.executeQuery(Queries.getAppointments(personid)); //Get the appointments where the person is a participants	
 				ResultSet meetingResult = database.executeQuery(Queries.getMeetings(personid)); //Get the meetings where the person is a participants	
 
 				Collection<Appointment> appointments = resultSetToAppointment(appointmentResult);
@@ -69,6 +69,9 @@ public class MessageReceiver {
 			ComMessage sendLogin = new ComMessage(authenticatedPerson, MessageType.RECEIVE_LOGIN);
 			clientWriter.send(sendLogin);
 		}
+		else if(messageType.equals(MessageType.REQUEST_NEW_APPOINTMENT)){
+			newAppointment(message);
+		}
 	}
 
 	private Person requestLogin(ComMessage message){
@@ -83,7 +86,19 @@ public class MessageReceiver {
 			return null;
 		}
 	}
-
+	
+	private void newAppointment(ComMessage message){
+		Appointment newApp = (Appointment) message.getData();
+		try{
+			database.updateDB(Queries.createNewAppointment(newApp.getTitle(), newApp.getDescription(), newApp.getStartTime(), newApp.getEndTime(),newApp.getPlace(), newApp.getLeader().getPersonID()));
+			ComMessage comMesNewApp = new ComMessage(newApp, MessageType.RECEIVE_NEW_APPOINTMENT);
+			sendToAll(comMesNewApp);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	}
+	
+	
 	private ArrayList<Meeting> resultSetToMeeting(ResultSet result){
 		ArrayList<Meeting> returnthis = new ArrayList<Meeting>();
 		try{

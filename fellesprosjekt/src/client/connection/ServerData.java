@@ -1,6 +1,7 @@
 package client.connection;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -15,6 +16,7 @@ import common.dataobjects.Meeting;
 import common.dataobjects.Message;
 import common.dataobjects.Person;
 import common.dataobjects.Room;
+import common.utilities.MessageType;
 
 
 public class ServerData {
@@ -64,6 +66,11 @@ public class ServerData {
 		connection.requestMeetingsAndAppointments(p);
 	}
 	
+	public static void requestNewAppointment(Appointment a){
+		connection.requestNewAppointment(a);
+	}
+	
+	
 	@SuppressWarnings("unchecked")
 	public static synchronized void receiveMessage(ComMessage message){
 		String messageType = message.getType();
@@ -89,6 +96,12 @@ public class ServerData {
 			}
 			calendar.addMeetings(meets);
 		}
+		else if(messageType.equals(MessageType.RECEIVE_NEW_APPOINTMENT)){
+			Appointment app = (Appointment)message.getData();
+			appointments.put(app.getId(), app);
+			persons.put(app.getLeader().getPersonID(), app.getLeader());
+			calendar.addAppointment(app);
+		}
 		
 		Collection<MessageListener> clone = (Collection<MessageListener>)listeners.clone();
 		for (MessageListener l : clone) {
@@ -101,6 +114,17 @@ public class ServerData {
 	}
 	public static void removeMessageListener(MessageListener listener) {
 		ServerData.listeners.remove(listener);
+	}
+	
+	public static void main(String[] args) throws IOException {
+		
+		connect();
+		Person testp = new Person(123, "Marte", "Løge", "marte.loge@gmail.com", "martedl", "98404380");
+		Date start = new Date(System.currentTimeMillis());
+		Date end = new Date(System.currentTimeMillis()+ 3600000);
+		Appointment testA = new Appointment(1111, testp, "test", "testdesc", start, end);
+		
+		requestNewAppointment(testA);
 	}
 	
 	
