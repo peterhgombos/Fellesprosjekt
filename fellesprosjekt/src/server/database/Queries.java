@@ -44,6 +44,26 @@ public class Queries {
 				"WHERE ANSATT.BRUKERNAVN = \"" + username + "\" " +
 				"AND ANSATT.PASSORD = \"" + passwordHash + "\";";
 	}
+	
+	public static String newNote(String title, int appId){
+		return	"INSERT INTO VARSEL (TITTEL, AVTALEID) " +
+				"VALUES '" + title + "', " + appId +";"; 
+	}
+	
+	public static String getLastNote(){
+		return  "SELECT * FROM VARSEL " +
+				"ORDER BY VARSELID DESC LIMIT 1;";
+	}
+	
+	public static String getNote(int noteId){
+		return	"SELECT * FROM VARSEL " +
+				"WHERE VARSEL.VARSELID = " + noteId + ";";
+	}
+	
+	public static String getAppointment(int appId){
+		return	"SELECT * FROM AVTALE " +
+				"WHERE AVTALE.AVTALEID = " + appId + ";";
+	}
 	//	
 	//
 	//	public static String getAppointmentsAsLeader(int personid){

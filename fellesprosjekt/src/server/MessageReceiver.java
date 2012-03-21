@@ -14,6 +14,7 @@ import server.database.Queries;
 import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
 import common.dataobjects.Meeting;
+import common.dataobjects.Note;
 import common.dataobjects.Person;
 import common.utilities.DateString;
 import common.utilities.MessageType;
@@ -73,6 +74,11 @@ public class MessageReceiver {
 		else if(messageType.equals(MessageType.REQUEST_NEW_APPOINTMENT)){
 			newAppointment(message);
 		}
+		else if(messageType.equals(MessageType.REQUEST_NEW_NOTE)){
+			Note createdNote = newNote(message);
+			ComMessage sendNote = new ComMessage(createdNote, MessageType.RECEIVE_NEW_NOTE);
+			clientWriter.send(sendNote);
+		}
 	}
 
 	private Person requestLogin(ComMessage message){
@@ -96,6 +102,18 @@ public class MessageReceiver {
 			sendToAll(comMesNewApp);
 		}catch(SQLException e){
 			e.printStackTrace();
+		}
+	}
+	
+	private Note newNote(ComMessage message){
+		Note newNote = (Note) message.getData();
+		try{
+			database.updateDB(Queries.newNote(newNote.getTitle(), newNote.getAppointment().getId()));
+			ResultSet newDbNote = database.executeQuery(Queries.getLastNote());
+			return resultSetToSingleNote(newDbNote);
+		}catch(SQLException e){
+			e.printStackTrace();
+			return null;
 		}
 	}
 	
@@ -179,6 +197,19 @@ public class MessageReceiver {
 				String brukernavn = rs.getString(Database.COL_BRUKERNAVN);
 				String tlf = rs.getString(Database.COL_TLF);
 				return new Person(id, fornavn, etternavn, epost, brukernavn, tlf);
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	private Note resultSetToSingleNote(ResultSet rs){
+		try{
+			while(rs.next()){
+				ResultSet appointmentResult = database.executeQuery(Queries.getAppointment(rs.getInt("AVTALE")));
+				Appointment app = resultSetToAppointment(appointmentResult).get(0);
+				return new Note(rs.getInt("AVTALEID"), rs.getString("TITTEL"), rs.getDate("TIDSENDT"), app);
 			}
 		}catch(SQLException e){
 			e.printStackTrace();

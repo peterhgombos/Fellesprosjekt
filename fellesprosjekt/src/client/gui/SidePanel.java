@@ -88,7 +88,6 @@ public class SidePanel extends JPanel implements FocusListener{
 		employeesAppointments = new JButton("Ansattes Avtaler");
 		employeesAppointments.addActionListener(new ActionListener() {
 			
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// calendarPanel
 				
@@ -97,7 +96,6 @@ public class SidePanel extends JPanel implements FocusListener{
 		logOut = new JButton("Logg Ut");
 		logOut.addActionListener(new ActionListener() {
 			
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				calendarpanel.logout();
 				
@@ -106,9 +104,7 @@ public class SidePanel extends JPanel implements FocusListener{
 		addEmployee = new JButton("Legg Til");
 		addEmployee.addActionListener(new ActionListener() {
 			
-			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
