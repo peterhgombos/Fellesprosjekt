@@ -1,7 +1,10 @@
 package client.gui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Insets;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -14,6 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
+import javax.swing.border.Border;
 
 public class AppointmentView extends JPanel{
 	
@@ -53,11 +57,12 @@ public class AppointmentView extends JPanel{
 	private JList acceptedList;
 	private JList deniedList;
 	private JList notAnsweredList;
-	private JTextField numberOfParticipants;
+	private JTextField numberOfParticipantsField;
 	private DefaultListModel leaderModel;
 	private DefaultListModel acceptedModel;
 	private DefaultListModel deniedModel;
 	private DefaultListModel notAnsweredModel;
+	private String numberOfParticipants;
 	
 	
 	public AppointmentView() {
@@ -69,6 +74,7 @@ public class AppointmentView extends JPanel{
 		date = "30.03.2012";
 		time = "12:00-13:00";
 		place = "NTNU";
+		numberOfParticipants = "123";
 		//TESTER
 		
 		headline = new JLabel(appointmentName);
@@ -83,13 +89,20 @@ public class AppointmentView extends JPanel{
 		notAnsweredLabel = new JLabel("Ikke Svar");
 		
 		dateInput = new JTextField(date);
-		dateInput.disable();
+		dateInput.setEditable(false);
+		dateInput.setBackground(this.getBackground());
 		timeInput = new JTextField(time);
-		timeInput.disable();
+		timeInput.setEditable(false);
+		timeInput.setBackground(this.getBackground());
 		placeInput = new JTextField(place);
-		placeInput.disable();
+		placeInput.setEditable(false);
+		placeInput.setBackground(this.getBackground());
 		descriptionInput = new JTextArea(description);
-		descriptionInput.disable();
+		descriptionInput.setEditable(false);
+		descriptionInput.setBackground(this.getBackground());
+		numberOfParticipantsField = new JTextField(numberOfParticipants);
+		numberOfParticipantsField.setEditable(false);
+		numberOfParticipantsField.setBackground(this.getBackground());
 		
 		
 		accpectButton = new JButton("Godta");
@@ -102,7 +115,6 @@ public class AppointmentView extends JPanel{
 		acceptedList = new JList();
 		deniedList = new JList();
 		notAnsweredList = new JList();
-		numberOfParticipants = new JTextField();
 		leaderModel = new DefaultListModel();
 		acceptedModel = new DefaultListModel();
 		deniedModel = new DefaultListModel();
@@ -138,9 +150,9 @@ public class AppointmentView extends JPanel{
 		add(dateInput);
 		add(timeInput);
 		add(placeInput);
-		add(descriptionInput);
+		//add(descriptionInput);
 		add(textAreaScrollPane);
-		add(numberOfParticipants);
+		add(numberOfParticipantsField);
 		add(leaderList);
 		add(acceptedList);
 		add(deniedList);
@@ -167,7 +179,7 @@ public class AppointmentView extends JPanel{
 		participantsLabel.setBounds(dateInput.getX() + dateInput.getWidth() + GuiConstants.GROUP_DISTANCE *8, dateInput.getY(), 100, 30);
 		participantsLabel.setFont(new Font(participantsLabel.getFont().getName(),0,18));
 		
-		numberOfParticipants.setBounds(participantsLabel.getX() + participantsLabel.getWidth() + GuiConstants.DISTANCE, participantsLabel.getY(), 
+		numberOfParticipantsField.setBounds(participantsLabel.getX() + participantsLabel.getWidth() + GuiConstants.DISTANCE, participantsLabel.getY(), 
 				40, 30);
 		meetingLeaderLabel.setBounds(participantsLabel.getX(), participantsLabel.getY() + participantsLabel.getHeight() + GuiConstants.DISTANCE, 80, 30);
 		meetingLeaderLabel.setFont(new Font(meetingLeaderLabel.getFont().getName(), 0, 15));
@@ -182,6 +194,13 @@ public class AppointmentView extends JPanel{
 		notParticipateLabel.setBounds(acceptedList.getX(), acceptedList.getY() + acceptedList.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 30);
 		notParticipateLabel.setFont(new Font(notParticipateLabel.getFont().getName(), 0, 15));
 		
+		deniedList.setBounds(notParticipateLabel.getX(), notParticipateLabel.getY() + notParticipateLabel.getHeight() + GuiConstants.DISTANCE, 150, 50);
+		
+		notAnsweredLabel.setBounds(deniedList.getX(), deniedList.getY() + deniedList.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 30);
+		notAnsweredLabel.setFont(new Font(notAnsweredLabel.getFont().getName(), 0, 15));
+		
+		notAnsweredList.setBounds(notAnsweredLabel.getX(), notAnsweredLabel.getY() + notAnsweredLabel.getHeight() + GuiConstants.DISTANCE, 150, 50);
+		
 		timeLabel.setBounds(dateLabel.getX(), dateLabel.getY() + dateLabel.getHeight() + GuiConstants.DISTANCE, 100, 30);
 		timeLabel.setFont(new Font(timeLabel.getFont().getName(),0,15));
 		timeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -189,36 +208,36 @@ public class AppointmentView extends JPanel{
 		timeInput.setBounds(dateInput.getX(), dateLabel.getY() + dateLabel.getHeight() + GuiConstants.DISTANCE, 300, 30);
 		timeInput.setFont(new Font(timeInput.getFont().getName(),0,15));
 		
-		descriptionLabel.setBounds(timeLabel.getX(), timeLabel.getY() + timeLabel.getHeight() + GuiConstants.DISTANCE, 100, 30);
+		descriptionLabel.setBounds(timeLabel.getX(), timeLabel.getY() + timeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 100, 30);
 		descriptionLabel.setFont(new Font(descriptionLabel.getFont().getName(),0,15));
 		descriptionLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		//TODO: Må legge til scrollbar		
-		descriptionInput.setBounds(timeInput.getX(), timeInput.getY()+ timeInput.getHeight() + GuiConstants.DISTANCE, 160, descriptionInput.getHeight());
+		descriptionInput.setBounds(timeInput.getX(), timeInput.getY()+ timeInput.getHeight() + GuiConstants.GROUP_DISTANCE, 300, descriptionInput.getHeight());
 		descriptionInput.setLineWrap(true);
-		textAreaScrollPane.setBounds(timeInput.getX(), timeInput.getY()+ timeInput.getHeight() + GuiConstants.DISTANCE, 160, 100 );
+		textAreaScrollPane.setBounds(timeInput.getX(), timeInput.getY()+ timeInput.getHeight() + GuiConstants.GROUP_DISTANCE, 300, 100 );
 		
 		
-		placeLabel.setBounds(descriptionLabel.getX(), descriptionLabel.getY() + textAreaScrollPane.getHeight() + GuiConstants.DISTANCE, 100, 30);
+		placeLabel.setBounds(descriptionLabel.getX(), descriptionLabel.getY() + textAreaScrollPane.getHeight() + GuiConstants.GROUP_DISTANCE, 100, 30);
 		placeLabel.setFont(new Font(placeLabel.getFont().getName(),0,15));
 		placeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		placeInput.setBounds(textAreaScrollPane.getX(), textAreaScrollPane.getY() + textAreaScrollPane.getHeight() + GuiConstants.DISTANCE, 300, 30);
+		placeInput.setBounds(textAreaScrollPane.getX(), textAreaScrollPane.getY() + textAreaScrollPane.getHeight() + GuiConstants.GROUP_DISTANCE, 300, 30);
 		placeInput.setFont(new Font(placeInput.getFont().getName(),0,15));
 		
 		if(isLeader){
-			cancelButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.DISTANCE, 80, 35);
+			cancelButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
 			editButton.setBounds(cancelButton.getX() + cancelButton.getWidth() + GuiConstants.DISTANCE, 
-					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.DISTANCE, 80, 35);
+					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
 			toCalendarButton.setBounds(editButton.getX() + editButton.getWidth() + GuiConstants.DISTANCE, 
-					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.DISTANCE, 110, 35);
+					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 110, 35);
 		}
 		else{
-			accpectButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.DISTANCE, 80, 35);
+			accpectButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
 			rejectButton.setBounds(accpectButton.getX() + accpectButton.getWidth() + GuiConstants.DISTANCE, 
-					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.DISTANCE, 80, 35);
+					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
 			toCalendarButton.setBounds(rejectButton.getX() + rejectButton.getWidth() + GuiConstants.DISTANCE, 
-					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.DISTANCE, 110, 35);
+					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 110, 35);
 			
 		}
 		
