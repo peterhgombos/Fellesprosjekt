@@ -34,7 +34,7 @@ public class InternalCalendar {
 	private void addToCal(Appointment app){
 		Client.console.writeline("addtocal");
 		
-		Client.console.writeline(app.getStartTime().getYear() + " " + app.getStartTime().getMonth());
+		Client.console.writeline(app.getStartTime().getYear() + " " + app.getStartTime().getMonth() + " " + app.getStartTime().getDay() + " " + app.getStartTime().getHour());
 		
 		calendar.setTimeInMillis(app.getStartTime().getMillis());
 		int year = calendar.get(Calendar.YEAR);

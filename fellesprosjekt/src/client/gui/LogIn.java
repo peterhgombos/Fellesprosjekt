@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 
 import client.Client;
 import client.connection.MessageListener;
-import client.connection.MessageType;
+import common.utilities.MessageType;
 import client.connection.ServerData;
 
 import common.dataobjects.ComMessage;
