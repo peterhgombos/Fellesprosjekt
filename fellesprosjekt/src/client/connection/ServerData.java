@@ -110,7 +110,7 @@ public class ServerData {
 		}
 		else if(messageType.equals(MessageType.RECEIVE_NEW_NOTE)){
 			Note note = (Note)message.getData();
-			
+			//TODO what to do with this note?
 		}
 		
 		Collection<MessageListener> clone = (Collection<MessageListener>)listeners.clone();
