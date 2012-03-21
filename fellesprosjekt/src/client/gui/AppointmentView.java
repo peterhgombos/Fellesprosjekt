@@ -274,15 +274,4 @@ public class AppointmentView extends JPanel{
 		}
 		
 	}
-	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame("Avtale");
-		AppointmentView appointmentView = new AppointmentView();
-		frame.add(appointmentView);
-		frame.getContentPane();
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.pack();
-		frame.setSize(1000, 700);
-		frame.setVisible(true);
-	}
 }
