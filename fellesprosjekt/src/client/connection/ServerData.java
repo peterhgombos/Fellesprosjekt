@@ -86,8 +86,8 @@ public class ServerData {
 			calendar.addMeetings(meets);
 		}
 		
-		
-		for (MessageListener l : listeners) {
+		Collection<MessageListener> clone = (Collection<MessageListener>)listeners.clone();
+		for (MessageListener l : clone) {
 			l.receiveMessage(message);
 		}
 	}
