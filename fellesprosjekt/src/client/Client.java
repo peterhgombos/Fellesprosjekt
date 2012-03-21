@@ -19,7 +19,7 @@ public class Client {
 	public static final Console console = new Console("Client");
 	
 	private JFrame frame;
-	private Person user;
+	public static Person user;
 	
 	private LogIn loginPanel;
 	private CalendarPanel calendarpanel;
