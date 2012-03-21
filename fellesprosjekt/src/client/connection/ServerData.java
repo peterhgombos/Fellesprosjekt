@@ -72,6 +72,10 @@ public class ServerData {
 		connection.requestNewAppointment(a);
 	}
 	
+	public static void requestNewNote(Note n){
+		connection.requestNewNote(n);
+	}
+	
 	
 	@SuppressWarnings("unchecked")
 	public static synchronized void receiveMessage(ComMessage message){
@@ -103,6 +107,10 @@ public class ServerData {
 			appointments.put(app.getId(), app);
 			persons.put(app.getLeader().getPersonID(), app.getLeader());
 			calendar.addAppointment(app);
+		}
+		else if(messageType.equals(MessageType.RECEIVE_NEW_NOTE)){
+			Note note = (Note)message.getData();
+			
 		}
 		
 		Collection<MessageListener> clone = (Collection<MessageListener>)listeners.clone();
