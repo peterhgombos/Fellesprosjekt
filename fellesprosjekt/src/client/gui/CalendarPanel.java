@@ -39,6 +39,7 @@ public class CalendarPanel extends JPanel {
 		
 		ServerData.addMessageListener(calendarPanel);
 		
+		removeAll();
 		add(sidePanel);
 		add(calendarPanel);
 	}
@@ -48,7 +49,7 @@ public class CalendarPanel extends JPanel {
 		sidePanel = new SidePanel(this);
 		sidePanel.setBounds(0, 0, 180, 700);
 		
-		messagePanel = new Message();
+		messagePanel = new Message(this);
 		messagePanel.setBounds(sidePanel.getX() + sidePanel.getWidth(), 0, 900, 700);
 		
 		removeAll();
@@ -104,6 +105,7 @@ public class CalendarPanel extends JPanel {
 		client.showLogin();
 
 	}
+	
 	
 	
 	
