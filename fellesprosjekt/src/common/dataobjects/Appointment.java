@@ -9,7 +9,7 @@ import xml.XMLElements;
 public class Appointment implements Serializable{
 
 	private static final long serialVersionUID = 3662988846703010000L;
-	
+
 	private int id; 
 	private Person leader;
 	private String title;
@@ -17,7 +17,7 @@ public class Appointment implements Serializable{
 	private Date startTime;
 	private Date endTime;
 	private String place;
-	
+
 	public Appointment(int id, Person leader, String title, String description, Date start, Date end) throws RuntimeException {
 		this.id = id;
 		this.leader = leader;
@@ -26,14 +26,15 @@ public class Appointment implements Serializable{
 		if(start.after(end)){
 			throw new RuntimeException("Start date must be before end date");
 		}
+
 		this.startTime = start;
 		this.endTime = end;
 	}
-	
+
 	public Appointment() {
-		
+
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -56,7 +57,7 @@ public class Appointment implements Serializable{
 	public Date getEndTime() {
 		return endTime;
 	}
-	
+
 	//TODO Sjekke at det er lovlig sluttid
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
@@ -73,7 +74,7 @@ public class Appointment implements Serializable{
 	public Person getAppointmentLeader() {
 		return leader;
 	}
-	
+
 	// makes XML for appointment class
 	public String toXML(){
 		StringBuilder xml = new StringBuilder();
@@ -117,5 +118,5 @@ public class Appointment implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 }
