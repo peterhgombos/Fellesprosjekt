@@ -20,7 +20,7 @@ public class Appointment implements Serializable{
 	private DateString endTime;
 	private String place = "sted";
 
-	public Appointment(int id, Person leader, String title, String description, DateString start, DateString end) throws RuntimeException {
+	public Appointment(int id, Person leader, String title, String description, String place, DateString start, DateString end) throws RuntimeException {
 		this.id = id;
 		this.leader = leader;
 		this.title = title;

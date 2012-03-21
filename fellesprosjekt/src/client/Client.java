@@ -19,7 +19,7 @@ public class Client {
 	public static final Console console = new Console("Client");
 	
 	private JFrame frame;
-	public static Person user;
+	private static Person user;
 	
 	private LogIn loginPanel;
 	private CalendarPanel calendarpanel;
@@ -55,13 +55,13 @@ public class Client {
 		return frame;
 	}
 	
-	public void loggedIn(Person user){
-		this.user = user;
+	public void loggedIn(Person loggedin){
+		user = loggedin;
 		ServerData.requestAppointmentsAndMeetings(user);
 		showCalPan();
 	}
 	
-	public Person getUser(){
+	public static Person getUser(){
 		return user;
 	}
 	

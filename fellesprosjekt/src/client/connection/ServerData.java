@@ -1,9 +1,7 @@
 package client.connection;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.Collection;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -17,7 +15,6 @@ import common.dataobjects.Meeting;
 import common.dataobjects.Note;
 import common.dataobjects.Person;
 import common.dataobjects.Room;
-import common.utilities.DateString;
 import common.utilities.MessageType;
 
 
@@ -124,17 +121,6 @@ public class ServerData {
 	}
 	public static void removeMessageListener(MessageListener listener) {
 		ServerData.listeners.remove(listener);
-	}
-	
-	public static void main(String[] args) throws IOException {
-		
-		connect();
-		Person testp = new Person(123, "Marte", "Løge", "marte.loge@gmail.com", "martedl", "98404380");
-		DateString start = new DateString("2012-03-21 10:00:00");
-		DateString end = new DateString("2012-03-21 12:00:00");
-		Appointment testA = new Appointment(1111, testp, "test", "testdesc", start, end);
-		
-		requestNewAppointment(testA);
 	}
 	
 	

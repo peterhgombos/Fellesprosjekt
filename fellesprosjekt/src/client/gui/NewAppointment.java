@@ -24,6 +24,7 @@ import com.toedter.calendar.JDateChooser;
 import common.dataobjects.Appointment;
 import common.utilities.DateString;
 
+@SuppressWarnings("serial")
 public class NewAppointment extends JPanel{
 	
 	private JDateChooser datepicker;
@@ -44,10 +45,10 @@ public class NewAppointment extends JPanel{
 	private JTextField placeField;
 	private JTextArea descriptionArea;
 	
-	private JComboBox startTimeHoursField;
-	private JComboBox endTimeHoursField;
-	private JComboBox startTimeMinField;
-	private JComboBox endTimeMinField;
+	private JComboBox<String> startTimeHoursField;
+	private JComboBox<String> endTimeHoursField;
+	private JComboBox<String> startTimeMinField;
+	private JComboBox<String> endTimeMinField;
 	
 	private JButton saveButton;
 	private JButton cancelButton;
@@ -55,8 +56,7 @@ public class NewAppointment extends JPanel{
 
 	public NewAppointment(CalendarPanel calendarPanel){
 		String[] min = {"00", "15", "30", "45"};
-		String[] hours= {"00","01","02","03","04","05","06","07","08","09","10",
-						"11","12","13","14","15","16","17","18","19","20","21","22","23"};
+		String[] hours= {"00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"};
 		
 		headlineLabel = new JLabel("Ny Avtale");
 		titleLabel = new JLabel("Tittel", SwingConstants.RIGHT);
@@ -103,7 +103,7 @@ public class NewAppointment extends JPanel{
 //				else if(){
 //					
 //				}
-				Appointment a = new Appointment(-1, Client.user, title, description, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
+				Appointment a = new Appointment(-1, Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
 				ServerData.requestNewAppointment(a);
 				
 				calendar.goToCalender();
@@ -120,10 +120,10 @@ public class NewAppointment extends JPanel{
 			}
 		});
 		
-		startTimeHoursField = new JComboBox(hours);
-		endTimeHoursField = new JComboBox(hours);
-		startTimeMinField = new JComboBox(min);
-		endTimeMinField = new JComboBox(min);
+		startTimeHoursField = new JComboBox<String>(hours);
+		endTimeHoursField = new JComboBox<String>(hours);
+		startTimeMinField = new JComboBox<String>(min);
+		endTimeMinField = new JComboBox<String>(min);
 		
 		scrollPane = new JScrollPane(descriptionArea);
 		
@@ -150,6 +150,7 @@ public class NewAppointment extends JPanel{
 		
 		setLayout(null);
 		resize();
+		repaint();
 		
 	}
 	
