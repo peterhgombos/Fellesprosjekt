@@ -8,6 +8,8 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.TimeZone;
 
+import client.Client;
+
 public class InternalCalendar {
 	
 	private GregorianCalendar calendar;
@@ -24,15 +26,21 @@ public class InternalCalendar {
 		calendar.setTimeInMillis(System.currentTimeMillis());
 		
 		apps = new HashMap<Integer, HashMap<Integer,ArrayList<Appointment>[]>>();
+		
+		
 	}
 	
 	@SuppressWarnings("unchecked")
 	private void addToCal(Appointment app){
+		Client.console.writeline("addtocal");
+		
 		calendar.setTime(new Date(app.getStartTime().getTime()));
 		int year = calendar.get(Calendar.YEAR);
 		int week = calendar.get(Calendar.WEEK_OF_YEAR);
 		int day = dayToWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
 		int hourInWeek = day * 24 + calendar.get(Calendar.HOUR);
+		
+		Client.console.writeline(year + " " + week + " " + day + " " + hourInWeek) ;
 		
 		calendar.setTime(new Date(app.getEndTime().getTime()));
 		int eDay = dayToWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
@@ -54,6 +62,7 @@ public class InternalCalendar {
 				arr[i] = new ArrayList<Appointment>(1);
 			}
 			arr[i].add(app);
+			Client.console.writeline(app.getTitle() + " " + year + " " + week);
 		}
 	}
 	

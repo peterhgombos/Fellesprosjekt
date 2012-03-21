@@ -90,7 +90,7 @@ public class LogIn extends JPanel implements MessageListener, ActionListener{
 			}
 			Client.console.writeline("logget inn som bruker " + user.getUsername());
 			ServerData.removeMessageListener(this);
-			client.setUser(user);
+			client.loggedIn(user);
 		}
 	}
 	

@@ -19,7 +19,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 
 @SuppressWarnings("serial")
-public class Sidepanel extends JPanel implements FocusListener{
+public class SidePanel extends JPanel implements FocusListener{
 	
 	private JButton message;
 	private JButton newAppointment;
@@ -42,7 +42,7 @@ public class Sidepanel extends JPanel implements FocusListener{
 	private JScrollPane scrollSelectedEmployee;
 	private DefaultListModel listModel;
 	
-	public Sidepanel() {
+	public SidePanel() {
 		countEmployee = 10;
 		x = 5;
 		y = 5;
@@ -162,12 +162,10 @@ public class Sidepanel extends JPanel implements FocusListener{
 	
 	public static void main(String[] args) {
 		JFrame test = new JFrame();
-		Sidepanel s = new Sidepanel();
+		SidePanel s = new SidePanel();
 		test.add(s);
 		
-		test.getContentPane();
 		test.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		test.pack();
 		test.setSize(700, 700);
 		test.setVisible(true);
 	}

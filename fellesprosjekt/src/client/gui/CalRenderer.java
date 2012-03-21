@@ -1,28 +1,50 @@
-//package client.gui;
-//
-//import java.awt.Component;
-//import java.awt.Dimension;
-//import java.text.DecimalFormat;
-//
-//import javax.swing.JLabel;
-//import javax.swing.JPanel;
-//import javax.swing.JTable;
-//import javax.swing.table.TableCellRenderer;
-//
-//public class CalRenderer implements TableCellRenderer{
-//
-//	@Override
-//	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column){
+package client.gui;
+
+import java.awt.Component;
+import java.text.DecimalFormat;
+import java.util.Collection;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+
+import client.connection.MessageListener;
+import client.connection.ServerData;
+
+import common.dataobjects.Appointment;
+import common.dataobjects.ComMessage;
+import common.dataobjects.InternalCalendar;
+
+@SuppressWarnings("serial")
+public class CalRenderer extends DefaultTableCellRenderer {
+
+	
+	@Override
+	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column){
+		
 //		if(row == 0 && column != 0){
 //			return dayrenderer(table, column);
-//		}else if(column == 0 && row != 0){
-//			return hourrenderer(table, row);
-//		}else if(row == 0 && column == 0){
-//			JLabel lab = new JLabel();
-//			lab.setOpaque(true);
-//			return lab;
 //		}
-//
+		if(column == 0){
+			return hourrenderer(row);
+		}
+		
+		InternalCalendar calendar = ServerData.getCalendar();
+		
+		CalModel model = (CalModel)table.getModel();
+		
+		Collection<Appointment> result = calendar.getAppointments(model.getYear(), model.getWeek(), column - 1, row);
+		
+		JPanel panel = new JPanel(null);
+		
+		JLabel lab = new JLabel("test: " + (result == null ? "" : result.size()));
+		panel.add(lab);
+		lab.setBounds(0, 0, 70, 40);
+		
+		return lab;
+		
+
 //		JLabel tittel;
 //		JLabel fra;
 //		JLabel til;
@@ -85,41 +107,40 @@
 //		til.setOpaque(true);
 //
 //		return panel;
-//	}
-//	
-//	public JLabel hourrenderer(JTable table, int row){
-//		JLabel label = new JLabel();
-//		label.setOpaque(true);
-//		
-//		DecimalFormat format = new DecimalFormat("00");
-//		
-//		label.setText(format.format(row-1) + ".00");
-//		
-//		return label;
-//	}
-//
-//	public JLabel dayrenderer(JTable table, int column){
-//		JLabel label = new JLabel();
-//		label.setOpaque(true);
-//
-//		if(column == 1){
-//			label.setText("Mandag");
-//		}else if(column == 2){
-//			label.setText("Tirsdag");
-//		}else if(column == 3){
-//			label.setText("Onsdag");
-//		}else if(column == 4){
-//			label.setText("Torsdag");
-//		}else if(column == 5){
-//			label.setText("Fredag");
-//		}else if(column == 6){
-//			label.setText("Lørdag");
-//		}else if(column == 7){
-//			label.setText("Søndag");
-//		}
-//		
-//		return label;
-//	}
-//
-//
-//}
+	}
+	
+	public JLabel hourrenderer(int row){
+		JLabel label = new JLabel();
+		label.setOpaque(true);
+		
+		DecimalFormat format = new DecimalFormat("00");
+		
+		label.setText(format.format(row) + ".00");
+		
+		return label;
+	}
+
+	public JLabel dayrenderer(JTable table, int column){
+		JLabel label = new JLabel();
+		label.setOpaque(true);
+
+		if(column == 1){
+			label.setText("Mandag");
+		}else if(column == 2){
+			label.setText("Tirsdag");
+		}else if(column == 3){
+			label.setText("Onsdag");
+		}else if(column == 4){
+			label.setText("Torsdag");
+		}else if(column == 5){
+			label.setText("Fredag");
+		}else if(column == 6){
+			label.setText("LÃ¸rdag");
+		}else if(column == 7){
+			label.setText("SÃ¸ndag");
+		}
+		
+		return label;
+	}
+
+}
