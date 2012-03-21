@@ -8,23 +8,23 @@ import javax.swing.event.ListDataListener;
 
 public class Inbox implements ListModel{
 	
-	private ArrayList<Message> messages;
+	private ArrayList<Note> messages;
 	private LinkedList<ListDataListener> listeners;
-	private ArrayList<Message> displayedMessages;
+	private ArrayList<Note> displayedMessages;
 	
 	
 	public Inbox (){
-		messages = new ArrayList<Message>();
+		messages = new ArrayList<Note>();
 		listeners = new LinkedList<ListDataListener>();
-		displayedMessages = new ArrayList<Message>();
+		displayedMessages = new ArrayList<Note>();
 	}
 	
 	
-	public void addMessage(Message message){
+	public void addMessage(Note message){
 		messages.add(message);
 	}
 	
-	public void removeMessage(Message message){
+	public void removeMessage(Note message){
 		messages.remove(message);
 	}
 		

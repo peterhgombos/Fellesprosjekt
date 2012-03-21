@@ -61,21 +61,11 @@ public class Connection  {
 		writer.send(new ComMessage(p, MessageType.REQUEST_APPOINTMENTS_AND_MEETINGS));
 	}
 	
-	public void requestLeader(Appointment a) {
-		//TODO
-	}
-	
-	public void requestParticipants(Meeting m) {
-		//TODO
-	}
 	
 	public void requestMessages(Person p) {
 		//TODO
 	}
 	
-	public void requestRoom(Meeting m) {
-		//TODO
-	}
 	
 
 }
