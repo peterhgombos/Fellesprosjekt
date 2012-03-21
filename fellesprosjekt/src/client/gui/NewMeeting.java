@@ -209,18 +209,4 @@ public class NewMeeting extends JPanel{
 		cancelButton.setBounds(saveButton.getX() + saveButton.getWidth() + GuiConstants.DISTANCE, saveButton.getY(), 100, GuiConstants.BUTTON_HEIGTH);
 	
 		}
-	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame("NewMeeting");
-		NewMeeting meeting = new NewMeeting();
-		frame.add(meeting);
-		frame.getContentPane();
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.pack();
-		frame.setSize(700, 700);
-		frame.setVisible(true);
-	}
-	
-	
-
 }
