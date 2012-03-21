@@ -18,6 +18,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
+import server.Server;
+
 public class NewMeeting extends JPanel{
 	
 	private JLabel headlineLabel;
@@ -42,6 +44,7 @@ public class NewMeeting extends JPanel{
 	private JComboBox startTimeMinField;
 	private JComboBox endTimeMinField;
 	private JComboBox roomPicker;
+	private AddRemoveParticipants addRemovep;
 	
 	private JRadioButton bookMeetingroomRadioButton;
 	private JRadioButton otherPlaceRadioButton;
@@ -103,7 +106,7 @@ public class NewMeeting extends JPanel{
 		addParticipantsButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			//	calendarpanel.goTo  AddRemoveParticipants();
+				addRemovep = new AddRemoveParticipants(calendar);
 			}
 		});
 		saveButton = new JButton("Lagre");
