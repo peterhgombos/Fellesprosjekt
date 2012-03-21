@@ -19,7 +19,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 
 @SuppressWarnings("serial")
-public class Sidepanel extends JPanel implements FocusListener, ActionListener{
+public class Sidepanel extends JPanel implements FocusListener{
 	
 	private JButton message;
 	private JButton newAppointment;
@@ -89,13 +89,9 @@ public class Sidepanel extends JPanel implements FocusListener, ActionListener{
 		listModel.addElement("");
 		listModel.addElement("");
 		
-		
 		setLayout(null);
-		//employeeList.setLayout(null);
-		//scroll.setLayout(null);
 		resize();
 
-		
 		add(message);
 		add(newAppointment);
 		add(newMeeting);
@@ -103,8 +99,6 @@ public class Sidepanel extends JPanel implements FocusListener, ActionListener{
 		add(employeesAppointments);
 		add(logOut);
 		add(addEmployee);
-		//add(employeeList);
-		//add(selectedEmployeeList);
 		add(search);
 		add(scroll);
 		add(scrollSelectedEmployee);
@@ -138,9 +132,7 @@ public class Sidepanel extends JPanel implements FocusListener, ActionListener{
 		search.addFocusListener(this);
 		
 		//legge til scrolling
-		
 		scroll.setBounds(GuiConstants.DISTANCE, search.getY() + 2 + message.getHeight(), message.getWidth(), message.getHeight()*4);
-		
 		
 		for (int i = 0; i < countEmployee; i++) {
 			checkBox = new JCheckBox();
@@ -195,12 +187,6 @@ public class Sidepanel extends JPanel implements FocusListener, ActionListener{
 		if (!search.getText().equals("Søk")) {
 			search.setText("Søk");
 		}
-		
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 }
