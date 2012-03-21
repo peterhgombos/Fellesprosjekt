@@ -40,7 +40,7 @@ public class MessageReceiver {
 			int personid = p.getPersonID();
 
 			try{
-				ResultSet appointmentResult = database.executeQuery(Queries.getAppointments(personid)); //Get the meetings where the person is a participants	
+				ResultSet appointmentResult = database.executeQuery(Queries.getAppointments(personid)); //Get the appointments where the person is a participants	
 				ResultSet meetingResult = database.executeQuery(Queries.getMeetings(personid)); //Get the meetings where the person is a participants	
 
 				Collection<Appointment> appointments = resultSetToAppointment(appointmentResult);
