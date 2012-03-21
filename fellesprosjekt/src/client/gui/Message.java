@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.ScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
@@ -34,8 +36,9 @@ public class Message extends JPanel implements FocusListener{
 	private JCheckBox checkBox;
 	private JLabel nameLabel;
 	private ArrayList<JCheckBox> boxList;
+	private CalendarPanel calendar;
 
-	public Message() {
+	public Message(CalendarPanel calendarPanel) {
 		sizeValue = 10;
 		x = 5;
 		y = 5;
@@ -44,11 +47,20 @@ public class Message extends JPanel implements FocusListener{
 		checkBox = new JCheckBox();
 		boxList = new ArrayList<JCheckBox>();
 		nameLabel = new JLabel();
+		calendar = calendarPanel;
 		
 		all = new JCheckBox();
 		searchfield = new JTextField("Søk");
 		delete = new JButton("Slett");
 		toCalender = new JButton("Til Kalender");
+		toCalender.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				calendar.goToCalender();
+				
+			}
+		});
 		headLine = new JLabel("Meldinger");
 		messageList = new JPanel();
 		scroll = new ScrollPane();
@@ -106,7 +118,7 @@ public class Message extends JPanel implements FocusListener{
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		Message meeting = new Message();
+		Message meeting = new Message(null);
 		frame.add(meeting);
 		frame.getContentPane();
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
