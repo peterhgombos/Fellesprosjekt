@@ -14,7 +14,7 @@ public class MessageType {
 	public static final String RECEIVE_PARTICIPANTS = "receiveParticipants";
 	
 	public static final String REQUEST_NEW_APPOINTMENT = "requestNewAppointment";
-	public static final String RECEIVE_NEW_APPOINTMENT = "receiveNewAppontment";
+	public static final String RECEIVE_NEW_APPOINTMENT = "receiveNewAppointment";
 	
 	public static final String RECEIVE_NOTE = "receive Note";
 	public static final String REQUEST_NOTE = "requestNote";

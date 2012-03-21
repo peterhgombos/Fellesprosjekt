@@ -41,22 +41,77 @@ public class SidePanel extends JPanel implements FocusListener{
 	private JScrollPane scroll;
 	private JScrollPane scrollSelectedEmployee;
 	private DefaultListModel listModel;
+	private CalendarPanel calendarpanel;
 	
-	public SidePanel() {
+	public SidePanel(CalendarPanel calendarPanel) {
 		countEmployee = 10;
 		x = 5;
 		y = 5;
 		width = 30;
 		height = 30;
+		calendarpanel = calendarPanel;
 		
 		listModel = new DefaultListModel();
 		message = new JButton("Meldinger");
+		message.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				calendarpanel.goToMessages();
+				
+			}
+		});
 		newAppointment = new JButton("Ny Avtale");
+		newAppointment.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				calendarpanel.goToNewAppointment();
+			}
+		});
 		newMeeting = new JButton("Nytt møte");
+		newMeeting.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				calendarpanel.goToNewMeeting();
+			}
+		});
 		myAppointments = new JButton("Mine Avtaler");
+		myAppointments.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				calendarpanel.goToMyAppointments();
+			}
+		});
 		employeesAppointments = new JButton("Ansattes Avtaler");
+		employeesAppointments.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// calendarPanel
+				
+			}
+		});
 		logOut = new JButton("Logg Ut");
+		logOut.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// calendarPanel
+				
+			}
+		});
 		addEmployee = new JButton("Legg Til");
+		addEmployee.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		employeeList = new JPanel();
 		employeeList.setBackground(Color.WHITE);
 		employeeList.setLayout(null);
@@ -96,7 +151,6 @@ public class SidePanel extends JPanel implements FocusListener{
 		add(newAppointment);
 		add(newMeeting);
 		add(myAppointments);
-		add(employeesAppointments);
 		add(logOut);
 		add(addEmployee);
 		add(search);
@@ -109,7 +163,7 @@ public class SidePanel extends JPanel implements FocusListener{
 		message.setFont(GuiConstants.BUTTON_FONT);
 		
 		newAppointment.setBounds(GuiConstants.DISTANCE, message.getY() + message.getHeight()+
-				GuiConstants.GROUP_DISTANCE, 
+				GuiConstants.GROUP_DISTANCE+5, 
 				message.getWidth(), message.getHeight());
 		newAppointment.setFont(GuiConstants.BUTTON_FONT);
 		
@@ -127,33 +181,32 @@ public class SidePanel extends JPanel implements FocusListener{
 		employeesAppointments.setFont(GuiConstants.BUTTON_FONT);
 		
 		
-		search.setBounds(GuiConstants.DISTANCE, employeesAppointments.getY() + GuiConstants.GROUP_DISTANCE + message.getHeight(), message.getWidth(), message.getHeight());
+		search.setBounds(GuiConstants.DISTANCE, employeesAppointments.getY() + GuiConstants.GROUP_DISTANCE-30 + message.getHeight(), message.getWidth(), message.getHeight());
 		search.setText("Søk");
 		search.addFocusListener(this);
 		
 		//legge til scrolling
-		scroll.setBounds(GuiConstants.DISTANCE, search.getY() + 2 + message.getHeight(), message.getWidth(), message.getHeight()*4);
+		scroll.setBounds(GuiConstants.DISTANCE, search.getY() +2 + message.getHeight(), message.getWidth(), message.getHeight()*5);
 		
 		for (int i = 0; i < countEmployee; i++) {
 			checkBox = new JCheckBox();
 			nameLabel = new JLabel();
 			nameLabel.setText("hei");
-			checkBox.setBounds(x, y, width, height);
+			checkBox.setBounds(x, y, width-6, height);
 			checkBox.setOpaque(false);
-			nameLabel.setBounds(x+width, y, width*2, height);
+			nameLabel.setBounds(x+width, y, width, height);
 			employeeList.add(checkBox);
 			employeeList.add(nameLabel);
 			y+=22;
 			employeeList.setSize(employeeList.getWidth(), y);
 		}
-		employeeList.setBounds(GuiConstants.DISTANCE, search.getY() + 2 + message.getHeight(), message.getWidth(), employeeList.getHeight());
+		employeeList.setBounds(GuiConstants.DISTANCE, search.getY() + 2 + message.getHeight(), message.getWidth()-20, employeeList.getHeight());
 		employeeList.setPreferredSize(employeeList.getSize());
 				
 		addEmployee.setBounds(GuiConstants.DISTANCE, scroll.getY() + GuiConstants.DISTANCE + scroll.getHeight(), message.getWidth()/2, message.getHeight());
 		
 		scrollSelectedEmployee.setBounds(GuiConstants.DISTANCE, addEmployee.getY() + GuiConstants.DISTANCE + message.getHeight(), message.getWidth(), message.getHeight()*4);
-//		selectedEmployeeList.setBounds(guiConstants.DISTANCE, addEmployee.getY() + guiConstants.DISTANCE + message.getHeight(), message.getWidth(), selectedEmployeeList.getHeight());
-//		selectedEmployeeList.setPreferredSize(employeeList.getSize());
+
 		
 		logOut.setBounds(GuiConstants.DISTANCE, scrollSelectedEmployee.getY() + scrollSelectedEmployee.getHeight() + GuiConstants.DISTANCE, message.getWidth(), message.getHeight());
 		logOut.setFont(GuiConstants.BUTTON_FONT);
@@ -162,7 +215,7 @@ public class SidePanel extends JPanel implements FocusListener{
 	
 	public static void main(String[] args) {
 		JFrame test = new JFrame();
-		SidePanel s = new SidePanel();
+		SidePanel s = new SidePanel(null);
 		test.add(s);
 		
 		test.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

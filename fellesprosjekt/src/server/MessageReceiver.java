@@ -15,6 +15,7 @@ import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
 import common.dataobjects.Meeting;
 import common.dataobjects.Person;
+import common.utilities.DateString;
 import common.utilities.MessageType;
 
 import client.authentication.Login;
@@ -107,8 +108,8 @@ public class MessageReceiver {
 				int leaderid = result.getInt(Database.COL_LEADER);
 				String title = result.getString(Database.COL_TITLE);
 				String description = result.getString(Database.COL_DESCRIPTION);
-				Date start = result.getDate(Database.COL_FROM);
-				Date end = result.getDate(Database.COL_TO);
+				DateString start = new DateString(result.getString(Database.COL_FROM));
+				DateString end = new DateString(result.getString(Database.COL_TO));
 
 				ResultSet participantRes = database.executeQuery(Queries.getParticipantsForMeeting(id));
 				HashMap<Person, Integer> participants = resultSetToPerson(participantRes);
@@ -134,8 +135,8 @@ public class MessageReceiver {
 				int id = result.getInt(Database.COL_APPOINTMENTID);
 				String title = result.getString(Database.COL_TITLE);
 				String description = result.getString(Database.COL_DESCRIPTION);
-				Date start = result.getDate(Database.COL_FROM);
-				Date end = result.getDate(Database.COL_TO);
+				DateString start = new DateString(result.getString(Database.COL_FROM));
+				DateString end = new DateString(result.getString(Database.COL_TO));
 
 				ResultSet participantRes = database.executeQuery(Queries.getParticipantsForMeeting(id));
 				Person leader = resultSetToPerson(participantRes).keySet().iterator().next();

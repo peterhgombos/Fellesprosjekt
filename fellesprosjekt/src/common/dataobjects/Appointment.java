@@ -3,6 +3,8 @@ package common.dataobjects;
 import java.io.Serializable;
 import java.sql.Date;
 
+import common.utilities.DateString;
+
 import xml.XMLElements;
 
 
@@ -14,21 +16,22 @@ public class Appointment implements Serializable{
 	private Person leader;
 	private String title;
 	private String description;
-	private Date startTime;
-	private Date endTime;
-	private String place;
+	private DateString startTime;
+	private DateString endTime;
+	private String place = "sted";
 
-	public Appointment(int id, Person leader, String title, String description, Date start, Date end) throws RuntimeException {
+	public Appointment(int id, Person leader, String title, String description, DateString start, DateString end) throws RuntimeException {
 		this.id = id;
 		this.leader = leader;
 		this.title = title;
 		this.description = description;
-		if(start.after(end)){
-			throw new RuntimeException("Start date must be before end date");
-		}
-
 		this.startTime = start;
 		this.endTime = end;
+		
+		//For testing purposes
+		if (this.startTime.after(endTime)) {
+			throw new RuntimeException();
+		}
 	}
 
 	public Appointment() {
@@ -45,21 +48,21 @@ public class Appointment implements Serializable{
 	}
 
 
-	public Date getStartTime() {
+	public DateString getStartTime() {
 		return startTime;
 	}
 
 	//Sjekke at det er lovlig starttid
-	public void setStartTime(Date startTime) {
+	public void setStartTime(DateString startTime) {
 		this.startTime = startTime;
 	}
 
-	public Date getEndTime() {
+	public DateString getEndTime() {
 		return endTime;
 	}
 
 	//TODO Sjekke at det er lovlig sluttid
-	public void setEndTime(Date endTime) {
+	public void setEndTime(DateString endTime) {
 		this.endTime = endTime;
 	}
 

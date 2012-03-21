@@ -8,7 +8,7 @@ import javax.swing.table.TableColumn;
 import common.dataobjects.ComMessage;
 
 import client.connection.MessageListener;
-import client.connection.MessageType;
+import common.utilities.MessageType;
 
 @SuppressWarnings("serial")
 public class Calendar extends JPanel implements MessageListener {
