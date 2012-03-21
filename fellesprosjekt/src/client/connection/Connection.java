@@ -7,10 +7,7 @@ import java.util.LinkedList;
 
 import server.Server;
 
-import common.dataobjects.Appointment;
-import common.dataobjects.ComMessage;
-import common.dataobjects.Meeting;
-import common.dataobjects.Person;
+import common.dataobjects.*;
 import common.utilities.MessageType;
 
 import client.authentication.Login;
@@ -61,6 +58,9 @@ public class Connection  {
 		writer.send(new ComMessage(p, MessageType.REQUEST_APPOINTMENTS_AND_MEETINGS));
 	}
 	
+	public void requestNewNote(Note n){
+		writer.send(new ComMessage(n, MessageType.REQUEST_NEW_NOTE));
+	}
 	
 	public void requestMessages(Person p) {
 		//TODO
