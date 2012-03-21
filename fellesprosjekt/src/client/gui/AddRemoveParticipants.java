@@ -1,15 +1,13 @@
 package client.gui;
 
 import java.awt.Font;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.*;
 
 @SuppressWarnings("serial")
-public class AddRemoveParticipants extends JPanel{
-	
-	
-	//TODO: lage listcellRender!!
-	//TODO: lage Person generics i Jlistene
+public class AddRemoveParticipants extends JPanel implements FocusListener{
 	
 	JLabel headline;
 	JLabel externalParticipantsLabel;
@@ -30,6 +28,7 @@ public class AddRemoveParticipants extends JPanel{
 	public AddRemoveParticipants() {
 		headline = new JLabel("Legge Til/Fjerne Deltakere");
 		searchField = new JTextField();
+		
 		externalParticipantsField = new JTextField();
 		externalParticipantsLabel = new JLabel("Antall eksterne deltakere");
 		
@@ -72,6 +71,8 @@ public class AddRemoveParticipants extends JPanel{
 		headline.setFont(new Font(headline.getFont().getName(), 0, 30));
 		
 		searchField.setBounds(GuiConstants.DISTANCE*5, headline.getHeight() + GuiConstants.DISTANCE*5, 210, 35);
+		searchField.setText("Søk");
+		searchField.addFocusListener(this);
 		
 		employeeList.setBounds(searchField.getX(), searchField.getY() + searchField.getHeight() + GuiConstants.DISTANCE, 210, 300);
 		
@@ -104,5 +105,20 @@ public class AddRemoveParticipants extends JPanel{
 		frame.setSize(650, 600);
 		frame.setVisible(true);
 	}
-	
+
+	@Override
+	public void focusGained(FocusEvent arg0) {
+		if (searchField.getText().equals("Søk")) {
+			searchField.setText("");
+		}
+		
+	}
+
+	@Override
+	public void focusLost(FocusEvent arg0) {
+		if (!searchField.getText().equals("Søk")) {
+			searchField.setText("Søk");
+		}
+		
+	}
 }
