@@ -145,6 +145,7 @@ public class Sidepanel extends JPanel implements FocusListener{
 			nameLabel = new JLabel();
 			nameLabel.setText("hei");
 			checkBox.setBounds(x, y, width, height);
+			checkBox.setOpaque(false);
 			nameLabel.setBounds(x+width, y, width*2, height);
 			employeeList.add(checkBox);
 			employeeList.add(nameLabel);
