@@ -31,29 +31,30 @@ public class CalendarPanel extends JPanel {
 	}
 	
 	public void goToCalender(){
+		if(sidePanel == null){
 		sidePanel = new SidePanel(this);
 		sidePanel.setBounds(0, 0, 180, 700);
+		add(sidePanel);
+		}
+		removeAllComponents();
 		
 		calendarPanel = new Calendar();
 		calendarPanel.setBounds(sidePanel.getX() + sidePanel.getWidth(), 0, 900, 700);
 		
 		ServerData.addMessageListener(calendarPanel);
 		
-		removeAll();
-		add(sidePanel);
+		
+		
 		add(calendarPanel);
 	}
 	
 	public void goToMessages(){
-		
-		sidePanel = new SidePanel(this);
-		sidePanel.setBounds(0, 0, 180, 700);
+		removeAllComponents();
 		
 		messagePanel = new Message(this);
 		messagePanel.setBounds(sidePanel.getX() + sidePanel.getWidth(), 0, 900, 700);
 		
-		removeAll();
-		add(sidePanel);
+
 		add(messagePanel);
 		
 		frame.repaint();
@@ -61,40 +62,34 @@ public class CalendarPanel extends JPanel {
 	}
 	
 	public void goToNewAppointment(){
-		sidePanel = new SidePanel(this);
-		sidePanel.setBounds(0, 0, 180, 700);
-		
-		newAppointmentPanel = new NewAppointment();
+
+		removeAllComponents();
+		newAppointmentPanel = new NewAppointment(this);
 		newAppointmentPanel.setBounds(sidePanel.getX() + sidePanel.getWidth(), 0, 900, 700);
 		
-		removeAll();
-		add(sidePanel);
+		
 		add(newAppointmentPanel);
 		frame.repaint();
 	}
 	
 	public void goToNewMeeting(){
-		sidePanel = new SidePanel(this);
-		sidePanel.setBounds(0, 0, 180, 700);
-		
-		newMeetingPanel = new NewMeeting();
+
+		removeAllComponents();
+		newMeetingPanel = new NewMeeting(this);
 		newMeetingPanel.setBounds(sidePanel.getX()+ sidePanel.getWidth(), 0, 900, 700);
 		
-		removeAll();
-		add(sidePanel);
+		
 		add(newMeetingPanel);
 		frame.repaint();
 	}
 	
 	public void goToMyAppointments(){
-		sidePanel = new SidePanel(this);
-		sidePanel.setBounds(0, 0, 180, 700);
-		
-		myAppointments = new Appointments();
+
+		removeAllComponents();
+		myAppointments = new Appointments(this);
 		myAppointments.setBounds(sidePanel.getX() + sidePanel.getWidth(), 0, 900, 700);
 		
-		removeAll();
-		add(sidePanel);
+
 		add(myAppointments);
 		frame.repaint();
 	}
@@ -104,6 +99,24 @@ public class CalendarPanel extends JPanel {
 		removeAll();
 		client.showLogin();
 
+	}
+	
+	public void removeAllComponents(){
+		if(calendarPanel != null){
+			remove(calendarPanel);
+		}
+		if(messagePanel != null){
+			remove(messagePanel);
+		}
+		if(newAppointmentPanel!= null){
+			remove(newAppointmentPanel);
+		}
+		if(newMeetingPanel != null){
+			remove(newMeetingPanel);
+		}
+		if(myAppointments != null){
+			remove(myAppointments);
+		}
 	}
 	
 	
