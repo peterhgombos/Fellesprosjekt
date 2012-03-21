@@ -11,8 +11,6 @@ public class Note {
 	
 	public Note (String title, Appointment appointment){
 		this.title = title;
-		this.timeAdded = timeAdded;
-		this.id = id;
 		this.appointment = appointment;
 	}
 	
