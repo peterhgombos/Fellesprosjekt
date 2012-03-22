@@ -19,6 +19,9 @@ public class MessageType {
 	public static final String REQUEST_NEW_NOTE = "requestNewNote";
 	public static final String RECEIVE_NEW_NOTE = "receiveNewNote";
 	
-	public static final String RECEIVE_NOTE = "receive Note";
 	public static final String REQUEST_NOTE = "requestNote";
+	public static final String RECEIVE_NOTE = "receiveNote";
+	
+	public static final String REQUEST_SEARCH_PERSON = "requestSearchPerson";
+	public static final String RECEIVE_SEARCH_PERSON = "receiveSearchPerson";
 }
