@@ -1,13 +1,11 @@
 package client;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
-import client.connection.ServerData;
 import client.gui.CalendarPanel;
 import client.gui.LogIn;
 
@@ -27,7 +25,7 @@ public class Client {
 	public Client() {
 		frame = new JFrame("Client");
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.setSize(1197, 739);
+		frame.setSize(1200, 750);
 		frame.setLocationRelativeTo(null);
 		showLogin();
 	}

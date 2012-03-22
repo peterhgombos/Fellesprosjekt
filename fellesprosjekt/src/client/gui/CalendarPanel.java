@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 
 import client.Client;
 import client.connection.ServerData;
+import client.gui.calendar.Calendar;
 
 @SuppressWarnings("serial")
 public class CalendarPanel extends JPanel {
@@ -33,7 +34,7 @@ public class CalendarPanel extends JPanel {
 	public void goToCalender(){
 		if(sidePanel == null){
 		sidePanel = new SidePanel(this);
-		sidePanel.setBounds(0, 0, 180, 700);
+		sidePanel.setBounds(0, 0, 180, 720);
 		add(sidePanel);
 		}
 		removeAllComponents();
@@ -96,6 +97,7 @@ public class CalendarPanel extends JPanel {
 	public void logout(){
 
 		removeAll();
+		ServerData.disConnect();
 		client.showLogin();
 
 	}

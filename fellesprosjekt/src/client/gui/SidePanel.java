@@ -102,7 +102,6 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 			
 			public void actionPerformed(ActionEvent e) {
 				calendarpanel.logout();
-				
 			}
 		});
 		
@@ -201,7 +200,7 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 		employeesAppointments.setFont(GuiConstants.BUTTON_FONT);
 		
 		
-		search.setBounds(GuiConstants.DISTANCE, employeesAppointments.getY() + GuiConstants.GROUP_DISTANCE-30 + message.getHeight(), message.getWidth(), message.getHeight());
+		search.setBounds(GuiConstants.DISTANCE, employeesAppointments.getY() + message.getHeight(), message.getWidth(), message.getHeight());
 		search.setText("Søk");
 		search.addFocusListener(this);
 		

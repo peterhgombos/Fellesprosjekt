@@ -4,12 +4,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.Collection;
 
-import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
-import common.utilities.MessageType;
-
 
 public class ServerReader extends Thread {
 	
@@ -34,7 +30,7 @@ public class ServerReader extends Thread {
 			reader.close();
 			socket.close();
 		} catch (IOException e) {
-			//ingenting, hvis det skjer noe her f�r det bare v�re, de er allerede frakoblet
+			//ingenting, hvis det skjer noe her får det bare være, de er allerede frakoblet
 			//egentlig kan man ikke annta dette, det kan skje skumle feil men det kan bli komplisert
 		}
 	}
@@ -48,24 +44,14 @@ public class ServerReader extends Thread {
 					disconnect();
 					return;
 				}
-				
-				if(message.getType().equals(MessageType.RECEIVE_APPOINTMENTS)){
-					for(Appointment a : (Collection<Appointment>)(message .getData())){
-						System.out.println("RAWWWWWWWWWWW: " + a.getTitle());
-					}
-				}
-				
 				connection.receiveMessage(message);
 			}catch (SocketException e) {
-				e.printStackTrace();
 				disconnect();
 				return;
 			}catch (IOException e) {
-				e.printStackTrace();
 				disconnect();
 				return;
 			}catch(ClassNotFoundException e){
-				e.printStackTrace();
 				disconnect();
 				return;
 			}

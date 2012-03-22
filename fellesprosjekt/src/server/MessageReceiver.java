@@ -49,10 +49,7 @@ public class MessageReceiver {
 				Collection<Meeting> meetings = resultSetToMeeting(meetingResult);
 
 				for(Meeting m: meetings){
-					Server.console.writeline(m.getTitle());
-					Server.console.writeline(m.getAppointmentLeader().getFirstname());
 					for(Person pp : m.getParticipants().keySet()){
-						Server.console.writeline("  " + pp.getFirstname());
 					}
 				}
 
@@ -73,6 +70,9 @@ public class MessageReceiver {
 		}
 		else if(messageType.equals(MessageType.REQUEST_NEW_APPOINTMENT)){
 			newAppointment(message);
+		}
+		else if(messageType.equals(MessageType.REQUEST_NEW_MEETING)){
+			newMeeting(message);
 		}
 		else if(messageType.equals(MessageType.REQUEST_NEW_NOTE)){
 			Note createdNote = newNote(message);
@@ -105,9 +105,7 @@ public class MessageReceiver {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
-		
 		return null;
-		
 	}
 
 	private Person requestLogin(ComMessage message){
@@ -133,6 +131,25 @@ public class MessageReceiver {
 			ComMessage comMesNewApp = new ComMessage(appo, MessageType.RECEIVE_NEW_APPOINTMENT);
 			database.updateDB(Queries.addPersonToAttend(appo.getLeader().getPersonID(), appo.getId()));
 			sendToAll(comMesNewApp);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	}
+	private void newMeeting(ComMessage message){
+		Meeting newMeet = (Meeting) message.getData();
+		try{
+			database.updateDB(Queries.createNewMeeting(newMeet.getTitle(), newMeet.getDescription(), newMeet.getStartTime(), newMeet.getEndTime(),newMeet.getPlace(), newMeet.getRoom() == null ? null : newMeet.getRoom().getId(), newMeet.getLeader().getPersonID()));
+			ResultSet rs = database.executeQuery(Queries.getLastMeeting());
+			
+			Meeting meeti = resultSetToMeeting(rs).get(0);
+			
+			for(Person p : newMeet.getParticipants().keySet()){
+				database.updateDB(Queries.addPersonToAttend(p.getPersonID(), meeti.getId()));
+			}
+			database.updateDB(Queries.addPersonToAttend(meeti.getLeader().getPersonID(), meeti.getId()));
+			ComMessage comMesNewMeet = new ComMessage(meeti, MessageType.RECEIVE_NEW_MEETING);
+			
+			sendToAll(comMesNewMeet);
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -293,9 +310,7 @@ public class MessageReceiver {
 	}
 
 	public synchronized void sendToAll(ComMessage message){
-		Server.console.writeline("send to all");
 		for (ClientWriter client : clients.values()) {
-			Server.console.writeline("send to: " + client.getIP());
 			client.send(message);
 		}
 	}

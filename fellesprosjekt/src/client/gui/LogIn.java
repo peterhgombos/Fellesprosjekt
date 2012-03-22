@@ -50,9 +50,7 @@ public class LogIn extends JPanel implements MessageListener, ActionListener{
 		add(passwordField);
 		add(loginButton);
 		
-		
 		ServerData.addMessageListener(this);
-		
 		
 		passwordField.addActionListener(this);
 		nameField.addActionListener(this);
@@ -84,24 +82,24 @@ public class LogIn extends JPanel implements MessageListener, ActionListener{
 			Person user = (Person)m.getData();
 			if(user == null){
 				loginButton.setEnabled(true);
-				Client.console.writeline("ugyldig login");
+				Client.console.writeline("Ugyldig login");
 				UserInformationMessages.showErrormessage("Ugyldig brukernavn eller passord");
 				return;
 			}
-			Client.console.writeline("logget inn som bruker " + user.getUsername());
+			Client.console.writeline("Logget inn som bruker " + user.getUsername());
 			ServerData.removeMessageListener(this);
 			client.loggedIn(user);
 		}
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		try{
 			if(!ServerData.isConnected()){
 				ServerData.connect();
 			}
 		}catch(IOException e1){
-			Client.console.writeline("kunne ikke koble til");
+			Client.console.writeline("Kunne ikke koble til");
 			UserInformationMessages.showErrormessage("Kunne ikke koble til");
 			return;
 		}

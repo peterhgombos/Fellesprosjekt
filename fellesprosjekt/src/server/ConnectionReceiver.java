@@ -29,14 +29,10 @@ public class ConnectionReceiver extends Thread{
 				server.addClient(clientWriter);				
 				ClientReader clientReader = new ClientReader(socket, server);
 				clientReader.start();
-				
 			} catch (IOException e) {
 				Server.console.writeline(e.getMessage());
 				
 			}
-			
 		}
-		
-		
 	}
 }

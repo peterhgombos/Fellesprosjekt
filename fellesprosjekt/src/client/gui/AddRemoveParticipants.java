@@ -135,8 +135,6 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 				newMeeting.addParticipants(participants);
 				frame.dispose();
 				ServerData.removeMessageListener(thisAddRemoveParticipants);
-				
-				//TODO lagre
 			}
 		});
 		

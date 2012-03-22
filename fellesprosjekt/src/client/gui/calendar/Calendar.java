@@ -1,4 +1,4 @@
-package client.gui;
+package client.gui.calendar;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -14,8 +14,8 @@ import javax.swing.table.TableColumn;
 
 import common.dataobjects.ComMessage;
 
-import client.connection.MessageListener;
 import client.connection.*;
+import client.gui.GuiConstants;
 import common.utilities.MessageType;
 
 @SuppressWarnings("serial")
@@ -62,7 +62,7 @@ public class Calendar extends JPanel implements MessageListener {
 		lastWeek.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				calModel.lastWeek();
 				weekNumberField.setText(""+calModel.getWeek());
 				yearField.setText("" + calModel.getYear());
@@ -73,37 +73,31 @@ public class Calendar extends JPanel implements MessageListener {
 		
 		nextWeek.addActionListener(new ActionListener() {
 			
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				calModel.nextWeek();
 				weekNumberField.setText("" + calModel.getWeek());
 				yearField.setText("" + calModel.getYear());
 				repaint();
-				
 			}
 		});
 		
 		weekNumberField.addActionListener(new ActionListener() {
 			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				if(!weekNumberField.getText().equals((""+calModel.getWeek()))){
 					calModel.setWeek(Integer.parseInt(weekNumberField.getText()));
 					repaint();
 				}
-				
 			}
 		});
 		
 		yearField.addActionListener(new ActionListener() {
 			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				if (!yearField.getText().equals(("" + calModel.getYear()))) {
 					calModel.setYear(Integer.parseInt(yearField.getText()));
 					repaint();
 				}
-				
 			}
 		});
 		
@@ -117,8 +111,6 @@ public class Calendar extends JPanel implements MessageListener {
 		add(weekNumberField);
 		add(yearField);
 		add(nextWeek);
-		nextWeek.setFont(new Font("Arial", 0, 14));
-		System.out.println(nextWeek.getFont().getName());
 	}
 	
 	private void resize(){
@@ -132,7 +124,7 @@ public class Calendar extends JPanel implements MessageListener {
 		yearField.setFont(GuiConstants.BUTTON_FONT);
 		nextWeek.setBounds(yearField.getX() + yearField.getWidth() + GuiConstants.DISTANCE, lastWeek.getY(), 50, GuiConstants.BUTTON_HEIGTH);
 		nextWeek.setFont(GuiConstants.BUTTON_FONT);
-		scrollPane.setBounds(0, lastWeek.getHeight() + lastWeek.getY() + GuiConstants.GROUP_DISTANCE, 1000, 650);
+		scrollPane.setBounds(0, lastWeek.getHeight() + lastWeek.getY() + GuiConstants.GROUP_DISTANCE + 5, 1002, 620);
 	}
 
 	@Override
@@ -141,5 +133,4 @@ public class Calendar extends JPanel implements MessageListener {
 			table.repaint();
 		}
 	}
-	
 }

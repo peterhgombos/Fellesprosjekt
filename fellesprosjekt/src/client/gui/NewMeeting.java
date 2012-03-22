@@ -66,7 +66,7 @@ public class NewMeeting extends JPanel{
 	private JComboBox startTimeMinField;
 	private JComboBox endTimeMinField;
 	private JComboBox roomPicker;
-	private AddRemoveParticipants addRemovep;
+	private AddRemoveParticipants addRemoveParticipants;
 	
 	private JRadioButton bookMeetingroomRadioButton;
 	private JRadioButton otherPlaceRadioButton;
@@ -85,8 +85,7 @@ public class NewMeeting extends JPanel{
 	public NewMeeting(CalendarPanel calendarPanel){
 		
 		String[] min = {"00", "15", "30", "45"};
-		String[] hours= {"00","01","02","03","04","05","06","07","08","09","10",
-						"11","12","13","14","15","16","17","18","19","20","21","22","23"};
+		String[] hours= {"00","01","02","03","04","05","06","07","08","09","10", "11","12","13","14","15","16","17","18","19","20","21","22","23"};
 		
 		thisNewMeeting = this;
 		
@@ -125,15 +124,11 @@ public class NewMeeting extends JPanel{
 		severalDays.addItemListener(new ItemListener() {
 
 			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
-				if (e.getStateChange() == e.SELECTED) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
 					datepickerDays.setVisible(true);
 					datepickerDays.setEnabled(true);
-
-
 				}
-				if (e.getStateChange() == e.DESELECTED){
-
+				if (e.getStateChange() == ItemEvent.DESELECTED){
 					//TODO remember to ensure end-date is not linked to datepickerDays when disabled/invisible
 					datepickerDays.setVisible(false);
 					datepickerDays.setEnabled(false);
@@ -142,14 +137,12 @@ public class NewMeeting extends JPanel{
 		});
 		
 		bookMeetingroomRadioButton.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				roomPicker.setEnabled(true);
 				placeField.setEditable(false);
 			}
 		});
 		otherPlaceRadioButton.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				roomPicker.setEnabled(false);
 				placeField.setEditable(true);
@@ -158,9 +151,8 @@ public class NewMeeting extends JPanel{
 		
 		addParticipantsButton = new JButton("Legg til/fjern");
 		addParticipantsButton.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
-				addRemovep = new AddRemoveParticipants(calendar,thisNewMeeting);
+				addRemoveParticipants = new AddRemoveParticipants(calendar, thisNewMeeting);
 			}
 		});
 		saveButton = new JButton("Lagre");
@@ -178,16 +170,14 @@ public class NewMeeting extends JPanel{
 					dateEnd = dateStart;
 				}
 				
-				//TODO: Feilmeldinger for dato
-				
-				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem();
-				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem();
+				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem() + ":0";
+				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
 				
 				String description = descriptionArea.getText();
 				
 				String place = "";
 				if(bookMeetingroomRadioButton.isSelected()){
-					//place = roomPicker.getSelectedItem();
+					place = ((common.dataobjects.Room)roomPicker.getSelectedItem()).getId();
 				}
 				else if (otherPlaceRadioButton.isSelected()){
 					place = placeField.getText();
@@ -195,21 +185,17 @@ public class NewMeeting extends JPanel{
 				
 				if(title.trim().equals("")){
 					UserInformationMessages.showErrormessage("Du må lage en tittel");
+					return;
 				}
-//				TODO Datoene
-//				else if(){
-//					
-//				}
 				else if(bookMeetingroomRadioButton.isSelected() && participantsList.size()<2){
 					UserInformationMessages.showErrormessage("Det må være minst 2 deltakere for å booke et møterom");
+					return;
 				}
 				
 				Meeting m = new Meeting(-1, Client.getUser(),title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList);
-				//ServerData.requestNewMeeting(m);;
+				ServerData.requestNewMeeting(m);;
 				
 				calendar.goToCalender();
-				
-				
 			}
 		});
 		cancelButton = new JButton("Avbryt");
@@ -273,7 +259,7 @@ public class NewMeeting extends JPanel{
 		
 		datepicker.setBounds(GuiConstants.DISTANCE*2 + titleLabel.getWidth() + titleLabel.getX(), dateLabel.getY(), 190, GuiConstants.TEXTFIELD_HEIGTH);
 		
-		severalDays.setBounds(datepicker.getX(), dateLabel.getY() + dateLabel.HEIGHT + GuiConstants.GROUP_DISTANCE, 20, 20);
+		severalDays.setBounds(datepicker.getX(), dateLabel.getY() + dateLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 20, 20);
 
 		severalDaysLabel.setBounds(severalDays.getX() + severalDays.getWidth() + GuiConstants.DISTANCE, severalDays.getY(), 200, GuiConstants.LABEL_HEIGTH);
 		severalDaysLabel.setFont(new Font(severalDaysLabel.getFont().getName(),0 ,10));
@@ -317,7 +303,6 @@ public class NewMeeting extends JPanel{
 		saveButton.setFont(new Font(saveButton.getFont().getName(), 0, 14));
 		
 		cancelButton.setBounds(saveButton.getX() + saveButton.getWidth() + GuiConstants.DISTANCE, saveButton.getY(), 100, GuiConstants.BUTTON_HEIGTH);
-	
 		}
 	
 	public void addParticipants(HashMap<Person,Integer> p){

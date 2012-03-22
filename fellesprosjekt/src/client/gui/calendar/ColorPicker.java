@@ -1,4 +1,4 @@
-package client.gui;
+package client.gui.calendar;
 
 import java.awt.Color;
 

@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import server.Server;
-
 public class Database {
 	
 	public static final String COL_APPOINTMENTID = "AVTALEID";

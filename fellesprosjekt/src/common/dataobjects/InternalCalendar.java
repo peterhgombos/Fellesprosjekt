@@ -27,8 +27,6 @@ public class InternalCalendar {
 	@SuppressWarnings("unchecked")
 	private void addToCal(Appointment app){
 		
-		System.out.println("ADDTOCAL" + app.getTitle());
-		
 		calendar.set(app.getStartTime().getYear(), app.getStartTime().getMonth() -1, app.getStartTime().getDay(), app.getStartTime().getHour(), 0);
 		int year = calendar.get(Calendar.YEAR);
 		int week = calendar.get(Calendar.WEEK_OF_YEAR);
@@ -52,7 +50,7 @@ public class InternalCalendar {
 		}else {
 			tempyear.put(week, arr);
 		}
-		System.out.println(hourInWeek + " " + eHourInWeek);
+		
 		for(int i = hourInWeek; i < eHourInWeek; i++){
 			if(arr[i] == null){
 				arr[i] = new ArrayList<Appointment>(1);
@@ -83,9 +81,6 @@ public class InternalCalendar {
 		int cweek = calendar.get(Calendar.WEEK_OF_YEAR);
 		int cday = dayToWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
 		int chourInWeek = cday * 24 + calendar.get(Calendar.HOUR_OF_DAY);
-		
-		System.out.println(hour);
-		System.out.println(chourInWeek);
 		
 		if(year == cyear && week == cweek && hour == chourInWeek){
 			return true;

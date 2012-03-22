@@ -12,6 +12,7 @@ import common.dataobjects.*;
 import common.sendobjects.AppointmentInvites;
 import common.utilities.MessageType;
 
+import client.Client;
 import client.authentication.Login;
 
 public class Connection  {
@@ -29,6 +30,14 @@ public class Connection  {
 		writer = new ServerWriter(socket);
 	}
 	
+	public void disConnect()  {
+		try{
+			socket.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	
 	public void addConnectionListener(ConnectionListener listener) {
 		this.listeners.add(listener);
 	}
@@ -39,6 +48,11 @@ public class Connection  {
 	
 	public void requestNewAppointment(Appointment newAppointment){
 		writer.send(new ComMessage(newAppointment, MessageType.REQUEST_NEW_APPOINTMENT));
+	}
+	
+	public void requestNewMeeting(Meeting newMeeting){
+		writer.send(new ComMessage(newMeeting, MessageType.REQUEST_NEW_MEETING));
+		Client.console.writeline("NEW MEETING\nDeltagere: " + newMeeting.getParticipants().keySet().size());
 	}
 	
 	public synchronized void receiveMessage(ComMessage s) {
@@ -53,7 +67,6 @@ public class Connection  {
 		Login login = new Login(username, password);
 		writer.send(new ComMessage(login, MessageType.REQUEST_LOGIN));
 	}
-	
 	
 	public void requestMeetingsAndAppointments(Person p) {
 		writer.send(new ComMessage(p, MessageType.REQUEST_APPOINTMENTS_AND_MEETINGS));
@@ -79,6 +92,4 @@ public class Connection  {
 	public void requestGetParticipnts(Appointment app){
 		writer.send(new ComMessage(app, MessageType.REQUEST_PARTICIPANTS));		
 	}
-	
-
 }

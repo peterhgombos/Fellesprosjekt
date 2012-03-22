@@ -2,16 +2,14 @@ package common.dataobjects;
 
 import java.awt.Color;
 import java.io.Serializable;
-import java.sql.Date;
 
-import client.gui.ColorPicker;
+import xml.XMLElements;
+import client.gui.calendar.ColorPicker;
 
 import common.utilities.DateString;
 
-import xml.XMLElements;
 
-
-public class Appointment implements Serializable{
+public class Appointment implements Serializable {
 
 	private static final long serialVersionUID = 3662988846703010000L;
 
@@ -131,5 +129,4 @@ public class Appointment implements Serializable{
 	public Color getColor(){
 		return color;
 	}
-
 }

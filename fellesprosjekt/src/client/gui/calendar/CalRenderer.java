@@ -1,4 +1,4 @@
-package client.gui;
+package client.gui.calendar;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -46,11 +46,11 @@ public class CalRenderer extends DefaultTableCellRenderer {
 				innerpanel.setBounds(bredde * i, 0, bredde , 60);
 				panel.add(innerpanel);
 				
-				if(calendar.startsInHour(a, model.getYear(), model.getWeek(), ((column - 1) * 24) + row)){
+				if(row == 0 || calendar.startsInHour(a, model.getYear(), model.getWeek(), ((column - 1) * 24) + row)){
 					
 					JLabel title = new JLabel(" " + a.getTitle());
-					JLabel stime = new JLabel(" " + format.format(a.getStartTime().getHour()) + ":" + format.format(a.getStartTime().getMinute()));
-					JLabel etime = new JLabel(" " + format.format(a.getEndTime().getHour()) + ":" + format.format(a.getEndTime().getMinute()));
+					JLabel stime = new JLabel(" Fra: " + format.format(a.getStartTime().getHour()) + ":" + format.format(a.getStartTime().getMinute()));
+					JLabel etime = new JLabel(" Til: " + format.format(a.getEndTime().getHour()) + ":" + format.format(a.getEndTime().getMinute()));
 					
 					title.setBounds(0, 3, bredde , 14);
 					stime.setBounds(0, title.getY() + title.getHeight(), bredde, 14);
@@ -71,11 +71,8 @@ public class CalRenderer extends DefaultTableCellRenderer {
 	}
 	
 	public JLabel hourrenderer(int row){
-		JLabel label = new JLabel();
+		JLabel label = new JLabel(" " + format.format(row) + ".00");
 		label.setOpaque(true);
-		
-		label.setText(" " + format.format(row) + ".00");
-		
 		return label;
 	}
 }

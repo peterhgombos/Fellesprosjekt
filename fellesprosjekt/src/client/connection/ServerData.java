@@ -6,8 +6,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import client.Client;
-
 import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
 import common.dataobjects.Inbox;
@@ -17,7 +15,6 @@ import common.dataobjects.Note;
 import common.dataobjects.Person;
 import common.dataobjects.Room;
 import common.utilities.MessageType;
-
 
 public class ServerData {
 	
@@ -59,6 +56,20 @@ public class ServerData {
 		calendar = new InternalCalendar();
 	}
 	
+	public static void disConnect() {
+		connection.disConnect();
+		
+		connected = false;
+		
+		appointments = null;
+		meetings = null;
+		rooms = null;
+		persons = null;
+		messages = null;
+		
+		calendar = null;
+	}
+	
 	public static void requestLogin(String user, String password){
 		connection.login(user, password);
 	}
@@ -68,6 +79,10 @@ public class ServerData {
 	
 	public static void requestNewAppointment(Appointment a){
 		connection.requestNewAppointment(a);
+	}
+	
+	public static void requestNewMeeting(Meeting m){
+		connection.requestNewMeeting(m);
 	}
 	
 	public static void requestNewNote(Note n){
@@ -90,23 +105,17 @@ public class ServerData {
 	public static synchronized void receiveMessage(ComMessage message){
 		String messageType = message.getType();
 		
-		Client.console.writeline("received message: " + messageType);
-		
 		if(messageType.equals(MessageType.RECEIVE_APPOINTMENTS)){
-			System.out.println("lkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkj");
 			Collection<Appointment> apps = (Collection<Appointment>)message.getData();
 			for(Appointment a: apps){
-				System.out.println("MESSAGERECEIVER APPS: " + a.getTitle());
 				appointments.put(a.getId(), a);
 				persons.put(a.getLeader().getPersonID(), a.getLeader());
 			}
-			System.out.println("" + apps.size());
 			calendar.addAppointments(apps);
 		}
 		else if(messageType.equals(MessageType.RECEIVE_MEETINGS)){
 			Collection<Meeting> meets = (Collection<Meeting>)message.getData();
 			for(Meeting m: meets){
-				System.out.println("MESSAGERECEIVER MØTE" + m.getTitle());
 				meetings.put(m.getId(), m);
 				persons.put(m.getLeader().getPersonID(), m.getLeader());
 				for(Person p : m.getParticipants().keySet()){

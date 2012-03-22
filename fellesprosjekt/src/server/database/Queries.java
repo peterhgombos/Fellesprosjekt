@@ -82,6 +82,10 @@ public class Queries {
 		return	"SELECT * FROM AVTALE " +
 				"ORDER BY AVTALEID DESC LIMIT 1;";
 	}
+	public static String getLastMeeting(){
+		return	"SELECT * FROM AVTALE " +
+				"ORDER BY AVTALEID DESC LIMIT 1;";
+	}
 
 	public static String getNote(int noteId){
 		return	"SELECT * FROM VARSEL " +
@@ -156,6 +160,11 @@ public class Queries {
 				"VALUES ('" + title + "', '" + description + "', '" + startTime.toString() +
 				"', '" + endTime.toString() + "', '" + place + "', '" + leader +"');";
 	}
+	public static String createNewMeeting(String title, String description, DateString startTime, DateString endTime, String place, String room, int leader){
+		return  "INSERT INTO AVTALE (TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED, LEDER, ROMNR) " +
+				"VALUES ('" + title + "', '" + description + "', '" + startTime.toString() +
+				"', '" + endTime.toString() + "', '" + place + "', '" + leader +"', '" + room + "');";
+	}
 
 	public static String addPersonToAttend(int personId, int appId){
 		return	"INSERT INTO DELTAKER (ANSATTNR, AVTALEID, SVAR) " +
@@ -169,7 +178,4 @@ public class Queries {
 				"WHERE A.ROMNR != MOTEROM.ROMNR AND MOTEROM.KAPASITET >= " + capacity;
 
 	}
-
-
-
 }

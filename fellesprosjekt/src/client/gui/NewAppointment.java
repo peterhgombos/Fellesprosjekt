@@ -84,7 +84,6 @@ public class NewAppointment extends JPanel{
 		severalDays.addItemListener(new ItemListener() {
 
 			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
 				if (e.getStateChange() == ItemEvent.SELECTED) {
 					endDPicker.setVisible(true);
 					endDPicker.setEnabled(true);
@@ -115,7 +114,6 @@ public class NewAppointment extends JPanel{
 				} else {
 					dateEnd = dateStart;
 				}
-				//TODO feilmelding for dato
 				
 				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem() + ":0";
 				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
@@ -126,6 +124,7 @@ public class NewAppointment extends JPanel{
 				
 				if(title.trim().equals("")){
 					UserInformationMessages.showErrormessage("Du må lage en tittel");
+					return;
 				}
 
 				Appointment a = new Appointment(-1, Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
@@ -202,7 +201,7 @@ public class NewAppointment extends JPanel{
 		
 		datepicker.setBounds(GuiConstants.DISTANCE*2 + dateLabel.getWidth() + dateLabel.getX(), dateLabel.getY(), 190, GuiConstants.TEXTFIELD_HEIGTH);
 		
-		severalDays.setBounds(datepicker.getX(), dateLabel.getY() + dateLabel.HEIGHT + GuiConstants.GROUP_DISTANCE, 20, 20);
+		severalDays.setBounds(datepicker.getX(), dateLabel.getY() + dateLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 20, 20);
 		
 		severalDaysLabel.setBounds(severalDays.getX() + severalDays.getWidth() + GuiConstants.DISTANCE, severalDays.getY(), 200, GuiConstants.LABEL_HEIGTH);
 		severalDaysLabel.setFont(new Font(severalDaysLabel.getFont().getName(),0 ,10));
