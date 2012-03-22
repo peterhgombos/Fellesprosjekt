@@ -1,7 +1,7 @@
 package common.utilities;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class DateString implements Serializable {
 	
@@ -38,8 +38,11 @@ public class DateString implements Serializable {
 		return second;
 	}
 
-	public DateString(Date d) {
+	public DateString(Timestamp d) {
 		String s = d.toString();
+		s = s.replace('.', ':');
+		System.out.println(s);
+		
 		String[] datetime = s.split(" ");
 		String[] date = datetime[0].split("-");
 		String[] time = datetime[1].split(":");

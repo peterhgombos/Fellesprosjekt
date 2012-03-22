@@ -143,8 +143,8 @@ public class MessageReceiver {
 				String title = result.getString(Database.COL_TITLE);
 				String description = result.getString(Database.COL_DESCRIPTION);
 				String place = result.getString(Database.COL_PLACE);
-				DateString start = new DateString(result.getDate(Database.COL_FROM));
-				DateString end = new DateString(result.getDate(Database.COL_TO));
+				DateString start = new DateString(result.getTimestamp(Database.COL_FROM));
+				DateString end = new DateString(result.getTimestamp(Database.COL_TO));
 
 				ResultSet participantRes = database.executeQuery(Queries.getParticipantsForMeeting(id));
 				HashMap<Person, Integer> participants = resultSetToPersonWithAnswer(participantRes);
@@ -171,8 +171,8 @@ public class MessageReceiver {
 				String title = result.getString(Database.COL_TITLE);
 				String description = result.getString(Database.COL_DESCRIPTION);
 				String place = result.getString(Database.COL_PLACE);
-				DateString start = new DateString(result.getDate(Database.COL_FROM));
-				DateString end = new DateString(result.getDate(Database.COL_TO));
+				DateString start = new DateString(result.getTimestamp(Database.COL_FROM));
+				DateString end = new DateString(result.getTimestamp(Database.COL_TO));
 
 				ResultSet participantRes = database.executeQuery(Queries.getParticipantsForMeeting(id));
 				Person leader = resultSetToPersonWithAnswer(participantRes).keySet().iterator().next();
