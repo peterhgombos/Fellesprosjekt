@@ -3,6 +3,10 @@ package client.gui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -16,6 +20,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 
 import client.Client;
 import client.connection.ServerData;
@@ -147,6 +153,19 @@ public class NewAppointment extends JPanel{
 		add(endTimeHoursField);
 		add(endTimeMinField);
 		add(datepicker);
+		//This is for testing:
+		datepicker.addPropertyChangeListener(new PropertyChangeListener() {
+			
+			@Override
+			public void propertyChange(PropertyChangeEvent evt) {
+				// TODO Auto-generated method stub
+				firePropertyChange("date", evt.getOldValue(), evt.getNewValue());
+				System.out.println(datepicker.getDateFormatString());
+				System.out.println(datepicker.getJCalendar().getCalendar().getTimeInMillis());
+				
+			}
+		});
+		//testing over
 		
 		setLayout(null);
 		resize();
