@@ -30,8 +30,14 @@ public class Queries {
 				"WHERE DELTAKER.ANSATTNR = " + personid + " " +
 				");";
 	}
+	
+	public static String getParticipantsForMeeting(int avtaleid){
+		return 	"SELECT * " +
+				"FROM DELTAKER " + 
+				"WHERE AVTALEID = " + avtaleid + ";";
+	}
 
-	public static String getParticipantsForMeeting(int meetingid){
+	public static String getAnsFromParticipants(int meetingid){
 		return 	"SELECT DELTAKER.SVAR, ANSATT.* " +
 				"FROM ANSATT, DELTAKER " +
 				"WHERE DELTAKER.AVTALEID = " + meetingid + " " +
@@ -137,6 +143,14 @@ public class Queries {
 		public static String addPersonToAttend(int personId, int appId){
 			return	"INSERT INTO DELTAKER (ANSATTNR, AVTALEID, SVAR) " +
 					"VALUES (" + personId + ", " + appId + ", 0);";
+		}
+		
+		public static String getRoomsForTimeSlot(DateString start, DateString end ) {
+			return "SELECT DISTINCT MOTEROM.ROMNR " +
+					"FROM MOTEROM, AVTALE " +
+					"JOIN AVTALE A ON " + start +  " <= B.SLUTTIDSPUNKT AND " + end + " >= B.TIDSPUNKT " + 
+					"WHERE A.ROMNR != MOTEROM.ROMNR";
+			
 		}
 	
 	
