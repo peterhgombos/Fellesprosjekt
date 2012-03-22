@@ -55,6 +55,11 @@ public class Queries {
 				"ORDER BY VARSELID DESC LIMIT 1;";
 	}
 	
+	public static String getLastAppointment(){
+		return	"SELECT * FROM AVTALE " +
+				"ORDER BY AVTALEID DESC LIMIT 1;";
+	}
+	
 	public static String getNote(int noteId){
 		return	"SELECT * FROM VARSEL " +
 				"WHERE VARSEL.VARSELID = " + noteId + ";";

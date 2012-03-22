@@ -73,18 +73,21 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 		
 		add = new JButton(">");
 		add.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO legge deltakere over til lista
+				DefaultListModel addedParticipantsListmodel = (DefaultListModel) addedParticipantsList.getModel();
+				addedParticipantsListmodel.addElement(employeeList.getSelectedValue());
 			}
 		});
+		
 		remove = new JButton("<");
 		remove.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO Fjerne deltakre
+				DefaultListModel addedParticipantsListmodel = (DefaultListModel) addedParticipantsList.getModel();
+				addedParticipantsListmodel.removeElement(addedParticipantsList.getSelectedValue());
 			}
 		});
+		
 		save = new JButton("Lagre");
 		save.addActionListener(new ActionListener() {
 			@Override
@@ -96,6 +99,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 				frame.dispose();
 			}
 		});
+		
 		cancel = new JButton("Avbryt");
 		cancel.addActionListener(new ActionListener() {
 			@Override
