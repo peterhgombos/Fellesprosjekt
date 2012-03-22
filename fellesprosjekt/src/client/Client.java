@@ -27,7 +27,7 @@ public class Client {
 	public Client() {
 		frame = new JFrame("Client");
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.setSize(1096, 739);
+		frame.setSize(1197, 739);
 		frame.setLocationRelativeTo(null);
 		showLogin();
 	}
