@@ -45,10 +45,10 @@ public class NewAppointment extends JPanel{
 	private JTextField placeField;
 	private JTextArea descriptionArea;
 	
-	private JComboBox<String> startTimeHoursField;
-	private JComboBox<String> endTimeHoursField;
-	private JComboBox<String> startTimeMinField;
-	private JComboBox<String> endTimeMinField;
+	private JComboBox startTimeHoursField;
+	private JComboBox endTimeHoursField;
+	private JComboBox startTimeMinField;
+	private JComboBox endTimeMinField;
 	
 	private JButton saveButton;
 	private JButton cancelButton;
@@ -120,10 +120,10 @@ public class NewAppointment extends JPanel{
 			}
 		});
 		
-		startTimeHoursField = new JComboBox<String>(hours);
-		endTimeHoursField = new JComboBox<String>(hours);
-		startTimeMinField = new JComboBox<String>(min);
-		endTimeMinField = new JComboBox<String>(min);
+		startTimeHoursField = new JComboBox(hours);
+		endTimeHoursField = new JComboBox(hours);
+		startTimeMinField = new JComboBox(min);
+		endTimeMinField = new JComboBox(min);
 		
 		scrollPane = new JScrollPane(descriptionArea);
 		
