@@ -122,17 +122,17 @@ public class NewAppointment extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				String title = nameField.getText();
 				
-				String dateStart = datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); 
+				String dateStart = datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + 1 + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); 
 				String dateEnd;
 				if (endDPicker.isEnabled()) {
-					dateEnd = endDPicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + endDPicker.getJCalendar().getCalendar().get(Calendar.MONTH) + "-" + endDPicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); 
+					dateEnd = endDPicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + endDPicker.getJCalendar().getCalendar().get(Calendar.MONTH) + 1 + "-" + endDPicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); 
 				} else {
 					dateEnd = dateStart;
 				}
 				//TODO feilmelding for dato
 				
-				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem();
-				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem();
+				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem() + ":0";
+				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
 				
 				String description = descriptionArea.getText();
 				
