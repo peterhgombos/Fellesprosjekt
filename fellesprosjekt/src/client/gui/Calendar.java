@@ -15,6 +15,7 @@ import javax.swing.table.TableColumn;
 import common.dataobjects.ComMessage;
 
 import client.connection.MessageListener;
+import client.connection.*;
 import common.utilities.MessageType;
 
 @SuppressWarnings("serial")
@@ -34,6 +35,7 @@ public class Calendar extends JPanel implements MessageListener {
 	public Calendar(){
 		setLayout(null);
 		
+		ServerData.getCalendar().getCalendar().setTimeInMillis(System.currentTimeMillis());
 		calModel = new CalModel();
 		weekLabel = new JLabel("Uke");
 		lastWeek = new JButton("<");
