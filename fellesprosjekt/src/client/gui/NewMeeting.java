@@ -3,12 +3,15 @@ package client.gui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,6 +22,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
+
+import com.toedter.calendar.JDateChooser;
 
 import client.Client;
 import client.connection.ServerData;
@@ -31,6 +36,11 @@ import common.utilities.DateString;
 import server.Server;
 
 public class NewMeeting extends JPanel{
+	
+	private JDateChooser datepicker;
+	private JDateChooser datepickerDays;
+	private JCheckBox severalDays;
+	private JLabel severalDaysLabel;
 	
 	private JLabel headlineLabel;
 	private JLabel titleLabel;
@@ -45,7 +55,6 @@ public class NewMeeting extends JPanel{
 	private JScrollPane scrollPane;
 	
 	private JTextField nameField; 
-	private JTextField dateField; //DATEPICKER
 	private JTextField placeField;
 	private JTextArea descriptionArea;
 	
@@ -89,7 +98,6 @@ public class NewMeeting extends JPanel{
 		participantsLabel = new JLabel("Deltakere", SwingConstants.RIGHT);
 		
 		nameField = new JTextField();
-		dateField = new JTextField();
 		placeField = new JTextField();
 		descriptionArea = new JTextArea();
 		descriptionArea.setLineWrap(true);
@@ -101,6 +109,30 @@ public class NewMeeting extends JPanel{
 		radioButtonGroup = new ButtonGroup();
 		radioButtonGroup.add(bookMeetingroomRadioButton);
 		radioButtonGroup.add(otherPlaceRadioButton);
+		
+		datepicker = new JDateChooser();
+		datepickerDays = new JDateChooser();
+		datepickerDays.setVisible(false);
+		severalDays = new JCheckBox();
+		severalDaysLabel = new JLabel("Flere dager");
+		severalDays.addItemListener(new ItemListener() {
+
+			public void itemStateChanged(ItemEvent e) {
+				// TODO Auto-generated method stub
+				if (e.getStateChange() == e.SELECTED) {
+					datepickerDays.setVisible(true);
+					datepickerDays.setEnabled(true);
+
+
+				}
+				if (e.getStateChange() == e.DESELECTED){
+
+					//TODO remember to ensure end-date is not linked to datepickerDays when disabled/invisible
+					datepickerDays.setVisible(false);
+					datepickerDays.setEnabled(false);
+				}
+			}
+		});
 		
 		bookMeetingroomRadioButton.addActionListener(new ActionListener() {
 			@Override
@@ -192,7 +224,6 @@ public class NewMeeting extends JPanel{
 		add(placeLabel);
 		add(roomInformationLabel);
 		add(nameField);
-		add(dateField);
 		add(roomPicker);
 		add(placeField);
 		add(scrollPane);
@@ -205,7 +236,10 @@ public class NewMeeting extends JPanel{
 		add(startTimeMinField);
 		add(endTimeHoursField);
 		add(endTimeMinField);
-		
+		add(datepicker);
+		add(datepickerDays);
+		add(severalDays);
+		add(severalDaysLabel);
 		setLayout(null);
 		resize();
 		
@@ -223,9 +257,17 @@ public class NewMeeting extends JPanel{
 		dateLabel.setBounds(titleLabel.getX(), titleLabel.getY() + titleLabel.getHeight() + GuiConstants.DISTANCE, 100, GuiConstants.LABEL_HEIGTH);
 		dateLabel.setFont(new Font(dateLabel.getFont().getName(), 0, 16));
 		
-		dateField.setBounds(GuiConstants.DISTANCE*2 + titleLabel.getWidth() + titleLabel.getX(), dateLabel.getY(), 190, GuiConstants.TEXTFIELD_HEIGTH);
+		datepicker.setBounds(GuiConstants.DISTANCE*2 + titleLabel.getWidth() + titleLabel.getX(), dateLabel.getY(), 190, GuiConstants.TEXTFIELD_HEIGTH);
 		
-		startTimeLabel.setBounds(titleLabel.getX(), dateLabel.getY() + dateLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 100, GuiConstants.LABEL_HEIGTH);
+		severalDays.setBounds(datepicker.getX(), dateLabel.getY() + dateLabel.HEIGHT + GuiConstants.GROUP_DISTANCE, 20, 20);
+
+		severalDaysLabel.setBounds(severalDays.getX() + severalDays.getWidth() + GuiConstants.DISTANCE, severalDays.getY(), 200, GuiConstants.LABEL_HEIGTH);
+		severalDaysLabel.setFont(new Font(severalDaysLabel.getFont().getName(),0 ,10));
+
+		datepickerDays.setBounds(datepicker.getX() + datepicker.getWidth() + GuiConstants.DISTANCE, datepicker.getY(), 190, GuiConstants.TEXTFIELD_HEIGTH);
+
+		
+		startTimeLabel.setBounds(titleLabel.getX(), severalDays.getY() + severalDays.getHeight() + GuiConstants.GROUP_DISTANCE, 100, GuiConstants.LABEL_HEIGTH);
 		startTimeLabel.setFont(new Font(startTimeLabel.getFont().getName(), 0, 16));
 		
 		startTimeHoursField.setBounds(GuiConstants.DISTANCE*2+ titleLabel.getWidth() + titleLabel.getX() , startTimeLabel.getY(), 70, GuiConstants.TEXTFIELD_HEIGTH);
