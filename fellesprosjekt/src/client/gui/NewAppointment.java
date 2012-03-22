@@ -11,6 +11,8 @@ import java.util.Calendar;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,6 +37,9 @@ import common.utilities.DateString;
 public class NewAppointment extends JPanel{
 	
 	private JDateChooser datepicker;
+	private JDateChooser datepickerDays;
+	private JCheckBox severalDays;
+	private JLabel severalDaysLabel;
 	
 	private JLabel headlineLabel;
 	private JLabel titleLabel;
@@ -78,6 +83,9 @@ public class NewAppointment extends JPanel{
 		nameField = new JTextField();
 		//dateField = new JTextField();
 		datepicker = new JDateChooser();
+		datepickerDays = new JDateChooser();
+		severalDaysLabel = new JLabel("Flere dager");
+		severalDays = new JCheckBox();
 		placeField = new JTextField();
 		
 		descriptionArea = new JTextArea();
