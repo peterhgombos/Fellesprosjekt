@@ -144,14 +144,14 @@ public class NewMeeting extends JPanel{
 		bookMeetingroomRadioButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				roomPicker.setEditable(true);
+				roomPicker.setEnabled(true);
 				placeField.setEditable(false);
 			}
 		});
 		otherPlaceRadioButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				roomPicker.setEditable(false);
+				roomPicker.setEnabled(false);
 				placeField.setEditable(true);
 			}
 		});
@@ -208,6 +208,7 @@ public class NewMeeting extends JPanel{
 				//ServerData.requestNewMeeting(m);;
 				
 				calendar.goToCalender();
+				
 				
 			}
 		});
