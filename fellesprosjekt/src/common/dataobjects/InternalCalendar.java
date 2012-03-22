@@ -107,4 +107,8 @@ public class InternalCalendar {
 			addToCal(a);
 		}
 	}
+
+	public GregorianCalendar getCalendar() {
+		return calendar;
+	}
 }
