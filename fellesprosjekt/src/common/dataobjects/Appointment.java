@@ -18,7 +18,7 @@ public class Appointment implements Serializable{
 	private String description;
 	private DateString startTime;
 	private DateString endTime;
-	private String place = "sted";
+	private String place;
 
 	public Appointment(int id, Person leader, String title, String description, String place, DateString start, DateString end) throws RuntimeException {
 		this.id = id;
@@ -27,6 +27,7 @@ public class Appointment implements Serializable{
 		this.description = description;
 		this.startTime = start;
 		this.endTime = end;
+		this.place = place;
 		
 		//For testing purposes
 		if (this.startTime.after(endTime)) {
