@@ -3,11 +3,13 @@ package client.connection;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import server.Server;
 
 import common.dataobjects.*;
+import common.sendobjects.AppointmentInvites;
 import common.utilities.MessageType;
 
 import client.authentication.Login;
@@ -70,6 +72,10 @@ public class Connection  {
 		//TODO
 	}
 	
+	public void requestAddPersons(ArrayList<Person> invitees, Appointment appointment){
+		AppointmentInvites appInvites = new AppointmentInvites(invitees, appointment);
+		writer.send(new ComMessage(appInvites, MessageType.REQUEST_ADD_ATTENDANT));
+	}
 	
 
 }

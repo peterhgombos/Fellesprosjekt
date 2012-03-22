@@ -134,6 +134,10 @@ public class Queries {
 					"', '" + endTime.toString() + "', '" + place + "', '" + leader +"');";
 		}
 	
+		public static String addPersonToAttend(int personId, int appId){
+			return	"INSERT INTO DELTAKER (ANSATTNR, AVTALEID, SVAR) " +
+					"VALUES (" + personId + ", " + appId + ", 0);";
+		}
 	
 	
 	

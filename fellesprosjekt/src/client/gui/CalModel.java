@@ -1,42 +1,83 @@
 package client.gui;
 
+import java.util.Calendar;
+
 import javax.swing.table.AbstractTableModel;
+
+import client.connection.ServerData;
+
+import common.dataobjects.InternalCalendar;
 
 @SuppressWarnings("serial")
 public class CalModel extends AbstractTableModel{
 
 	private int week;
 	private int year;
+	private InternalCalendar cal;
 	
-	public CalModel(int year, int week){
-		this.year = year;
-		this.week = week;
+	public CalModel(){
+		cal = ServerData.getCalendar();
+		cal.getCalendar().setTimeInMillis(System.currentTimeMillis());
+		this.year = cal.getCalendar().get(Calendar.YEAR);
+		this.week = cal.getCalendar().get(Calendar.WEEK_OF_YEAR);
 	}
 	
 	public int getYear(){
-		return year;
+		return cal.getCalendar().get(Calendar.YEAR);
 	}
 	
 	public int getWeek(){
-		return week;
+		System.out.println(this.week);
+		return cal.getCalendar().get(Calendar.WEEK_OF_YEAR);
 	}
 	
 	public void setDate(){
 		//TODO naviger til dato
 	}
 	public void setWeek(int weekNumber){
-		week = weekNumber;
+		cal = ServerData.getCalendar();
+		cal.getCalendar().set(Calendar.WEEK_OF_YEAR, weekNumber);
+		week = cal.getCalendar().get(Calendar.WEEK_OF_YEAR);
+		
 	}
 	
 	public void setYear(int year){
-		this.year = year;
+		cal = ServerData.getCalendar();
+		cal.getCalendar().set(Calendar.YEAR, year);
+		this.year = cal.getCalendar().get(Calendar.YEAR);
 	}
 	
 	public void nextWeek(){
-		week++;
+		InternalCalendar cal;
+		cal = ServerData.getCalendar();
+		cal.getCalendar().set(Calendar.YEAR, year);
+		
+		if(week < (cal.getCalendar().getActualMaximum(Calendar.WEEK_OF_YEAR))){
+			cal.getCalendar().set(Calendar.WEEK_OF_YEAR, week++);
+		}
+		
+		else{
+			week = 1;
+			cal.getCalendar().set(Calendar.YEAR, year++);
+			cal.getCalendar().set(Calendar.WEEK_OF_YEAR, week);
+			
+		}
 	}
 	public void lastWeek(){
-		week--;
+
+		cal = ServerData.getCalendar();
+		cal.getCalendar().set(Calendar.YEAR, year);
+		if(week > 1 && week <= (cal.getCalendar().getActualMaximum(Calendar.WEEK_OF_YEAR))){
+			cal.getCalendar().set(Calendar.WEEK_OF_YEAR, week--);
+		
+		}
+		else if(week == 1){
+			year = cal.getCalendar().get(Calendar.YEAR) -1;
+			cal.getCalendar().set(Calendar.YEAR, year);
+			
+			week = cal.getCalendar().getActualMaximum(Calendar.WEEK_OF_YEAR);
+			cal.getCalendar().set(Calendar.WEEK_OF_YEAR, week);	
+		}
 	}
 
 	@Override

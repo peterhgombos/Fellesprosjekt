@@ -16,6 +16,7 @@ import common.dataobjects.ComMessage;
 import common.dataobjects.Meeting;
 import common.dataobjects.Note;
 import common.dataobjects.Person;
+import common.sendobjects.AppointmentInvites;
 import common.utilities.DateString;
 import common.utilities.MessageType;
 
@@ -84,6 +85,9 @@ public class MessageReceiver {
 			ComMessage sendPersons = new ComMessage(filteredPersons, MessageType.RECEIVE_SEARCH_PERSON);
 			clientWriter.send(sendPersons);
 		}
+		else if(messageType.equals(MessageType.REQUEST_ADD_ATTENDANT)){
+			addAttendant(message);
+		}
 	}
 
 	private Person requestLogin(ComMessage message){
@@ -133,6 +137,19 @@ public class MessageReceiver {
 		}
 	}
 	
+	private void addAttendant(ComMessage message){
+		AppointmentInvites received = (AppointmentInvites) message.getData();
+		ArrayList<Person> invited = received.getInvited();
+		Appointment appointment = received.getAppointment();
+		for(Person p : invited){
+			try{
+				database.updateDB(Queries.addPersonToAttend(p.getPersonID(), appointment.getId()));
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	private ArrayList<Meeting> resultSetToMeeting(ResultSet result){
 		ArrayList<Meeting> returnthis = new ArrayList<Meeting>();
