@@ -121,7 +121,7 @@ public class Calendar extends JPanel implements MessageListener {
 	}
 	
 	private void resize(){
-		lastWeek.setBounds(GuiConstants.DISTANCE*30, GuiConstants.DISTANCE, 30, GuiConstants.BUTTON_HEIGTH);
+		lastWeek.setBounds(GuiConstants.DISTANCE*30, GuiConstants.DISTANCE, 35, GuiConstants.BUTTON_HEIGTH);
 		lastWeek.setFont(GuiConstants.BUTTON_FONT);
 		weekLabel.setBounds(lastWeek.getX() + lastWeek.getWidth() + GuiConstants.DISTANCE, lastWeek.getY(), 40, GuiConstants.LABEL_HEIGTH);
 		weekLabel.setFont(GuiConstants.BUTTON_FONT);
@@ -129,7 +129,7 @@ public class Calendar extends JPanel implements MessageListener {
 		weekNumberField.setFont(GuiConstants.BUTTON_FONT);
 		yearField.setBounds(weekNumberField.getX() + weekNumberField.getWidth() + GuiConstants.DISTANCE, weekNumberField.getY(), 70, GuiConstants.TEXTFIELD_HEIGTH);
 		yearField.setFont(GuiConstants.BUTTON_FONT);
-		nextWeek.setBounds(yearField.getX() + yearField.getWidth() + GuiConstants.DISTANCE, yearField.getY(), 30, GuiConstants.BUTTON_HEIGTH);
+		nextWeek.setBounds(yearField.getX() + yearField.getWidth() + GuiConstants.DISTANCE + weekLabel.getWidth(), yearField.getY(), 35, GuiConstants.BUTTON_HEIGTH);
 		nextWeek.setFont(GuiConstants.BUTTON_FONT);
 		scrollPane.setBounds(0, lastWeek.getHeight() + lastWeek.getY() + GuiConstants.GROUP_DISTANCE, 1000, 650);
 	}
