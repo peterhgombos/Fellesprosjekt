@@ -9,8 +9,12 @@ public class UserInformationMessages  {
 		JOptionPane.showMessageDialog(null, message);
 	}
 	
+	public static void showWarningMessage(String message){
+		JOptionPane.showMessageDialog(null, message,"OBS!",JOptionPane.WARNING_MESSAGE);
+	}
+	
 	//av typen; du har ikke skrevet inn passord
 	public static void showErrormessage(String message){
-		JOptionPane.showMessageDialog(null, message,"FEIL",JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, message,"FEIL!",JOptionPane.ERROR_MESSAGE);
 	}
 }
