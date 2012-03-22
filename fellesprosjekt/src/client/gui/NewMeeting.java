@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -168,10 +169,16 @@ public class NewMeeting extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				String title = nameField.getText();
 				
-				//String date = 
-				//TODO legg til en datePicker til
-				String dateStart = "";
-				String dateEnd = "";
+				String dateStart = datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH);;
+				String dateEnd;
+				if(datepickerDays.isEnabled()){
+					dateEnd = datepickerDays.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + datepickerDays.getJCalendar().getCalendar().get(Calendar.MONTH) + "-" + datepickerDays.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); ;
+				}
+				else{
+					dateEnd = dateStart;
+				}
+				
+				//TODO: Feilmeldinger for dato
 				
 				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem();
 				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem();
@@ -180,7 +187,7 @@ public class NewMeeting extends JPanel{
 				
 				String place = "";
 				if(bookMeetingroomRadioButton.isSelected()){
-					// en String     place = roomPicker.getSelectedItem().;
+					//place = roomPicker.getSelectedItem();
 				}
 				else if (otherPlaceRadioButton.isSelected()){
 					place = placeField.getText();

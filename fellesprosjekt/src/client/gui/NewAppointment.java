@@ -148,6 +148,7 @@ public class NewAppointment extends JPanel{
 				calendar.goToCalender();
 			}
 		});
+		
 		cancelButton = new JButton("Avbryt");
 		cancelButton.addActionListener(new ActionListener() {
 			
