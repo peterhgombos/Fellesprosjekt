@@ -32,6 +32,13 @@ public class MessageReceiver {
 		database = new Database();
 		database.connect();
 	}
+	
+	private ArrayList<Person> searchForMeetingParticipants(ComMessage message){
+		Appointment query = (Appointment) message.getData();
+		
+		return null;
+		
+	}
 
 	public synchronized void receiveMessage(InetAddress ip, ComMessage message){
 		String messageType = message.getType();

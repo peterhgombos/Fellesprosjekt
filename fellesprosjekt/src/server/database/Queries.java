@@ -30,8 +30,14 @@ public class Queries {
 				"WHERE DELTAKER.ANSATTNR = " + personid + " " +
 				");";
 	}
+	
+	public static String getParticipantsForMeeting(int avtaleid){
+		return 	"SELECT * " +
+				"FROM DELTAKER " + 
+				"WHERE AVTALEID = " + avtaleid + ";";
+	}
 
-	public static String getParticipantsForMeeting(int meetingid){
+	public static String getAnsFromParticipants(int meetingid){
 		return 	"SELECT DELTAKER.SVAR, ANSATT.* " +
 				"FROM ANSATT, DELTAKER " +
 				"WHERE DELTAKER.AVTALEID = " + meetingid + " " +
