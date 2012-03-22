@@ -13,7 +13,6 @@ import common.utilities.MessageType;
 @SuppressWarnings("serial")
 public class Calendar extends JPanel implements MessageListener {
 
-	private JTable header;
 	private JTable table;
 	private JScrollPane scrollPane;
 	
@@ -22,30 +21,30 @@ public class Calendar extends JPanel implements MessageListener {
 	public Calendar(){
 		setLayout(null);
 		
-		//header = new JTable();
 		table = new JTable();
 		
 		CalRenderer renderer = new CalRenderer();
 		table.setModel(new CalModel(2012, 11));
-		
-		table.setRowHeight(40);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.setRowHeight(60);
 		table.setDefaultRenderer(Object.class, renderer);
-		for(int i = 0; i < table.getModel().getColumnCount(); i++){
+		table.getColumnModel().getColumn(0).setMaxWidth(40);
+		table.getColumnModel().getColumn(0).setHeaderValue(dayName[0]);
+		for(int i = 1; i < table.getModel().getColumnCount(); i++){
 			TableColumn col = table.getColumnModel().getColumn(i);
-			col.setWidth(80);
+			col.setMinWidth(134);
 			col.setHeaderValue(dayName[i]);
 		}
 		
 		scrollPane = new JScrollPane(table);
-		
-		
+	
 		resize();
 		
 		add(scrollPane);
 	}
 	
 	private void resize(){
-		scrollPane.setBounds(0, 0, 900, 650);
+		scrollPane.setBounds(0, 0, 1000, 650);
 	}
 
 	@Override

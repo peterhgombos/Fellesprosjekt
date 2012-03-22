@@ -7,8 +7,6 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.TimeZone;
 
-import client.Client;
-
 public class InternalCalendar {
 	
 	private GregorianCalendar calendar;
@@ -76,18 +74,17 @@ public class InternalCalendar {
 		return arr[day*24 + hour];
 	}
 	
-	//TODO helt feil, denne metoden skal returnere om en app starter i en time, eikke om det finnes i en
-	public boolean startsInHour(Appointment a, int year, int month, int day, int hour){
-		calendar.set(a.getStartTime().getYear(), a.getStartTime().getMonth(), a.getStartTime().getDay(), a.getStartTime().getHour(), 0);
-		long startMs = calendar.getTimeInMillis();
+	public boolean startsInHour(Appointment a, int year, int week, int hour){
+		calendar.set(a.getStartTime().getYear(), a.getStartTime().getMonth() -1, a.getStartTime().getDay(), a.getStartTime().getHour(), 0);
+		int cyear = calendar.get(Calendar.YEAR);
+		int cweek = calendar.get(Calendar.WEEK_OF_YEAR);
+		int cday = dayToWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
+		int chourInWeek = cday * 24 + calendar.get(Calendar.HOUR_OF_DAY);
 		
-		calendar.set(a.getEndTime().getYear(), a.getEndTime().getMonth(), a.getEndTime().getDay(), a.getEndTime().getHour(), 0);
-		long endMs = calendar.getTimeInMillis();
+		System.out.println(hour);
+		System.out.println(chourInWeek);
 		
-		calendar.set(year, month, day, hour, 0);
-		long currentMs = calendar.getTimeInMillis();
-		
-		if(currentMs >= startMs && currentMs < endMs){
+		if(year == cyear && week == cweek && hour == chourInWeek){
 			return true;
 		}
 		return false;
