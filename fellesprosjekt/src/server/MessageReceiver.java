@@ -32,13 +32,7 @@ public class MessageReceiver {
 		database = new Database();
 		database.connect();
 	}
-	
-	private ArrayList<Person> searchForMeetingParticipants(ComMessage message){
-		Appointment query = (Appointment) message.getData();
-		
-		return null;
-		
-	}
+
 
 	public synchronized void receiveMessage(InetAddress ip, ComMessage message){
 		String messageType = message.getType();
@@ -95,6 +89,27 @@ public class MessageReceiver {
 		else if(messageType.equals(MessageType.REQUEST_ADD_ATTENDANT)){
 			addAttendant(message);
 		}
+		else if(messageType.equals(MessageType.REQUEST_PARTICIPANTS)){
+			ArrayList<Person> persons = searchForMeetingParticipants(message);
+			ComMessage getParticipants = new ComMessage(persons, MessageType.RECEIVE_PARTICIPANTS);
+			clientWriter.send(getParticipants);
+		}
+	}
+	
+	
+	private ArrayList<Person> searchForMeetingParticipants(ComMessage message){
+		Appointment query = (Appointment) message.getData();
+		try{
+			ResultSet rs = database.executeQuery(Queries.getParticipantsForMeeting(query.getId()));
+			ArrayList<Person> persons = resutlSetToPerson(rs);
+			return persons;
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return null;
+		
 	}
 
 	private Person requestLogin(ComMessage message){
