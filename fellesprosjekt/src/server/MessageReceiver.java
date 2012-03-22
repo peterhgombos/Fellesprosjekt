@@ -103,7 +103,8 @@ public class MessageReceiver {
 		Appointment newApp = (Appointment) message.getData();
 		try{
 			database.updateDB(Queries.createNewAppointment(newApp.getTitle(), newApp.getDescription(), newApp.getStartTime(), newApp.getEndTime(),newApp.getPlace(), newApp.getLeader().getPersonID()));
-			ComMessage comMesNewApp = new ComMessage(newApp, MessageType.RECEIVE_NEW_APPOINTMENT);
+			ResultSet rs = database.executeQuery(Queries.getLastAppointment());
+			ComMessage comMesNewApp = new ComMessage(resultSetToAppointment(rs).get(0), MessageType.RECEIVE_NEW_APPOINTMENT);
 			sendToAll(comMesNewApp);
 		}catch(SQLException e){
 			e.printStackTrace();
