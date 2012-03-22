@@ -21,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import client.connection.MessageListener;
 import client.connection.ServerData;
@@ -44,7 +46,7 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 	private JList selectedEmployeeList;
 	
 	private JTextField search;
-	private JScrollPane scroll;
+	private JScrollPane employeeListScroll;
 	private JScrollPane scrollSelectedEmployee;
 	private CalendarPanel calendarpanel;
 	
@@ -109,27 +111,43 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 			
 			public void actionPerformed(ActionEvent e) {
 				Object[] personList = employeeList.getSelectedValues();
+				if(personList == null){
+					return;
+				}
 				for (Object object : personList) {
-					selectedEmployeeListModel.addElement((Person)object);
-					employeeListModel.removeElement(object);
+					System.out.println("leggtil" + object);
+					if(object != null){
+						selectedEmployeeListModel.addElement((Person)object);
+						employeeListModel.removeElement((Person)object);
+					}
 				}
 			}
 		});
 		
 		employeeList = new JList(new DefaultListModel());
 		employeeList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		employeeList.setBackground(Color.WHITE);
-		employeeList.setLayout(null);
-		
-		scroll = new JScrollPane(employeeList);
+		employeeListScroll = new JScrollPane(employeeList);
 
 		selectedEmployeeList = new JList(new DefaultListModel());
-		selectedEmployeeList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		selectedEmployeeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		selectedEmployeeList.setCellRenderer(new EmployeeListCellRenderer());
 		scrollSelectedEmployee = new JScrollPane(selectedEmployeeList);
 		
 		selectedEmployeeListModel = (DefaultListModel)selectedEmployeeList.getModel();
 		employeeListModel = (DefaultListModel)employeeList.getModel();
+		
+		
+		selectedEmployeeList.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent arg0) {
+				Person person = (Person)selectedEmployeeList.getSelectedValue();
+				if(person != null){
+					selectedEmployeeListModel.removeElement(person);
+					employeeListModel.addElement(person);
+				}
+			}
+		});
+		
 		
 		search = new JTextField();
 		search.addKeyListener(new KeyListener() {
@@ -153,7 +171,7 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 		add(logOut);
 		add(addEmployee);
 		add(search);
-		add(scroll);
+		add(employeeListScroll);
 		add(scrollSelectedEmployee);
 	}
 	
@@ -184,12 +202,12 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 		search.setText("Søk");
 		search.addFocusListener(this);
 		
-		scroll.setBounds(GuiConstants.DISTANCE, search.getY() +2 + message.getHeight(), message.getWidth(), message.getHeight()*5);
+		employeeListScroll.setBounds(GuiConstants.DISTANCE, search.getY() +2 + message.getHeight(), message.getWidth(), message.getHeight()*5);
 		
 		employeeList.setBounds(GuiConstants.DISTANCE, search.getY() + 2 + message.getHeight(), message.getWidth()-20, employeeList.getHeight());
 		employeeList.setPreferredSize(employeeList.getSize());
 				
-		addEmployee.setBounds(GuiConstants.DISTANCE, scroll.getY() + GuiConstants.DISTANCE + scroll.getHeight(), message.getWidth()/2, message.getHeight());
+		addEmployee.setBounds(GuiConstants.DISTANCE, employeeListScroll.getY() + GuiConstants.DISTANCE + employeeListScroll.getHeight(), message.getWidth()/2, message.getHeight());
 		
 		scrollSelectedEmployee.setBounds(GuiConstants.DISTANCE, addEmployee.getY() + GuiConstants.DISTANCE + message.getHeight(), message.getWidth(), message.getHeight()*4);
 
@@ -213,26 +231,14 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 		}
 	}
 	
-	private void renderList(){
-		
-		int x = 5;
-		int y = 5;
-		int width = 30;
-		int height = 30;
-		
-		for (int i = 0; i < employeeList.getModel().getSize(); i++) {
-			JCheckBox checkBox = new JCheckBox();
-			JLabel nameLabel = new JLabel();
-			Person p = (Person)employeeList.getModel().getElementAt(i);
-			nameLabel.setText(p.getFirstname() + " " + p.getSurname());
-			checkBox.setBounds(x, y, width - 6, height);
-			checkBox.setOpaque(false);
-			nameLabel.setBounds(x+width, y, width, height);
-			employeeList.add(checkBox);
-			employeeList.add(nameLabel);
-			y+=22;
-			employeeList.setSize(employeeList.getWidth(), y);
+	private boolean personExistInSelectedEmployeeList(Person p){
+		for (int i = 0; i < selectedEmployeeList.getModel().getSize(); i++) {
+			Person person = (Person)selectedEmployeeListModel.getElementAt(i);
+			if (p.getPersonID() == person.getPersonID()){
+				return true;
+			}
 		}
+		return false;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -242,9 +248,10 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 			employeeListModel.clear();
 			Collection<Person> persons = (Collection<Person>)m.getData();
 			for (Person person : persons) {
-				employeeListModel.addElement(person);
+				if (!personExistInSelectedEmployeeList(person)){
+					employeeListModel.addElement(person);
+				}
 			}
-			renderList();
 		}
 	}
 }

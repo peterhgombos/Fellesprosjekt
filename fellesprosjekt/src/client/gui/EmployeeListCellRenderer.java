@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
+import common.dataobjects.Person;
+
 public class EmployeeListCellRenderer implements ListCellRenderer{
 
 	DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
@@ -18,12 +20,9 @@ public class EmployeeListCellRenderer implements ListCellRenderer{
 		ImageIcon i = new ImageIcon("res/kryss.gif");
 		JLabel label = new JLabel();
 		label.setIcon(i);
-		label.setText("hei");
+		Person person = (Person)value;
+		label.setText(person.getFirstname() + " " + person.getSurname());
 		
-//		if (isSelected) {
-//			setText("");
-//			setIcon(null);
-//		}
 		
 		return label;
 	}
