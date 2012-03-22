@@ -118,6 +118,7 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 					if(object != null){
 						selectedEmployeeListModel.addElement((Person)object);
 						employeeListModel.removeElement((Person)object);
+						ServerData.requestSearchForPerson("");
 					}
 				}
 			}
@@ -143,6 +144,7 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 				if(person != null){
 					selectedEmployeeListModel.removeElement(person);
 					employeeListModel.addElement(person);
+					ServerData.requestSearchForPerson("");
 				}
 			}
 		});
