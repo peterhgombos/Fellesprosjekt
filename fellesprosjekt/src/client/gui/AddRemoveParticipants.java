@@ -12,6 +12,7 @@ import java.util.HashMap;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -211,5 +212,6 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 				employeeListModel.addElement(person);
 			}
 		}
-	}	
+	}
+	
 }
