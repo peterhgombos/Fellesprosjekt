@@ -149,7 +149,7 @@ public class Queries {
 			return "SELECT DISTINCT MOTEROM.ROMNR " +
 					"FROM MOTEROM, AVTALE " +
 					"JOIN AVTALE A ON " + start +  " <= B.SLUTTIDSPUNKT AND " + end + " >= B.TIDSPUNKT " + 
-					"WHERE A.ROMNR != MOTEROM.ROMNR AND MOTEROM.KAPASITET > " + capacity;
+					"WHERE A.ROMNR != MOTEROM.ROMNR AND MOTEROM.KAPASITET >= " + capacity;
 			
 		}
 	
