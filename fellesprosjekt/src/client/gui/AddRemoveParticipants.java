@@ -91,8 +91,6 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 		employeeList.setSelectedIndex(0);
 		employeeList.setVisibleRowCount(10);
 		
-		ServerData.addMessageListener(this);
-		ServerData.requestSearchForPerson("");
 		
 		addedParticipantsListScroll = new JScrollPane(addedParticipantsList);
 		employeeListScroll = new JScrollPane(employeeList);
@@ -145,6 +143,10 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 				frame.dispose();
 			}
 		});
+		
+		
+		ServerData.addMessageListener(this);
+		ServerData.requestSearchForPerson("");
 		
 		add(headline);
 		add(searchField);
