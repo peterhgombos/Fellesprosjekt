@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.Collection;
 
+import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
+import common.utilities.MessageType;
 
 
 public class ServerReader extends Thread {
@@ -44,6 +47,12 @@ public class ServerReader extends Thread {
 				if (message == null) {
 					disconnect();
 					return;
+				}
+				
+				if(message.getType().equals(MessageType.RECEIVE_APPOINTMENTS)){
+					for(Appointment a : (Collection<Appointment>)(message .getData())){
+						System.out.println("RAWWWWWWWWWWW: " + a.getTitle());
+					}
 				}
 				
 				connection.receiveMessage(message);

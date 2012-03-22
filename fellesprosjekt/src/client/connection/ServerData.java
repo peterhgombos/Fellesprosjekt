@@ -95,7 +95,7 @@ public class ServerData {
 		if(messageType.equals(MessageType.RECEIVE_APPOINTMENTS)){
 			Collection<Appointment> apps = (Collection<Appointment>)message.getData();
 			for(Appointment a: apps){
-				a.getTitle();
+				System.out.println("MESSAGERECEIVER: " + a.getTitle());
 				appointments.put(a.getId(), a);
 				persons.put(a.getLeader().getPersonID(), a.getLeader());
 			}

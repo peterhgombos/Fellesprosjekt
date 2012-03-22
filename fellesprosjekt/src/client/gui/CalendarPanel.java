@@ -21,6 +21,7 @@ public class CalendarPanel extends JPanel {
 	
 	public CalendarPanel(Client client){
 		ServerData.requestAppointmentsAndMeetings(Client.getUser());
+		
 		this.client = client;
 		this.frame = client.getFrame();
 		

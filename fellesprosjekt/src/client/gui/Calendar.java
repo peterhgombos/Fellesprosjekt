@@ -36,6 +36,7 @@ public class Calendar extends JPanel implements MessageListener {
 		setLayout(null);
 		
 		ServerData.getCalendar().getCalendar().setTimeInMillis(System.currentTimeMillis());
+		
 		calModel = new CalModel();
 		weekLabel = new JLabel("Uke");
 		lastWeek = new JButton("<");

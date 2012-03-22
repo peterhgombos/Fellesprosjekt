@@ -41,7 +41,6 @@ public class DateString implements Serializable {
 	public DateString(Timestamp d) {
 		String s = d.toString();
 		s = s.replace('.', ':');
-		System.out.println(s);
 		
 		String[] datetime = s.split(" ");
 		String[] date = datetime[0].split("-");
@@ -51,16 +50,13 @@ public class DateString implements Serializable {
 		month = Integer.parseInt(date[1]);
 		day = Integer.parseInt(date[2]);
 		
-		System.out.println(year + " " + month + " " + day);
-		
 		hour = Integer.parseInt(time[0]);
 		minute = Integer.parseInt(time[1]);
 		second = Integer.parseInt(time[2]);
-		
-		System.out.println("new datestring: " + hour + " " + minute + " " + second);
 	}
 	
 	public DateString(String s) {
+		s = s.replace('.', ':');
 		String[] datetime = s.split(" ");
 		String[] date = datetime[0].split("-");
 		String[] time = datetime[1].split(":");
@@ -69,13 +65,9 @@ public class DateString implements Serializable {
 		month = Integer.parseInt(date[1]);
 		day = Integer.parseInt(date[2]);
 		
-		System.out.println(year + " " + month + " " + day);
-		
 		hour = Integer.parseInt(time[0]);
 		minute = Integer.parseInt(time[1]);
 		second = Integer.parseInt(time[2]);
-		
-		System.out.println("new datestring: " + hour + " " + minute + " " + second);
 	}
 	
 	public boolean after(DateString s) {
