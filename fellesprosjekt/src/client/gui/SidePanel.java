@@ -106,7 +106,7 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 			}
 		});
 		
-		addEmployee = new JButton("Legg Til");
+		addEmployee = new JButton("Legg Til Kalender");
 		addEmployee.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -208,10 +208,9 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 		employeeList.setBounds(GuiConstants.DISTANCE, search.getY() + 2 + message.getHeight(), message.getWidth()-20, employeeList.getHeight());
 		employeeList.setPreferredSize(employeeList.getSize());
 				
-		addEmployee.setBounds(GuiConstants.DISTANCE, employeeListScroll.getY() + GuiConstants.DISTANCE + employeeListScroll.getHeight(), message.getWidth()/2, message.getHeight());
+		addEmployee.setBounds(GuiConstants.DISTANCE, employeeListScroll.getY() + GuiConstants.DISTANCE + employeeListScroll.getHeight(), message.getWidth(), message.getHeight());
 		
 		scrollSelectedEmployee.setBounds(GuiConstants.DISTANCE, addEmployee.getY() + GuiConstants.DISTANCE + message.getHeight(), message.getWidth(), message.getHeight()*4);
-
 		
 		logOut.setBounds(GuiConstants.DISTANCE, scrollSelectedEmployee.getY() + scrollSelectedEmployee.getHeight() + GuiConstants.DISTANCE, message.getWidth(), message.getHeight());
 		logOut.setFont(GuiConstants.BUTTON_FONT);
