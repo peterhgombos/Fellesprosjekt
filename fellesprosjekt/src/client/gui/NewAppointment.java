@@ -3,8 +3,6 @@ package client.gui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.beans.PropertyChangeEvent;
@@ -12,22 +10,15 @@ import java.beans.PropertyChangeListener;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.WindowConstants;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
 
 import client.Client;
 import client.connection.ServerData;
@@ -40,7 +31,7 @@ import common.utilities.DateString;
 public class NewAppointment extends JPanel{
 	
 	private JDateChooser datepicker;
-	private JDateChooser datepickerDays;
+	private JDateChooser endDPicker;
 	private JCheckBox severalDays;
 	private JLabel severalDaysLabel;
 	
@@ -56,7 +47,6 @@ public class NewAppointment extends JPanel{
 	private JScrollPane scrollPane;
 	
 	private JTextField nameField; 
-	//private JTextField dateField; //DATEPICKER
 	private JTextField placeField;
 	private JTextArea descriptionArea;
 	
@@ -84,29 +74,25 @@ public class NewAppointment extends JPanel{
 		calendar = calendarPanel;		
 		
 		nameField = new JTextField();
-		//dateField = new JTextField();
 		datepicker = new JDateChooser();
 		datepicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
-		datepickerDays = new JDateChooser();
-		datepickerDays.setVisible(false);
-		datepickerDays.setMinSelectableDate(new Date(System.currentTimeMillis()));
+		endDPicker = new JDateChooser();
+		endDPicker.setVisible(false);
+		endDPicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		severalDaysLabel = new JLabel("Flere dager");
 		severalDays = new JCheckBox();
 		severalDays.addItemListener(new ItemListener() {
 
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
-				if (e.getStateChange() == e.SELECTED) {
-					datepickerDays.setVisible(true);
-					datepickerDays.setEnabled(true);
-
-
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					endDPicker.setVisible(true);
+					endDPicker.setEnabled(true);
 				}
-				if (e.getStateChange() == e.DESELECTED){
-
+				if (e.getStateChange() == ItemEvent.DESELECTED){
 					//TODO remember to ensure end-date is not linked to datepickerDays when disabled/invisible
-					datepickerDays.setVisible(false);
-					datepickerDays.setEnabled(false);
+					endDPicker.setVisible(false);
+					endDPicker.setEnabled(false);
 				}
 			}
 		});
@@ -122,40 +108,38 @@ public class NewAppointment extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				String title = nameField.getText();
 				
-				//String date = 
-				//TODO legg til en datePicker til
-				String dateStart = "";
-				String dateEnd = "";
+				String dateStart = datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); 
+				String dateEnd;
+				if (endDPicker.isEnabled()) {
+					dateEnd = endDPicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (endDPicker.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + "-" + endDPicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); 
+				} else {
+					dateEnd = dateStart;
+				}
+				//TODO feilmelding for dato
 				
-				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem();
-				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem();
+				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem() + ":0";
+				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
 				
 				String description = descriptionArea.getText();
 				
 				String place = placeField.getText();
 				
-				
 				if(title.trim().equals("")){
 					UserInformationMessages.showErrormessage("Du må lage en tittel");
 				}
-//				TODO Datoene
-//				else if(){
-//					
-//				}
+
 				Appointment a = new Appointment(-1, Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
 				ServerData.requestNewAppointment(a);
 				
 				calendar.goToCalender();
-				
 			}
 		});
+		
 		cancelButton = new JButton("Avbryt");
 		cancelButton.addActionListener(new ActionListener() {
 			
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				calendar.goToCalender();
-				
 			}
 		});
 		
@@ -176,9 +160,7 @@ public class NewAppointment extends JPanel{
 		add(placeLabel);
 		add(roomInformationLabel);
 		add(nameField);
-		//add(dateField);
 		add(placeField);
-	//	add(descriptionArea);
 		add(saveButton);
 		add(cancelButton);
 		add(startTimeHoursField);
@@ -188,16 +170,14 @@ public class NewAppointment extends JPanel{
 		add(datepicker);
 		add(severalDays);
 		add(severalDaysLabel);
-		add(datepickerDays);
+		add(endDPicker);
+		
 		//This is for testing:
 		datepicker.addPropertyChangeListener(new PropertyChangeListener() {
 			
-			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
-				// TODO Auto-generated method stub
 				firePropertyChange("date", evt.getOldValue(), evt.getNewValue());
 				System.out.println(datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + " " + datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + " " + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH));
-				
 			}
 		});
 		//testing over
@@ -205,7 +185,6 @@ public class NewAppointment extends JPanel{
 		setLayout(null);
 		resize();
 		repaint();
-		
 	}
 	
 	public void resize(){
@@ -228,7 +207,7 @@ public class NewAppointment extends JPanel{
 		severalDaysLabel.setBounds(severalDays.getX() + severalDays.getWidth() + GuiConstants.DISTANCE, severalDays.getY(), 200, GuiConstants.LABEL_HEIGTH);
 		severalDaysLabel.setFont(new Font(severalDaysLabel.getFont().getName(),0 ,10));
 		
-		datepickerDays.setBounds(datepicker.getX() + datepicker.getWidth() + GuiConstants.DISTANCE, datepicker.getY(), 190, GuiConstants.TEXTFIELD_HEIGTH);
+		endDPicker.setBounds(datepicker.getX() + datepicker.getWidth() + GuiConstants.DISTANCE, datepicker.getY(), 190, GuiConstants.TEXTFIELD_HEIGTH);
 		
 		startTimeLabel.setBounds(titleLabel.getX(), severalDays.getY() + severalDays.getHeight() + GuiConstants.GROUP_DISTANCE, 100, GuiConstants.LABEL_HEIGTH);
 		startTimeLabel.setFont(new Font(startTimeLabel.getFont().getName(), 0, 16));

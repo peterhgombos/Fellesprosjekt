@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -31,6 +32,7 @@ import client.connection.ServerData;
 
 import common.dataobjects.Appointment;
 import common.dataobjects.Meeting;
+import common.dataobjects.Note;
 import common.dataobjects.Person;
 import common.utilities.DateString;
 
@@ -78,8 +80,10 @@ public class NewMeeting extends JPanel{
 	private HashMap<Person,Integer> participantsList;
 	private NewMeeting thisNewMeeting;
 	
+	
 
 	public NewMeeting(CalendarPanel calendarPanel){
+		
 		String[] min = {"00", "15", "30", "45"};
 		String[] hours= {"00","01","02","03","04","05","06","07","08","09","10",
 						"11","12","13","14","15","16","17","18","19","20","21","22","23"};
@@ -165,10 +169,16 @@ public class NewMeeting extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				String title = nameField.getText();
 				
-				//String date = 
-				//TODO legg til en datePicker til
-				String dateStart = "";
-				String dateEnd = "";
+				String dateStart = datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH);;
+				String dateEnd;
+				if(datepickerDays.isEnabled()){
+					dateEnd = datepickerDays.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepickerDays.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + "-" + datepickerDays.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); ;
+				}
+				else{
+					dateEnd = dateStart;
+				}
+				
+				//TODO: Feilmeldinger for dato
 				
 				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem();
 				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem();
@@ -177,7 +187,7 @@ public class NewMeeting extends JPanel{
 				
 				String place = "";
 				if(bookMeetingroomRadioButton.isSelected()){
-					// en String     place = roomPicker.getSelectedItem().;
+					//place = roomPicker.getSelectedItem();
 				}
 				else if (otherPlaceRadioButton.isSelected()){
 					place = placeField.getText();
