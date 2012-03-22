@@ -111,6 +111,8 @@ public class MessageReceiver {
 		return null;
 		
 	}
+	
+	
 
 	private Person requestLogin(ComMessage message){
 		Login login = (Login) message.getData();

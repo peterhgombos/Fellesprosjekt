@@ -95,6 +95,7 @@ public class ServerData {
 		if(messageType.equals(MessageType.RECEIVE_APPOINTMENTS)){
 			Collection<Appointment> apps = (Collection<Appointment>)message.getData();
 			for(Appointment a: apps){
+				a.getTitle();
 				appointments.put(a.getId(), a);
 				persons.put(a.getLeader().getPersonID(), a.getLeader());
 			}
@@ -103,6 +104,7 @@ public class ServerData {
 		else if(messageType.equals(MessageType.RECEIVE_MEETINGS)){
 			Collection<Meeting> meets = (Collection<Meeting>)message.getData();
 			for(Meeting m: meets){
+				m.getTitle();
 				meetings.put(m.getId(), m);
 				persons.put(m.getLeader().getPersonID(), m.getLeader());
 				for(Person p : m.getParticipants().keySet()){
@@ -121,10 +123,7 @@ public class ServerData {
 			Note note = (Note)message.getData();
 			//TODO what to do with this note?
 		}
-		else if(messageType.equals(MessageType.RECEIVE_SEARCH_PERSON)){
-			ArrayList<Person> filteredPersons = (ArrayList<Person>)message.getData();
-			//TODO what to do with this arraylist?
-		}
+		
 		
 		Collection<MessageListener> clone = (Collection<MessageListener>)listeners.clone();
 		for (MessageListener l : clone) {

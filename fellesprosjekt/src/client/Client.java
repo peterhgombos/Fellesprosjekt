@@ -57,7 +57,6 @@ public class Client {
 	
 	public void loggedIn(Person loggedin){
 		user = loggedin;
-		ServerData.requestAppointmentsAndMeetings(user);
 		showCalPan();
 	}
 	
