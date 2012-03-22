@@ -5,21 +5,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.Collection;
+import java.util.LinkedList;
 
+import javax.swing.Action;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.WindowConstants;
+
+import client.connection.MessageListener;
+import client.connection.ServerData;
+
+import common.dataobjects.ComMessage;
+import common.dataobjects.Person;
+import common.utilities.MessageType;
 
 @SuppressWarnings("serial")
-public class SidePanel extends JPanel implements FocusListener{
+public class SidePanel extends JPanel implements FocusListener, MessageListener{
 	
 	private JButton message;
 	private JButton newAppointment;
@@ -28,30 +37,21 @@ public class SidePanel extends JPanel implements FocusListener{
 	private JButton employeesAppointments;
 	private JButton logOut;
 	private JButton addEmployee;
-	private JPanel employeeList;
+	
+	private JList employeeList;
 	private JList selectedEmployeeList;
+	
 	private JTextField search;
-	private int countEmployee;
-	private int x;
-	private int y;
-	private int width;
-	private int height;
-	private JCheckBox checkBox;
-	private JLabel nameLabel;
 	private JScrollPane scroll;
 	private JScrollPane scrollSelectedEmployee;
-	private DefaultListModel listModel;
 	private CalendarPanel calendarpanel;
 	
+	private DefaultListModel employeeListModel;
+	private DefaultListModel selectedEmployeeListModel;
+	
 	public SidePanel(CalendarPanel calendarPanel) {
-		countEmployee = 10;
-		x = 5;
-		y = 5;
-		width = 30;
-		height = 30;
 		calendarpanel = calendarPanel;
-		
-		listModel = new DefaultListModel();
+			
 		message = new JButton("Meldinger");
 		message.addActionListener(new ActionListener() {
 			
@@ -105,40 +105,45 @@ public class SidePanel extends JPanel implements FocusListener{
 		addEmployee.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				
+				LinkedList<SelPerson> bin = new LinkedList<SidePanel.SelPerson>();
+				for (SelPerson p : employeeListModel) {
+					if(p.selected){
+						bin.add(p);
+						selectedEmployeeListModel.addElement(p.person);
+					}
+				}
+				for (SelPerson selPerson : bin) {
+					employeeListModel.remove(selPerson);
+				}
+				renderList();
 			}
 		});
-		employeeList = new JPanel();
+		
+		employeeList = new JList(new DefaultListModel());
 		employeeList.setBackground(Color.WHITE);
 		employeeList.setLayout(null);
-		selectedEmployeeList = new JList();
-		selectedEmployeeList.setCellRenderer(new EmployeeListCellRenderer());
-		search = new JTextField();
 		
 		scroll = new JScrollPane(employeeList);
+
 		
-		selectedEmployeeList.setModel(listModel);
+		selectedEmployeeList = new JList(new DefaultListModel());
+		selectedEmployeeList.setCellRenderer(new EmployeeListCellRenderer());
 		scrollSelectedEmployee = new JScrollPane(selectedEmployeeList);
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
+		
+		selectedEmployeeListModel = (DefaultListModel)selectedEmployeeList.getModel();
+		employeeListModel = new LinkedList<SelPerson>();
+		
+		search = new JTextField();
+		search.addKeyListener(new KeyListener() {
+			public void keyTyped(KeyEvent e) {}
+			public void keyReleased(KeyEvent e) {
+				ServerData.requestSearchForPerson(search.getText());
+			}
+			public void keyPressed(KeyEvent e) {}
+		});
+		
+		ServerData.addMessageListener(this);
+		ServerData.requestSearchForPerson("");
 		
 		setLayout(null);
 		resize();
@@ -152,8 +157,6 @@ public class SidePanel extends JPanel implements FocusListener{
 		add(search);
 		add(scroll);
 		add(scrollSelectedEmployee);
-		
-		System.out.println("model"+selectedEmployeeList.getModel());
 	}
 	
 	public void resize(){
@@ -185,18 +188,6 @@ public class SidePanel extends JPanel implements FocusListener{
 		
 		scroll.setBounds(GuiConstants.DISTANCE, search.getY() +2 + message.getHeight(), message.getWidth(), message.getHeight()*5);
 		
-		for (int i = 0; i < countEmployee; i++) {
-			checkBox = new JCheckBox();
-			nameLabel = new JLabel();
-			nameLabel.setText("hei");
-			checkBox.setBounds(x, y, width-6, height);
-			checkBox.setOpaque(false);
-			nameLabel.setBounds(x+width, y, width, height);
-			employeeList.add(checkBox);
-			employeeList.add(nameLabel);
-			y+=22;
-			employeeList.setSize(employeeList.getWidth(), y);
-		}
 		employeeList.setBounds(GuiConstants.DISTANCE, search.getY() + 2 + message.getHeight(), message.getWidth()-20, employeeList.getHeight());
 		employeeList.setPreferredSize(employeeList.getSize());
 				
@@ -209,12 +200,8 @@ public class SidePanel extends JPanel implements FocusListener{
 		logOut.setFont(GuiConstants.BUTTON_FONT);
 	}
 	
-	
-
-
-
 	@Override
-	public void focusGained(FocusEvent arg0) {
+	public void focusGained(FocusEvent e) {
 		if (search.getText().equals("Søk")) {
 			search.setText("");
 		}
@@ -222,10 +209,46 @@ public class SidePanel extends JPanel implements FocusListener{
 	}
 
 	@Override
-	public void focusLost(FocusEvent arg0) {
+	public void focusLost(FocusEvent e) {
 		if (!search.getText().equals("Søk")) {
 			search.setText("Søk");
 		}
+	}
+	
+	private void renderList(){
+		employeeList.removeAll();
 		
+		int x = 5;
+		int y = 5;
+		int width = 30;
+		int height = 30;
+		
+		for(Person p: employeeListModel){
+			JCheckBox checkBox = new JCheckBox();
+			checkBox.addActionListener(new CheckAction(p, checkBox));
+			checkBox.setSelected(p.selected);
+			JLabel nameLabel = new JLabel();
+			nameLabel.setText(p.person.getFirstname() + " " + p.person.getSurname());
+			checkBox.setBounds(x, y, width - 6, height);
+			checkBox.setOpaque(false);
+			nameLabel.setBounds(x+width, y, width, height);
+			employeeList.add(checkBox);
+			employeeList.add(nameLabel);
+			y+=22;
+			employeeList.setSize(employeeList.getWidth(), y);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void receiveMessage(ComMessage m) {
+		if(m.getType().equals(MessageType.RECEIVE_SEARCH_PERSON)){
+			employeeListModel.clear();
+			Collection<Person> persons = (Collection<Person>)m.getData();
+			for (Person person : persons) {
+				employeeListModel.add(new SelPerson(person, false));
+			}
+			renderList();
+		}
 	}
 }

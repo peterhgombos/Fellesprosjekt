@@ -1,6 +1,7 @@
 package common.utilities;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 public class DateString implements Serializable {
 	
@@ -37,9 +38,30 @@ public class DateString implements Serializable {
 		return second;
 	}
 
+	public DateString(Timestamp d) {
+		String s = d.toString();
+		s = s.replace('.', ':');
+		System.out.println(s);
+		
+		String[] datetime = s.split(" ");
+		String[] date = datetime[0].split("-");
+		String[] time = datetime[1].split(":");
+		
+		year = Integer.parseInt(date[0]);
+		month = Integer.parseInt(date[1]);
+		day = Integer.parseInt(date[2]);
+		
+		System.out.println(year + " " + month + " " + day);
+		
+		hour = Integer.parseInt(time[0]);
+		minute = Integer.parseInt(time[1]);
+		second = Integer.parseInt(time[2]);
+		
+		System.out.println("new datestring: " + hour + " " + minute + " " + second);
+	}
+	
 	public DateString(String s) {
 		String[] datetime = s.split(" ");
-		
 		String[] date = datetime[0].split("-");
 		String[] time = datetime[1].split(":");
 		

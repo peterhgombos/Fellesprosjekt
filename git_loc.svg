@@ -1,0 +1,1095 @@
+<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg preserveAspectRatio="none" width="100%" height="100%" viewBox="0 0 9000 800" version="1.1" xmlns="http://www.w3.org/2000/svg"><style>rect.o{opacity:0}rect.o:hover{opacity:0.2}.a{fill:none;stroke:black;stroke-width:2}</style>
+<polyline points="0,800 9025,800" class="a"/><polyline points="25,0 25,825" class="a"/><polyline points="0,739 9025,739" class="a" style="stroke:rgb(200,200,200)"/>
+<polyline points="0,678 9025,678" class="a" style="stroke:rgb(200,200,200)"/>
+<polyline points="0,617 9025,617" class="a" style="stroke:rgb(200,200,200)"/>
+<polyline points="0,556 9025,556" class="a" style="stroke:rgb(200,200,200)"/>
+<polyline points="0,496 9025,496" class="a" style="stroke:rgb(200,200,200)"/>
+<polyline points="0,435 9025,435" class="a" style="stroke:rgb(200,200,200)"/>
+<polyline points="0,374 9025,374" class="a" style="stroke:rgb(200,200,200)"/>
+<polyline points="0,313 9025,313" class="a" style="stroke:rgb(200,200,200)"/>
+<polyline points="0,252 9025,252" class="a" style="stroke:rgb(200,200,200)"/>
+<polyline points="0,192 9025,192" class="a" style="stroke:rgb(200,200,200)"/>
+<polyline points="0,131 9025,131" class="a" style="stroke:rgb(200,200,200)"/>
+<polyline points="0,70 9025,70" class="a" style="stroke:rgb(200,200,200)"/>
+<polyline points="0,9 9025,9" class="a" style="stroke:rgb(200,200,200)"/>
+<rect x="24" y="670" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="24" y="541" width="3" height="129" style="fill:rgb(0,255,0)" />
+<rect x="13" y="0" width="25" height="800" style="" title="2012-03-06 10:39:03     2126 +2126    -0   new files" class="o" />
+<rect x="49" y="670" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="49" y="670" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="38" y="0" width="25" height="800" style="" title="2012-03-06 10:46:24     2126    +0    -0   added README" class="o" />
+<rect x="74" y="670" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="74" y="670" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="63" y="0" width="25" height="800" style="" title="2012-03-06 13:22:56     2126    +1    -1   endret tekst" class="o" />
+<rect x="99" y="670" width="3" height="8" style="fill:rgb(0,0,255)" />
+<rect x="99" y="662" width="3" height="8" style="fill:rgb(0,255,0)" />
+<rect x="88" y="0" width="25" height="800" style="" title="2012-03-06 13:30:20     2125  +139  -140   fiksa notimplementedexeption" class="o" />
+<rect x="124" y="670" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="124" y="670" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="113" y="0" width="25" height="800" style="" title="2012-03-06 13:30:34     2125    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="149" y="520" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="149" y="369" width="3" height="151" style="fill:rgb(0,255,0)" />
+<rect x="138" y="0" width="25" height="800" style="" title="2012-03-12 15:56:52     4599 +2486   -12   lagt inn kjernen" class="o" />
+<rect x="174" y="518" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="174" y="516" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="163" y="0" width="25" height="800" style="" title="2012-03-13 14:45:58     4633   +34    -0   Begynt p&#xc3;&#xa5; server&#x2e;" class="o" />
+<rect x="199" y="515" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="199" y="512" width="3" height="3" style="fill:rgb(0,255,0)" />
+<rect x="188" y="0" width="25" height="800" style="" title="2012-03-13 14:50:45     4683   +50    -0   lagt til en grafisk konsoll" class="o" />
+<rect x="224" y="515" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="224" y="514" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="213" y="0" width="25" height="800" style="" title="2012-03-13 15:33:34     4688    +5    -0   la til writechar i console" class="o" />
+<rect x="249" y="509" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="249" y="503" width="3" height="6" style="fill:rgb(0,255,0)" />
+<rect x="238" y="0" width="25" height="800" style="" title="2012-03-13 15:53:46     4786   +99    -1   server p&#xc3;&#xa5; vei" class="o" />
+<rect x="274" y="509" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="274" y="508" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="263" y="0" width="25" height="800" style="" title="2012-03-13 15:54:24     4786    +8    -8   merger console" class="o" />
+<rect x="299" y="509" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="299" y="509" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="288" y="0" width="25" height="800" style="" title="2012-03-13 15:54:30     4786    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="324" y="509" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="324" y="509" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="313" y="0" width="25" height="800" style="" title="2012-03-13 15:56:11     4776    +1   -11   console update" class="o" />
+<rect x="349" y="507" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="349" y="506" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="338" y="0" width="25" height="800" style="" title="2012-03-13 16:27:20     4806   +30    -0   la til en testklient" class="o" />
+<rect x="374" y="499" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="374" y="490" width="3" height="9" style="fill:rgb(0,255,0)" />
+<rect x="363" y="0" width="25" height="800" style="" title="2012-03-13 17:22:02     4940  +153   -19   Vi har laget en skjelettserver&#x2e;" class="o" />
+<rect x="399" y="498" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="399" y="496" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="388" y="0" width="25" height="800" style="" title="2012-03-13 23:37:39     4959   +31   -12   noen f&#xc3;&#xa5; kommentarer" class="o" />
+<rect x="424" y="498" width="3" height="3" style="fill:rgb(0,0,255)" />
+<rect x="424" y="494" width="3" height="3" style="fill:rgb(0,255,0)" />
+<rect x="413" y="0" width="25" height="800" style="" title="2012-03-14 22:34:21     4957   +62   -64   Coneole er ikke statisk &#x2b; den scroller automatisk&#x2e;" class="o" />
+<rect x="449" y="498" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="449" y="497" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="438" y="0" width="25" height="800" style="" title="2012-03-14 22:35:10     4963    +6    -0   rename" class="o" />
+<rect x="474" y="498" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="474" y="498" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="463" y="0" width="25" height="800" style="" title="2012-03-15 09:23:53     4964    +1    -0   ny linje" class="o" />
+<rect x="499" y="498" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="499" y="498" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="488" y="0" width="25" height="800" style="" title="2012-03-15 09:24:01     4964    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="524" y="498" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="524" y="497" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="513" y="0" width="25" height="800" style="" title="2012-03-15 09:42:34     4966    +2    -0   Ny linje" class="o" />
+<rect x="549" y="498" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="549" y="498" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="538" y="0" width="25" height="800" style="" title="2012-03-15 09:42:42     4966    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="574" y="497" width="3" height="30" style="fill:rgb(0,0,255)" />
+<rect x="574" y="465" width="3" height="31" style="fill:rgb(0,255,0)" />
+<rect x="563" y="0" width="25" height="800" style="" title="2012-03-15 10:46:54     4981  +523  -508   opprettet data&#x5f;objects pakke og flyttet p&#xc3;&#xa5; person og project&#x2e;" class="o" />
+<rect x="599" y="497" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="599" y="497" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="588" y="0" width="25" height="800" style="" title="2012-03-15 10:47:19     4981    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="624" y="497" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="624" y="497" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="613" y="0" width="25" height="800" style="" title="2012-03-15 10:47:58     4981    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="649" y="497" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="649" y="497" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="638" y="0" width="25" height="800" style="" title="2012-03-15 10:48:48     4981    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="674" y="495" width="3" height="14" style="fill:rgb(0,0,255)" />
+<rect x="674" y="480" width="3" height="15" style="fill:rgb(0,255,0)" />
+<rect x="663" y="0" width="25" height="800" style="" title="2012-03-15 10:54:27     5001  +260  -240   Opprettet objekt klasser&#x2e;" class="o" />
+<rect x="699" y="495" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="699" y="495" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="688" y="0" width="25" height="800" style="" title="2012-03-15 10:55:00     5001    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="724" y="495" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="724" y="495" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="713" y="0" width="25" height="800" style="" title="2012-03-15 10:57:37     5001    +2    -2   Meeting extends Appointment" class="o" />
+<rect x="749" y="496" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="749" y="496" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="738" y="0" width="25" height="800" style="" title="2012-03-15 10:59:15     4989    +0   -12   slettet unodvendig javadoc" class="o" />
+<rect x="774" y="494" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="774" y="493" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="763" y="0" width="25" height="800" style="" title="2012-03-15 11:04:49     5018   +29    -0   Message class" class="o" />
+<rect x="799" y="494" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="799" y="494" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="788" y="0" width="25" height="800" style="" title="2012-03-15 11:04:57     5018    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="824" y="493" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="824" y="491" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="813" y="0" width="25" height="800" style="" title="2012-03-15 11:12:24     5038   +33   -13   Person objektet er oppdatert slik at det har fornavn og etternavn&#x2e;" class="o" />
+<rect x="849" y="493" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="849" y="493" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="838" y="0" width="25" height="800" style="" title="2012-03-15 11:12:43     5038    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="874" y="492" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="874" y="490" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="863" y="0" width="25" height="800" style="" title="2012-03-15 11:25:33     5060   +29    -7   Added Room class&#x2e; Getters&#x2c; setters og variabler i Meeting&#x2e;" class="o" />
+<rect x="899" y="488" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="899" y="484" width="3" height="4" style="fill:rgb(0,255,0)" />
+<rect x="888" y="0" width="25" height="800" style="" title="2012-03-15 11:55:03     5119   +71   -12   Message og Inbox" class="o" />
+<rect x="924" y="502" width="3" height="15" style="fill:rgb(0,0,255)" />
+<rect x="924" y="501" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="913" y="0" width="25" height="800" style="" title="2012-03-15 11:56:06     4888   +21  -252   Person objeketet er endret til &#xc3;&#xa5; passe databasen&#x2e;" class="o" />
+<rect x="949" y="502" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="949" y="502" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="938" y="0" width="25" height="800" style="" title="2012-03-15 11:56:11     4888    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="974" y="501" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="974" y="499" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="963" y="0" width="25" height="800" style="" title="2012-03-15 12:14:18     4915   +28    -1   Calender objektet er opprettet&#x2e; Med kontstruktor og noen metoder" class="o" />
+<rect x="999" y="506" width="3" height="10" style="fill:rgb(0,0,255)" />
+<rect x="999" y="502" width="3" height="4" style="fill:rgb(0,255,0)" />
+<rect x="988" y="0" width="25" height="800" style="" title="2012-03-15 12:18:42     4820   +70  -165   Getters&#x2c; setters og variabler i Meeting og Appointment" class="o" />
+<rect x="1024" y="506" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1024" y="505" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1013" y="0" width="25" height="800" style="" title="2012-03-15 12:45:46     4830   +11    -1   gitignore fixa" class="o" />
+<rect x="1049" y="506" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1049" y="506" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1038" y="0" width="25" height="800" style="" title="2012-03-15 12:47:44     4830    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="1074" y="506" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1074" y="506" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1063" y="0" width="25" height="800" style="" title="2012-03-15 13:00:05     4831    +1    -0   Appointment" class="o" />
+<rect x="1099" y="506" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1099" y="506" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1088" y="0" width="25" height="800" style="" title="2012-03-15 13:01:26     4831    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="1124" y="506" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1124" y="505" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1113" y="0" width="25" height="800" style="" title="2012-03-15 13:01:58     4836    +5    -0   Opprettet GUI mappe" class="o" />
+<rect x="1149" y="505" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1149" y="504" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1138" y="0" width="25" height="800" style="" title="2012-03-15 13:03:42     4845    +9    -0   Room" class="o" />
+<rect x="1174" y="505" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1174" y="505" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1163" y="0" width="25" height="800" style="" title="2012-03-15 13:04:08     4845    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="1199" y="504" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1199" y="504" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1188" y="0" width="25" height="800" style="" title="2012-03-15 13:04:35     4853    +9    -1   begynt p&#xc3;&#xa5; sidepanel" class="o" />
+<rect x="1224" y="504" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1224" y="504" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1213" y="0" width="25" height="800" style="" title="2012-03-15 13:04:51     4853    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="1249" y="506" width="3" height="21" style="fill:rgb(0,0,255)" />
+<rect x="1249" y="485" width="3" height="20" style="fill:rgb(0,255,0)" />
+<rect x="1238" y="0" width="25" height="800" style="" title="2012-03-15 13:10:22     4831  +338  -360   renama en pakke" class="o" />
+<rect x="1274" y="506" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1274" y="506" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1263" y="0" width="25" height="800" style="" title="2012-03-15 13:10:47     4831    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="1299" y="506" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="1299" y="506" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1288" y="0" width="25" height="800" style="" title="2012-03-15 16:03:25     4823   +13   -21   delete og gitignore" class="o" />
+<rect x="1324" y="482" width="3" height="3" style="fill:rgb(0,0,255)" />
+<rect x="1324" y="455" width="3" height="27" style="fill:rgb(0,255,0)" />
+<rect x="1313" y="0" width="25" height="800" style="" title="2012-03-15 18:16:21     5221  +453   -55   delete og gitignore" class="o" />
+<rect x="1349" y="482" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1349" y="482" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1338" y="0" width="25" height="800" style="" title="2012-03-15 18:28:18     5222    +1    -0   jhkh" class="o" />
+<rect x="1374" y="482" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1374" y="482" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1363" y="0" width="25" height="800" style="" title="2012-03-15 18:28:55     5222    +1    -1   &#xc3;&#xb8;&#xc3;&#xb8;&#xc3;&#xb8;&#xc3;&#xb8;" class="o" />
+<rect x="1399" y="483" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="1399" y="482" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1388" y="0" width="25" height="800" style="" title="2012-03-15 18:33:04     5214   +15   -23   update" class="o" />
+<rect x="1424" y="482" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1424" y="481" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1413" y="0" width="25" height="800" style="" title="2012-03-15 20:10:03     5226   +13    -1   aslkhjaslkjdlaskjdlksa" class="o" />
+<rect x="1449" y="480" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1449" y="477" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="1438" y="0" width="25" height="800" style="" title="2012-03-15 20:24:10     5264   +45    -7   laget tapte xmlgreier p&#xc3;&#xa5; nytt" class="o" />
+<rect x="1474" y="478" width="3" height="2" style="fill:rgb(0,0,255)" />
+<rect x="1474" y="475" width="3" height="3" style="fill:rgb(0,255,0)" />
+<rect x="1463" y="0" width="25" height="800" style="" title="2012-03-15 23:15:18     5284   +53   -33   fikset litt p&#xc3;&#xa5; ting&#x2c; laget klasse som holder meldingstyper og xmltags" class="o" />
+<rect x="1499" y="478" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1499" y="478" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1488" y="0" width="25" height="800" style="" title="2012-03-16 09:47:53     5287    +3    -0   en liten xmldemo" class="o" />
+<rect x="1524" y="476" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1524" y="473" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="1513" y="0" width="25" height="800" style="" title="2012-03-16 11:35:49     5324   +44    -7   kkkk" class="o" />
+<rect x="1549" y="475" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1549" y="474" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="1538" y="0" width="25" height="800" style="" title="2012-03-16 11:49:55     5338   +21    -7   fffffff" class="o" />
+<rect x="1574" y="475" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1574" y="475" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1563" y="0" width="25" height="800" style="" title="2012-03-16 12:01:22     5336    +7    -9   endret" class="o" />
+<rect x="1599" y="474" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1599" y="473" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1588" y="0" width="25" height="800" style="" title="2012-03-16 13:18:02     5350   +14    -0   xml&#x2d;template" class="o" />
+<rect x="1624" y="470" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1624" y="465" width="3" height="4" style="fill:rgb(0,255,0)" />
+<rect x="1613" y="0" width="25" height="800" style="" title="2012-03-16 14:39:44     5423   +80    -7   Klasse" class="o" />
+<rect x="1649" y="467" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1649" y="462" width="3" height="4" style="fill:rgb(0,255,0)" />
+<rect x="1638" y="0" width="25" height="800" style="" title="2012-03-16 14:41:09     5476   +68   -15   kjhjh" class="o" />
+<rect x="1674" y="467" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1674" y="467" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1663" y="0" width="25" height="800" style="" title="2012-03-16 14:42:04     5476    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="1699" y="465" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1699" y="463" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="1688" y="0" width="25" height="800" style="" title="2012-03-16 14:57:04     5504   +32    -4   lagt opp til lesing av resultsets til xml" class="o" />
+<rect x="1724" y="464" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1724" y="463" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="1713" y="0" width="25" height="800" style="" title="2012-03-16 15:22:03     5517   +17    -4   XML digg" class="o" />
+<rect x="1749" y="464" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1749" y="464" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1738" y="0" width="25" height="800" style="" title="2012-03-16 15:22:12     5517    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="1774" y="464" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1774" y="463" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1763" y="0" width="25" height="800" style="" title="2012-03-16 15:22:34     5527   +11    -1   Added id to meeting" class="o" />
+<rect x="1799" y="464" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1799" y="464" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1788" y="0" width="25" height="800" style="" title="2012-03-16 15:22:41     5527    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="1824" y="471" width="3" height="7" style="fill:rgb(0,0,255)" />
+<rect x="1824" y="471" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1813" y="0" width="25" height="800" style="" title="2012-03-16 15:23:48     5396    +0  -131   Deleted the code from receiveMessage to XMLReader" class="o" />
+<rect x="1849" y="458" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1849" y="443" width="3" height="14" style="fill:rgb(0,255,0)" />
+<rect x="1838" y="0" width="25" height="800" style="" title="2012-03-16 15:27:39     5621  +236   -11   &#x2d; MessageReceiver for database" class="o" />
+<rect x="1874" y="458" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1874" y="458" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1863" y="0" width="25" height="800" style="" title="2012-03-16 15:27:59     5621    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="1899" y="457" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1899" y="456" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="1888" y="0" width="25" height="800" style="" title="2012-03-16 15:30:20     5638   +19    -2   Added appointmentID to Appointment" class="o" />
+<rect x="1924" y="457" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1924" y="457" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1913" y="0" width="25" height="800" style="" title="2012-03-16 15:30:27     5638    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="1949" y="456" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1949" y="454" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="1938" y="0" width="25" height="800" style="" title="2012-03-16 15:55:14     5654   +22    -6   update av queries" class="o" />
+<rect x="1974" y="455" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1974" y="454" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="1963" y="0" width="25" height="800" style="" title="2012-03-16 16:02:02     5665   +18    -7   fixed queries" class="o" />
+<rect x="1999" y="455" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="1999" y="455" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="1988" y="0" width="25" height="800" style="" title="2012-03-16 16:08:44     5668    +5    -2   Some comments etc&#x2e;" class="o" />
+<rect x="2024" y="440" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2024" y="426" width="3" height="14" style="fill:rgb(0,255,0)" />
+<rect x="2013" y="0" width="25" height="800" style="" title="2012-03-16 16:15:20     5907  +239    -0   mer MXL morro" class="o" />
+<rect x="2049" y="440" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2049" y="440" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2038" y="0" width="25" height="800" style="" title="2012-03-16 16:15:44     5907    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="2074" y="442" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="2074" y="442" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2063" y="0" width="25" height="800" style="" title="2012-03-16 16:38:06     5882    +4   -29   Changed id in Person to personID" class="o" />
+<rect x="2099" y="442" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2099" y="442" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2088" y="0" width="25" height="800" style="" title="2012-03-16 16:42:23     5884    +2    -0   inconsequential update" class="o" />
+<rect x="2124" y="442" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2124" y="442" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2113" y="0" width="25" height="800" style="" title="2012-03-16 16:42:41     5884    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="2149" y="442" width="3" height="8" style="fill:rgb(0,0,255)" />
+<rect x="2149" y="433" width="3" height="8" style="fill:rgb(0,255,0)" />
+<rect x="2138" y="0" width="25" height="800" style="" title="2012-03-16 16:48:37     5884  +146  -146   Noen endringer i lesing fra XML" class="o" />
+<rect x="2174" y="442" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2174" y="442" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2163" y="0" width="25" height="800" style="" title="2012-03-16 16:53:08     5884    +0    -0   Merge branch &#x27;master&#x27; of" class="o" />
+<rect x="2199" y="430" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2199" y="418" width="3" height="12" style="fill:rgb(0,255,0)" />
+<rect x="2188" y="0" width="25" height="800" style="" title="2012-03-16 16:54:25     6082  +198    -0   noen endringer i XMLReader" class="o" />
+<rect x="2224" y="428" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2224" y="427" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="2213" y="0" width="25" height="800" style="" title="2012-03-19 10:01:07     6105   +25    -2   endret p&#xc3;&#xa5; XMLreader" class="o" />
+<rect x="2249" y="428" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2249" y="428" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2238" y="0" width="25" height="800" style="" title="2012-03-19 10:03:06     6105    +2    -2   Minor fix of ClientReader&#x27;s run&#x28;&#x29; method" class="o" />
+<rect x="2274" y="428" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2274" y="428" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2263" y="0" width="25" height="800" style="" title="2012-03-19 10:04:01     6105    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="2299" y="428" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2299" y="428" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2288" y="0" width="25" height="800" style="" title="2012-03-19 10:08:04     6107    +3    -1   kan lese deltakere til et m&#xc3;&#xb8;te fra XML" class="o" />
+<rect x="2324" y="428" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2324" y="428" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2313" y="0" width="25" height="800" style="" title="2012-03-19 10:08:23     6107    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="2349" y="427" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2349" y="426" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="2338" y="0" width="25" height="800" style="" title="2012-03-19 10:29:21     6123   +18    -2   added first toXML and open and close to XMLElements" class="o" />
+<rect x="2374" y="427" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2374" y="426" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2363" y="0" width="25" height="800" style="" title="2012-03-19 10:42:58     6130   +10    -3   finished toXML for appointment" class="o" />
+<rect x="2399" y="426" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2399" y="425" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2388" y="0" width="25" height="800" style="" title="2012-03-19 10:44:09     6146   +16    -0   toXML metode for meeting&#x2e;" class="o" />
+<rect x="2424" y="426" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2424" y="426" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2413" y="0" width="25" height="800" style="" title="2012-03-19 10:45:54     6147    +1    -0   toXML for meeting ferdig" class="o" />
+<rect x="2449" y="426" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2449" y="426" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2438" y="0" width="25" height="800" style="" title="2012-03-19 10:46:06     6148    +1    -0   added describing comment" class="o" />
+<rect x="2474" y="426" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2474" y="426" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2463" y="0" width="25" height="800" style="" title="2012-03-19 10:48:59     6147    +1    -2   added leaders toXML" class="o" />
+<rect x="2499" y="425" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2499" y="424" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2488" y="0" width="25" height="800" style="" title="2012-03-19 10:53:16     6161   +14    -0   toXML metode for person" class="o" />
+<rect x="2524" y="425" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2524" y="425" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2513" y="0" width="25" height="800" style="" title="2012-03-19 10:53:40     6161    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="2549" y="424" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2549" y="424" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2538" y="0" width="25" height="800" style="" title="2012-03-19 11:01:55     6172   +11    -0   Lagt inn ett alternativt query" class="o" />
+<rect x="2574" y="424" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2574" y="424" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2563" y="0" width="25" height="800" style="" title="2012-03-19 11:02:02     6172    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="2599" y="424" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2599" y="424" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2588" y="0" width="25" height="800" style="" title="2012-03-19 11:02:58     6174    +4    -2   added person stuff to toXML" class="o" />
+<rect x="2624" y="424" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2624" y="424" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2613" y="0" width="25" height="800" style="" title="2012-03-19 11:03:20     6174    +0    -0   Merge branch &#x27;master&#x27; of github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt" class="o" />
+<rect x="2649" y="423" width="3" height="2" style="fill:rgb(0,0,255)" />
+<rect x="2649" y="420" width="3" height="3" style="fill:rgb(0,255,0)" />
+<rect x="2638" y="0" width="25" height="800" style="" title="2012-03-19 11:11:39     6188   +50   -36   fiksa meeting" class="o" />
+<rect x="2674" y="423" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2674" y="423" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2663" y="0" width="25" height="800" style="" title="2012-03-19 11:11:54     6188    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="2699" y="421" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2699" y="418" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="2688" y="0" width="25" height="800" style="" title="2012-03-19 11:37:35     6234   +46    -0   Added JComponents to NewMeeting" class="o" />
+<rect x="2724" y="421" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2724" y="421" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2713" y="0" width="25" height="800" style="" title="2012-03-19 11:37:46     6234    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="2749" y="417" width="3" height="15" style="fill:rgb(0,0,255)" />
+<rect x="2749" y="398" width="3" height="18" style="fill:rgb(0,255,0)" />
+<rect x="2738" y="0" width="25" height="800" style="" title="2012-03-19 11:42:21     6294  +310  -250   flytta xmlgreier" class="o" />
+<rect x="2774" y="415" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2774" y="414" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="2763" y="0" width="25" height="800" style="" title="2012-03-19 11:46:38     6321   +27    -0   Initialisert JComponents in NewMeeting" class="o" />
+<rect x="2799" y="415" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2799" y="415" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2788" y="0" width="25" height="800" style="" title="2012-03-19 11:46:45     6321    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="2824" y="414" width="3" height="3" style="fill:rgb(0,0,255)" />
+<rect x="2824" y="410" width="3" height="4" style="fill:rgb(0,255,0)" />
+<rect x="2813" y="0" width="25" height="800" style="" title="2012-03-19 11:50:35     6337   +68   -52   leser n&#xc3;&#xa5; stuff" class="o" />
+<rect x="2849" y="414" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2849" y="414" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2838" y="0" width="25" height="800" style="" title="2012-03-19 11:50:54     6337    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="2874" y="414" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2874" y="414" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2863" y="0" width="25" height="800" style="" title="2012-03-19 12:00:54     6339    +5    -3   added Xml&#x2d;header to XmlUtilities" class="o" />
+<rect x="2899" y="413" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2899" y="411" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="2888" y="0" width="25" height="800" style="" title="2012-03-19 12:02:11     6364   +25    -0   added static method to get SHA&#x2d;1 hash of given string" class="o" />
+<rect x="2924" y="413" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2924" y="413" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2913" y="0" width="25" height="800" style="" title="2012-03-19 12:02:21     6364    +0    -0   Merge branch &#x27;master&#x27; of github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt" class="o" />
+<rect x="2949" y="413" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2949" y="413" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2938" y="0" width="25" height="800" style="" title="2012-03-19 12:19:25     6365    +1    -0   updated gitignore" class="o" />
+<rect x="2974" y="413" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2974" y="413" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="2963" y="0" width="25" height="800" style="" title="2012-03-19 12:21:40     6364    +0    -1   updatet SHAHasher" class="o" />
+<rect x="2999" y="409" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="2999" y="404" width="3" height="4" style="fill:rgb(0,255,0)" />
+<rect x="2988" y="0" width="25" height="800" style="" title="2012-03-19 12:49:23     6430   +74    -8   GUI resize function in NewMeeting" class="o" />
+<rect x="3024" y="409" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3024" y="409" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3013" y="0" width="25" height="800" style="" title="2012-03-19 12:49:31     6430    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="3049" y="406" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3049" y="404" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="3038" y="0" width="25" height="800" style="" title="2012-03-19 13:41:14     6466   +36    -0   5MeetingTest" class="o" />
+<rect x="3074" y="406" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3074" y="406" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3063" y="0" width="25" height="800" style="" title="2012-03-19 13:41:32     6466    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="3099" y="402" width="3" height="2" style="fill:rgb(0,0,255)" />
+<rect x="3099" y="395" width="3" height="6" style="fill:rgb(0,255,0)" />
+<rect x="3088" y="0" width="25" height="800" style="" title="2012-03-19 14:33:18     6540  +109   -35   Lots of small alteration" class="o" />
+<rect x="3124" y="399" width="3" height="2" style="fill:rgb(0,0,255)" />
+<rect x="3124" y="394" width="3" height="4" style="fill:rgb(0,255,0)" />
+<rect x="3113" y="0" width="25" height="800" style="" title="2012-03-19 14:52:11     6584   +80   -36   newMeeting GUI noe sm&#xc3;&#xa5; pirk gjennst&#xc3;&#xa5;r" class="o" />
+<rect x="3149" y="399" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3149" y="398" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3138" y="0" width="25" height="800" style="" title="2012-03-19 14:52:52     6593    +9    -0   added query for adding appointment" class="o" />
+<rect x="3174" y="397" width="3" height="5" style="fill:rgb(0,0,255)" />
+<rect x="3174" y="389" width="3" height="7" style="fill:rgb(0,255,0)" />
+<rect x="3163" y="0" width="25" height="800" style="" title="2012-03-19 14:54:28     6626  +124   -91   XML Reader &#x28;WIP&#x29;" class="o" />
+<rect x="3199" y="397" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3199" y="397" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3188" y="0" width="25" height="800" style="" title="2012-03-19 14:54:53     6626    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="3224" y="397" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3224" y="397" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3213" y="0" width="25" height="800" style="" title="2012-03-19 14:57:09     6626    +3    -3   added leader to new appointment query" class="o" />
+<rect x="3249" y="397" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3249" y="396" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3238" y="0" width="25" height="800" style="" title="2012-03-19 15:03:05     6626    +7    -7   NewMeeting noe sm&#xc3;&#xa5; pirk gjenst&#xc3;&#xa5;r" class="o" />
+<rect x="3274" y="397" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3274" y="397" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3263" y="0" width="25" height="800" style="" title="2012-03-19 15:03:25     6626    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="3299" y="400" width="3" height="5" style="fill:rgb(0,0,255)" />
+<rect x="3299" y="398" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="3288" y="0" width="25" height="800" style="" title="2012-03-19 15:05:18     6568   +30   -88   ikkeno" class="o" />
+<rect x="3324" y="400" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3324" y="399" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3313" y="0" width="25" height="800" style="" title="2012-03-19 17:45:27     6576    +9    -1   Gui Appointments" class="o" />
+<rect x="3349" y="400" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3349" y="400" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3338" y="0" width="25" height="800" style="" title="2012-03-19 20:06:30     6576    +4    -4   NewMeeting n&#xc3;&#xa5; skal alt v&#xc3;&#xa6;re p&#xc3;&#xa5; linje&#x2e;" class="o" />
+<rect x="3374" y="400" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3374" y="400" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3363" y="0" width="25" height="800" style="" title="2012-03-20 09:24:26     6576    +0    -0   Merge branch &#x27;master&#x27; of github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt" class="o" />
+<rect x="3399" y="392" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3399" y="383" width="3" height="8" style="fill:rgb(0,255,0)" />
+<rect x="3388" y="0" width="25" height="800" style="" title="2012-03-20 10:39:32     6710  +134    -0   Gui&#x3a; Appointments" class="o" />
+<rect x="3424" y="391" width="3" height="15" style="fill:rgb(0,0,255)" />
+<rect x="3424" y="374" width="3" height="16" style="fill:rgb(0,255,0)" />
+<rect x="3413" y="0" width="25" height="800" style="" title="2012-03-20 11:25:17     6726  +274  -258   sender n&#xc3;&#xa5; objekter fra&#x2f;til server" class="o" />
+<rect x="3449" y="391" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3449" y="391" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3438" y="0" width="25" height="800" style="" title="2012-03-20 11:25:28     6726    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="3474" y="386" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3474" y="382" width="3" height="4" style="fill:rgb(0,255,0)" />
+<rect x="3463" y="0" width="25" height="800" style="" title="2012-03-20 11:25:53     6801   +75    -0   GUI" class="o" />
+<rect x="3499" y="386" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3499" y="386" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3488" y="0" width="25" height="800" style="" title="2012-03-20 11:26:16     6801    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="3524" y="384" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3524" y="382" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="3513" y="0" width="25" height="800" style="" title="2012-03-20 11:29:03     6837   +38    -2   A bit to get ConnectionImpl started&#x2e;" class="o" />
+<rect x="3549" y="384" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3549" y="384" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3538" y="0" width="25" height="800" style="" title="2012-03-20 13:15:38     6837    +0    -0   dont know what will happen" class="o" />
+<rect x="3574" y="384" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3574" y="384" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3563" y="0" width="25" height="800" style="" title="2012-03-20 13:15:48     6837    +0    -0   Merge branch &#x27;master&#x27; of github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt" class="o" />
+<rect x="3599" y="384" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3599" y="384" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3588" y="0" width="25" height="800" style="" title="2012-03-20 13:22:32     6837    +1    -1   fix to fix my setup" class="o" />
+<rect x="3624" y="384" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3624" y="384" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3613" y="0" width="25" height="800" style="" title="2012-03-20 13:31:09     6837    +0    -0   fixed merge problem" class="o" />
+<rect x="3649" y="384" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3649" y="384" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3638" y="0" width="25" height="800" style="" title="2012-03-20 13:38:30     6836    +4    -5   Small update of Impl" class="o" />
+<rect x="3674" y="384" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3674" y="384" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3663" y="0" width="25" height="800" style="" title="2012-03-20 13:38:55     6836    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="3699" y="380" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3699" y="375" width="3" height="4" style="fill:rgb(0,255,0)" />
+<rect x="3688" y="0" width="25" height="800" style="" title="2012-03-20 13:50:54     6906   +78    -8   calendar" class="o" />
+<rect x="3724" y="380" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3724" y="379" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3713" y="0" width="25" height="800" style="" title="2012-03-20 13:51:12     6908    +4    -2   constructor throws runtimeexception if start date is after end date" class="o" />
+<rect x="3749" y="380" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3749" y="380" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3738" y="0" width="25" height="800" style="" title="2012-03-20 13:56:40     6908    +0    -0   Merge branch &#x27;master&#x27; of github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt" class="o" />
+<rect x="3774" y="371" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3774" y="363" width="3" height="8" style="fill:rgb(0,255,0)" />
+<rect x="3763" y="0" width="25" height="800" style="" title="2012-03-20 14:03:37     7042  +138    -4   GUI" class="o" />
+<rect x="3799" y="371" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3799" y="371" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3788" y="0" width="25" height="800" style="" title="2012-03-20 14:03:43     7042    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="3824" y="371" width="3" height="6" style="fill:rgb(0,0,255)" />
+<rect x="3824" y="364" width="3" height="6" style="fill:rgb(0,255,0)" />
+<rect x="3813" y="0" width="25" height="800" style="" title="2012-03-20 14:07:48     7049  +109  -102   Renamed Calender to InternalCalendar&#x2e;" class="o" />
+<rect x="3849" y="371" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3849" y="371" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3838" y="0" width="25" height="800" style="" title="2012-03-20 14:10:19     7049    +2    -2   Updated references to be consistent with last commit&#x2e;" class="o" />
+<rect x="3874" y="371" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3874" y="371" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3863" y="0" width="25" height="800" style="" title="2012-03-20 14:10:29     7049    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="3899" y="367" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3899" y="363" width="3" height="3" style="fill:rgb(0,255,0)" />
+<rect x="3888" y="0" width="25" height="800" style="" title="2012-03-20 14:27:29     7112   +63    -0   Logg inn har blitt laga" class="o" />
+<rect x="3924" y="367" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3924" y="367" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3913" y="0" width="25" height="800" style="" title="2012-03-20 14:27:38     7112    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="3949" y="367" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3949" y="367" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3938" y="0" width="25" height="800" style="" title="2012-03-20 14:49:14     7112    +2    -2   mina avtaler" class="o" />
+<rect x="3974" y="364" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3974" y="361" width="3" height="3" style="fill:rgb(0,255,0)" />
+<rect x="3963" y="0" width="25" height="800" style="" title="2012-03-20 14:49:37     7156   +50    -6   Liste med deltakere er laget&#x2e;" class="o" />
+<rect x="3999" y="364" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="3999" y="364" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="3988" y="0" width="25" height="800" style="" title="2012-03-20 14:54:19     7159    +4    -1   ingenting" class="o" />
+<rect x="4024" y="364" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4024" y="364" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4013" y="0" width="25" height="800" style="" title="2012-03-20 14:56:03     7159    +0    -0   Merge branch &#x27;master&#x27; of" class="o" />
+<rect x="4049" y="356" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4049" y="347" width="3" height="8" style="fill:rgb(0,255,0)" />
+<rect x="4038" y="0" width="25" height="800" style="" title="2012-03-20 14:57:06     7303  +144    -0   ingenting" class="o" />
+<rect x="4074" y="356" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4074" y="356" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4063" y="0" width="25" height="800" style="" title="2012-03-20 14:59:33     7296    +6   -13   ingenting igjen" class="o" />
+<rect x="4099" y="346" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4099" y="337" width="3" height="9" style="fill:rgb(0,255,0)" />
+<rect x="4088" y="0" width="25" height="800" style="" title="2012-03-20 15:27:23     7453  +162    -5   Net Meeting" class="o" />
+<rect x="4124" y="346" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4124" y="346" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4113" y="0" width="25" height="800" style="" title="2012-03-20 15:27:30     7453    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="4149" y="344" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4149" y="341" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="4138" y="0" width="25" height="800" style="" title="2012-03-20 15:27:47     7499   +48    -2   added server side login" class="o" />
+<rect x="4174" y="344" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4174" y="344" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4163" y="0" width="25" height="800" style="" title="2012-03-20 15:27:58     7499    +0    -0   Merge branch &#x27;master&#x27; of github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt" class="o" />
+<rect x="4199" y="341" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="4199" y="338" width="3" height="3" style="fill:rgb(0,255,0)" />
+<rect x="4188" y="0" width="25" height="800" style="" title="2012-03-20 15:30:03     7537   +60   -22   code for testing adding of appointments&#x2f;meetings" class="o" />
+<rect x="4224" y="342" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4224" y="342" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4213" y="0" width="25" height="800" style="" title="2012-03-20 15:32:51     7527    +4   -14   Gui Scroll" class="o" />
+<rect x="4249" y="341" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4249" y="340" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="4238" y="0" width="25" height="800" style="" title="2012-03-20 15:35:41     7544   +22    -5   cellrendereren har begynt &#xc3;&#xa5; virke&#x2e;" class="o" />
+<rect x="4274" y="341" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4274" y="341" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4263" y="0" width="25" height="800" style="" title="2012-03-20 15:42:11     7547    +3    -0   test main class" class="o" />
+<rect x="4299" y="341" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4299" y="341" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4288" y="0" width="25" height="800" style="" title="2012-03-20 15:42:28     7547    +0    -0   Merge branch &#x27;master&#x27; of github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt" class="o" />
+<rect x="4324" y="341" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4324" y="340" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4313" y="0" width="25" height="800" style="" title="2012-03-20 15:52:18     7550    +4    -1   added login request method" class="o" />
+<rect x="4349" y="341" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4349" y="341" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4338" y="0" width="25" height="800" style="" title="2012-03-20 15:59:17     7550    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="4374" y="339" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4374" y="338" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="4363" y="0" width="25" height="800" style="" title="2012-03-20 16:00:20     7568   +27    -9   Sidepanel med ferdige lister" class="o" />
+<rect x="4399" y="339" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="4399" y="337" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="4388" y="0" width="25" height="800" style="" title="2012-03-20 16:00:59     7577   +26   -17   trallala" class="o" />
+<rect x="4424" y="339" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4424" y="339" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4413" y="0" width="25" height="800" style="" title="2012-03-20 16:01:08     7577    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="4449" y="339" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="4449" y="339" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4438" y="0" width="25" height="800" style="" title="2012-03-20 16:13:52     7569   +10   -18   New appointment" class="o" />
+<rect x="4474" y="337" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="4474" y="333" width="3" height="4" style="fill:rgb(0,255,0)" />
+<rect x="4463" y="0" width="25" height="800" style="" title="2012-03-20 16:24:42     7611   +68   -26   LOGIN&#x21;" class="o" />
+<rect x="4499" y="337" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4499" y="337" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4488" y="0" width="25" height="800" style="" title="2012-03-20 16:24:58     7611    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="4524" y="337" width="3" height="2" style="fill:rgb(0,0,255)" />
+<rect x="4524" y="335" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="4513" y="0" width="25" height="800" style="" title="2012-03-20 16:37:28     7611   +37   -37   Jeg har endret noe &#x3a;&#x29;" class="o" />
+<rect x="4549" y="337" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4549" y="337" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4538" y="0" width="25" height="800" style="" title="2012-03-20 16:37:36     7611    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="4574" y="337" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4574" y="337" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4563" y="0" width="25" height="800" style="" title="2012-03-20 16:37:52     7610    +1    -2   returns null on fail" class="o" />
+<rect x="4599" y="330" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4599" y="323" width="3" height="7" style="fill:rgb(0,255,0)" />
+<rect x="4588" y="0" width="25" height="800" style="" title="2012-03-20 17:00:21     7726  +116    -0   message GUI" class="o" />
+<rect x="4624" y="325" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4624" y="320" width="3" height="5" style="fill:rgb(0,255,0)" />
+<rect x="4613" y="0" width="25" height="800" style="" title="2012-03-20 17:05:36     7802   +88   -12   GUI" class="o" />
+<rect x="4649" y="325" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4649" y="325" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4638" y="0" width="25" height="800" style="" title="2012-03-20 17:05:43     7802    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="4674" y="315" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4674" y="304" width="3" height="10" style="fill:rgb(0,255,0)" />
+<rect x="4663" y="0" width="25" height="800" style="" title="2012-03-20 20:15:28     7969  +180   -13   lagt til" class="o" />
+<rect x="4699" y="315" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4699" y="315" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4688" y="0" width="25" height="800" style="" title="2012-03-20 20:16:50     7969    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="4724" y="313" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4724" y="310" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="4713" y="0" width="25" height="800" style="" title="2012-03-20 20:17:21     8010   +41    -0   merge" class="o" />
+<rect x="4749" y="443" width="3" height="288" style="fill:rgb(0,0,255)" />
+<rect x="4749" y="285" width="3" height="158" style="fill:rgb(0,255,0)" />
+<rect x="4738" y="0" width="25" height="800" style="" title="2012-03-20 20:33:44     5863 +2601 -4748   sletta kjernekode og omorganisert pakker" class="o" />
+<rect x="4774" y="443" width="3" height="4" style="fill:rgb(0,0,255)" />
+<rect x="4774" y="439" width="3" height="4" style="fill:rgb(0,255,0)" />
+<rect x="4763" y="0" width="25" height="800" style="" title="2012-03-20 20:36:42     5858   +73   -78   mer renaming og flytting" class="o" />
+<rect x="4799" y="443" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4799" y="443" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4788" y="0" width="25" height="800" style="" title="2012-03-20 20:37:17     5857    +2    -3   ingenting" class="o" />
+<rect x="4824" y="446" width="3" height="19" style="fill:rgb(0,0,255)" />
+<rect x="4824" y="430" width="3" height="16" style="fill:rgb(0,255,0)" />
+<rect x="4813" y="0" width="25" height="800" style="" title="2012-03-20 20:59:29     5809  +268  -316   gui&#x2d;konstanter er s&#xc3;&#xa5; en statisk klasse med konstanter som medlemmer&#x2c;" class="o" />
+<rect x="4849" y="446" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="4849" y="445" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="4838" y="0" width="25" height="800" style="" title="2012-03-20 21:10:06     5809   +22   -22   &#xc3;&#xb8;&#x2d;test" class="o" />
+<rect x="4874" y="446" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4874" y="446" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4863" y="0" width="25" height="800" style="" title="2012-03-20 22:38:46     5811   +12   -10   title i constructoren til console fordi jeg ikke har liv" class="o" />
+<rect x="4899" y="444" width="3" height="6" style="fill:rgb(0,0,255)" />
+<rect x="4899" y="436" width="3" height="8" style="fill:rgb(0,255,0)" />
+<rect x="4888" y="0" width="25" height="800" style="" title="2012-03-20 23:24:30     5842  +136  -105   login fungerer n&#xc3;&#xa5; med gui&#x2c; startes opp fra Client&#x2e;java som er" class="o" />
+<rect x="4924" y="444" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4924" y="444" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4913" y="0" width="25" height="800" style="" title="2012-03-20 23:27:39     5841    +3    -4   unused imports &#x3a;p" class="o" />
+<rect x="4949" y="444" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4949" y="444" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4938" y="0" width="25" height="800" style="" title="2012-03-20 23:30:42     5842    +1    -0   client spawner n&#xc3;&#xa5; i midten av vinduet" class="o" />
+<rect x="4974" y="444" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4974" y="444" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="4963" y="0" width="25" height="800" style="" title="2012-03-20 23:54:50     5846    +8    -4   imports" class="o" />
+<rect x="4999" y="443" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="4999" y="441" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="4988" y="0" width="25" height="800" style="" title="2012-03-21 00:14:54     5869   +26    -3   ingenting" class="o" />
+<rect x="5024" y="443" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5024" y="443" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5013" y="0" width="25" height="800" style="" title="2012-03-21 09:21:06     5869    +2    -2   Fixed ConcurrentModificationError" class="o" />
+<rect x="5049" y="442" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5049" y="440" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="5038" y="0" width="25" height="800" style="" title="2012-03-21 09:30:38     5885   +22    -6   endret" class="o" />
+<rect x="5074" y="442" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5074" y="442" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5063" y="0" width="25" height="800" style="" title="2012-03-21 09:30:46     5885    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="5099" y="442" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5099" y="442" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5088" y="0" width="25" height="800" style="" title="2012-03-21 09:34:38     5886    +1    -0   checkbokser har gjennomsiktig bakgrunn&#x2e;" class="o" />
+<rect x="5124" y="442" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5124" y="442" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5113" y="0" width="25" height="800" style="" title="2012-03-21 09:34:45     5886    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="5149" y="442" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5149" y="441" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5138" y="0" width="25" height="800" style="" title="2012-03-21 09:36:07     5889    +3    -0   font" class="o" />
+<rect x="5174" y="442" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5174" y="442" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5163" y="0" width="25" height="800" style="" title="2012-03-21 09:36:16     5889    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="5199" y="441" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5199" y="440" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="5188" y="0" width="25" height="800" style="" title="2012-03-21 09:42:52     5894   +21   -16   enter" class="o" />
+<rect x="5224" y="440" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5224" y="439" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="5213" y="0" width="25" height="800" style="" title="2012-03-21 09:53:10     5912   +21    -3   lll" class="o" />
+<rect x="5249" y="440" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5249" y="440" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5238" y="0" width="25" height="800" style="" title="2012-03-21 10:02:47     5906    +0    -6   removed deprecated method" class="o" />
+<rect x="5274" y="440" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5274" y="439" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5263" y="0" width="25" height="800" style="" title="2012-03-21 10:04:58     5916   +11    -1   kkkkk" class="o" />
+<rect x="5299" y="440" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5299" y="440" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5288" y="0" width="25" height="800" style="" title="2012-03-21 10:05:05     5916    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="5324" y="440" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5324" y="439" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5313" y="0" width="25" height="800" style="" title="2012-03-21 10:06:14     5918    +8    -6   uncommented create new appointment query" class="o" />
+<rect x="5349" y="440" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5349" y="439" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5338" y="0" width="25" height="800" style="" title="2012-03-21 10:08:36     5922    +4    -0   serverdata" class="o" />
+<rect x="5374" y="440" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5374" y="440" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5363" y="0" width="25" height="800" style="" title="2012-03-21 10:08:54     5922    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="5399" y="438" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5399" y="436" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="5388" y="0" width="25" height="800" style="" title="2012-03-21 10:24:46     5952   +30    -0   Single class for running server and client" class="o" />
+<rect x="5424" y="439" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5424" y="438" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5413" y="0" width="25" height="800" style="" title="2012-03-21 10:35:20     5938    +1   -15   lll" class="o" />
+<rect x="5449" y="436" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5449" y="434" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="5438" y="0" width="25" height="800" style="" title="2012-03-21 10:38:35     5976   +41    -3   added support for adding new appointment" class="o" />
+<rect x="5474" y="436" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5474" y="436" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5463" y="0" width="25" height="800" style="" title="2012-03-21 10:38:42     5976    +0    -0   Merge branch &#x27;master&#x27; of github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt" class="o" />
+<rect x="5499" y="436" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5499" y="435" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5488" y="0" width="25" height="800" style="" title="2012-03-21 10:52:01     5983    +7    -0   added receive new appointment in server data" class="o" />
+<rect x="5524" y="435" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5524" y="435" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5513" y="0" width="25" height="800" style="" title="2012-03-21 10:56:47     5988    +5    -0   added method for new appointment" class="o" />
+<rect x="5549" y="432" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="5549" y="426" width="3" height="5" style="fill:rgb(0,255,0)" />
+<rect x="5538" y="0" width="25" height="800" style="" title="2012-03-21 10:58:20     6051   +91   -28   appointmentView med noen lister" class="o" />
+<rect x="5574" y="432" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5574" y="432" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5563" y="0" width="25" height="800" style="" title="2012-03-21 11:14:15     6051    +1    -1   kk" class="o" />
+<rect x="5599" y="431" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5599" y="430" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5588" y="0" width="25" height="800" style="" title="2012-03-21 11:16:38     6063   +12    -0   Main method in Server Data for testing" class="o" />
+<rect x="5624" y="431" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5624" y="431" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5613" y="0" width="25" height="800" style="" title="2012-03-21 11:16:55     6063    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="5649" y="430" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="5649" y="427" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="5638" y="0" width="25" height="800" style="" title="2012-03-21 11:21:03     6082   +39   -20   appointmentView" class="o" />
+<rect x="5674" y="430" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5674" y="429" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5663" y="0" width="25" height="800" style="" title="2012-03-21 11:21:47     6086    +5    -1   fixed executeQuery bug to updateDB" class="o" />
+<rect x="5699" y="430" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5699" y="430" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5688" y="0" width="25" height="800" style="" title="2012-03-21 11:22:51     6086    +0    -0   Merge branch &#x27;master&#x27; of github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt" class="o" />
+<rect x="5724" y="430" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5724" y="429" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5713" y="0" width="25" height="800" style="" title="2012-03-21 11:24:24     6086    +1    -1   added a space" class="o" />
+<rect x="5749" y="430" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5749" y="429" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5738" y="0" width="25" height="800" style="" title="2012-03-21 11:26:12     6086    +1    -1   added to &#x27;" class="o" />
+<rect x="5774" y="430" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5774" y="429" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5763" y="0" width="25" height="800" style="" title="2012-03-21 11:28:05     6086    +1    -1   added &#x27;" class="o" />
+<rect x="5799" y="430" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5799" y="429" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5788" y="0" width="25" height="800" style="" title="2012-03-21 11:32:52     6086    +4    -4   added leader to query for new app" class="o" />
+<rect x="5824" y="430" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5824" y="430" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5813" y="0" width="25" height="800" style="" title="2012-03-21 11:39:36     6083    +1    -4   slettet overfl&#xc3;&#xb8;dige linjer" class="o" />
+<rect x="5849" y="420" width="3" height="16" style="fill:rgb(0,0,255)" />
+<rect x="5849" y="394" width="3" height="26" style="fill:rgb(0,255,0)" />
+<rect x="5838" y="0" width="25" height="800" style="" title="2012-03-21 12:13:03     6237  +431  -277   samler ting" class="o" />
+<rect x="5874" y="420" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5874" y="420" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5863" y="0" width="25" height="800" style="" title="2012-03-21 12:13:18     6237    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="5899" y="419" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5899" y="418" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="5888" y="0" width="25" height="800" style="" title="2012-03-21 12:24:24     6255   +24    -6   Datepicker Appointments &#x28;GUI&#x29;" class="o" />
+<rect x="5924" y="419" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5924" y="419" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5913" y="0" width="25" height="800" style="" title="2012-03-21 12:24:33     6255    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="5949" y="419" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5949" y="419" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5938" y="0" width="25" height="800" style="" title="2012-03-21 12:28:24     6256    +9    -8   NULL" class="o" />
+<rect x="5974" y="419" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5974" y="419" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5963" y="0" width="25" height="800" style="" title="2012-03-21 12:28:32     6256    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="5999" y="419" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="5999" y="419" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="5988" y="0" width="25" height="800" style="" title="2012-03-21 12:29:43     6256    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="6024" y="52" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6024" y="-314" width="3" height="367" style="fill:rgb(0,255,0)" />
+<rect x="6013" y="0" width="25" height="800" style="" title="2012-03-21 12:37:52    12290 +6038    -4   DatePicker Appointments&#x2c; GUI" class="o" />
+<rect x="6049" y="52" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6049" y="52" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6038" y="0" width="25" height="800" style="" title="2012-03-21 12:38:07    12290    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="6074" y="52" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6074" y="52" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6063" y="0" width="25" height="800" style="" title="2012-03-21 12:42:21    12290    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="6099" y="52" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6099" y="52" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6088" y="0" width="25" height="800" style="" title="2012-03-21 12:44:48    12289    +9   -10   jhgj" class="o" />
+<rect x="6124" y="52" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6124" y="52" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6113" y="0" width="25" height="800" style="" title="2012-03-21 12:49:28    12290    +1    -0   ServerData test&#x2e; Problem with date formatting" class="o" />
+<rect x="6149" y="52" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6149" y="52" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6138" y="0" width="25" height="800" style="" title="2012-03-21 12:49:39    12290    +1    -1   GUI" class="o" />
+<rect x="6174" y="52" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6174" y="52" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6163" y="0" width="25" height="800" style="" title="2012-03-21 12:49:47    12290    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="6199" y="53" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6199" y="52" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6188" y="0" width="25" height="800" style="" title="2012-03-21 13:11:47    12286    +6   -10   GUI Appointments" class="o" />
+<rect x="6224" y="53" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6224" y="53" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6213" y="0" width="25" height="800" style="" title="2012-03-21 13:31:07    12277    +3   -12   removed some wrong todos" class="o" />
+<rect x="6249" y="51" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6249" y="48" width="3" height="3" style="fill:rgb(0,255,0)" />
+<rect x="6238" y="0" width="25" height="800" style="" title="2012-03-21 13:45:25    12318   +50    -9   renamed message to note" class="o" />
+<rect x="6274" y="51" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6274" y="51" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6263" y="0" width="25" height="800" style="" title="2012-03-21 13:57:29    12318    +2    -2   tur" class="o" />
+<rect x="6299" y="51" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6299" y="50" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6288" y="0" width="25" height="800" style="" title="2012-03-21 14:02:23    12321    +9    -6   GUI&#x2c; datepicker in NewAppointment" class="o" />
+<rect x="6324" y="51" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6324" y="51" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6313" y="0" width="25" height="800" style="" title="2012-03-21 14:02:30    12321    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="6349" y="51" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6349" y="51" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6338" y="0" width="25" height="800" style="" title="2012-03-21 14:15:29    12315    +1    -7   fixed a bit in note" class="o" />
+<rect x="6374" y="51" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6374" y="51" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6363" y="0" width="25" height="800" style="" title="2012-03-21 14:16:51    12313    +0    -2   fixed a bit in note" class="o" />
+<rect x="6399" y="51" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6399" y="51" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6388" y="0" width="25" height="800" style="" title="2012-03-21 14:16:58    12313    +0    -0   Merge branch &#x27;master&#x27; of github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt" class="o" />
+<rect x="6424" y="44" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="6424" y="35" width="3" height="8" style="fill:rgb(0,255,0)" />
+<rect x="6413" y="0" width="25" height="800" style="" title="2012-03-21 14:17:00    12431  +143   -25   Updated Date &#x28;Errors with date calculation&#x29;" class="o" />
+<rect x="6449" y="36" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6449" y="28" width="3" height="8" style="fill:rgb(0,255,0)" />
+<rect x="6438" y="0" width="25" height="800" style="" title="2012-03-21 14:17:04    12553  +134   -12   knapper fungerer i sidepanel" class="o" />
+<rect x="6474" y="36" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6474" y="36" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6463" y="0" width="25" height="800" style="" title="2012-03-21 14:17:07    12553    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="6499" y="36" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6499" y="36" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6488" y="0" width="25" height="800" style="" title="2012-03-21 14:17:23    12553    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="6524" y="36" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6524" y="36" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6513" y="0" width="25" height="800" style="" title="2012-03-21 14:17:33    12553    +0    -0   Merge branch &#x27;master&#x27; of github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt" class="o" />
+<rect x="6549" y="40" width="3" height="3" style="fill:rgb(0,0,255)" />
+<rect x="6549" y="40" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6538" y="0" width="25" height="800" style="" title="2012-03-21 14:23:56    12494    +0   -59   lll" class="o" />
+<rect x="6574" y="40" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6574" y="40" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6563" y="0" width="25" height="800" style="" title="2012-03-21 14:25:14    12494    +1    -1   added an i" class="o" />
+<rect x="6599" y="40" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6599" y="40" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6588" y="0" width="25" height="800" style="" title="2012-03-21 14:25:21    12494    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="6624" y="40" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6624" y="40" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6613" y="0" width="25" height="800" style="" title="2012-03-21 14:26:17    12496    +4    -2   Warped time" class="o" />
+<rect x="6649" y="40" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6649" y="39" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6638" y="0" width="25" height="800" style="" title="2012-03-21 14:37:53    12497   +11   -10   updated references" class="o" />
+<rect x="6674" y="39" width="3" height="2" style="fill:rgb(0,0,255)" />
+<rect x="6674" y="36" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="6663" y="0" width="25" height="800" style="" title="2012-03-21 14:44:25    12504   +48   -41   GUI" class="o" />
+<rect x="6699" y="39" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6699" y="39" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6688" y="0" width="25" height="800" style="" title="2012-03-21 14:47:34    12504    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="6724" y="39" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="6724" y="37" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="6713" y="0" width="25" height="800" style="" title="2012-03-21 14:48:38    12507   +28   -25   sidepanel" class="o" />
+<rect x="6749" y="38" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6749" y="37" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="6738" y="0" width="25" height="800" style="" title="2012-03-21 14:56:47    12521   +17    -3   tilbake til calendar" class="o" />
+<rect x="6774" y="36" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6774" y="34" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="6763" y="0" width="25" height="800" style="" title="2012-03-21 15:04:34    12556   +36    -1   app" class="o" />
+<rect x="6799" y="36" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6799" y="36" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6788" y="0" width="25" height="800" style="" title="2012-03-21 15:04:41    12556    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="6824" y="36" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6824" y="35" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6813" y="0" width="25" height="800" style="" title="2012-03-21 15:08:19    12567   +13    -2   klkl" class="o" />
+<rect x="6849" y="32" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6849" y="28" width="3" height="3" style="fill:rgb(0,255,0)" />
+<rect x="6838" y="0" width="25" height="800" style="" title="2012-03-21 15:15:49    12628   +62    -1   added support for new messages server side" class="o" />
+<rect x="6874" y="31" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="6874" y="29" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="6863" y="0" width="25" height="800" style="" title="2012-03-21 15:21:03    12637   +38   -29   sidepanel fungerer" class="o" />
+<rect x="6899" y="29" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6899" y="27" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="6888" y="0" width="25" height="800" style="" title="2012-03-21 15:21:03    12674   +39    -2   ffff" class="o" />
+<rect x="6924" y="29" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6924" y="29" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6913" y="0" width="25" height="800" style="" title="2012-03-21 15:21:18    12674    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="6949" y="28" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6949" y="27" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="6938" y="0" width="25" height="800" style="" title="2012-03-21 15:23:10    12691   +17    -0   Message&#x2c; CheckAll" class="o" />
+<rect x="6974" y="28" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="6974" y="28" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6963" y="0" width="25" height="800" style="" title="2012-03-21 15:23:16    12691    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="6999" y="30" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="6999" y="30" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="6988" y="0" width="25" height="800" style="" title="2012-03-21 15:28:55    12666    +0   -25   kkk" class="o" />
+<rect x="7024" y="30" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7024" y="30" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7013" y="0" width="25" height="800" style="" title="2012-03-21 15:29:02    12666    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="7049" y="29" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7049" y="28" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="7038" y="0" width="25" height="800" style="" title="2012-03-21 15:29:16    12675   +21   -12   newAppointment knapperfungerer" class="o" />
+<rect x="7074" y="29" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7074" y="29" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7063" y="0" width="25" height="800" style="" title="2012-03-21 15:29:22    12675    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="7099" y="28" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="7099" y="25" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="7088" y="0" width="25" height="800" style="" title="2012-03-21 15:36:28    12694   +43   -24   ggg" class="o" />
+<rect x="7124" y="28" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7124" y="28" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7113" y="0" width="25" height="800" style="" title="2012-03-21 15:36:38    12694    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="7149" y="28" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7149" y="28" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7138" y="0" width="25" height="800" style="" title="2012-03-21 15:37:01    12685    +7   -16   noen endringer" class="o" />
+<rect x="7174" y="28" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7174" y="28" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7163" y="0" width="25" height="800" style="" title="2012-03-21 15:37:17    12685    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="7199" y="28" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7199" y="28" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7188" y="0" width="25" height="800" style="" title="2012-03-21 15:38:25    12685    +1    -1   ll" class="o" />
+<rect x="7224" y="28" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7224" y="27" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7213" y="0" width="25" height="800" style="" title="2012-03-21 15:52:13    12693   +12    -4   added note creation to client side" class="o" />
+<rect x="7249" y="28" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7249" y="28" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7238" y="0" width="25" height="800" style="" title="2012-03-21 15:52:57    12693    +1    -1   added todo" class="o" />
+<rect x="7274" y="26" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7274" y="23" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="7263" y="0" width="25" height="800" style="" title="2012-03-21 15:54:59    12732   +39    -0   l&#xc3;&#xb8;l&#xc3;&#xb8;kkkk" class="o" />
+<rect x="7299" y="26" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7299" y="26" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7288" y="0" width="25" height="800" style="" title="2012-03-21 15:55:09    12732    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="7324" y="26" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="7324" y="25" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7313" y="0" width="25" height="800" style="" title="2012-03-21 15:57:23    12727   +14   -19   abgoik" class="o" />
+<rect x="7349" y="26" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7349" y="25" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7338" y="0" width="25" height="800" style="" title="2012-03-21 16:04:24    12727   +13   -13   message funker" class="o" />
+<rect x="7374" y="27" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="7374" y="27" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7363" y="0" width="25" height="800" style="" title="2012-03-21 16:31:22    12704    +8   -31   kkkk" class="o" />
+<rect x="7399" y="27" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7399" y="27" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7388" y="0" width="25" height="800" style="" title="2012-03-21 16:42:58    12703    +5    -6   ErrorPane" class="o" />
+<rect x="7424" y="27" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7424" y="26" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7413" y="0" width="25" height="800" style="" title="2012-03-21 16:43:49    12713   +12    -2   popup fikset" class="o" />
+<rect x="7449" y="29" width="3" height="3" style="fill:rgb(0,0,255)" />
+<rect x="7449" y="28" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7438" y="0" width="25" height="800" style="" title="2012-03-21 17:03:18    12677   +16   -52   internal calendar fungerer &#x3a;&#x29;&#x29;&#x29;&#x29;" class="o" />
+<rect x="7474" y="29" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7474" y="29" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7463" y="0" width="25" height="800" style="" title="2012-03-21 17:03:32    12677    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="7499" y="27" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7499" y="25" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="7488" y="0" width="25" height="800" style="" title="2012-03-21 17:09:18    12707   +31    -1   jjjjjj" class="o" />
+<rect x="7524" y="27" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7524" y="27" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7513" y="0" width="25" height="800" style="" title="2012-03-21 17:09:26    12707    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="7549" y="27" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7549" y="27" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7538" y="0" width="25" height="800" style="" title="2012-03-21 17:09:43    12707    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="7574" y="28" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="7574" y="27" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="7563" y="0" width="25" height="800" style="" title="2012-03-21 22:09:47    12694   +17   -30   ingenting" class="o" />
+<rect x="7599" y="28" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7599" y="27" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7588" y="0" width="25" height="800" style="" title="2012-03-21 22:23:51    12696    +6    -4   tar imot place rundtomkring" class="o" />
+<rect x="7624" y="28" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7624" y="27" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7613" y="0" width="25" height="800" style="" title="2012-03-22 09:27:54    12696    +8    -8   fjerna generics" class="o" />
+<rect x="7649" y="28" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7649" y="28" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7638" y="0" width="25" height="800" style="" title="2012-03-22 09:32:06    12696    +3    -3   fjerna etfelt" class="o" />
+<rect x="7674" y="28" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7674" y="28" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7663" y="0" width="25" height="800" style="" title="2012-03-22 09:40:25    12694    +1    -3   ksnb" class="o" />
+<rect x="7699" y="28" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7699" y="28" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7688" y="0" width="25" height="800" style="" title="2012-03-22 09:43:03    12690    +2    -6   kkk" class="o" />
+<rect x="7724" y="28" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7724" y="28" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7713" y="0" width="25" height="800" style="" title="2012-03-22 09:43:20    12690    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="7749" y="28" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7749" y="28" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7738" y="0" width="25" height="800" style="" title="2012-03-22 09:50:17    12694    +5    -1   llll" class="o" />
+<rect x="7774" y="26" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="7774" y="22" width="3" height="3" style="fill:rgb(0,255,0)" />
+<rect x="7763" y="0" width="25" height="800" style="" title="2012-03-22 10:30:49    12731   +56   -19   added server side search for person" class="o" />
+<rect x="7799" y="22" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7799" y="19" width="3" height="3" style="fill:rgb(0,255,0)" />
+<rect x="7788" y="0" width="25" height="800" style="" title="2012-03-22 10:31:33    12784   +53    -0   Newmeeting" class="o" />
+<rect x="7824" y="22" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7824" y="22" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7813" y="0" width="25" height="800" style="" title="2012-03-22 10:31:42    12784    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="7849" y="21" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7849" y="20" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="7838" y="0" width="25" height="800" style="" title="2012-03-22 10:40:27    12803   +19    -0   Added testing for datepicker output" class="o" />
+<rect x="7874" y="21" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7874" y="21" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7863" y="0" width="25" height="800" style="" title="2012-03-22 10:45:12    12805    +2    -0   Small update of testing" class="o" />
+<rect x="7899" y="21" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7899" y="21" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7888" y="0" width="25" height="800" style="" title="2012-03-22 10:55:59    12803    +1    -3   more testing updates" class="o" />
+<rect x="7924" y="20" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7924" y="20" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7913" y="0" width="25" height="800" style="" title="2012-03-22 10:57:26    12816   +13    -0   added client side search for person" class="o" />
+<rect x="7949" y="20" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7949" y="20" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7938" y="0" width="25" height="800" style="" title="2012-03-22 10:57:42    12816    +0    -0   Merge branch &#x27;master&#x27; of github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt" class="o" />
+<rect x="7974" y="19" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7974" y="18" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="7963" y="0" width="25" height="800" style="" title="2012-03-22 11:00:11    12832   +19    -3   ffff" class="o" />
+<rect x="7999" y="19" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="7999" y="19" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="7988" y="0" width="25" height="800" style="" title="2012-03-22 11:00:19    12832    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="8024" y="19" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8024" y="18" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8013" y="0" width="25" height="800" style="" title="2012-03-22 11:10:06    12840    +8    -0   SeveralDays datepicker in NewAppointment" class="o" />
+<rect x="8049" y="19" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8049" y="19" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8038" y="0" width="25" height="800" style="" title="2012-03-22 11:15:08    12839    +0    -1   removed a &#x5c;n" class="o" />
+<rect x="8074" y="19" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8074" y="19" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8063" y="0" width="25" height="800" style="" title="2012-03-22 11:15:19    12839    +0    -0   Merge branch &#x27;master&#x27; of github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt" class="o" />
+<rect x="8099" y="23" width="3" height="7" style="fill:rgb(0,0,255)" />
+<rect x="8099" y="20" width="3" height="3" style="fill:rgb(0,255,0)" />
+<rect x="8088" y="0" width="25" height="800" style="" title="2012-03-22 11:16:47    12772   +57  -124   grafikk i calendertabellen" class="o" />
+<rect x="8124" y="23" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8124" y="21" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="8113" y="0" width="25" height="800" style="" title="2012-03-22 11:16:52    12781   +22   -13   masse kulte saker &#x3a;&#x29;" class="o" />
+<rect x="8149" y="23" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8149" y="23" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8138" y="0" width="25" height="800" style="" title="2012-03-22 11:17:00    12781    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="8174" y="23" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8174" y="23" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8163" y="0" width="25" height="800" style="" title="2012-03-22 11:17:10    12781    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="8199" y="23" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8199" y="23" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8188" y="0" width="25" height="800" style="" title="2012-03-22 11:17:27    12781    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="8224" y="21" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8224" y="19" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="8213" y="0" width="25" height="800" style="" title="2012-03-22 11:38:25    12812   +32    -1   Several Days Daypicker &#x2b; checkbox &#x2b; checkboxlistener in NewAppointment" class="o" />
+<rect x="8249" y="21" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8249" y="20" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8238" y="0" width="25" height="800" style="" title="2012-03-22 11:45:54    12808    +9   -13   lllll" class="o" />
+<rect x="8274" y="21" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8274" y="21" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8263" y="0" width="25" height="800" style="" title="2012-03-22 11:46:02    12808    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="8299" y="18" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8299" y="15" width="3" height="2" style="fill:rgb(0,255,0)" />
+<rect x="8288" y="0" width="25" height="800" style="" title="2012-03-22 11:46:20    12850   +48    -6   SeveralDays checkbox &#x2b; daypicker &#x2b; checkboxlistener in NewMeeting" class="o" />
+<rect x="8324" y="18" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8324" y="18" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8313" y="0" width="25" height="800" style="" title="2012-03-22 11:46:30    12850    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="8349" y="18" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8349" y="18" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8338" y="0" width="25" height="800" style="" title="2012-03-22 11:51:55    12850    +1    -1   Endret font" class="o" />
+<rect x="8374" y="18" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8374" y="18" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8363" y="0" width="25" height="800" style="" title="2012-03-22 11:55:49    12856    +6    -0   Datepicker in NewMeeting and NewAppointment&#x2c;" class="o" />
+<rect x="8399" y="18" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8399" y="18" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8388" y="0" width="25" height="800" style="" title="2012-03-22 11:55:58    12856    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="8424" y="18" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8424" y="17" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8413" y="0" width="25" height="800" style="" title="2012-03-22 12:02:55    12860    +7    -3   ggg" class="o" />
+<rect x="8449" y="18" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8449" y="18" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8438" y="0" width="25" height="800" style="" title="2012-03-22 12:03:03    12860    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="8474" y="13" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8474" y="7" width="3" height="5" style="fill:rgb(0,255,0)" />
+<rect x="8463" y="0" width="25" height="800" style="" title="2012-03-22 12:24:45    12946   +96   -10   calendar" class="o" />
+<rect x="8499" y="12" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8499" y="12" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8488" y="0" width="25" height="800" style="" title="2012-03-22 12:26:38    12952    +7    -1   fixed newAppointment server side" class="o" />
+<rect x="8524" y="12" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8524" y="12" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8513" y="0" width="25" height="800" style="" title="2012-03-22 12:26:52    12952    +0    -0   Merge branch &#x27;master&#x27; of github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt" class="o" />
+<rect x="8549" y="12" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="8549" y="11" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="8538" y="0" width="25" height="800" style="" title="2012-03-22 12:30:32    12949   +19   -22   NewAppointment almost done" class="o" />
+<rect x="8574" y="12" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8574" y="12" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8563" y="0" width="25" height="800" style="" title="2012-03-22 12:30:45    12949    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="8599" y="12" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8599" y="12" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8588" y="0" width="25" height="800" style="" title="2012-03-22 12:30:48    12952    +3    -0   tull" class="o" />
+<rect x="8624" y="12" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8624" y="12" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8613" y="0" width="25" height="800" style="" title="2012-03-22 12:30:56    12952    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="8649" y="12" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8649" y="12" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8638" y="0" width="25" height="800" style="" title="2012-03-22 12:32:50    12956    +4    -0   getter for calendar" class="o" />
+<rect x="8674" y="12" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8674" y="12" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8663" y="0" width="25" height="800" style="" title="2012-03-22 12:33:04    12956    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="8699" y="11" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8699" y="10" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8688" y="0" width="25" height="800" style="" title="2012-03-22 12:44:31    12966   +15    -5   Save NewMeeting" class="o" />
+<rect x="8724" y="11" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8724" y="11" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8713" y="0" width="25" height="800" style="" title="2012-03-22 12:44:38    12966    +0    -0   Merge branch &#x27;master&#x27; of git&#x40;github&#x2e;com&#x3a;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="8749" y="11" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8749" y="11" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8738" y="0" width="25" height="800" style="" title="2012-03-22 12:54:52    12965    +6    -7   TEST" class="o" />
+<rect x="8774" y="11" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8774" y="11" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8763" y="0" width="25" height="800" style="" title="2012-03-22 12:56:22    12966    +2    -1   removed hard coded &#x22;sted&#x22;" class="o" />
+<rect x="8799" y="11" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8799" y="11" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8788" y="0" width="25" height="800" style="" title="2012-03-22 13:04:38    12966    +2    -2   &#x2b;1" class="o" />
+<rect x="8824" y="12" width="3" height="1" style="fill:rgb(0,0,255)" />
+<rect x="8824" y="12" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8813" y="0" width="25" height="800" style="" title="2012-03-22 13:19:11    12947    +6   -25   Altinn&#x3c;3" class="o" />
+<rect x="8849" y="9" width="3" height="3" style="fill:rgb(0,0,255)" />
+<rect x="8849" y="1" width="3" height="7" style="fill:rgb(0,255,0)" />
+<rect x="8838" y="0" width="25" height="800" style="" title="2012-03-22 13:30:46    13010  +128   -65   kkkk" class="o" />
+<rect x="8874" y="9" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8874" y="9" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8863" y="0" width="25" height="800" style="" title="2012-03-22 13:30:54    13010    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="8899" y="9" width="3" height="2" style="fill:rgb(0,0,255)" />
+<rect x="8899" y="7" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="8888" y="0" width="25" height="800" style="" title="2012-03-22 13:42:55    13003   +28   -35   sidepanelendringer" class="o" />
+<rect x="8924" y="8" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8924" y="6" width="3" height="1" style="fill:rgb(0,255,0)" />
+<rect x="8913" y="0" width="25" height="800" style="" title="2012-03-22 13:47:07    13023   +24    -4   updated date handling to reflect database" class="o" />
+<rect x="8949" y="8" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8949" y="8" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8938" y="0" width="25" height="800" style="" title="2012-03-22 13:47:22    13023    +0    -0   Merge branch &#x27;master&#x27; of ssh&#x3a;&#x2f;&#x2f;git&#x40;github&#x2e;com&#x2f;calibwam&#x2f;Fellesprosjekt&#x2e;git" class="o" />
+<rect x="8974" y="8" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8974" y="7" width="3" height="0" style="fill:rgb(0,255,0)" />
+<rect x="8963" y="0" width="25" height="800" style="" title="2012-03-22 13:54:25    13026    +9    -6   things work &#x3a;&#x29;" class="o" />
+<rect x="8999" y="0" width="3" height="0" style="fill:rgb(0,0,255)" />
+<rect x="8999" y="-8" width="3" height="8" style="fill:rgb(0,255,0)" />
+<rect x="8988" y="0" width="25" height="800" style="" title="2012-03-22 14:07:50    13160  +134    -0   added downloaded file to see LoC" class="o" />
+<polyline points="25,670 50,670 75,670 100,670 125,670 150,520 175,518 200,515 225,515 250,509 275,509 300,509 325,509 350,507 375,499 400,498 425,498 450,498 475,498 500,498 525,498 550,498 575,497 600,497 625,497 650,497 675,495 700,495 725,495 750,496 775,494 800,494 825,493 850,493 875,492 900,488 925,502 950,502 975,501 1000,506 1025,506 1050,506 1075,506 1100,506 1125,506 1150,505 1175,505 1200,504 1225,504 1250,506 1275,506 1300,506 1325,482 1350,482 1375,482 1400,483 1425,482 1450,480 1475,478 1500,478 1525,476 1550,475 1575,475 1600,474 1625,470 1650,467 1675,467 1700,465 1725,464 1750,464 1775,464 1800,464 1825,471 1850,458 1875,458 1900,457 1925,457 1950,456 1975,455 2000,455 2025,440 2050,440 2075,442 2100,442 2125,442 2150,442 2175,442 2200,430 2225,428 2250,428 2275,428 2300,428 2325,428 2350,427 2375,427 2400,426 2425,426 2450,426 2475,426 2500,425 2525,425 2550,424 2575,424 2600,424 2625,424 2650,423 2675,423 2700,421 2725,421 2750,417 2775,415 2800,415 2825,414 2850,414 2875,414 2900,413 2925,413 2950,413 2975,413 3000,409 3025,409 3050,406 3075,406 3100,402 3125,399 3150,399 3175,397 3200,397 3225,397 3250,397 3275,397 3300,400 3325,400 3350,400 3375,400 3400,392 3425,391 3450,391 3475,386 3500,386 3525,384 3550,384 3575,384 3600,384 3625,384 3650,384 3675,384 3700,380 3725,380 3750,380 3775,371 3800,371 3825,371 3850,371 3875,371 3900,367 3925,367 3950,367 3975,364 4000,364 4025,364 4050,356 4075,356 4100,346 4125,346 4150,344 4175,344 4200,341 4225,342 4250,341 4275,341 4300,341 4325,341 4350,341 4375,339 4400,339 4425,339 4450,339 4475,337 4500,337 4525,337 4550,337 4575,337 4600,330 4625,325 4650,325 4675,315 4700,315 4725,313 4750,443 4775,443 4800,443 4825,446 4850,446 4875,446 4900,444 4925,444 4950,444 4975,444 5000,443 5025,443 5050,442 5075,442 5100,442 5125,442 5150,442 5175,442 5200,441 5225,440 5250,440 5275,440 5300,440 5325,440 5350,440 5375,440 5400,438 5425,439 5450,436 5475,436 5500,436 5525,435 5550,432 5575,432 5600,431 5625,431 5650,430 5675,430 5700,430 5725,430 5750,430 5775,430 5800,430 5825,430 5850,420 5875,420 5900,419 5925,419 5950,419 5975,419 6000,419 6025,52 6050,52 6075,52 6100,52 6125,52 6150,52 6175,52 6200,53 6225,53 6250,51 6275,51 6300,51 6325,51 6350,51 6375,51 6400,51 6425,44 6450,36 6475,36 6500,36 6525,36 6550,40 6575,40 6600,40 6625,40 6650,40 6675,39 6700,39 6725,39 6750,38 6775,36 6800,36 6825,36 6850,32 6875,31 6900,29 6925,29 6950,28 6975,28 7000,30 7025,30 7050,29 7075,29 7100,28 7125,28 7150,28 7175,28 7200,28 7225,28 7250,28 7275,26 7300,26 7325,26 7350,26 7375,27 7400,27 7425,27 7450,29 7475,29 7500,27 7525,27 7550,27 7575,28 7600,28 7625,28 7650,28 7675,28 7700,28 7725,28 7750,28 7775,26 7800,22 7825,22 7850,21 7875,21 7900,21 7925,20 7950,20 7975,19 8000,19 8025,19 8050,19 8075,19 8100,23 8125,23 8150,23 8175,23 8200,23 8225,21 8250,21 8275,21 8300,18 8325,18 8350,18 8375,18 8400,18 8425,18 8450,18 8475,13 8500,12 8525,12 8550,12 8575,12 8600,12 8625,12 8650,12 8675,12 8700,11 8725,11 8750,11 8775,11 8800,11 8825,12 8850,9 8875,9 8900,9 8925,8 8950,8 8975,8 9000,0" class="a" style="stroke:red"/></svg>

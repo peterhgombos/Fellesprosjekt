@@ -1,29 +1,30 @@
 package client.gui;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Component;
 
-public class EmployeeListCellRenderer extends JLabel implements ListCellRenderer{
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
+
+public class EmployeeListCellRenderer implements ListCellRenderer{
 
 	DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
 	
-	private JButton x;
-	
 	@Override
-	public Component getListCellRendererComponent(JList list, Object value,
-			int index, boolean isSelected, boolean cellHasFocus) {
+	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+		
 		ImageIcon i = new ImageIcon("res/kryss.gif");
+		JLabel label = new JLabel();
+		label.setIcon(i);
+		label.setText("hei");
 		
-		setIcon(i);
-		setText("hei");
+//		if (isSelected) {
+//			setText("");
+//			setIcon(null);
+//		}
 		
-		
-		
-		if (isSelected) {
-			setText("");
-			setIcon(null);
-		}
-		
-		return this;
+		return label;
 	}
 }
