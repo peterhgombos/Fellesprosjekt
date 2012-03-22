@@ -7,7 +7,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -40,17 +39,10 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 	
 	
 	private JPanel employeeList;
-	private ArrayList<Person> employeeListModel;
+	private LinkedList<Person> employeeListModel;
 	
 	private JList selectedEmployeeList;
 	private JTextField search;
-	private int countEmployee;
-	private int x;
-	private int y;
-	private int width;
-	private int height;
-	//private JCheckBox checkBox;
-	private JLabel nameLabel;
 	private JScrollPane scroll;
 	private JScrollPane scrollSelectedEmployee;
 	private CalendarPanel calendarpanel;
@@ -58,11 +50,6 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 	private DefaultListModel selectedEmployeeListModel;
 	
 	public SidePanel(CalendarPanel calendarPanel) {
-		countEmployee = 10;
-		x = 5;
-		y = 5;
-		width = 30;
-		height = 30;
 		calendarpanel = calendarPanel;
 			
 		message = new JButton("Meldinger");
@@ -134,7 +121,7 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 		scrollSelectedEmployee = new JScrollPane(selectedEmployeeList);
 		
 		selectedEmployeeListModel = (DefaultListModel)selectedEmployeeList.getModel();
-		employeeListModel = new DefaultListModel();
+		employeeListModel = new LinkedList<Person>();
 		
 		search = new JTextField();
 		search.addKeyListener(new KeyListener() {
@@ -193,18 +180,6 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 		
 		scroll.setBounds(GuiConstants.DISTANCE, search.getY() +2 + message.getHeight(), message.getWidth(), message.getHeight()*5);
 		
-		for (int i = 0; i < countEmployee; i++) {
-			checkBox = new JCheckBox();
-			nameLabel = new JLabel();
-			nameLabel.setText("hei");
-			checkBox.setBounds(x, y, width-6, height);
-			checkBox.setOpaque(false);
-			nameLabel.setBounds(x+width, y, width, height);
-			employeeList.add(checkBox);
-			employeeList.add(nameLabel);
-			y+=22;
-			employeeList.setSize(employeeList.getWidth(), y);
-		}
 		employeeList.setBounds(GuiConstants.DISTANCE, search.getY() + 2 + message.getHeight(), message.getWidth()-20, employeeList.getHeight());
 		employeeList.setPreferredSize(employeeList.getSize());
 				
@@ -217,12 +192,8 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 		logOut.setFont(GuiConstants.BUTTON_FONT);
 	}
 	
-	
-
-
-
 	@Override
-	public void focusGained(FocusEvent arg0) {
+	public void focusGained(FocusEvent e) {
 		if (search.getText().equals("Søk")) {
 			search.setText("");
 		}
@@ -230,11 +201,32 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 	}
 
 	@Override
-	public void focusLost(FocusEvent arg0) {
+	public void focusLost(FocusEvent e) {
 		if (!search.getText().equals("Søk")) {
 			search.setText("Søk");
 		}
+	}
+	
+	private void rederList(){
+		employeeList.removeAll();
 		
+		int x = 5;
+		int y = 5;
+		int width = 30;
+		int height = 30;
+		
+		for(Person p: employeeListModel){
+			JCheckBox checkBox = new JCheckBox();
+			JLabel nameLabel = new JLabel();
+			nameLabel.setText(p.getFirstname() + " " + p.getSurname());
+			checkBox.setBounds(x, y, width - 6, height);
+			checkBox.setOpaque(false);
+			nameLabel.setBounds(x+width, y, width, height);
+			employeeList.add(checkBox);
+			employeeList.add(nameLabel);
+			y+=22;
+			employeeList.setSize(employeeList.getWidth(), y);
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -244,8 +236,9 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 			employeeListModel.clear();
 			Collection<Person> persons = (Collection<Person>)m.getData();
 			for (Person person : persons) {
-				employeeListModel.addElement(person);
+				employeeListModel.add(person);
 			}
+			rederList();
 		}
 	}
 	
