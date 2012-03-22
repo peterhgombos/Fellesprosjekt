@@ -47,7 +47,7 @@ public class Message extends JPanel implements FocusListener{
 		boxList = new ArrayList<JCheckBox>();
 		nameLabel = new JLabel();
 		calendar = calendarPanel;
-		
+		 
 		
 		all = new JCheckBox();
 		all.addActionListener(new ActionListener() {
