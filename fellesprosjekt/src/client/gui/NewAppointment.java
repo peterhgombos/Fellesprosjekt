@@ -7,6 +7,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Calendar;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -162,6 +163,7 @@ public class NewAppointment extends JPanel{
 				firePropertyChange("date", evt.getOldValue(), evt.getNewValue());
 				System.out.println(datepicker.getDateFormatString());
 				System.out.println(datepicker.getJCalendar().getCalendar().getTimeInMillis());
+				System.out.println(datepicker.getCalendar().get(Calendar.YEAR) + datepicker.getCalendar().get(Calendar.MONTH) + datepicker.getCalendar().get(Calendar.DAY_OF_MONTH));
 				
 			}
 		});
