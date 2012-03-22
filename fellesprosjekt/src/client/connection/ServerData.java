@@ -82,6 +82,10 @@ public class ServerData {
 		connection.requestAddPersons(invitees, appointment);
 	}
 	
+	public static void requestGetParticipants(Appointment app){
+		connection.requestGetParticipnts(app);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static synchronized void receiveMessage(ComMessage message){
 		String messageType = message.getType();

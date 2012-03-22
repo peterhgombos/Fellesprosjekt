@@ -115,7 +115,6 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 					return;
 				}
 				for (Object object : personList) {
-					System.out.println("leggtil" + object);
 					if(object != null){
 						selectedEmployeeListModel.addElement((Person)object);
 						employeeListModel.removeElement((Person)object);
@@ -147,7 +146,6 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 				}
 			}
 		});
-		
 		
 		search = new JTextField();
 		search.addKeyListener(new KeyListener() {
