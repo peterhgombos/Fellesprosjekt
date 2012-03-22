@@ -144,6 +144,14 @@ public class Queries {
 			return	"INSERT INTO DELTAKER (ANSATTNR, AVTALEID, SVAR) " +
 					"VALUES (" + personId + ", " + appId + ", 0);";
 		}
+		
+		public static String getRoomsForTimeSlot(DateString start, DateString end ) {
+			return "SELECT DISTINCT MOTEROM.ROMNR " +
+					"FROM MOTEROM, AVTALE " +
+					"JOIN AVTALE A ON " + start +  " <= B.SLUTTIDSPUNKT AND " + end + " >= B.TIDSPUNKT " + 
+					"WHERE A.ROMNR != MOTEROM.ROMNR";
+			
+		}
 	
 	
 	
