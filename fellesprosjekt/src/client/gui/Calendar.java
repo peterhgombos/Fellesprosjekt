@@ -34,7 +34,7 @@ public class Calendar extends JPanel implements MessageListener {
 	public Calendar(){
 		setLayout(null);
 		
-		calModel = new CalModel(2012, 11);
+		calModel = new CalModel();
 		weekLabel = new JLabel("Uke");
 		lastWeek = new JButton("<");
 		nextWeek = new JButton(">");
@@ -62,7 +62,9 @@ public class Calendar extends JPanel implements MessageListener {
 			public void actionPerformed(ActionEvent arg0) {
 				calModel.lastWeek();
 				weekNumberField.setText(""+calModel.getWeek());
+				yearField.setText("" + calModel.getYear());
 				repaint();
+				
 			}
 		});
 		
@@ -72,6 +74,7 @@ public class Calendar extends JPanel implements MessageListener {
 			public void actionPerformed(ActionEvent e) {
 				calModel.nextWeek();
 				weekNumberField.setText("" + calModel.getWeek());
+				yearField.setText("" + calModel.getYear());
 				repaint();
 				
 			}

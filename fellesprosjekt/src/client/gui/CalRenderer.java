@@ -42,7 +42,6 @@ public class CalRenderer extends DefaultTableCellRenderer {
 			for(Appointment a : result){
 				
 				JPanel innerpanel = new JPanel(null);
-				System.out.println("STARTSINHOUR");
 				
 				innerpanel.setBackground(colors[i]);
 				innerpanel.setBounds(bredde * i, 0, bredde , 60);
