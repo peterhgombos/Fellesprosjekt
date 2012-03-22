@@ -185,7 +185,7 @@ public class MessageReceiver {
 				DateString start = new DateString(result.getTimestamp(Database.COL_FROM));
 				DateString end = new DateString(result.getTimestamp(Database.COL_TO));
 
-				ResultSet participantRes = database.executeQuery(Queries.getParticipantsForMeeting(id));
+				ResultSet participantRes = database.executeQuery(Queries.getAnsFromParticipants(id));
 				HashMap<Person, Integer> participants = resultSetToPersonWithAnswer(participantRes);
 				Person leader = null;
 				for(Person p : participants.keySet()){
