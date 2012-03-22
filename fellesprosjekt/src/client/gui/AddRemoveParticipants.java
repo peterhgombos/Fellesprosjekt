@@ -56,8 +56,11 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 	private DefaultListModel addedParticipantsListmodel;
 	private DefaultListModel employeeListModel;
 	
+	private AddRemoveParticipants thisAddRemoveParticipants;
+	
 	public AddRemoveParticipants(CalendarPanel calendarPanel, NewMeeting meeting) {
-				
+		
+		thisAddRemoveParticipants = this;
 		newMeeting = meeting;
 		
 		participants = new HashMap<Person, Integer>();
@@ -131,6 +134,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 				}
 				newMeeting.addParticipants(participants);
 				frame.dispose();
+				ServerData.removeMessageListener(thisAddRemoveParticipants);
 				
 				//TODO lagre
 			}
@@ -140,6 +144,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				ServerData.removeMessageListener(thisAddRemoveParticipants);
 				frame.dispose();
 			}
 		});
