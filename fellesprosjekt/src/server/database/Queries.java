@@ -1,36 +1,34 @@
 package server.database;
 
-import java.sql.Date;
-
 import common.utilities.DateString;
-
 
 public class Queries {
 
-//	public static String getAppointments(int personid){
-//		return 	"SELECT AVTALE.* " +
-//				"FROM AVTALE, DELTAKER " +
-//				"WHERE DELTAKER.ANSATTNR = " + personid + " " + 
-//				"AND DELTAKER.AVTALEID = AVTALE.AVTALEID " +
-//				"AND NOT EXISTS( " +
-//				"SELECT * " +
-//				"FROM DELTAKER " +
-//				"WHERE DELTAKER.ANSATTNR = " + personid + " " +
-//				");";
-//	}
+	//	public static String getAppointments(int personid){
+	//		return 	"SELECT AVTALE.* " +
+	//				"FROM AVTALE, DELTAKER " +
+	//				"WHERE DELTAKER.ANSATTNR = " + personid + " " + 
+	//				"AND DELTAKER.AVTALEID = AVTALE.AVTALEID " +
+	//				"AND NOT EXISTS( " +
+	//				"SELECT * " +
+	//				"FROM DELTAKER " +
+	//				"WHERE DELTAKER.ANSATTNR = " + personid + " " +
+	//				");";
+	//	}
 
-	
+
 	public static String getAppointments(int personid){
-	return 	"SELECT AVTALE. * " +
-			"FROM AVTALE " +
-			"WHERE AVTALE.LEDER = " + personid + " " +
-			"AND NOT EXISTS ( " +
-			"SELECT  * " +
-			"FROM DELTAKER " +
-			"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID);";
-}
-	
-	
+		return 	"SELECT AVTALE. * " +
+				"FROM AVTALE " +
+				"WHERE AVTALE.LEDER = " + personid + " " +
+				"AND NOT EXISTS ( " +
+				"SELECT  * " +
+				"FROM DELTAKER " +
+				"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID" +
+				");";
+	}
+
+
 	public static String getMeetings(int personid){
 		return 	"SELECT AVTALE.* " +
 				"FROM AVTALE, DELTAKER " +
@@ -39,10 +37,17 @@ public class Queries {
 				"AND EXISTS( " +
 				"SELECT * " +
 				"FROM DELTAKER " +
-				"WHERE DELTAKER.ANSATTNR = " + personid + " " +
+				"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID" +
 				");";
 	}
-	
+
+	public static String getLeaderForMeeting(int avtaleid){
+		return 	"SELECT ANSATT.* " +
+				"FROM ANSATT, AVTALE " + 
+				"WHERE AVTALE.AVTALEID = " + avtaleid + " " +
+				"AND AVTALE.LEDER = ANSATT.ANSATTNR;";
+	}
+
 	public static String getParticipantsForMeeting(int avtaleid){
 		return 	"SELECT * " +
 				"FROM DELTAKER " + 
@@ -55,34 +60,34 @@ public class Queries {
 				"WHERE DELTAKER.AVTALEID = " + meetingid + " " +
 				"AND DELTAKER.ANSATTNR = ANSATT.ANSATTNR";
 	}
-	
+
 	public static String loginAuthentication(String username, String passwordHash){
 		return 	"SELECT ANSATT.* " +
 				"FROM ANSATT " +
 				"WHERE ANSATT.BRUKERNAVN = \"" + username + "\" " +
 				"AND ANSATT.PASSORD = \"" + passwordHash + "\";";
 	}
-	
+
 	public static String newNote(String title, int appId){
 		return	"INSERT INTO VARSEL (TITTEL, AVTALEID) " +
 				"VALUES '" + title + "', " + appId +";"; 
 	}
-	
+
 	public static String getLastNote(){
 		return  "SELECT * FROM VARSEL " +
 				"ORDER BY VARSELID DESC LIMIT 1;";
 	}
-	
+
 	public static String getLastAppointment(){
 		return	"SELECT * FROM AVTALE " +
 				"ORDER BY AVTALEID DESC LIMIT 1;";
 	}
-	
+
 	public static String getNote(int noteId){
 		return	"SELECT * FROM VARSEL " +
 				"WHERE VARSEL.VARSELID = " + noteId + ";";
 	}
-	
+
 	public static String getAppointment(int appId){
 		return	"SELECT * FROM AVTALE " +
 				"WHERE AVTALE.AVTALEID = " + appId + ";";
@@ -136,35 +141,35 @@ public class Queries {
 	//				"WHERE LEDER.AVTALEID = " + meetingid + " " +
 	//				"AND LEDER.ANSATTNR = ANSATT.ANSATTNR;";
 	//	}
-	
-		public static String getPersonsByFilter(String search){
-			return 	"SELECT ANSATT.* FROM ANSATT " + 
-					"WHERE (FORNAVN LIKE '%" + search + "%' " +
-					"OR ETTERNAVN LIKE '%" + search + "%') " +
-					"OR (MATCH(FORNAVN,ETTERNAVN) " +
-					"AGAINST ('%" + search +"%' " +
-					"IN BOOLEAN MODE));";
-		}
-		
-		public static String createNewAppointment(String title, String description, DateString startTime, DateString endTime, String place, int leader){
-			return  "INSERT INTO AVTALE (TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED, LEDER) " +
-					"VALUES ('" + title + "', '" + description + "', '" + startTime.toString() +
-					"', '" + endTime.toString() + "', '" + place + "', '" + leader +"');";
-		}
-	
-		public static String addPersonToAttend(int personId, int appId){
-			return	"INSERT INTO DELTAKER (ANSATTNR, AVTALEID, SVAR) " +
-					"VALUES (" + personId + ", " + appId + ", 0);";
-		}
-		
-		public static String getRoomsForTimeSlot(DateString start, DateString end, int capacity) {
-			return "SELECT DISTINCT MOTEROM.ROMNR " +
-					"FROM MOTEROM, AVTALE " +
-					"JOIN AVTALE A ON " + start +  " <= B.SLUTTIDSPUNKT AND " + end + " >= B.TIDSPUNKT " + 
-					"WHERE A.ROMNR != MOTEROM.ROMNR AND MOTEROM.KAPASITET >= " + capacity;
-			
-		}
-	
-	
-	
+
+	public static String getPersonsByFilter(String search){
+		return 	"SELECT ANSATT.* FROM ANSATT " + 
+				"WHERE (FORNAVN LIKE '%" + search + "%' " +
+				"OR ETTERNAVN LIKE '%" + search + "%') " +
+				"OR (MATCH(FORNAVN,ETTERNAVN) " +
+				"AGAINST ('%" + search +"%' " +
+				"IN BOOLEAN MODE));";
+	}
+
+	public static String createNewAppointment(String title, String description, DateString startTime, DateString endTime, String place, int leader){
+		return  "INSERT INTO AVTALE (TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED, LEDER) " +
+				"VALUES ('" + title + "', '" + description + "', '" + startTime.toString() +
+				"', '" + endTime.toString() + "', '" + place + "', '" + leader +"');";
+	}
+
+	public static String addPersonToAttend(int personId, int appId){
+		return	"INSERT INTO DELTAKER (ANSATTNR, AVTALEID, SVAR) " +
+				"VALUES (" + personId + ", " + appId + ", 0);";
+	}
+
+	public static String getRoomsForTimeSlot(DateString start, DateString end, int capacity) {
+		return "SELECT DISTINCT MOTEROM.ROMNR " +
+				"FROM MOTEROM, AVTALE " +
+				"JOIN AVTALE A ON " + start +  " <= B.SLUTTIDSPUNKT AND " + end + " >= B.TIDSPUNKT " + 
+				"WHERE A.ROMNR != MOTEROM.ROMNR AND MOTEROM.KAPASITET >= " + capacity;
+
+	}
+
+
+
 }

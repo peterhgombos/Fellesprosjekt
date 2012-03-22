@@ -1,7 +1,6 @@
 package server;
 
 import java.net.InetAddress;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ import java.util.HashMap;
 
 import server.database.Database;
 import server.database.Queries;
+import client.authentication.Login;
 
 import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
@@ -19,8 +19,6 @@ import common.dataobjects.Person;
 import common.sendobjects.AppointmentInvites;
 import common.utilities.DateString;
 import common.utilities.MessageType;
-
-import client.authentication.Login;
 
 public class MessageReceiver {
 
@@ -111,8 +109,6 @@ public class MessageReceiver {
 		return null;
 		
 	}
-	
-	
 
 	private Person requestLogin(ComMessage message){
 		Login login = (Login) message.getData();
@@ -132,7 +128,10 @@ public class MessageReceiver {
 		try{
 			database.updateDB(Queries.createNewAppointment(newApp.getTitle(), newApp.getDescription(), newApp.getStartTime(), newApp.getEndTime(),newApp.getPlace(), newApp.getLeader().getPersonID()));
 			ResultSet rs = database.executeQuery(Queries.getLastAppointment());
-			ComMessage comMesNewApp = new ComMessage(resultSetToAppointment(rs).get(0), MessageType.RECEIVE_NEW_APPOINTMENT);
+			
+			Appointment appo = resultSetToAppointment(rs).get(0);
+			ComMessage comMesNewApp = new ComMessage(appo, MessageType.RECEIVE_NEW_APPOINTMENT);
+			database.updateDB(Queries.addPersonToAttend(appo.getLeader().getPersonID(), appo.getId()));
 			sendToAll(comMesNewApp);
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -180,7 +179,6 @@ public class MessageReceiver {
 		try{
 			while(result.next()){
 				int id = result.getInt(Database.COL_APPOINTMENTID);
-				int leaderid = result.getInt(Database.COL_LEADER);
 				String title = result.getString(Database.COL_TITLE);
 				String description = result.getString(Database.COL_DESCRIPTION);
 				String place = result.getString(Database.COL_PLACE);
@@ -189,13 +187,9 @@ public class MessageReceiver {
 
 				ResultSet participantRes = database.executeQuery(Queries.getAnsFromParticipants(id));
 				HashMap<Person, Integer> participants = resultSetToPersonWithAnswer(participantRes);
-				Person leader = null;
-				for(Person p : participants.keySet()){
-					if(p.getPersonID() == leaderid){
-						leader = p;
-					}
-				}
-
+				
+				Person leader = resutlSetToPerson(database.executeQuery(Queries.getLeaderForMeeting(id))).get(0);
+				
 				returnthis.add(new Meeting(id, leader, title, description, place, start, end, participants));
 			}
 		}catch(SQLException e){
@@ -214,10 +208,9 @@ public class MessageReceiver {
 				String place = result.getString(Database.COL_PLACE);
 				DateString start = new DateString(result.getTimestamp(Database.COL_FROM));
 				DateString end = new DateString(result.getTimestamp(Database.COL_TO));
-
-				ResultSet participantRes = database.executeQuery(Queries.getParticipantsForMeeting(id));
-				Person leader = resultSetToPersonWithAnswer(participantRes).keySet().iterator().next();
-
+				
+				Person leader = resutlSetToPerson(database.executeQuery(Queries.getLeaderForMeeting(id))).get(0);
+				
 				returnthis.add(new Appointment(id, leader, title, description, place, start, end));
 			}
 		}catch(SQLException e){
