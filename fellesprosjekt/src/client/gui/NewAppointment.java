@@ -10,6 +10,7 @@ import java.awt.event.ItemListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -85,8 +86,10 @@ public class NewAppointment extends JPanel{
 		nameField = new JTextField();
 		//dateField = new JTextField();
 		datepicker = new JDateChooser();
+		datepicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		datepickerDays = new JDateChooser();
 		datepickerDays.setVisible(false);
+		datepickerDays.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		severalDaysLabel = new JLabel("Flere dager");
 		severalDays = new JCheckBox();
 		severalDays.addItemListener(new ItemListener() {
