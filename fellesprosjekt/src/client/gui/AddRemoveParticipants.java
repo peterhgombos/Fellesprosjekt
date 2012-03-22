@@ -75,14 +75,14 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 		add.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//legge deltakere over til lista
+				//TODO legge deltakere over til lista
 			}
 		});
 		remove = new JButton("<");
 		remove.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Fjerne deltakre
+				//TODO Fjerne deltakre
 			}
 		});
 		save = new JButton("Lagre");
@@ -135,13 +135,13 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 		
 		employeeListScroll.setBounds(searchField.getX(), searchField.getY() + searchField.getHeight() + GuiConstants.DISTANCE, 210, 300);
 		
-		add.setBounds(employeeList.getX() + employeeList.getWidth() + GuiConstants.DISTANCE,
-				employeeList.getY() + GuiConstants.DISTANCE*10, 50, 30);
+		add.setBounds(employeeListScroll.getX() + employeeListScroll.getWidth() + GuiConstants.DISTANCE,
+				employeeListScroll.getY() + GuiConstants.DISTANCE*10, 50, 30);
 		remove.setBounds(add.getX(), add.getY() + add.getHeight() + GuiConstants.DISTANCE, 50, 30);
 		
-		addedParticipantsListScroll.setBounds(add.getX() + add.getWidth() + GuiConstants.DISTANCE, employeeList.getY(), 210, 300);
+		addedParticipantsListScroll.setBounds(add.getX() + add.getWidth() + GuiConstants.DISTANCE, employeeListScroll.getY(), 210, 300);
 		
-		externalParticipantsField.setBounds(employeeList.getX(), employeeList.getY() + employeeList.getHeight() + GuiConstants.DISTANCE, 
+		externalParticipantsField.setBounds(employeeListScroll.getX(), employeeListScroll.getY() + employeeListScroll.getHeight() + GuiConstants.DISTANCE, 
 				60, 35);
 		
 		externalParticipantsLabel.setBounds(externalParticipantsField.getX() + externalParticipantsField.getWidth() + GuiConstants.DISTANCE,
@@ -159,16 +159,12 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 		if (searchField.getText().equals("Søk")) {
 			searchField.setText("");
 		}
-		
 	}
 
 	@Override
 	public void focusLost(FocusEvent arg0) {
 		if (!searchField.getText().equals("Søk")) {
 			searchField.setText("Søk");
-		}
-		
-	}
-	
-	
+		}	
+	}	
 }
