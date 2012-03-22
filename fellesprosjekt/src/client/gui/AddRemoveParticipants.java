@@ -104,8 +104,11 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 		add = new JButton(">");
 		add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				addedParticipantsListmodel.addElement(employeeList.getSelectedValue());
-				employeeListModel.removeElement(employeeList.getSelectedValue());
+				Person person = (Person)employeeList.getSelectedValue();
+				if(person != null){
+					addedParticipantsListmodel.addElement(person);
+					employeeListModel.removeElement(person);
+				}
 			}
 		});
 		
@@ -113,8 +116,11 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 		remove.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				employeeListModel.addElement(addedParticipantsList.getSelectedValue());
-				addedParticipantsListmodel.removeElement(addedParticipantsList.getSelectedValue());
+				Person person = (Person)addedParticipantsList.getSelectedValue();
+				if(person != null){
+					employeeListModel.addElement(person);
+					addedParticipantsListmodel.removeElement(person);
+				}
 			}
 		});
 		
@@ -202,6 +208,16 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 		}	
 	}
 
+	private boolean personExistInAddedParticipantsList(Person p){
+		for (int i = 0; i < addedParticipantsList.getModel().getSize(); i++) {
+			Person person = (Person)addedParticipantsListmodel.getElementAt(i);
+			if (p.getPersonID() == person.getPersonID()){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void receiveMessage(ComMessage m) {
@@ -209,7 +225,9 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 			employeeListModel.clear();
 			Collection<Person> persons = (Collection<Person>)m.getData();
 			for (Person person : persons) {
-				employeeListModel.addElement(person);
+				if(!personExistInAddedParticipantsList(person)){
+					employeeListModel.addElement(person);
+				}
 			}
 		}
 	}
