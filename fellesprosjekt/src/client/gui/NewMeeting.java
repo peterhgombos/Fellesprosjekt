@@ -66,6 +66,7 @@ public class NewMeeting extends JPanel{
 	
 	private CalendarPanel calendar;
 	private HashMap<Person,Integer> participantsList;
+	private NewMeeting thisNewMeeting;
 	
 
 	public NewMeeting(CalendarPanel calendarPanel){
@@ -73,7 +74,9 @@ public class NewMeeting extends JPanel{
 		String[] hours= {"00","01","02","03","04","05","06","07","08","09","10",
 						"11","12","13","14","15","16","17","18","19","20","21","22","23"};
 		
-		participantsList = new ArrayList<Person>();
+		thisNewMeeting = this;
+		
+		participantsList = new HashMap<Person, Integer>();
 		calendar = calendarPanel;
 		headlineLabel = new JLabel("Nytt Møte");
 		titleLabel = new JLabel("Tittel", SwingConstants.RIGHT);
@@ -118,7 +121,7 @@ public class NewMeeting extends JPanel{
 		addParticipantsButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				addRemovep = new AddRemoveParticipants(calendar);
+				addRemovep = new AddRemoveParticipants(calendar,thisNewMeeting);
 			}
 		});
 		saveButton = new JButton("Lagre");

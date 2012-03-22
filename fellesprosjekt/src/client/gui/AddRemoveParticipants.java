@@ -26,6 +26,9 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 	private JList addedParticipantsList;
 	private JList employeeList;
 	
+	private JScrollPane employeeListScroll;
+	private JScrollPane addedParticipantsListScroll;
+	
 	private JButton add;
 	private JButton remove;
 	private JButton save;
@@ -38,9 +41,9 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 	private NewMeeting newMeeting;
 	
 	
-	public AddRemoveParticipants(CalendarPanel calendarPanel, NewMeeting newMeeting) {
+	public AddRemoveParticipants(CalendarPanel calendarPanel, NewMeeting meeting) {
 		
-		this.newMeeting = newMeeting;
+		newMeeting = meeting;
 		
 		participants = new HashMap<Person, Integer>();
 		calendarpanel = calendarPanel;
@@ -54,16 +57,19 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 		
 		listmodel1 = new DefaultListModel();
 		listmodel2 = new DefaultListModel();
+		
 		addedParticipantsList = new JList(listmodel1);
-		employeeList = new JList(listmodel2);
 		addedParticipantsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		addedParticipantsList.setSelectedIndex(0);
 		addedParticipantsList.setVisibleRowCount(10);
-		JScrollPane addedParticipantsListScroll = new JScrollPane(addedParticipantsList);
+		
+		employeeList = new JList(listmodel2);
 		employeeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		employeeList.setSelectedIndex(0);
 		employeeList.setVisibleRowCount(10);
-		JScrollPane employeeListScroll = new JScrollPane(employeeList);
+		
+		addedParticipantsListScroll = new JScrollPane(addedParticipantsList);
+		employeeListScroll = new JScrollPane(employeeList);
 		
 		add = new JButton(">");
 		add.addActionListener(new ActionListener() {
@@ -86,15 +92,15 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 				for (int i = 0; i < addedParticipantsList.getModel().getSize() ; i++) {
 					participants.put((Person)addedParticipantsList.getModel().getElementAt(i), Meeting.SVAR_BLANK);
 				}
-				
 				newMeeting.addParticipants(participants);
+				frame.dispose();
 			}
 		});
 		cancel = new JButton("Avbryt");
 		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				calendarpanel.goToNewMeeting();
+				frame.dispose();
 			}
 		});
 		
@@ -102,8 +108,8 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 		add(searchField);
 		add(externalParticipantsField);
 		add(externalParticipantsLabel);
-		add(addedParticipantsList);
-		add(employeeList);
+		add(addedParticipantsListScroll);
+		add(employeeListScroll);
 		add(add);
 		add(remove);
 		add(save);
@@ -127,13 +133,13 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 		searchField.setText("Søk");
 		searchField.addFocusListener(this);
 		
-		employeeList.setBounds(searchField.getX(), searchField.getY() + searchField.getHeight() + GuiConstants.DISTANCE, 210, 300);
+		employeeListScroll.setBounds(searchField.getX(), searchField.getY() + searchField.getHeight() + GuiConstants.DISTANCE, 210, 300);
 		
 		add.setBounds(employeeList.getX() + employeeList.getWidth() + GuiConstants.DISTANCE,
 				employeeList.getY() + GuiConstants.DISTANCE*10, 50, 30);
 		remove.setBounds(add.getX(), add.getY() + add.getHeight() + GuiConstants.DISTANCE, 50, 30);
 		
-		addedParticipantsList.setBounds(add.getX() + add.getWidth() + GuiConstants.DISTANCE, employeeList.getY(), 210, 300);
+		addedParticipantsListScroll.setBounds(add.getX() + add.getWidth() + GuiConstants.DISTANCE, employeeList.getY(), 210, 300);
 		
 		externalParticipantsField.setBounds(employeeList.getX(), employeeList.getY() + employeeList.getHeight() + GuiConstants.DISTANCE, 
 				60, 35);
