@@ -18,7 +18,6 @@ import common.dataobjects.InternalCalendar;
 @SuppressWarnings("serial")
 public class CalRenderer extends DefaultTableCellRenderer {
 
-	private Color[] colors = {new Color(0x66CC66), new Color(0x6666FF), new Color(0xFF6666), new Color(0xFFFCC33)};
 	DecimalFormat format = new DecimalFormat("00");
 	
 	@Override
@@ -43,7 +42,7 @@ public class CalRenderer extends DefaultTableCellRenderer {
 				
 				JPanel innerpanel = new JPanel(null);
 				
-				innerpanel.setBackground(colors[i]);
+				innerpanel.setBackground(a.getColor());
 				innerpanel.setBounds(bredde * i, 0, bredde , 60);
 				panel.add(innerpanel);
 				

@@ -7,18 +7,30 @@ import common.utilities.DateString;
 
 public class Queries {
 
-	public static String getAppointments(int personid){
-		return 	"SELECT AVTALE.* " +
-				"FROM AVTALE, DELTAKER " +
-				"WHERE DELTAKER.ANSATTNR = " + personid + " " + 
-				"AND DELTAKER.AVTALEID = AVTALE.AVTALEID " +
-				"AND NOT EXISTS( " +
-				"SELECT * " +
-				"FROM DELTAKER " +
-				"WHERE DELTAKER.ANSATTNR = " + personid + " " +
-				");";
-	}
+//	public static String getAppointments(int personid){
+//		return 	"SELECT AVTALE.* " +
+//				"FROM AVTALE, DELTAKER " +
+//				"WHERE DELTAKER.ANSATTNR = " + personid + " " + 
+//				"AND DELTAKER.AVTALEID = AVTALE.AVTALEID " +
+//				"AND NOT EXISTS( " +
+//				"SELECT * " +
+//				"FROM DELTAKER " +
+//				"WHERE DELTAKER.ANSATTNR = " + personid + " " +
+//				");";
+//	}
 
+	
+	public static String getAppointments(int personid){
+	return 	"SELECT AVTALE. * " +
+			"FROM AVTALE " +
+			"WHERE AVTALE.LEDER = " + personid + " " +
+			"AND NOT EXISTS ( " +
+			"SELECT  * " +
+			"FROM DELTAKER " +
+			"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID);";
+}
+	
+	
 	public static String getMeetings(int personid){
 		return 	"SELECT AVTALE.* " +
 				"FROM AVTALE, DELTAKER " +

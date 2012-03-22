@@ -93,18 +93,20 @@ public class ServerData {
 		Client.console.writeline("received message: " + messageType);
 		
 		if(messageType.equals(MessageType.RECEIVE_APPOINTMENTS)){
+			System.out.println("lkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkj");
 			Collection<Appointment> apps = (Collection<Appointment>)message.getData();
 			for(Appointment a: apps){
-				System.out.println("MESSAGERECEIVER: " + a.getTitle());
+				System.out.println("MESSAGERECEIVER APPS: " + a.getTitle());
 				appointments.put(a.getId(), a);
 				persons.put(a.getLeader().getPersonID(), a.getLeader());
 			}
+			System.out.println("" + apps.size());
 			calendar.addAppointments(apps);
 		}
 		else if(messageType.equals(MessageType.RECEIVE_MEETINGS)){
 			Collection<Meeting> meets = (Collection<Meeting>)message.getData();
 			for(Meeting m: meets){
-				m.getTitle();
+				System.out.println("MESSAGERECEIVER MØTE" + m.getTitle());
 				meetings.put(m.getId(), m);
 				persons.put(m.getLeader().getPersonID(), m.getLeader());
 				for(Person p : m.getParticipants().keySet()){

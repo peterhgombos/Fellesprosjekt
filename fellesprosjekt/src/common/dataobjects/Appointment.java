@@ -1,7 +1,10 @@
 package common.dataobjects;
 
+import java.awt.Color;
 import java.io.Serializable;
 import java.sql.Date;
+
+import client.gui.ColorPicker;
 
 import common.utilities.DateString;
 
@@ -19,6 +22,8 @@ public class Appointment implements Serializable{
 	private DateString startTime;
 	private DateString endTime;
 	private String place;
+	
+	private Color color = ColorPicker.nextColor();
 
 	public Appointment(int id, Person leader, String title, String description, String place, DateString start, DateString end) throws RuntimeException {
 		this.id = id;
@@ -121,6 +126,10 @@ public class Appointment implements Serializable{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Color getColor(){
+		return color;
 	}
 
 }
