@@ -157,7 +157,9 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 			}
 			public void keyPressed(KeyEvent e) {}
 		});
-		
+//		if(!this.hasFocus()){
+//			ServerData.removeMessageListener(this);
+//		}
 		ServerData.addMessageListener(this);
 		ServerData.requestSearchForPerson("");
 		
