@@ -62,6 +62,10 @@ public class Connection  {
 		writer.send(new ComMessage(n, MessageType.REQUEST_NEW_NOTE));
 	}
 	
+	public void requestSearchForPerson(String search){
+		writer.send(new ComMessage(search, MessageType.REQUEST_SEARCH_PERSON));
+	}
+	
 	public void requestMessages(Person p) {
 		//TODO
 	}
