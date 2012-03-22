@@ -1,6 +1,7 @@
 package client.connection;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -73,6 +74,10 @@ public class ServerData {
 		connection.requestNewNote(n);
 	}
 	
+	public static void requestSearchForPerson(String search){
+		connection.requestSearchForPerson(search);
+	}
+	
 	
 	@SuppressWarnings("unchecked")
 	public static synchronized void receiveMessage(ComMessage message){
@@ -108,6 +113,10 @@ public class ServerData {
 		else if(messageType.equals(MessageType.RECEIVE_NEW_NOTE)){
 			Note note = (Note)message.getData();
 			//TODO what to do with this note?
+		}
+		else if(messageType.equals(MessageType.RECEIVE_SEARCH_PERSON)){
+			ArrayList<Person> filteredPersons = (ArrayList<Person>)message.getData();
+			//TODO what to do with this arraylist?
 		}
 		
 		Collection<MessageListener> clone = (Collection<MessageListener>)listeners.clone();

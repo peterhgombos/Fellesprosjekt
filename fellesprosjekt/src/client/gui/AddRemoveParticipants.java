@@ -1,12 +1,17 @@
 package client.gui;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.HashMap;
 
 import javax.swing.*;
+
+import common.dataobjects.Meeting;
+import common.dataobjects.Person;
 
 @SuppressWarnings("serial")
 public class AddRemoveParticipants extends JPanel implements FocusListener{
@@ -28,9 +33,16 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 	private JFrame frame;
 	
 	private CalendarPanel calendarpanel;
-
+	private HashMap<Person, Integer> participants;
 	
-	public AddRemoveParticipants(CalendarPanel calendarPanel) {
+	private NewMeeting newMeeting;
+	
+	
+	public AddRemoveParticipants(CalendarPanel calendarPanel, NewMeeting newMeeting) {
+		
+		this.newMeeting = newMeeting;
+		
+		participants = new HashMap<Person, Integer>();
 		calendarpanel = calendarPanel;
 		
 		headline = new JLabel("Legge Til/Fjerne Deltakere");
@@ -71,7 +83,11 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 		save.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				calendarpanel.goToNewMeeting();
+				for (int i = 0; i < addedParticipantsList.getModel().getSize() ; i++) {
+					participants.put((Person)addedParticipantsList.getModel().getElementAt(i), Meeting.SVAR_BLANK);
+				}
+				
+				newMeeting.addParticipants(participants);
 			}
 		});
 		cancel = new JButton("Avbryt");
@@ -147,4 +163,6 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 		}
 		
 	}
+	
+	
 }

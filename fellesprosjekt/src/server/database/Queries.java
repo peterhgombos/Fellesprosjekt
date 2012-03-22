@@ -113,24 +113,23 @@ public class Queries {
 	//				"WHERE LEDER.AVTALEID = " + meetingid + " " +
 	//				"AND LEDER.ANSATTNR = ANSATT.ANSATTNR;";
 	//	}
-	//
-	//	public static String getPersonsByFilter(String search){
-	//		return 	"SELECT ANSATT.* FROM ANSATT" + 
-	//				"WHERE (FORNAVN LIKE '%" + search + "%' " +
-	//				"OR ETTERNAVN LIKE '%" + search + "%') " +
-	//				"OR (MATCH(FORNAVN,ETTERNAVN) " +
-	//				"AGAINST ('%" + search +"%' " +
-	//				"IN BOOLEAN MODE));";
-	//	}
-	//	
+	
+		public static String getPersonsByFilter(String search){
+			return 	"SELECT ANSATT.* FROM ANSATT " + 
+					"WHERE (FORNAVN LIKE '%" + search + "%' " +
+					"OR ETTERNAVN LIKE '%" + search + "%') " +
+					"OR (MATCH(FORNAVN,ETTERNAVN) " +
+					"AGAINST ('%" + search +"%' " +
+					"IN BOOLEAN MODE));";
+		}
+		
 		public static String createNewAppointment(String title, String description, DateString startTime, DateString endTime, String place, int leader){
 			return  "INSERT INTO AVTALE (TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED, LEDER) " +
 					"VALUES ('" + title + "', '" + description + "', '" + startTime.toString() +
 					"', '" + endTime.toString() + "', '" + place + "', '" + leader +"');";
-					
 		}
-	//
-	//
-	//
-	//
+	
+	
+	
+	
 }

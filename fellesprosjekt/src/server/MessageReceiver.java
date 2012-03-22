@@ -79,6 +79,11 @@ public class MessageReceiver {
 			ComMessage sendNote = new ComMessage(createdNote, MessageType.RECEIVE_NEW_NOTE);
 			clientWriter.send(sendNote);
 		}
+		else if(messageType.equals(MessageType.REQUEST_SEARCH_PERSON)){
+			ArrayList<Person> filteredPersons = searchForPerson(message);
+			ComMessage sendPersons = new ComMessage(filteredPersons, MessageType.RECEIVE_SEARCH_PERSON);
+			clientWriter.send(sendPersons);
+		}
 	}
 
 	private Person requestLogin(ComMessage message){
@@ -117,6 +122,16 @@ public class MessageReceiver {
 		}
 	}
 	
+	private ArrayList<Person> searchForPerson(ComMessage message){
+		String query = (String) message.getData();
+		try{
+			return resutlSetToPerson(database.executeQuery(Queries.getPersonsByFilter(query)));
+		}catch(SQLException e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	
 	private ArrayList<Meeting> resultSetToMeeting(ResultSet result){
 		ArrayList<Meeting> returnthis = new ArrayList<Meeting>();
@@ -131,7 +146,7 @@ public class MessageReceiver {
 				DateString end = new DateString(result.getString(Database.COL_TO));
 
 				ResultSet participantRes = database.executeQuery(Queries.getParticipantsForMeeting(id));
-				HashMap<Person, Integer> participants = resultSetToPerson(participantRes);
+				HashMap<Person, Integer> participants = resultSetToPersonWithAnswer(participantRes);
 				Person leader = null;
 				for(Person p : participants.keySet()){
 					if(p.getPersonID() == leaderid){
@@ -159,7 +174,7 @@ public class MessageReceiver {
 				DateString end = new DateString(result.getString(Database.COL_TO));
 
 				ResultSet participantRes = database.executeQuery(Queries.getParticipantsForMeeting(id));
-				Person leader = resultSetToPerson(participantRes).keySet().iterator().next();
+				Person leader = resultSetToPersonWithAnswer(participantRes).keySet().iterator().next();
 
 				returnthis.add(new Appointment(id, leader, title, description, place, start, end));
 			}
@@ -169,7 +184,7 @@ public class MessageReceiver {
 		return returnthis;
 	}
 
-	private HashMap<Person, Integer> resultSetToPerson(ResultSet rs){
+	private HashMap<Person, Integer> resultSetToPersonWithAnswer(ResultSet rs){
 		HashMap<Person, Integer> returnthis = new HashMap<Person, Integer>();
 		try{
 			while(rs.next()){
@@ -187,6 +202,25 @@ public class MessageReceiver {
 			e.printStackTrace();
 		}
 		return returnthis;
+	}
+	
+	private ArrayList<Person> resutlSetToPerson(ResultSet rs){
+		ArrayList<Person> returnSet = new ArrayList<Person>();
+		try{
+			while(rs.next()){
+				int id = rs.getInt(Database.COL_PERSONID);
+				String fornavn = rs.getString(Database.COL_FORNAVN);
+				String etternavn = rs.getString(Database.COL_ETTERNAVN);
+				String epost = rs.getString(Database.COL_EPOST);
+				String brukernavn = rs.getString(Database.COL_BRUKERNAVN);
+				String tlf = rs.getString(Database.COL_TLF);
+
+				returnSet.add(new Person(id, fornavn, etternavn, epost, brukernavn, tlf));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return returnSet;
 	}
 
 	private Person resultSetToLoginPerson(ResultSet rs){
