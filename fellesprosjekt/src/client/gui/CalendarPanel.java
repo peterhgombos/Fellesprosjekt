@@ -17,8 +17,6 @@ public class CalendarPanel extends JPanel {
 	private NewAppointment newAppointmentPanel;
 	private NewMeeting newMeetingPanel;
 	private Appointments myAppointments;
-	private LogIn login;
-	
 	private JFrame frame;
 	
 	public CalendarPanel(Client client){
@@ -39,7 +37,7 @@ public class CalendarPanel extends JPanel {
 		removeAllComponents();
 		
 		calendarPanel = new Calendar();
-		calendarPanel.setBounds(sidePanel.getX() + sidePanel.getWidth(), 0, 900, 700);
+		calendarPanel.setBounds(sidePanel.getX() + sidePanel.getWidth(), 0, 1000, 700);
 		
 		ServerData.addMessageListener(calendarPanel);
 		
