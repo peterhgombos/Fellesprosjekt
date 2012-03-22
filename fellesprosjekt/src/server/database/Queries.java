@@ -127,7 +127,6 @@ public class Queries {
 			return  "INSERT INTO AVTALE (TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED, LEDER) " +
 					"VALUES ('" + title + "', '" + description + "', '" + startTime.toString() +
 					"', '" + endTime.toString() + "', '" + place + "', '" + leader +"');";
-					
 		}
 	
 	
