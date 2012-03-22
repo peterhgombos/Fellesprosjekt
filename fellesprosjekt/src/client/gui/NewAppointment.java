@@ -161,9 +161,7 @@ public class NewAppointment extends JPanel{
 			public void propertyChange(PropertyChangeEvent evt) {
 				// TODO Auto-generated method stub
 				firePropertyChange("date", evt.getOldValue(), evt.getNewValue());
-				System.out.println(datepicker.getDateFormatString());
-				System.out.println(datepicker.getJCalendar().getCalendar().getTimeInMillis());
-				System.out.println(datepicker.getCalendar().get(Calendar.YEAR) + datepicker.getCalendar().get(Calendar.MONTH) + datepicker.getCalendar().get(Calendar.DAY_OF_MONTH));
+				System.out.println(datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + " " + datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + " " + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH));
 				
 			}
 		});
