@@ -1,28 +1,41 @@
 package client.gui;
 
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.Collection;
 import java.util.HashMap;
 
-import javax.swing.*;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
+import client.connection.MessageListener;
+import client.connection.ServerData;
+
+import common.dataobjects.ComMessage;
 import common.dataobjects.Meeting;
 import common.dataobjects.Person;
+import common.utilities.MessageType;
 
 @SuppressWarnings("serial")
-public class AddRemoveParticipants extends JPanel implements FocusListener{
+public class AddRemoveParticipants extends JPanel implements FocusListener, MessageListener{
 	
 	private JLabel headline;
 	private JLabel externalParticipantsLabel;
 	private JTextField searchField;
 	private JTextField externalParticipantsField;
 	
-	private DefaultListModel listmodel1;
-	private DefaultListModel listmodel2;
 	private JList addedParticipantsList;
 	private JList employeeList;
 	
@@ -39,43 +52,59 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 	private HashMap<Person, Integer> participants;
 	
 	private NewMeeting newMeeting;
-	
+	private DefaultListModel addedParticipantsListmodel;
+	private DefaultListModel employeeListModel;
 	
 	public AddRemoveParticipants(CalendarPanel calendarPanel, NewMeeting meeting) {
-		
+				
 		newMeeting = meeting;
 		
 		participants = new HashMap<Person, Integer>();
 		calendarpanel = calendarPanel;
 		
 		headline = new JLabel("Legge Til/Fjerne Deltakere");
+		
 		searchField = new JTextField();
+		searchField.setText("Søk");
+		searchField.addFocusListener(this);
+		searchField.addKeyListener(new KeyListener() {
+			public void keyTyped(KeyEvent e) {}
+			public void keyReleased(KeyEvent e) {
+				ServerData.requestSearchForPerson(searchField.getText());
+			}
+			public void keyPressed(KeyEvent e) {}
+		});
 		
 		externalParticipantsField = new JTextField();
 		externalParticipantsLabel = new JLabel("Antall eksterne deltakere");
 		frame = new JFrame();
 		
-		listmodel1 = new DefaultListModel();
-		listmodel2 = new DefaultListModel();
-		
-		addedParticipantsList = new JList(listmodel1);
+		addedParticipantsList = new JList(new DefaultListModel());
 		addedParticipantsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		addedParticipantsList.setSelectedIndex(0);
 		addedParticipantsList.setVisibleRowCount(10);
 		
-		employeeList = new JList(listmodel2);
+		
+		employeeList = new JList(new DefaultListModel());
 		employeeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		employeeList.setSelectedIndex(0);
 		employeeList.setVisibleRowCount(10);
 		
+		ServerData.addMessageListener(this);
+		ServerData.requestSearchForPerson("");
+		
 		addedParticipantsListScroll = new JScrollPane(addedParticipantsList);
 		employeeListScroll = new JScrollPane(employeeList);
+		
+		addedParticipantsListmodel  = (DefaultListModel) addedParticipantsList.getModel();
+		employeeListModel = (DefaultListModel) employeeList.getModel();
+		
 		
 		add = new JButton(">");
 		add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DefaultListModel addedParticipantsListmodel = (DefaultListModel) addedParticipantsList.getModel();
 				addedParticipantsListmodel.addElement(employeeList.getSelectedValue());
+				employeeListModel.removeElement(employeeList.getSelectedValue());
 			}
 		});
 		
@@ -83,7 +112,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 		remove.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DefaultListModel addedParticipantsListmodel = (DefaultListModel) addedParticipantsList.getModel();
+				employeeListModel.addElement(addedParticipantsList.getSelectedValue());
 				addedParticipantsListmodel.removeElement(addedParticipantsList.getSelectedValue());
 			}
 		});
@@ -97,6 +126,8 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 				}
 				newMeeting.addParticipants(participants);
 				frame.dispose();
+				
+				//TODO lagre
 			}
 		});
 		
@@ -134,8 +165,6 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 		headline.setFont(new Font(headline.getFont().getName(), 0, 30));
 		
 		searchField.setBounds(GuiConstants.DISTANCE*5, headline.getHeight() + GuiConstants.DISTANCE*5, 210, 35);
-		searchField.setText("Søk");
-		searchField.addFocusListener(this);
 		
 		employeeListScroll.setBounds(searchField.getX(), searchField.getY() + searchField.getHeight() + GuiConstants.DISTANCE, 210, 300);
 		
@@ -170,5 +199,17 @@ public class AddRemoveParticipants extends JPanel implements FocusListener{
 		if (!searchField.getText().equals("Søk")) {
 			searchField.setText("Søk");
 		}	
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void receiveMessage(ComMessage m) {
+		if(m.getType().equals(MessageType.RECEIVE_SEARCH_PERSON)){
+			employeeListModel.clear();
+			Collection<Person> persons = (Collection<Person>)m.getData();
+			for (Person person : persons) {
+				employeeListModel.addElement(person);
+			}
+		}
 	}	
 }

@@ -5,21 +5,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.WindowConstants;
+
+import client.connection.MessageListener;
+import client.connection.ServerData;
+
+import common.dataobjects.ComMessage;
+import common.dataobjects.Person;
+import common.utilities.MessageType;
 
 @SuppressWarnings("serial")
-public class SidePanel extends JPanel implements FocusListener{
+public class SidePanel extends JPanel implements FocusListener, MessageListener{
 	
 	private JButton message;
 	private JButton newAppointment;
@@ -28,7 +37,11 @@ public class SidePanel extends JPanel implements FocusListener{
 	private JButton employeesAppointments;
 	private JButton logOut;
 	private JButton addEmployee;
+	
+	
 	private JPanel employeeList;
+	private ArrayList<Person> employeeListModel;
+	
 	private JList selectedEmployeeList;
 	private JTextField search;
 	private int countEmployee;
@@ -36,12 +49,13 @@ public class SidePanel extends JPanel implements FocusListener{
 	private int y;
 	private int width;
 	private int height;
-	private JCheckBox checkBox;
+	//private JCheckBox checkBox;
 	private JLabel nameLabel;
 	private JScrollPane scroll;
 	private JScrollPane scrollSelectedEmployee;
-	private DefaultListModel listModel;
 	private CalendarPanel calendarpanel;
+	
+	private DefaultListModel selectedEmployeeListModel;
 	
 	public SidePanel(CalendarPanel calendarPanel) {
 		countEmployee = 10;
@@ -50,8 +64,7 @@ public class SidePanel extends JPanel implements FocusListener{
 		width = 30;
 		height = 30;
 		calendarpanel = calendarPanel;
-		
-		listModel = new DefaultListModel();
+			
 		message = new JButton("Meldinger");
 		message.addActionListener(new ActionListener() {
 			
@@ -108,37 +121,32 @@ public class SidePanel extends JPanel implements FocusListener{
 				
 			}
 		});
+		
 		employeeList = new JPanel();
 		employeeList.setBackground(Color.WHITE);
 		employeeList.setLayout(null);
-		selectedEmployeeList = new JList();
-		selectedEmployeeList.setCellRenderer(new EmployeeListCellRenderer());
-		search = new JTextField();
 		
 		scroll = new JScrollPane(employeeList);
+
 		
-		selectedEmployeeList.setModel(listModel);
+		selectedEmployeeList = new JList(new DefaultListModel());
+		selectedEmployeeList.setCellRenderer(new EmployeeListCellRenderer());
 		scrollSelectedEmployee = new JScrollPane(selectedEmployeeList);
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
-		listModel.addElement("");
+		
+		selectedEmployeeListModel = (DefaultListModel)selectedEmployeeList.getModel();
+		employeeListModel = new DefaultListModel();
+		
+		search = new JTextField();
+		search.addKeyListener(new KeyListener() {
+			public void keyTyped(KeyEvent e) {}
+			public void keyReleased(KeyEvent e) {
+				ServerData.requestSearchForPerson(search.getText());
+			}
+			public void keyPressed(KeyEvent e) {}
+		});
+		
+		ServerData.addMessageListener(this);
+		ServerData.requestSearchForPerson("");
 		
 		setLayout(null);
 		resize();
@@ -228,4 +236,17 @@ public class SidePanel extends JPanel implements FocusListener{
 		}
 		
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void receiveMessage(ComMessage m) {
+		if(m.getType().equals(MessageType.RECEIVE_SEARCH_PERSON)){
+			employeeListModel.clear();
+			Collection<Person> persons = (Collection<Person>)m.getData();
+			for (Person person : persons) {
+				employeeListModel.addElement(person);
+			}
+		}
+	}
+	
 }
