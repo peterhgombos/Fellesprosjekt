@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 
@@ -111,8 +112,10 @@ public class NewMeeting extends JPanel{
 		radioButtonGroup.add(otherPlaceRadioButton);
 		
 		datepicker = new JDateChooser();
+		datepicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		datepickerDays = new JDateChooser();
 		datepickerDays.setVisible(false);
+		datepickerDays.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		severalDays = new JCheckBox();
 		severalDaysLabel = new JLabel("Flere dager");
 		severalDays.addItemListener(new ItemListener() {
