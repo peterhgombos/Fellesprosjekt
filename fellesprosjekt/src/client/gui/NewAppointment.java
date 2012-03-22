@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Calendar;
@@ -84,8 +86,27 @@ public class NewAppointment extends JPanel{
 		//dateField = new JTextField();
 		datepicker = new JDateChooser();
 		datepickerDays = new JDateChooser();
+		datepickerDays.setVisible(false);
 		severalDaysLabel = new JLabel("Flere dager");
 		severalDays = new JCheckBox();
+		severalDays.addItemListener(new ItemListener() {
+
+			public void itemStateChanged(ItemEvent e) {
+				// TODO Auto-generated method stub
+				if (e.getStateChange() == e.SELECTED) {
+					datepickerDays.setVisible(true);
+					datepickerDays.setEnabled(true);
+
+
+				}
+				if (e.getStateChange() == e.DESELECTED){
+
+					//TODO remember to ensure end-date is not linked to datepickerDays when disabled/invisible
+					datepickerDays.setVisible(false);
+					datepickerDays.setEnabled(false);
+				}
+			}
+		});
 		placeField = new JTextField();
 		
 		descriptionArea = new JTextArea();
@@ -162,6 +183,9 @@ public class NewAppointment extends JPanel{
 		add(endTimeHoursField);
 		add(endTimeMinField);
 		add(datepicker);
+		add(severalDays);
+		add(severalDaysLabel);
+		add(datepickerDays);
 		//This is for testing:
 		datepicker.addPropertyChangeListener(new PropertyChangeListener() {
 			
@@ -196,7 +220,14 @@ public class NewAppointment extends JPanel{
 		
 		datepicker.setBounds(GuiConstants.DISTANCE*2 + dateLabel.getWidth() + dateLabel.getX(), dateLabel.getY(), 190, GuiConstants.TEXTFIELD_HEIGTH);
 		
-		startTimeLabel.setBounds(titleLabel.getX(), dateLabel.getY() + dateLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 100, GuiConstants.LABEL_HEIGTH);
+		severalDays.setBounds(datepicker.getX(), dateLabel.getY() + dateLabel.HEIGHT + GuiConstants.GROUP_DISTANCE, 20, 20);
+		
+		severalDaysLabel.setBounds(severalDays.getX() + severalDays.getWidth() + GuiConstants.DISTANCE, severalDays.getY(), 200, GuiConstants.LABEL_HEIGTH);
+		severalDaysLabel.setFont(new Font(severalDaysLabel.getFont().getName(),0 ,10));
+		
+		datepickerDays.setBounds(datepicker.getX() + datepicker.getWidth() + GuiConstants.DISTANCE, datepicker.getY(), 190, GuiConstants.TEXTFIELD_HEIGTH);
+		
+		startTimeLabel.setBounds(titleLabel.getX(), severalDays.getY() + severalDays.getHeight() + GuiConstants.GROUP_DISTANCE, 100, GuiConstants.LABEL_HEIGTH);
 		startTimeLabel.setFont(new Font(startTimeLabel.getFont().getName(), 0, 16));
 		
 		startTimeHoursField.setBounds(GuiConstants.DISTANCE*2+ startTimeLabel.getWidth() + startTimeLabel.getX() , startTimeLabel.getY(), 70, GuiConstants.TEXTFIELD_HEIGTH);
