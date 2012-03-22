@@ -77,5 +77,9 @@ public class Connection  {
 		writer.send(new ComMessage(appInvites, MessageType.REQUEST_ADD_ATTENDANT));
 	}
 	
+	public void requestGetParticipnts(Appointment app){
+		writer.send(new ComMessage(app, MessageType.REQUEST_PARTICIPANTS));		
+	}
+	
 
 }
