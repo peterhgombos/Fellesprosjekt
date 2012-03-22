@@ -41,7 +41,7 @@ public class NewAppointment extends JPanel{
 	private JScrollPane scrollPane;
 	
 	private JTextField nameField; 
-	private JTextField dateField; //DATEPICKER
+	//private JTextField dateField; //DATEPICKER
 	private JTextField placeField;
 	private JTextArea descriptionArea;
 	
@@ -69,7 +69,7 @@ public class NewAppointment extends JPanel{
 		calendar = calendarPanel;		
 		
 		nameField = new JTextField();
-		dateField = new JTextField();
+		//dateField = new JTextField();
 		datepicker = new JDateChooser();
 		placeField = new JTextField();
 		
@@ -137,7 +137,7 @@ public class NewAppointment extends JPanel{
 		add(placeLabel);
 		add(roomInformationLabel);
 		add(nameField);
-		add(dateField);
+		//add(dateField);
 		add(placeField);
 	//	add(descriptionArea);
 		add(saveButton);
