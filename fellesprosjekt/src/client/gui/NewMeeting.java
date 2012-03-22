@@ -31,6 +31,7 @@ import client.connection.ServerData;
 
 import common.dataobjects.Appointment;
 import common.dataobjects.Meeting;
+import common.dataobjects.Note;
 import common.dataobjects.Person;
 import common.utilities.DateString;
 
@@ -78,8 +79,10 @@ public class NewMeeting extends JPanel{
 	private HashMap<Person,Integer> participantsList;
 	private NewMeeting thisNewMeeting;
 	
+	
 
 	public NewMeeting(CalendarPanel calendarPanel){
+		
 		String[] min = {"00", "15", "30", "45"};
 		String[] hours= {"00","01","02","03","04","05","06","07","08","09","10",
 						"11","12","13","14","15","16","17","18","19","20","21","22","23"};
