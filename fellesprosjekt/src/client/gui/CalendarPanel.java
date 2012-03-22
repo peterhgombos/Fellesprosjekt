@@ -41,12 +41,9 @@ public class CalendarPanel extends JPanel {
 		
 		ServerData.addMessageListener(calendarPanel);
 		
-		
-		
 		add(calendarPanel);
 		
 	}
-	
 	
 	public void goToMessages(){
 		removeAllComponents();
@@ -117,9 +114,6 @@ public class CalendarPanel extends JPanel {
 		if(myAppointments != null){
 			remove(myAppointments);
 		}
+		client.getFrame().repaint();
 	}
-	
-	
-	
-	
 }

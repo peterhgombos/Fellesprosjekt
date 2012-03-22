@@ -24,9 +24,19 @@ public class CalModel extends AbstractTableModel{
 	public void setDate(){
 		//TODO naviger til dato
 	}
+	public void setWeek(int weekNumber){
+		week = weekNumber;
+	}
+	
+	public void setYear(int year){
+		this.year = year;
+	}
 	
 	public void nextWeek(){
 		week++;
+	}
+	public void lastWeek(){
+		week--;
 	}
 
 	@Override
