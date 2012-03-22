@@ -17,16 +17,18 @@ public class CalModel extends AbstractTableModel{
 	
 	public CalModel(){
 		cal = ServerData.getCalendar();
+		cal.getCalendar().setTimeInMillis(System.currentTimeMillis());
 		this.year = cal.getCalendar().get(Calendar.YEAR);
 		this.week = cal.getCalendar().get(Calendar.WEEK_OF_YEAR);
 	}
 	
 	public int getYear(){
-		return year;
+		return cal.getCalendar().get(Calendar.YEAR);
 	}
 	
 	public int getWeek(){
-		return week;
+		System.out.println(this.week);
+		return cal.getCalendar().get(Calendar.WEEK_OF_YEAR);
 	}
 	
 	public void setDate(){
