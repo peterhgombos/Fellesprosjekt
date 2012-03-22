@@ -3,6 +3,8 @@ package client.gui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 import javax.swing.ButtonGroup;
@@ -17,6 +19,14 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
+
+import client.Client;
+import client.connection.ServerData;
+
+import common.dataobjects.Appointment;
+import common.dataobjects.Meeting;
+import common.dataobjects.Person;
+import common.utilities.DateString;
 
 import server.Server;
 
@@ -55,6 +65,7 @@ public class NewMeeting extends JPanel{
 	private ButtonGroup radioButtonGroup;
 	
 	private CalendarPanel calendar;
+	private HashMap<Person,Integer> participantsList;
 	
 
 	public NewMeeting(CalendarPanel calendarPanel){
@@ -62,6 +73,7 @@ public class NewMeeting extends JPanel{
 		String[] hours= {"00","01","02","03","04","05","06","07","08","09","10",
 						"11","12","13","14","15","16","17","18","19","20","21","22","23"};
 		
+		participantsList = new ArrayList<Person>();
 		calendar = calendarPanel;
 		headlineLabel = new JLabel("Nytt Møte");
 		titleLabel = new JLabel("Tittel", SwingConstants.RIGHT);
@@ -113,7 +125,42 @@ public class NewMeeting extends JPanel{
 		saveButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String title = nameField.getText();
+				
+				//String date = 
+				//TODO legg til en datePicker til
+				String dateStart = "";
+				String dateEnd = "";
+				
+				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem();
+				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem();
+				
+				String description = descriptionArea.getText();
+				
+				String place = "";
+				if(bookMeetingroomRadioButton.isSelected()){
+					// en String     place = roomPicker.getSelectedItem().;
+				}
+				else if (otherPlaceRadioButton.isSelected()){
+					place = placeField.getText();
+				}
+				
+				if(title.trim().equals("")){
+					UserInformationMessages.showErrormessage("Du må lage en tittel");
+				}
+//				TODO Datoene
+//				else if(){
+//					
+//				}
+				else if(bookMeetingroomRadioButton.isSelected() && participantsList.size()<2){
+					UserInformationMessages.showErrormessage("Det må være minst 2 deltakere for å booke et møterom");
+				}
+				
+				Meeting m = new Meeting(-1, Client.getUser(),title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList);
+				//ServerData.requestNewMeeting(m);;
+				
 				calendar.goToCalender();
+				
 			}
 		});
 		cancelButton = new JButton("Avbryt");
@@ -213,4 +260,8 @@ public class NewMeeting extends JPanel{
 		cancelButton.setBounds(saveButton.getX() + saveButton.getWidth() + GuiConstants.DISTANCE, saveButton.getY(), 100, GuiConstants.BUTTON_HEIGTH);
 	
 		}
+	
+	public void addParticipants(HashMap<Person,Integer> p){
+		participantsList = p;
+	}
 }
