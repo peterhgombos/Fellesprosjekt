@@ -78,6 +78,9 @@ public class ServerData {
 		connection.requestSearchForPerson(search);
 	}
 	
+	public static void requestAddAttendant(ArrayList<Person> invitees, Appointment appointment){
+		connection.requestAddPersons(invitees, appointment);
+	}
 	
 	@SuppressWarnings("unchecked")
 	public static synchronized void receiveMessage(ComMessage message){
