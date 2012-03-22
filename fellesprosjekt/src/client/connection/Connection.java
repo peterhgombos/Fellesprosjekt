@@ -56,7 +56,6 @@ public class Connection  {
 	
 	
 	public void requestMeetingsAndAppointments(Person p) {
-		System.out.println(p);
 		writer.send(new ComMessage(p, MessageType.REQUEST_APPOINTMENTS_AND_MEETINGS));
 	}
 	
