@@ -24,4 +24,8 @@ public class MessageType {
 	
 	public static final String REQUEST_SEARCH_PERSON = "requestSearchPerson";
 	public static final String RECEIVE_SEARCH_PERSON = "receiveSearchPerson";
+	
+	public static final String REQUEST_ADD_ATTENDANT = "requestAddAttendant";
+	public static final String RECEIVE_ADD_ATTENDANT = "receiveAddAttendant";
+	
 }
