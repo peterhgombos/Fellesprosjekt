@@ -163,7 +163,7 @@ public class NewMeeting extends JPanel{
 				
 				String dateStart = datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH);;
 				String dateEnd;
-				if(datepickerDays.isEnabled()){
+				if(datepickerDays.isEnabled()  && datepickerDays.isVisible()){
 					dateEnd = datepickerDays.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepickerDays.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + "-" + datepickerDays.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); ;
 				}
 				else{
