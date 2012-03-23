@@ -7,6 +7,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -233,6 +234,13 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 				if(!personExistInAddedParticipantsList(person)){
 					employeeListModel.addElement(person);
 				}
+			}
+		}
+		else if(m.getType().equals(MessageType.RECEIVE_PARTICIPANTS)){
+			addedParticipantsListmodel.clear();
+			ArrayList<Person> persons = (ArrayList<Person>) m.getData();
+			for(Person p : persons){
+				addedParticipantsListmodel.addElement(p);
 			}
 		}
 	}
