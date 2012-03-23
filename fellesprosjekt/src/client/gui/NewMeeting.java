@@ -244,9 +244,7 @@ public class NewMeeting extends JPanel{
 		add(severalDays);
 		add(severalDaysLabel);
 		
-		repaint();
-		
-		
+
 	}
 	
 	public void resize(){
