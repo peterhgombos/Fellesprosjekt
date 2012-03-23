@@ -2,15 +2,19 @@ package client.gui.calendar;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import client.connection.ServerData;
+import client.gui.CalendarPanel;
 
 import common.dataobjects.Appointment;
 
@@ -18,6 +22,21 @@ import common.dataobjects.Appointment;
 public class CalRenderer extends DefaultTableCellRenderer {
 
 	DecimalFormat format = new DecimalFormat("00");
+	CalendarPanel panel;
+	
+	private class TitleAction implements ActionListener{
+		private Appointment appointment;
+		public TitleAction(Appointment app){
+			appointment = app;
+		}
+		public void actionPerformed(ActionEvent e){
+			panel.goToAppointmentView(appointment);
+		}
+	}
+	
+	public CalRenderer(CalendarPanel panel){
+		this.panel = panel;
+	}
 	
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column){
@@ -46,7 +65,9 @@ public class CalRenderer extends DefaultTableCellRenderer {
 				
 				if(row == 0 || ServerData.getCalendar().startsInHour(a, model.getYear(), model.getWeek(), ((column - 1) * 24) + row)){
 					
-					JLabel title = new JLabel(" " + a.getTitle());
+					JRadioButton title = new JRadioButton(" " + a.getTitle());
+					title.addActionListener(new TitleAction(a));
+					
 					JLabel stime = new JLabel(" Fra: " + format.format(a.getStartTime().getHour()) + ":" + format.format(a.getStartTime().getMinute()));
 					JLabel etime = new JLabel(" Til: " + format.format(a.getEndTime().getHour()) + ":" + format.format(a.getEndTime().getMinute()));
 					

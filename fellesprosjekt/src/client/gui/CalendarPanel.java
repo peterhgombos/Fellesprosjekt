@@ -43,7 +43,7 @@ public class CalendarPanel extends JPanel {
 		}
 		removeAllComponents();
 		
-		calendarPanel = new Calendar();
+		calendarPanel = new Calendar(this);
 		calendarPanel.setBounds(sidePanel.getX() + sidePanel.getWidth(), 0, 1000, 700);
 		
 		ServerData.addMessageListener(calendarPanel);
