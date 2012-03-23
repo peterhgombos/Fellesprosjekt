@@ -26,6 +26,7 @@ import client.Client;
 import client.connection.MessageListener;
 import client.connection.ServerData;
 
+import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
 import common.dataobjects.Meeting;
 import common.dataobjects.Person;
@@ -151,6 +152,9 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 		
 		
 		ServerData.addMessageListener(this);
+		if(newMeeting.getMeeting() != null){
+			ServerData.requestGetParticipants(newMeeting.getMeeting());
+		}
 		ServerData.requestSearchForPerson("");
 		
 		add(headline);

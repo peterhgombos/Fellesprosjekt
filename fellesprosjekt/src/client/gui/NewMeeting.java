@@ -317,4 +317,7 @@ public class NewMeeting extends JPanel{
 	public void addParticipants(HashMap<Person,Integer> p){
 		participantsList = p;
 	}
+	public Meeting getMeeting(){
+		return meeting;
+	}
 }
