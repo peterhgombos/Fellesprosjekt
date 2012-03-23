@@ -60,6 +60,11 @@ public class InternalCalendar {
 	}
 	
 	public int dayToWeekDay(int day){
+		if(day == Calendar.SATURDAY){
+			return 5;
+		}else if(day == Calendar.SUNDAY){
+			return 6;
+		}
 		return day - 2;
 	}
 	
