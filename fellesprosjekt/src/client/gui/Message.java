@@ -158,7 +158,6 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 
 	@Override
 	public void receiveMessage(ComMessage m) {
-		System.out.println(m.getType());
 		if(m.getType().equals(MessageType.RECEIVE_NOTE)){
 			Collection<Note> notes = (Collection<Note>)m.getData();
 			

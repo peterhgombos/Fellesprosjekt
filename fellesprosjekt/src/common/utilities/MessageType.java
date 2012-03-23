@@ -43,4 +43,7 @@ public class MessageType {
 	public static final String RECEIVE_MEETINGS_BY_DATE_FILTER = "receiveMeetingsByDateFilter";
 	public static final String RECEIVE_APPOINTMENTS_BY_DATE_FILTER= "receiveAppointmensByDateFilter";
 	
+	public static final String REQUEST_NOTES = "requestNotes";
+	public static final String RECEIVE_NOTES = "receiveNotes";
+	
 }

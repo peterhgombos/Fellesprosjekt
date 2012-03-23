@@ -101,10 +101,22 @@ public class Queries {
 		return  "SELECT * FROM VARSEL " +
 				"ORDER BY VARSELID DESC LIMIT 1;";
 	}
+	
+	public static String getNotes(int deltakerId){
+		return	"SELECT VARSEL.* " +
+				"FROM VARSEL, DELTAKER "+
+				"WHERE VARSEL.AVTALEID = DELTAKER.AVTALEID "+
+				"AND DELTAKER.ANSATTNR = " + deltakerId + 
+				" ORDER BY VARSEL.TIDSENDT;";
+	}	
 
 	public static String getLastAppointment(){
 		return	"SELECT * FROM AVTALE " +
 				"ORDER BY AVTALEID DESC LIMIT 1;";
+	}
+	public static String getAppointmentById(int id){
+		return	"SELECT * FROM AVTALE " +
+				"WHERE AVTALEID = " + id + ";";
 	}
 	public static String getLastMeeting(){
 		return	"SELECT * FROM AVTALE " +
