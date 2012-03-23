@@ -187,12 +187,7 @@ public class AppointmentView extends JPanel{
 		
 		
 		acceptedList.setModel(acceptedListModel);
-		acceptedListModel.addElement("deltaker");
-		acceptedListModel.addElement("deltaker");
 		deniedList.setModel(deniedListModel);
-		deniedListModel.addElement("deltaker");
-		deniedListModel.addElement("deltaker");
-		notAnsweredListModel.addElement("deltaker");
 		notAnsweredList.setModel(notAnsweredListModel);
 		textAreaScrollPane = new JScrollPane(descriptionInput);
 		
@@ -247,14 +242,16 @@ public class AppointmentView extends JPanel{
 			HashMap<Person, Integer> part = m.getParticipants();
 			
 			for (Person p : part.keySet()) {
-				if(part.get(p) == Meeting.SVAR_BLANK){
-					notAnsweredListModel.addElement(p);
-				}
-				else if(part.get(p) == Meeting.SVAR_OK){
-					acceptedListModel.addElement(p);
-				}
-				else{
-					deniedListModel.addElement(p);
+				if(p.getPersonID() != m.getLeader().getPersonID()){
+					if(part.get(p) == Meeting.SVAR_BLANK){
+						notAnsweredListModel.addElement(p);
+					}
+					else if(part.get(p) == Meeting.SVAR_OK){
+						acceptedListModel.addElement(p);
+					}
+					else{
+						deniedListModel.addElement(p);
+					}
 				}
 			}
 			
@@ -350,7 +347,7 @@ public class AppointmentView extends JPanel{
 				toCalendarButton.setBounds(editButton.getX() + editButton.getWidth() + GuiConstants.DISTANCE, 
 						placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 110, 35);
 			}
-			else if(m.getParticipants().containsKey(Client.getUser())){
+			else if(m.getParticipants().containsKey(Client.getUser()) ){
 				accpectButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
 				rejectButton.setBounds(accpectButton.getX() + accpectButton.getWidth() + GuiConstants.DISTANCE, 
 						placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
