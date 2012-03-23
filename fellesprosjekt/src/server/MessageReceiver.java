@@ -16,6 +16,7 @@ import common.dataobjects.ComMessage;
 import common.dataobjects.Meeting;
 import common.dataobjects.Note;
 import common.dataobjects.Person;
+import common.dataobjects.Room;
 import common.sendobjects.AnswerUpdates;
 import common.sendobjects.AppointmentInvites;
 import common.utilities.DateString;
@@ -105,6 +106,11 @@ public class MessageReceiver {
 				}
 			}
 		}
+		else if(messageType.equals(MessageType.REQUEST_ROOMS_AVAILABLE)){
+			ArrayList<Room> availableRooms = getAvaliableRooms(message);
+			ComMessage rooms = new ComMessage(availableRooms, MessageType.RECEIVE_ROOM_AVAILABLE);
+			clientWriter.send(rooms);
+		}
 	}
 	
 	
@@ -116,6 +122,17 @@ public class MessageReceiver {
 			return persons;
 		}
 		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	private ArrayList<Room> getAvaliableRooms(ComMessage message){
+		Meeting meeting = (Meeting) message.getData();
+		try{
+			ResultSet rs = database.executeQuery(Queries.getRoomsForTimeSlot(meeting.getStartTime(), meeting.getEndTime(), meeting.getCapacity()));
+			return resultSetToRooms(rs);
+		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		return null;
@@ -226,6 +243,19 @@ public class MessageReceiver {
 			e.printStackTrace();
 		}
 		return returnthis;
+	}
+	
+	private ArrayList<Room> resultSetToRooms(ResultSet rs){
+		ArrayList<Room> returnThis = new ArrayList<Room>();
+		try{
+			while(rs.next()){
+				String room = rs.getString(Database.COL_ROMID);
+				returnThis.add(new Room(room));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return returnThis;
 	}
 
 	private ArrayList<Appointment> resultSetToAppointment(ResultSet result){
