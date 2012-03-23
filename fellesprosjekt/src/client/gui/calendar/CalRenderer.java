@@ -2,19 +2,15 @@ package client.gui.calendar;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import client.connection.ServerData;
-import client.gui.CalendarPanel;
 
 import common.dataobjects.Appointment;
 
@@ -22,25 +18,6 @@ import common.dataobjects.Appointment;
 public class CalRenderer extends DefaultTableCellRenderer {
 
 	DecimalFormat format = new DecimalFormat("00");
-	CalendarPanel panel;
-	
-	public ArrayList<JButton> getButtons;
-	
-	private class TitleAction implements ActionListener{
-		private Appointment appointment;
-		public TitleAction(Appointment app){
-			appointment = app;
-		}
-		public void actionPerformed(ActionEvent e){
-			System.out.println("YESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs");
-			//panel.goToAppointmentView(appointment);
-		}
-	}
-	
-	public CalRenderer(CalendarPanel panel){
-		this.panel = panel;
-		getButtons = new ArrayList<JButton>();
-	}
 	
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column){
