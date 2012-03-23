@@ -129,6 +129,8 @@ public class ServerData {
 	
 	@SuppressWarnings("unchecked")
 	public static synchronized void receiveMessage(ComMessage message){
+		System.out.println(message.getType());
+		
 		String messageType = message.getType();
 		
 		if(messageType.equals(MessageType.RECEIVE_APPOINTMENTS)){

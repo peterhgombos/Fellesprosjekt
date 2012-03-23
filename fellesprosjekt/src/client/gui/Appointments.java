@@ -77,6 +77,9 @@ public class Appointments extends JPanel implements MessageListener{
 		appointmentCheckBox = new JCheckBox("Personlige Avtaler");
 		meetingCheckBox = new JCheckBox("Møter");
 		
+		appointmentCheckBox.setSelected(true);
+		meetingCheckBox.setSelected(true);
+		
 		startDateField = new JTextField();
 		endDateField = new JTextField();
 		
@@ -90,6 +93,7 @@ public class Appointments extends JPanel implements MessageListener{
 			}
 		});
 		
+		ServerData.addMessageListener(this);
 		ServerData.requestAppointmensAndMeetingByDateFilter(Client.getUser());
 		HashMap<Integer, Meeting> meetingsList = ServerData.getMeetings();
 		
@@ -167,6 +171,9 @@ public class Appointments extends JPanel implements MessageListener{
 				appointments.add(me);
 			}
 		}
+		displaydata();
+	}
+	private void displaydata(){
 		LinkedList<Appointment> nyliste = new LinkedList<Appointment>();
 		if(meetingCheckBox.isSelected()){
 			nyliste.addAll(appointments);
@@ -175,8 +182,15 @@ public class Appointments extends JPanel implements MessageListener{
 			nyliste.addAll(meetings);
 		}
 		Collections.sort(nyliste);
-		
-		
-		
+		for (Appointment appointment : nyliste) {
+			
+			String start = appointment.getStartTime().getDay() +"."+ appointment.getStartTime().getMonth() + "." +appointment.getStartTime().getYear() 
+					+ "  kl: " + appointment.getStartTime().getHour() +":"+ appointment.getStartTime().getMinute();
+			String end = appointment.getEndTime().getDay() +"."+ appointment.getEndTime().getMonth() + "." +appointment.getEndTime().getYear() 
+					+ "  kl: " + appointment.getEndTime().getHour() +":"+ appointment.getEndTime().getMinute();
+					
+			listModel.addElement(appointment.getTitle() + "  " + start + " - " +end);
+			System.out.println(appointment.getTitle() + "  " + appointment.getStartTime() + " - " + appointment.getEndTime());
+		}
 	}
 }
