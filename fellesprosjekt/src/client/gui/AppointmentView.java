@@ -343,7 +343,7 @@ public class AppointmentView extends JPanel{
 		
 		if(appointment instanceof Meeting){
 			Meeting m = (Meeting)appointment;
-			if(m.getLeader() == Client.getUser()){
+			if(m.getLeader().getPersonID() == Client.getUser().getPersonID()){
 				cancelButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
 				editButton.setBounds(cancelButton.getX() + cancelButton.getWidth() + GuiConstants.DISTANCE, 
 						placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
