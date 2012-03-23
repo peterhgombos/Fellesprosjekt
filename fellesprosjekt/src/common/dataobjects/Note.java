@@ -2,11 +2,13 @@ package common.dataobjects;
 
 import java.sql.Date;
 
+import common.utilities.DateString;
+
 public class Note {
 	
 	private int id;
 	private String title;
-	private Date timeAdded;
+	private DateString timeAdded;
 	private Appointment appointment;
 	
 	public Note (String title, Appointment appointment){
@@ -14,7 +16,7 @@ public class Note {
 		this.appointment = appointment;
 	}
 	
-	public Note(int id, String title, Date timeAdded, Appointment appointment){
+	public Note(int id, String title, DateString timeAdded, Appointment appointment){
 		this.id = id;
 		this.title = title;
 		this.timeAdded = timeAdded;
@@ -33,7 +35,7 @@ public class Note {
 		return title;
 	}
 
-	public Date getTimeAdded() {
+	public DateString getTimeAdded() {
 		return timeAdded;
 	}
 }

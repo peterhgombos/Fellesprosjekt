@@ -3,6 +3,7 @@ package server;
 import java.net.InetAddress;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -117,8 +118,38 @@ public class MessageReceiver {
 				e.printStackTrace();
 			}
 		}
+		else if (messageType.equals(MessageType.REQUEST_NOTES)) {
+			Person p = (Person)message.getData();
+			try {
+				ResultSet rs = database.executeQuery(Queries.getNotes(p.getPersonID()));
+				ArrayList<Note> result = resultSetToNotes(rs);
+				clientWriter.send(new ComMessage(result, MessageType.RECEIVE_NOTES));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
+	private ArrayList<Note> resultSetToNotes(ResultSet rs){
+		ArrayList<Note> notes = new ArrayList<Note>(); 
+		try {
+			while (rs.next()) {
+				String title = rs.getString(Database.COL_TITLE);
+				int varselID = rs.getInt(Database.COL_VARSELID);
+				Timestamp timesend = rs.getTimestamp(Database.COL_TIMESEND);
+				int appointmentID = rs.getInt(Database.COL_APPOINTMENTID);
+				
+				Appointment appointment = resultSetToAppointment(database.executeQuery(Queries.getAppointmentById(appointmentID))).get(0);
+				
+				Note n = new Note(varselID, title, new DateString(timesend), appointment);
+				notes.add(n);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return notes;
+	}
 	
 	private void meetingsandappointmentsbydate(ComMessage message, ClientWriter cw) {
 		Person p = (Person)message.getData();
@@ -369,15 +400,15 @@ public class MessageReceiver {
 	}
 	
 	private Note resultSetToSingleNote(ResultSet rs){
-		try{
-			while(rs.next()){
-				ResultSet appointmentResult = database.executeQuery(Queries.getAppointment(rs.getInt("AVTALE")));
-				Appointment app = resultSetToAppointment(appointmentResult).get(0);
-				return new Note(rs.getInt("AVTALEID"), rs.getString("TITTEL"), rs.getDate("TIDSENDT"), app);
-			}
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
+//		try{
+//			while(rs.next()){
+//				ResultSet appointmentResult = database.executeQuery(Queries.getAppointment(rs.getInt("AVTALE")));
+//				Appointment app = resultSetToAppointment(appointmentResult).get(0);
+//				return new Note(rs.getInt("AVTALEID"), rs.getString("TITTEL"), new DateString(rs.getDate("TIDSENDT")), app);
+//			}
+//		}catch(SQLException e){
+//			e.printStackTrace();
+//		}
 		return null;
 	}
 

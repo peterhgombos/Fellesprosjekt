@@ -114,6 +114,10 @@ public class Queries {
 		return	"SELECT * FROM AVTALE " +
 				"ORDER BY AVTALEID DESC LIMIT 1;";
 	}
+	public static String getAppointmentById(int id){
+		return	"SELECT * FROM AVTALE " +
+				"WHERE AVTALEID = " + id + ";";
+	}
 	public static String getLastMeeting(){
 		return	"SELECT * FROM AVTALE " +
 				"ORDER BY AVTALEID DESC LIMIT 1;";
