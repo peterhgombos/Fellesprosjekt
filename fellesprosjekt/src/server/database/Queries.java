@@ -180,6 +180,8 @@ public class Queries {
 	}
 	
 	public static String updateAnswerToInvite(int attendant, int appointment, int answer){
-		return 	"UPDATE";
+		return 	"UPDATE DELTAKER " +
+				"SET SVAR= " + answer +
+				" WHERE AVTALEID=" + appointment;
 	}
 }
