@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.*;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -17,11 +18,20 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.WindowConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import client.Client;
+import client.connection.MessageListener;
 
 import com.toedter.calendar.JDateChooser;
+import common.dataobjects.Appointment;
+import common.dataobjects.ComMessage;
+import common.dataobjects.Person;
+import common.utilities.MessageType;
 
 
-public class Appointments extends JPanel{
+public class Appointments extends JPanel implements MessageListener{
 	
 	private JDateChooser datepickerFromDate;
 	private JDateChooser datepickerToDate;
@@ -66,13 +76,15 @@ public class Appointments extends JPanel{
 		startDateField = new JTextField();
 		endDateField = new JTextField();
 		
-		String[]listeTest = {"Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei","Hei"};
-		listModel = new DefaultListModel();
-		list = new JList(listeTest);
+		list = new JList(new DefaultListModel());
+		listModel = (DefaultListModel)list.getModel();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        //list.setSelectedIndex(0);
-        //Add listener
-        //list.setVisibleRowCount(5);
+		list.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent arg0) {
+				calendarpanel.goToAppointmentView((Appointment)listModel.getElementAt(list.getSelectedIndex()));
+			}
+		});
         listScrollPane = new JScrollPane(list);
 		
 		toCalendarButton = new JButton("Til Kalender");
@@ -132,4 +144,14 @@ public class Appointments extends JPanel{
 		
 	}
 
+	@Override
+	public void receiveMessage(ComMessage m) {
+		if(m.getType().equals(MessageType.REQUEST_APPOINTMENTS_AND_MEETINGS)){
+			listModel.clear();
+			Collection<Appointment> appointmentsCollection = (Collection<Appointment>)m.getData();
+			for (Appointment appointment : appointmentsCollection) {
+				listModel.addElement(appointment);
+			}
+		}
+	}
 }
