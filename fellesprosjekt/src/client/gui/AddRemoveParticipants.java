@@ -83,6 +83,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 			public void keyPressed(KeyEvent e) {}
 		});
 		
+		newInvited = new ArrayList<Person>();  
 		externalParticipantsField = new JTextField();
 		externalParticipantsLabel = new JLabel("Antall eksterne deltakere");
 		frame = new JFrame();
