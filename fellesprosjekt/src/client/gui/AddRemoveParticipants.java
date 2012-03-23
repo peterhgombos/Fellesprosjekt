@@ -7,6 +7,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -21,9 +22,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
+import client.Client;
 import client.connection.MessageListener;
 import client.connection.ServerData;
 
+import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
 import common.dataobjects.Meeting;
 import common.dataobjects.Person;
@@ -51,6 +54,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 	
 	private CalendarPanel calendarpanel;
 	private HashMap<Person, Integer> participants;
+	private ArrayList<Person> newInvited;
 	
 	private NewMeeting newMeeting;
 	private DefaultListModel addedParticipantsListmodel;
@@ -79,9 +83,11 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 			public void keyPressed(KeyEvent e) {}
 		});
 		
+		newInvited = new ArrayList<Person>();  
 		externalParticipantsField = new JTextField();
 		externalParticipantsLabel = new JLabel("Antall eksterne deltakere");
 		frame = new JFrame();
+		
 		
 		addedParticipantsList = new JList(new DefaultListModel());
 		addedParticipantsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -99,6 +105,9 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 		employeeListScroll = new JScrollPane(employeeList);
 		
 		addedParticipantsListmodel  = (DefaultListModel) addedParticipantsList.getModel();
+		for (Person p : newMeeting.getParticipantList().keySet()) {
+			addedParticipantsListmodel.addElement(p);
+		}
 		employeeListModel = (DefaultListModel) employeeList.getModel();
 		
 		
@@ -108,6 +117,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 				Person person = (Person)employeeList.getSelectedValue();
 				if(person != null){
 					addedParticipantsListmodel.addElement(person);
+					newInvited.add(person);
 					employeeListModel.removeElement(person);
 				}
 			}
@@ -121,6 +131,9 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 				if(person != null){
 					employeeListModel.addElement(person);
 					addedParticipantsListmodel.removeElement(person);
+					if(newInvited.contains(person)){
+						newInvited.remove(person);
+					}
 				}
 			}
 		});
@@ -129,8 +142,8 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 		save.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (int i = 0; i < addedParticipantsList.getModel().getSize() ; i++) {
-					participants.put((Person)addedParticipantsList.getModel().getElementAt(i), Meeting.SVAR_BLANK);
+				for (int i = 0; i < newInvited.size() ; i++) {
+					participants.put(newInvited.get(i), Meeting.SVAR_BLANK);
 				}
 				newMeeting.addParticipants(participants);
 				frame.dispose();
@@ -149,6 +162,9 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 		
 		
 		ServerData.addMessageListener(this);
+		if(newMeeting.getMeeting() != null){
+			ServerData.requestGetParticipants(newMeeting.getMeeting());
+		}
 		ServerData.requestSearchForPerson("");
 		
 		add(headline);
@@ -230,9 +246,16 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 			employeeListModel.clear();
 			Collection<Person> persons = (Collection<Person>)m.getData();
 			for (Person person : persons) {
-				if(!personExistInAddedParticipantsList(person)){
+				if(!personExistInAddedParticipantsList(person) && person.getPersonID() != Client.getUser().getPersonID()){
 					employeeListModel.addElement(person);
 				}
+			}
+		}
+		else if(m.getType().equals(MessageType.RECEIVE_PARTICIPANTS)){
+			addedParticipantsListmodel.clear();
+			ArrayList<Person> persons = (ArrayList<Person>) m.getData();
+			for(Person p : persons){
+				addedParticipantsListmodel.addElement(p);
 			}
 		}
 	}

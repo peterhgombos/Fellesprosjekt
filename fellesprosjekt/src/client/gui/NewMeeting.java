@@ -80,8 +80,10 @@ public class NewMeeting extends JPanel{
 	private HashMap<Person,Integer> participantsList;
 	private NewMeeting thisNewMeeting;
 	
+	private Meeting meeting;
 	
 
+	
 	public NewMeeting(CalendarPanel calendarPanel){
 		
 		String[] min = {"00", "15", "30", "45"};
@@ -214,6 +216,9 @@ public class NewMeeting extends JPanel{
 		
 		scrollPane = new JScrollPane(descriptionArea);
 		
+		setLayout(null);
+		resize();
+		
 		add(headlineLabel);
 		add(titleLabel);
 		add(dateLabel);
@@ -240,8 +245,14 @@ public class NewMeeting extends JPanel{
 		add(datepickerDays);
 		add(severalDays);
 		add(severalDaysLabel);
-		setLayout(null);
-		resize();
+		
+		Client.getFrame().resize(1201, 751);
+		Client.getFrame().resize(1200, 750);
+
+	}
+	public NewMeeting(CalendarPanel cp, Meeting meeting){
+		new NewMeeting(cp);
+		this.meeting = meeting;
 		
 	}
 	
@@ -259,11 +270,10 @@ public class NewMeeting extends JPanel{
 		
 		datepicker.setBounds(GuiConstants.DISTANCE*2 + titleLabel.getWidth() + titleLabel.getX(), dateLabel.getY(), 190, GuiConstants.TEXTFIELD_HEIGTH);
 		
-		severalDays.setBounds(datepicker.getX(), dateLabel.getY() + dateLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 20, 20);
+		severalDays.setBounds(datepicker.getX(), dateLabel.getY() + dateLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 23, 23);
 
 		severalDaysLabel.setBounds(severalDays.getX() + severalDays.getWidth() + GuiConstants.DISTANCE, severalDays.getY(), 200, GuiConstants.LABEL_HEIGTH);
-		severalDaysLabel.setFont(new Font(severalDaysLabel.getFont().getName(),0 ,10));
-
+		
 		datepickerDays.setBounds(datepicker.getX() + datepicker.getWidth() + GuiConstants.DISTANCE, datepicker.getY(), 190, GuiConstants.TEXTFIELD_HEIGTH);
 
 		
@@ -306,6 +316,14 @@ public class NewMeeting extends JPanel{
 		}
 	
 	public void addParticipants(HashMap<Person,Integer> p){
-		participantsList = p;
+		for(Person person : p.keySet()){
+			participantsList.put(person, p.get(person));
+		}
+	}
+	public HashMap<Person, Integer> getParticipantList(){
+		return participantsList;
+	}
+	public Meeting getMeeting(){
+		return meeting;
 	}
 }
