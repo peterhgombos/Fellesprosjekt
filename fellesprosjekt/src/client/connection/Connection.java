@@ -62,6 +62,10 @@ public class Connection  {
 		writer.send(new ComMessage(send, MessageType.REQUEST_UPDATE_ANSWER));
 	}
 	
+	public void requestBookRoom(Appointment app){
+		writer.send(new ComMessage(app, MessageType.REQUEST_BOOK_ROOM));
+	}
+	
 	public synchronized void receiveMessage(ComMessage s) {
 		try{
 			ServerData.receiveMessage(s);

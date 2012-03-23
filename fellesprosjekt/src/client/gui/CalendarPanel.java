@@ -131,6 +131,9 @@ public class CalendarPanel extends JPanel {
 		if(myAppointments != null){
 			remove(myAppointments);
 		}
+		if(appView != null){
+			remove(appView);
+		}
 		client.getFrame().repaint();
 	}
 }

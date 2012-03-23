@@ -138,4 +138,13 @@ public class Appointment implements Serializable, Comparable {
 	public int compareTo(Object o) {
 		return startTime.toString().compareTo(((Appointment)o).startTime.toString());
 	}
+	
+	public String toString(){
+		String start = getStartTime().getDay() +"."+ getStartTime().getMonth() + "." + getStartTime().getYear() 
+				+ "  kl: " + getStartTime().getHour() +":"+ getStartTime().getMinute();
+		String end = getEndTime().getDay() +"."+ getEndTime().getMonth() + "." + getEndTime().getYear() 
+				+ "  kl: " + getEndTime().getHour() +":"+ getEndTime().getMinute();
+		
+		return getTitle() + "   " + start + " - " +end;
+	}
 }

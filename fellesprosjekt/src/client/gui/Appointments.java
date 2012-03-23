@@ -77,6 +77,19 @@ public class Appointments extends JPanel implements MessageListener{
 		appointmentCheckBox = new JCheckBox("Personlige Avtaler");
 		meetingCheckBox = new JCheckBox("Møter");
 		
+		appointmentCheckBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				displaydata();
+			}
+		});
+		meetingCheckBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				displaydata();
+			}
+		});
+		
 		appointmentCheckBox.setSelected(true);
 		meetingCheckBox.setSelected(true);
 		
@@ -89,7 +102,10 @@ public class Appointments extends JPanel implements MessageListener{
 		list.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
-				calendarpanel.goToAppointmentView((Appointment)listModel.getElementAt(list.getSelectedIndex()));
+				int i = list.getSelectedIndex();
+				if(i > 0){
+					calendarpanel.goToAppointmentView((Appointment)listModel.getElementAt(i));
+				}
 			}
 		});
 		
@@ -147,10 +163,10 @@ public class Appointments extends JPanel implements MessageListener{
 		meetingCheckBox.setBounds(appointmentCheckBox.getX() + appointmentCheckBox.getWidth() + GuiConstants.DISTANCE, appointmentCheckBox.getY(), 130, 30);
 		
 		list.setBounds(appointmentCheckBox.getX(), appointmentCheckBox.getY() + appointmentCheckBox.getHeight() + GuiConstants.DISTANCE, 
-		datepickerToDate.getX() + startDateLabel.getX() + 25 , 200);
+		datepickerToDate.getX() + startDateLabel.getX() + 100 , 200);
 		
 		listScrollPane.setBounds(appointmentCheckBox.getX(), appointmentCheckBox.getY() + appointmentCheckBox.getHeight() + GuiConstants.DISTANCE, 
-		datepickerToDate.getX() + startDateLabel.getX() + 25 , 200);
+		datepickerToDate.getX() + startDateLabel.getX() + 100 , 200);
 		
 		toCalendarButton.setBounds(list.getX(), list.getY() + GuiConstants.GROUP_DISTANCE + list.getHeight(), 140, GuiConstants.BUTTON_HEIGTH);
 		
@@ -175,6 +191,7 @@ public class Appointments extends JPanel implements MessageListener{
 	}
 	private void displaydata(){
 		LinkedList<Appointment> nyliste = new LinkedList<Appointment>();
+		listModel.clear();
 		if(meetingCheckBox.isSelected()){
 			nyliste.addAll(appointments);
 		}
@@ -182,15 +199,8 @@ public class Appointments extends JPanel implements MessageListener{
 			nyliste.addAll(meetings);
 		}
 		Collections.sort(nyliste);
-		for (Appointment appointment : nyliste) {
-			
-			String start = appointment.getStartTime().getDay() +"."+ appointment.getStartTime().getMonth() + "." +appointment.getStartTime().getYear() 
-					+ "  kl: " + appointment.getStartTime().getHour() +":"+ appointment.getStartTime().getMinute();
-			String end = appointment.getEndTime().getDay() +"."+ appointment.getEndTime().getMonth() + "." +appointment.getEndTime().getYear() 
-					+ "  kl: " + appointment.getEndTime().getHour() +":"+ appointment.getEndTime().getMinute();
-					
-			listModel.addElement(appointment.getTitle() + "  " + start + " - " +end);
-			System.out.println(appointment.getTitle() + "  " + appointment.getStartTime() + " - " + appointment.getEndTime());
+		for (Appointment appointment : nyliste) {		
+			listModel.addElement(appointment);
 		}
 	}
 }
