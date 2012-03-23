@@ -24,6 +24,7 @@ public class Database {
 	public static final String COL_TLF = "TELEFONNR";
 	public static final String COL_ROMID = "ROMNR";
 	public static final String COL_ROMKAPASITET = "KAPASITET";
+	public static final String COL_EXTERNAL = "EKSTERNE";
 	
 	
 	
