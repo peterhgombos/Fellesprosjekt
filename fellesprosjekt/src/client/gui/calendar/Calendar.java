@@ -15,6 +15,7 @@ import javax.swing.table.TableColumn;
 import common.dataobjects.ComMessage;
 
 import client.connection.*;
+import client.gui.CalendarPanel;
 import client.gui.GuiConstants;
 import common.utilities.MessageType;
 
@@ -32,7 +33,7 @@ public class Calendar extends JPanel implements MessageListener {
 	
 	private String[] dayName = {"", "Mandag", "Tirsdag", "Onsag", "Torsdag", "Fredag", "Lørdag", "Søndag"};
 	
-	public Calendar(){
+	public Calendar(CalendarPanel panel){
 		setLayout(null);
 		
 		ServerData.getCalendar().getCalendar().setTimeInMillis(System.currentTimeMillis());
@@ -46,7 +47,7 @@ public class Calendar extends JPanel implements MessageListener {
 		
 		table = new JTable();
 		
-		CalRenderer renderer = new CalRenderer();
+		CalRenderer renderer = new CalRenderer(panel);
 		table.setModel(calModel);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.setRowHeight(60);
