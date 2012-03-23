@@ -130,7 +130,7 @@ public class MessageReceiver {
 	private ArrayList<Room> getAvaliableRooms(ComMessage message){
 		Meeting meeting = (Meeting) message.getData();
 		try{
-			ResultSet rs = database.executeQuery(Queries.getRoomsForTimeSlot(meeting.getStartTime(), meeting.getEndTime(), meeting.getCapacity()));
+			ResultSet rs = database.executeQuery(Queries.getRoomsForTimeSlot(meeting.getStartTime(), meeting.getEndTime(), meeting.getCapacty()));
 			return resultSetToRooms(rs);
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -231,13 +231,14 @@ public class MessageReceiver {
 				String place = result.getString(Database.COL_PLACE);
 				DateString start = new DateString(result.getTimestamp(Database.COL_FROM));
 				DateString end = new DateString(result.getTimestamp(Database.COL_TO));
+				int external = result.getInt(Database.COL_EXTERNAL);
 
 				ResultSet participantRes = database.executeQuery(Queries.getAnsFromParticipants(id));
 				HashMap<Person, Integer> participants = resultSetToPersonWithAnswer(participantRes);
 				
 				Person leader = resutlSetToPerson(database.executeQuery(Queries.getLeaderForMeeting(id))).get(0);
 				
-				returnthis.add(new Meeting(id, leader, title, description, place, start, end, participants));
+				returnthis.add(new Meeting(id, leader, title, description, place, start, end, participants,external));
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
