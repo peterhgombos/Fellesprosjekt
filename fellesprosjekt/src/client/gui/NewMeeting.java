@@ -246,6 +246,8 @@ public class NewMeeting extends JPanel{
 		add(severalDays);
 		add(severalDaysLabel);
 		
+		Client.getFrame().resize(1201, 751);
+		Client.getFrame().resize(1200, 750);
 
 	}
 	public NewMeeting(CalendarPanel cp, Meeting meeting){
@@ -268,11 +270,10 @@ public class NewMeeting extends JPanel{
 		
 		datepicker.setBounds(GuiConstants.DISTANCE*2 + titleLabel.getWidth() + titleLabel.getX(), dateLabel.getY(), 190, GuiConstants.TEXTFIELD_HEIGTH);
 		
-		severalDays.setBounds(datepicker.getX(), dateLabel.getY() + dateLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 20, 20);
+		severalDays.setBounds(datepicker.getX(), dateLabel.getY() + dateLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 23, 23);
 
 		severalDaysLabel.setBounds(severalDays.getX() + severalDays.getWidth() + GuiConstants.DISTANCE, severalDays.getY(), 200, GuiConstants.LABEL_HEIGTH);
-		severalDaysLabel.setFont(new Font(severalDaysLabel.getFont().getName(),0 ,10));
-
+		
 		datepickerDays.setBounds(datepicker.getX() + datepicker.getWidth() + GuiConstants.DISTANCE, datepicker.getY(), 190, GuiConstants.TEXTFIELD_HEIGTH);
 
 		
