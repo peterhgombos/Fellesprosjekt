@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import server.Server;
 
 import common.dataobjects.*;
+import common.sendobjects.AnswerUpdates;
 import common.sendobjects.AppointmentInvites;
 import common.utilities.MessageType;
 
@@ -53,6 +55,11 @@ public class Connection  {
 	public void requestNewMeeting(Meeting newMeeting){
 		writer.send(new ComMessage(newMeeting, MessageType.REQUEST_NEW_MEETING));
 		Client.console.writeline("NEW MEETING\nDeltagere: " + newMeeting.getParticipants().keySet().size());
+	}
+	
+	public void requestUpdateAnswers(HashMap<Person, Integer> persons, Appointment appointment){
+		AnswerUpdates send = new AnswerUpdates(persons, appointment);
+		writer.send(new ComMessage(send, MessageType.REQUEST_UPDATE_ANSWER));
 	}
 	
 	public synchronized void receiveMessage(ComMessage s) {
