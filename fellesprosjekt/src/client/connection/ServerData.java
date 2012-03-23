@@ -121,6 +121,12 @@ public class ServerData {
 		connection.requestUpdateAnswers(persons, app);
 	}
 	
+	public static void requestAppointmensAndMeetingByDateFilter(Person person){
+		connection.requestAppointmentsAndMeetingsByDateFilter(person);
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	public static synchronized void receiveMessage(ComMessage message){
 		String messageType = message.getType();

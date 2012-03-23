@@ -99,4 +99,8 @@ public class Connection  {
 	public void requestGetParticipnts(Appointment app){
 		writer.send(new ComMessage(app, MessageType.REQUEST_PARTICIPANTS));		
 	}
+
+	public void requestAppointmentsAndMeetingsByDateFilter(Person person) {
+		writer.send(new ComMessage(person, MessageType.REQUEST_MEETINGS_AND_APPOINTMENTS_BY_DATE_FILTER));
+	}
 }
