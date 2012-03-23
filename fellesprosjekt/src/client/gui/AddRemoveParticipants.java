@@ -54,6 +54,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 	
 	private CalendarPanel calendarpanel;
 	private HashMap<Person, Integer> participants;
+	private ArrayList<Person> newInvited;
 	
 	private NewMeeting newMeeting;
 	private DefaultListModel addedParticipantsListmodel;
@@ -86,6 +87,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 		externalParticipantsLabel = new JLabel("Antall eksterne deltakere");
 		frame = new JFrame();
 		
+		
 		addedParticipantsList = new JList(new DefaultListModel());
 		addedParticipantsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		addedParticipantsList.setSelectedIndex(0);
@@ -111,6 +113,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 				Person person = (Person)employeeList.getSelectedValue();
 				if(person != null){
 					addedParticipantsListmodel.addElement(person);
+					newInvited.add(person);
 					employeeListModel.removeElement(person);
 				}
 			}
@@ -124,6 +127,9 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 				if(person != null){
 					employeeListModel.addElement(person);
 					addedParticipantsListmodel.removeElement(person);
+					if(newInvited.contains(person)){
+						newInvited.remove(person);
+					}
 				}
 			}
 		});
@@ -132,8 +138,8 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 		save.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (int i = 0; i < addedParticipantsList.getModel().getSize() ; i++) {
-					participants.put((Person)addedParticipantsList.getModel().getElementAt(i), Meeting.SVAR_BLANK);
+				for (int i = 0; i < newInvited.size() ; i++) {
+					participants.put(newInvited.get(i), Meeting.SVAR_BLANK);
 				}
 				newMeeting.addParticipants(participants);
 				frame.dispose();
