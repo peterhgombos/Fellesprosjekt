@@ -185,5 +185,9 @@ public class ServerData {
 		ServerData.listeners.remove(listener);
 	}
 	
+	public static void requestNotes(Person person){
+		connection.requestNotes(person);
+	}
+	
 	
 }
