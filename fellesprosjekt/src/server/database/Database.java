@@ -26,6 +26,11 @@ public class Database {
 	public static final String COL_ROMKAPASITET = "KAPASITET";
 	public static final String COL_EXTERNAL = "EKSTERNE";
 	
+	public static final String COL_NOTE_TITLE = "TITTEL";
+	public static final String COL_VARSELID = "VARSELID";
+	public static final String COL_TIMESEND = "TIDSENDT";
+
+	
 	
 	
 	private String mysqlDriver="com.mysql.jdbc.Driver"; 
