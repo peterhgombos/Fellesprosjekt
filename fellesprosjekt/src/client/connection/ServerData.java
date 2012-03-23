@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import client.gui.calendar.Calendar;
+
 import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
 import common.dataobjects.Inbox;
@@ -53,6 +55,13 @@ public class ServerData {
 		persons = new HashMap<Integer, Person>();
 		messages = new HashMap<Integer, Note>();
 		
+		calendar = new InternalCalendar();
+	}
+	
+	public static void resetMeetingsAndAppointments(){
+		appointments = new HashMap<Integer, Appointment>();
+		meetings = new HashMap<Integer, Meeting>();
+		persons = new HashMap<Integer, Person>();
 		calendar = new InternalCalendar();
 	}
 	
@@ -130,11 +139,19 @@ public class ServerData {
 			persons.put(app.getLeader().getPersonID(), app.getLeader());
 			calendar.addAppointment(app);
 		}
+		else if(messageType.equals(MessageType.RECEIVE_NEW_MEETING)){
+			Meeting app = (Meeting)message.getData();
+			meetings.put(app.getId(), app);
+			persons.put(app.getLeader().getPersonID(), app.getLeader());
+			for(Person p: app.getParticipants().keySet()){
+				persons.put(p.getPersonID(), p);
+			}
+			calendar.addMeeting(app);
+		}
 		else if(messageType.equals(MessageType.RECEIVE_NEW_NOTE)){
 			Note note = (Note)message.getData();
 			//TODO what to do with this note?
 		}
-		
 		
 		Collection<MessageListener> clone = (Collection<MessageListener>)listeners.clone();
 		for (MessageListener l : clone) {

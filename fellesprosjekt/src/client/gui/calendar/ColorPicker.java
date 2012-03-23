@@ -13,5 +13,11 @@ public class ColorPicker {
 		}
 		return farger[i++];
 	}
+	public static void reset(){
+		i = 0;
+	}
+	public static Color otherColor(){
+		return new Color(0xFF0000);
+	}
 
 }

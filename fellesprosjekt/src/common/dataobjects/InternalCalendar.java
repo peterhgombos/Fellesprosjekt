@@ -14,6 +14,9 @@ public class InternalCalendar {
 	private HashMap<Integer, HashMap<Integer, ArrayList<Appointment>[]>> apps;
 	
 	public InternalCalendar() {
+		reset();
+	}
+	public void reset(){
 		calendar = new GregorianCalendar();
 		calendar.setTimeZone(TimeZone.getDefault());
 		calendar.setMinimalDaysInFirstWeek(4);
@@ -23,6 +26,7 @@ public class InternalCalendar {
 		
 		apps = new HashMap<Integer, HashMap<Integer,ArrayList<Appointment>[]>>();
 	}
+	
 	
 	@SuppressWarnings("unchecked")
 	private void addToCal(Appointment app){

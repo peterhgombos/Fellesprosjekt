@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.io.Serializable;
 
 import xml.XMLElements;
+import client.Client;
 import client.gui.calendar.ColorPicker;
 
 import common.utilities.DateString;
@@ -21,7 +22,7 @@ public class Appointment implements Serializable {
 	private DateString endTime;
 	private String place;
 	
-	private Color color = ColorPicker.nextColor();
+	private Color color;
 
 	public Appointment(int id, Person leader, String title, String description, String place, DateString start, DateString end) throws RuntimeException {
 		this.id = id;
@@ -32,14 +33,15 @@ public class Appointment implements Serializable {
 		this.endTime = end;
 		this.place = place;
 		
-		//For testing purposes
-		if (this.startTime.after(endTime)) {
-			throw new RuntimeException();
+		if(leader.getPersonID() == Client.getUser().getPersonID()){
+			color = ColorPicker.nextColor();
+		}else{
+			color = ColorPicker.otherColor();
 		}
 	}
 
 	public Appointment() {
-
+		
 	}
 
 	public int getId() {

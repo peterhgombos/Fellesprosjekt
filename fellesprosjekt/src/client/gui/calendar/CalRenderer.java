@@ -3,7 +3,7 @@ package client.gui.calendar;
 import java.awt.Color;
 import java.awt.Component;
 import java.text.DecimalFormat;
-import java.util.Collection;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -13,7 +13,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import client.connection.ServerData;
 
 import common.dataobjects.Appointment;
-import common.dataobjects.InternalCalendar;
 
 @SuppressWarnings("serial")
 public class CalRenderer extends DefaultTableCellRenderer {
@@ -27,18 +26,17 @@ public class CalRenderer extends DefaultTableCellRenderer {
 			return hourrenderer(row);
 		}
 		
-		InternalCalendar calendar = ServerData.getCalendar();
-		
 		CalModel model = (CalModel)table.getModel();
 		
-		Collection<Appointment> result = calendar.getAppointments(model.getYear(), model.getWeek(), column - 1, row);
+		ArrayList<Appointment> result = ServerData.getCalendar().getAppointments(model.getYear(), model.getWeek(), column - 1, row);
 		
 		JPanel panel = new JPanel(null);
 		panel.setBackground(new Color(0xFFFFFF));
 		if(result != null){
 			int bredde = 134 / result.size();
 			int i = 0;
-			for(Appointment a : result){
+			ArrayList<Appointment> clone = (ArrayList<Appointment>)result.clone();
+			for(Appointment a : clone){
 				
 				JPanel innerpanel = new JPanel(null);
 				
@@ -46,7 +44,7 @@ public class CalRenderer extends DefaultTableCellRenderer {
 				innerpanel.setBounds(bredde * i, 0, bredde , 60);
 				panel.add(innerpanel);
 				
-				if(row == 0 || calendar.startsInHour(a, model.getYear(), model.getWeek(), ((column - 1) * 24) + row)){
+				if(row == 0 || ServerData.getCalendar().startsInHour(a, model.getYear(), model.getWeek(), ((column - 1) * 24) + row)){
 					
 					JLabel title = new JLabel(" " + a.getTitle());
 					JLabel stime = new JLabel(" Fra: " + format.format(a.getStartTime().getHour()) + ":" + format.format(a.getStartTime().getMinute()));

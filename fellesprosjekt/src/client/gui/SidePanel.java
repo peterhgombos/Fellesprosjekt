@@ -1,21 +1,15 @@
 package client.gui;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 
-import javax.swing.Action;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -27,6 +21,7 @@ import javax.swing.event.ListSelectionListener;
 import client.Client;
 import client.connection.MessageListener;
 import client.connection.ServerData;
+import client.gui.calendar.ColorPicker;
 
 import common.dataobjects.ComMessage;
 import common.dataobjects.Person;
@@ -54,11 +49,11 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 	private DefaultListModel employeeListModel;
 	private DefaultListModel selectedEmployeeListModel;
 	
-	private SidePanel thisSidepanel;
+	//private SidePanel thisSidepanel;
 	
 	public SidePanel(CalendarPanel calendarPanel) {
 		calendarpanel = calendarPanel;
-		thisSidepanel = this;
+		//thisSidepanel = this;
 		
 		message = new JButton("Meldinger");
 		message.addActionListener(new ActionListener() {
@@ -121,8 +116,16 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 					if(object != null){
 						selectedEmployeeListModel.addElement((Person)object);
 						employeeListModel.removeElement((Person)object);
-						ServerData.requestSearchForPerson("");
 					}
+				}
+				
+				ColorPicker.reset();
+				ServerData.getCalendar().reset();
+				ServerData.resetMeetingsAndAppointments();
+				ServerData.requestAppointmentsAndMeetings(Client.getUser());
+				for(int i = 0; i < selectedEmployeeListModel.size(); i++){
+					System.out.println(((Person)selectedEmployeeListModel.getElementAt(i)).getFirstname());
+					ServerData.requestAppointmentsAndMeetings(((Person)selectedEmployeeListModel.getElementAt(i)));
 				}
 			}
 		});
@@ -142,12 +145,22 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 		
 		selectedEmployeeList.addListSelectionListener(new ListSelectionListener() {
 			@Override
-			public void valueChanged(ListSelectionEvent arg0) {
+			public void valueChanged(ListSelectionEvent e) {
 				Person person = (Person)selectedEmployeeList.getSelectedValue();
 				if(person != null){
 					selectedEmployeeListModel.removeElement(person);
 					employeeListModel.addElement(person);
-					//ServerData.requestSearchForPerson("");
+					System.out.println("kjhkj" + person.getFirstname());
+					
+					
+					ColorPicker.reset();
+					ServerData.getCalendar().reset();
+					ServerData.resetMeetingsAndAppointments();
+					ServerData.requestAppointmentsAndMeetings(Client.getUser());
+					for(int i = 0; i < selectedEmployeeListModel.size(); i++){
+						System.out.println(((Person)selectedEmployeeListModel.getElementAt(i)).getFirstname());
+						ServerData.requestAppointmentsAndMeetings(((Person)selectedEmployeeListModel.getElementAt(i)));
+					}
 				}
 			}
 		});
