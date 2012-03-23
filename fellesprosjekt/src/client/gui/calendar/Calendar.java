@@ -124,15 +124,15 @@ public class Calendar extends JPanel implements MessageListener {
 
 	private void resize(){
 		lastWeek.setBounds(GuiConstants.DISTANCE*30, GuiConstants.DISTANCE, 50, GuiConstants.BUTTON_HEIGTH);
-		lastWeek.setFont(GuiConstants.BUTTON_FONT);
+		lastWeek.setFont(GuiConstants.FONT_14);
 		weekLabel.setBounds(lastWeek.getX() + lastWeek.getWidth() + GuiConstants.DISTANCE, lastWeek.getY() + 5, 40, GuiConstants.LABEL_HEIGTH);
-		weekLabel.setFont(GuiConstants.BUTTON_FONT);
+		weekLabel.setFont(GuiConstants.FONT_14);
 		weekNumberField.setBounds(weekLabel.getX() + weekLabel.getWidth() + GuiConstants.DISTANCE, weekLabel.getY(), 50, GuiConstants.TEXTFIELD_HEIGTH);
-		weekNumberField.setFont(GuiConstants.BUTTON_FONT);
+		weekNumberField.setFont(GuiConstants.FONT_14);
 		yearField.setBounds(weekNumberField.getX() + weekNumberField.getWidth() + GuiConstants.DISTANCE, weekNumberField.getY(), 70, GuiConstants.TEXTFIELD_HEIGTH);
-		yearField.setFont(GuiConstants.BUTTON_FONT);
+		yearField.setFont(GuiConstants.FONT_14);
 		nextWeek.setBounds(yearField.getX() + yearField.getWidth() + GuiConstants.DISTANCE, lastWeek.getY(), 50, GuiConstants.BUTTON_HEIGTH);
-		nextWeek.setFont(GuiConstants.BUTTON_FONT);
+		nextWeek.setFont(GuiConstants.FONT_14);
 		scrollPane.setBounds(0, lastWeek.getHeight() + lastWeek.getY() + GuiConstants.GROUP_DISTANCE + 5, 1002, 620);
 	}
 

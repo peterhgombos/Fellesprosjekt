@@ -258,9 +258,8 @@ public class NewMeeting extends JPanel implements MessageListener{
 		add(severalDays);
 		add(severalDaysLabel);
 		
-		Client.getFrame().resize(1201, 751);
-		Client.getFrame().resize(1200, 750);
-
+		Client.getFrame().resize(GuiConstants.FRAME_WIDTH+1, GuiConstants.FRAME_HEIGTH+1);
+		Client.getFrame().resize(GuiConstants.FRAME_WIDTH, GuiConstants.FRAME_HEIGTH);
 	}
 	public NewMeeting(CalendarPanel cp, Meeting meeting){
 		new NewMeeting(cp);
@@ -269,8 +268,8 @@ public class NewMeeting extends JPanel implements MessageListener{
 	}
 	
 	public void resize(){
-		headlineLabel.setBounds(GuiConstants.DISTANCE*27, GuiConstants.GROUP_DISTANCE, GuiConstants.HEADLINE_LENGTH, GuiConstants.HEADLINE_HEIGTH);
-		headlineLabel.setFont(new Font(headlineLabel.getFont().getName(), 0, 30));
+		headlineLabel.setBounds(GuiConstants.HEADLINE_X, GuiConstants.HEADLINE_Y, GuiConstants.HEADLINE_WIDTH, GuiConstants.HEADLINE_HEIGTH);
+		headlineLabel.setFont(GuiConstants.FONT_30);
 		
 		titleLabel.setBounds(GuiConstants.DISTANCE, headlineLabel.getY() + headlineLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 100, GuiConstants.LABEL_HEIGTH);
 		titleLabel.setFont(new Font(headlineLabel.getFont().getName(), 0, 16));

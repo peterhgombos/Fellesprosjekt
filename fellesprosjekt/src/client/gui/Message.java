@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Collection;
 
 import javax.swing.DefaultListModel;
@@ -49,6 +51,19 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 		headLine = new JLabel("Meldinger");
 		
 		all = new JCheckBox();
+		all.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e){
+				if(e.getStateChange() == ItemEvent.DESELECTED){
+					messageList.removeSelectionInterval(0, messageModel.getSize()-1);
+				}else{
+					int[] indexes = new int[messageModel.getSize()];
+					for(int i = 0; i < indexes.length; i++){
+						indexes[i] = i;
+					}
+					messageList.setSelectedIndices(indexes);
+				}
+			}
+		});
 		searchfield = new JTextField("Søk");
 		
 		messageList = new JList();
@@ -101,28 +116,28 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 	}
 	
 	public void resize(){
-		headLine.setBounds(GuiConstants.DISTANCE*7, GuiConstants.DISTANCE, 300, 40);
-		headLine.setFont(GuiConstants.HEADER_FONT);
+		headLine.setBounds(GuiConstants.HEADLINE_X, GuiConstants.HEADLINE_Y, GuiConstants.HEADLINE_WIDTH, GuiConstants.HEADLINE_HEIGTH);
+		headLine.setFont(GuiConstants.FONT_30);
 		
 		all.setBounds(headLine.getX(), headLine.getY() + headLine.getHeight() + GuiConstants.GROUP_DISTANCE, (int)all.getPreferredSize().getWidth(), (int)all.getPreferredSize().getHeight());
 		
 		searchfield.setBounds(all.getX() + all.getWidth() + GuiConstants.DISTANCE, all.getY(), 470 - all.getWidth() - GuiConstants.DISTANCE, 25);
-		searchfield.setFont(GuiConstants.BUTTON_FONT);
+		searchfield.setFont(GuiConstants.FONT_14);
 		searchfield.addFocusListener(this);
 		
 		scroll.setBounds(headLine.getX(), all.getY() + searchfield.getHeight() + GuiConstants.DISTANCE, 470, 250);
 
-		messageList.setBounds(headLine.getX(), scroll.getY(), scroll.getWidth() - 10, messageList.getHeight());
+		messageList.setBounds(headLine.getX(), scroll.getY(), scroll.getWidth() - 5, messageList.getHeight());
 		messageList.setPreferredSize(messageList.getSize());
 		
-		showbutton.setBounds(headLine.getX(), scroll.getY() + scroll.getHeight() + GuiConstants.DISTANCE, 150, 35);
-		showbutton.setFont(GuiConstants.BUTTON_FONT);
+		showbutton.setBounds(headLine.getX(), scroll.getY() + scroll.getHeight() + GuiConstants.DISTANCE, GuiConstants.BUTTON_WIDTH, GuiConstants.BUTTON_HEIGTH);
+		showbutton.setFont(GuiConstants.FONT_14);
 		
-		delete.setBounds(showbutton.getX() + showbutton.getWidth() + GuiConstants.DISTANCE, showbutton.getY(),  150, 35);
-		delete.setFont(GuiConstants.BUTTON_FONT);
+		delete.setBounds(showbutton.getX() + showbutton.getWidth() + GuiConstants.DISTANCE, showbutton.getY(),  GuiConstants.BUTTON_WIDTH, GuiConstants.BUTTON_HEIGTH);
+		delete.setFont(GuiConstants.FONT_14);
 		
-		toCalender.setBounds(delete.getX() + delete.getWidth() + GuiConstants.DISTANCE, showbutton.getY(), 150, 35);
-		toCalender.setFont(GuiConstants.BUTTON_FONT);
+		toCalender.setBounds(delete.getX() + delete.getWidth() + GuiConstants.DISTANCE, showbutton.getY(), GuiConstants.BUTTON_WIDTH, GuiConstants.BUTTON_HEIGTH);
+		toCalender.setFont(GuiConstants.FONT_14);
 	}
 
 	@Override

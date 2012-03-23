@@ -147,35 +147,37 @@ public class Appointments extends JPanel implements MessageListener{
 		
 		setLayout(null);
 		resize();
+		Client.getFrame().resize(GuiConstants.FRAME_WIDTH+1, GuiConstants.FRAME_HEIGTH+1);
+		Client.getFrame().resize(GuiConstants.FRAME_WIDTH, GuiConstants.FRAME_HEIGTH);
 	}
 	
 	public void resize(){
+		headlineLabel.setBounds(GuiConstants.HEADLINE_X, GuiConstants.HEADLINE_Y, GuiConstants.HEADLINE_WIDTH, GuiConstants.HEADLINE_HEIGTH);
+		headlineLabel.setFont(GuiConstants.FONT_30);
 		
-		headlineLabel.setBounds(GuiConstants.DISTANCE*27, GuiConstants.DISTANCE, GuiConstants.HEADLINE_LENGTH, GuiConstants.HEADLINE_HEIGTH);
-		headlineLabel.setFont(new Font(headlineLabel.getFont().getName(), 0, 30));
+		startDateLabel.setBounds(headlineLabel.getX() - GuiConstants.LABEL_WIDTH - GuiConstants.DISTANCE, headlineLabel.getY() + headlineLabel.getHeight() + GuiConstants.GROUP_DISTANCE , GuiConstants.LABEL_WIDTH, GuiConstants.LABEL_HEIGTH);
+		startDateLabel.setFont(GuiConstants.FONT_16);
+		startDateLabel.setHorizontalAlignment(JLabel.RIGHT);
 		
-		startDateLabel.setBounds(GuiConstants.DISTANCE*5, headlineLabel.getHeight() + GuiConstants.DISTANCE*5 , 25, GuiConstants.LABEL_HEIGTH);
-		startDateLabel.setFont(new Font(startDateLabel.getFont().getName(), 0, 16));
+		datepickerFromDate.setBounds(startDateLabel.getX() + startDateLabel.getWidth() + GuiConstants.DISTANCE, startDateLabel.getY(), GuiConstants.TEXTFIELD_WIDTH, GuiConstants.TEXTFIELD_HEIGTH);
 		
-		datepickerFromDate.setBounds(startDateLabel.getX() + startDateLabel.getWidth() + GuiConstants.DISTANCE, startDateLabel.getY(), 160, GuiConstants.TEXTFIELD_HEIGTH);
+		endDateLabel.setBounds(datepickerFromDate.getX() + datepickerFromDate.getWidth() + GuiConstants.DISTANCE, datepickerFromDate.getY(), 20, GuiConstants.TEXTFIELD_HEIGTH);
+		endDateLabel.setFont(GuiConstants.FONT_16);
+		startDateLabel.setHorizontalAlignment(JLabel.RIGHT);
 		
-		endDateLabel.setBounds(datepickerFromDate.getX() + datepickerFromDate.getWidth() + GuiConstants.DISTANCE, datepickerFromDate.getY(), 25, GuiConstants.LABEL_HEIGTH);
-		endDateLabel.setFont(new Font(endDateLabel.getFont().getName(), 0, 16));
-		
-		datepickerToDate.setBounds(endDateLabel.getX() + endDateLabel.getWidth() + GuiConstants.DISTANCE, endDateLabel.getY(), 160, GuiConstants.TEXTFIELD_HEIGTH);
+		datepickerToDate.setBounds(endDateLabel.getX() + endDateLabel.getWidth() + GuiConstants.DISTANCE, endDateLabel.getY(), GuiConstants.TEXTFIELD_WIDTH, GuiConstants.TEXTFIELD_HEIGTH);
 				
-		appointmentCheckBox.setBounds(datepickerFromDate.getX(), startDateLabel.getY() + startDateLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 150, 30);
-		meetingCheckBox.setBounds(appointmentCheckBox.getX() + appointmentCheckBox.getWidth() + GuiConstants.DISTANCE, appointmentCheckBox.getY(), 130, 30);
+		appointmentCheckBox.setBounds(datepickerFromDate.getX(), startDateLabel.getY() + startDateLabel.getHeight() + GuiConstants.GROUP_DISTANCE, GuiConstants.TEXTFIELD_WIDTH, GuiConstants.TEXTFIELD_HEIGTH);
+		appointmentCheckBox.setFont(GuiConstants.FONT_14);
 		
-		list.setBounds(appointmentCheckBox.getX(), appointmentCheckBox.getY() + appointmentCheckBox.getHeight() + GuiConstants.DISTANCE, 
-		datepickerToDate.getX() + startDateLabel.getX() + 100 , 200);
+		meetingCheckBox.setBounds(datepickerFromDate.getX(), appointmentCheckBox.getY() + appointmentCheckBox.getHeight() + GuiConstants.DISTANCE, GuiConstants.TEXTFIELD_WIDTH, GuiConstants.TEXTFIELD_HEIGTH);
+		meetingCheckBox.setFont(GuiConstants.FONT_14);
 		
-		listScrollPane.setBounds(appointmentCheckBox.getX(), appointmentCheckBox.getY() + appointmentCheckBox.getHeight() + GuiConstants.DISTANCE, 
-		datepickerToDate.getX() + startDateLabel.getX() + 100 , 200);
+		listScrollPane.setBounds(meetingCheckBox.getX(), meetingCheckBox.getY() + meetingCheckBox.getHeight() + GuiConstants.DISTANCE, 400 , 250);
 		
-		toCalendarButton.setBounds(list.getX(), list.getY() + GuiConstants.GROUP_DISTANCE + list.getHeight(), 140, GuiConstants.BUTTON_HEIGTH);
+		list.setBounds(listScrollPane.getX(), listScrollPane.getY(), listScrollPane.getWidth() - 5 , listScrollPane.getHeight());
 		
-		System.out.println(datepickerToDate.getX() + " " + datepickerToDate.getWidth() + " " + list.getX() );
+		toCalendarButton.setBounds(listScrollPane.getX(), listScrollPane.getY() + listScrollPane.getHeight() + GuiConstants.DISTANCE , GuiConstants.BUTTON_WIDTH, GuiConstants.BUTTON_HEIGTH);
 	}
 
 	@Override

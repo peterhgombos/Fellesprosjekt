@@ -72,7 +72,7 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 				calendarpanel.goToNewAppointment();
 			}
 		});
-		newMeeting = new JButton("Nytt møte");
+		newMeeting = new JButton("Nytt Møte");
 		newMeeting.addActionListener(new ActionListener() {
 			
 			@Override
@@ -193,25 +193,25 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 	
 	public void resize(){
 		message.setBounds(GuiConstants.DISTANCE, GuiConstants.DISTANCE, 160, 35);
-		message.setFont(GuiConstants.BUTTON_FONT);
+		message.setFont(GuiConstants.FONT_14);
 		
 		newAppointment.setBounds(GuiConstants.DISTANCE, message.getY() + message.getHeight()+
 				GuiConstants.GROUP_DISTANCE+5, 
 				message.getWidth(), message.getHeight());
-		newAppointment.setFont(GuiConstants.BUTTON_FONT);
+		newAppointment.setFont(GuiConstants.FONT_14);
 		
 		
 		newMeeting.setBounds(GuiConstants.DISTANCE, newAppointment.getY() + GuiConstants.DISTANCE
 				+ message.getHeight(), message.getWidth(), message.getHeight());
-		newMeeting.setFont(GuiConstants.BUTTON_FONT);
+		newMeeting.setFont(GuiConstants.FONT_14);
 
 		
 		myAppointments.setBounds(GuiConstants.DISTANCE, newMeeting.getY() + GuiConstants.DISTANCE + message.getHeight(), message.getWidth(), message.getHeight());
-		myAppointments.setFont(GuiConstants.BUTTON_FONT);
+		myAppointments.setFont(GuiConstants.FONT_14);
 		
 		
 		employeesAppointments.setBounds(GuiConstants.DISTANCE, myAppointments.getY() + GuiConstants.DISTANCE + message.getHeight(), message.getWidth(), message.getHeight());
-		employeesAppointments.setFont(GuiConstants.BUTTON_FONT);
+		employeesAppointments.setFont(GuiConstants.FONT_14);
 		
 		
 		search.setBounds(GuiConstants.DISTANCE, employeesAppointments.getY() + message.getHeight(), message.getWidth(), message.getHeight());
@@ -228,7 +228,7 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 		scrollSelectedEmployee.setBounds(GuiConstants.DISTANCE, addEmployee.getY() + GuiConstants.DISTANCE + message.getHeight(), message.getWidth(), message.getHeight()*4);
 		
 		logOut.setBounds(GuiConstants.DISTANCE, scrollSelectedEmployee.getY() + scrollSelectedEmployee.getHeight() + GuiConstants.DISTANCE, message.getWidth(), message.getHeight());
-		logOut.setFont(GuiConstants.BUTTON_FONT);
+		logOut.setFont(GuiConstants.FONT_14);
 	}
 	
 	@Override

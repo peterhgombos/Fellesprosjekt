@@ -4,19 +4,6 @@ import common.utilities.DateString;
 
 public class Queries {
 
-	//	public static String getAppointments(int personid){
-	//		return 	"SELECT AVTALE.* " +
-	//				"FROM AVTALE, DELTAKER " +
-	//				"WHERE DELTAKER.ANSATTNR = " + personid + " " + 
-	//				"AND DELTAKER.AVTALEID = AVTALE.AVTALEID " +
-	//				"AND NOT EXISTS( " +
-	//				"SELECT * " +
-	//				"FROM DELTAKER " +
-	//				"WHERE DELTAKER.ANSATTNR = " + personid + " " +
-	//				");";
-	//	}
-
-
 	public static String getAppointments(int personid){
 		return 	"SELECT AVTALE. * " +
 				"FROM AVTALE " +
@@ -37,10 +24,11 @@ public class Queries {
 				"AND EXISTS( " +
 				"SELECT * " +
 				"FROM DELTAKER " +
-				"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID" +
+				"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID " +
+				"AND NOT DELTAKER.ANSATTNR = AVTALE.LEDER" +
 				");";
 	}
-	
+
 	public static String getAppointmentsWithdatefilter(int personid){
 		return 	"SELECT AVTALE. * " +
 				"FROM AVTALE " +
@@ -61,10 +49,11 @@ public class Queries {
 				"AND EXISTS( " +
 				"SELECT * " +
 				"FROM DELTAKER " +
-				"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID" +
+				"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID " +
+				"AND NOT DELTAKER.ANSATTNR = AVTALE.LEDER" +
 				");";
 	}
-	
+
 	public static String getLeaderForMeeting(int avtaleid){
 		return 	"SELECT ANSATT.* " +
 				"FROM ANSATT, AVTALE " + 
@@ -101,7 +90,7 @@ public class Queries {
 		return  "SELECT * FROM VARSEL " +
 				"ORDER BY VARSELID DESC LIMIT 1;";
 	}
-	
+
 	public static String getNotes(int deltakerId){
 		return	"SELECT VARSEL.* " +
 				"FROM VARSEL, DELTAKER "+
@@ -214,13 +203,13 @@ public class Queries {
 				"WHERE A.ROMNR != MOTEROM.ROMNR AND MOTEROM.KAPASITET >= " + capacity;
 
 	}
-	
+
 	public static String bookRoom(int appId, String roomId){
 		return	"UPDATE AVTALE " +
 				"SET ROMNR=" + roomId +
 				" WHERE AVTALEID=" + appId + ";";
 	}
-	
+
 	public static String updateAnswerToInvite(int attendant, int appointment, int answer){
 		return 	"UPDATE DELTAKER " +
 				"SET SVAR= " + answer +

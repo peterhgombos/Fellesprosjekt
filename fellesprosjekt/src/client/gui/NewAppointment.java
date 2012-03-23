@@ -179,8 +179,8 @@ public class NewAppointment extends JPanel{
 		add(severalDaysLabel);
 		add(endDPicker);
 		
-		Client.getFrame().resize(1201, 751);
-		Client.getFrame().resize(1200, 750);
+		Client.getFrame().resize(GuiConstants.FRAME_WIDTH+1, GuiConstants.FRAME_HEIGTH+1);
+		Client.getFrame().resize(GuiConstants.FRAME_WIDTH, GuiConstants.FRAME_HEIGTH);
 		
 		
 		//This is for testing:
@@ -196,13 +196,15 @@ public class NewAppointment extends JPanel{
 	
 	public void resize(){
 		
-		headlineLabel.setBounds(GuiConstants.DISTANCE*27, GuiConstants.GROUP_DISTANCE, GuiConstants.HEADLINE_LENGTH, GuiConstants.HEADLINE_HEIGTH);
-		headlineLabel.setFont(new Font(headlineLabel.getFont().getName(), 0, 30));
+		headlineLabel.setBounds(GuiConstants.HEADLINE_X, GuiConstants.HEADLINE_Y, GuiConstants.HEADLINE_WIDTH, GuiConstants.HEADLINE_HEIGTH);
+		headlineLabel.setFont(GuiConstants.FONT_30);
 		
 		titleLabel.setBounds(GuiConstants.DISTANCE, headlineLabel.getY() + headlineLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 100, GuiConstants.LABEL_HEIGTH);
 		titleLabel.setFont(new Font(headlineLabel.getFont().getName(), 0, 16));
 		
 		nameField.setBounds(GuiConstants.DISTANCE*2+ titleLabel.getWidth() + titleLabel.getX(), titleLabel.getY(), 190, GuiConstants.TEXTFIELD_HEIGTH);
+		
+		System.out.println(nameField.getX());
 		
 		dateLabel.setBounds(titleLabel.getX(), titleLabel.getY() + titleLabel.getHeight() + GuiConstants.DISTANCE, 100, GuiConstants.LABEL_HEIGTH);
 		dateLabel.setFont(new Font(dateLabel.getFont().getName(), 0, 16));
