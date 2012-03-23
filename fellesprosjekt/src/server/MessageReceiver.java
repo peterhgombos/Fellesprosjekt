@@ -38,7 +38,7 @@ public class MessageReceiver {
 		String messageType = message.getType();
 		ClientWriter clientWriter = clients.get(ip);
 
-		if(messageType.equals(MessageType.REQUEST_APPOINTMENTS_AND_MEETINGS)){
+		if(messageType.equals(MessageType.REQUEST_APPOINTMENTS_AND_MEETINGS) || messageType.equals(MessageType.RECEIVE_APPOINTMENTS_BY_DATE_FILTER)){
 
 			Person p = (Person)message.getData();
 			int personid = p.getPersonID();
@@ -65,9 +65,9 @@ public class MessageReceiver {
 			ComMessage sendLogin = new ComMessage(authenticatedPerson, MessageType.RECEIVE_LOGIN);
 			clientWriter.send(sendLogin);
 		}
-		else if(messageType.equals(MessageType.REQUEST_MEETINGS_AND_APPOINTMENTS_BY_DATE_FILTER)){
-			meetingsandappointmentsbydate(message, clientWriter);
-		}
+//		else if(messageType.equals(MessageType.REQUEST_MEETINGS_AND_APPOINTMENTS_BY_DATE_FILTER)){
+//			meetingsandappointmentsbydate(message, clientWriter);
+//		}
 		else if(messageType.equals(MessageType.REQUEST_NEW_APPOINTMENT)){
 			newAppointment(message);
 		}
