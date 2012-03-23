@@ -2,17 +2,14 @@ package client.gui.calendar;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -72,9 +69,7 @@ public class CalRenderer extends DefaultTableCellRenderer {
 				
 				if(row == 0 || ServerData.getCalendar().startsInHour(a, model.getYear(), model.getWeek(), ((column - 1) * 24) + row)){
 					
-					JButton title = new JButton(" " + a.getTitle());
-					title.addActionListener(new TitleAction(a));
-					getButtons.add(title);
+					JLabel title = new JLabel(" " + a.getTitle());
 					
 					JLabel stime = new JLabel(" Fra: " + format.format(a.getStartTime().getHour()) + ":" + format.format(a.getStartTime().getMinute()));
 					JLabel etime = new JLabel(" Til: " + format.format(a.getEndTime().getHour()) + ":" + format.format(a.getEndTime().getMinute()));

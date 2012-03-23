@@ -6,11 +6,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import client.gui.calendar.Calendar;
-
 import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
-import common.dataobjects.Inbox;
 import common.dataobjects.InternalCalendar;
 import common.dataobjects.Meeting;
 import common.dataobjects.Note;
@@ -21,7 +18,6 @@ import common.utilities.MessageType;
 public class ServerData {
 	
 	private static InternalCalendar calendar;
-	private static Inbox inbox;
 	
 	private static HashMap<Integer, Appointment> appointments;
 	private static HashMap<Integer, Meeting> meetings;
