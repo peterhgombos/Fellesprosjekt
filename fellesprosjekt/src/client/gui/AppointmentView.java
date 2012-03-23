@@ -122,21 +122,8 @@ public class AppointmentView extends JPanel{
 		numberOfParticipantsField.setEditable(false);
 		numberOfParticipantsField.setBackground(this.getBackground());
 		
-		
 		accpectButton = new JButton("Godta");
-		accpectButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				calendarpanel.goToCalender();
-			}
-		});
 		rejectButton = new JButton("Avslå");
-		rejectButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				calendarpanel.goToCalender();
-			}
-		});
 		
 		accpectButton.addActionListener(new ActionListener() {
 			@Override
@@ -356,7 +343,7 @@ public class AppointmentView extends JPanel{
 		
 		if(appointment instanceof Meeting){
 			Meeting m = (Meeting)appointment;
-			if(m.getLeader() == Client.getUser()){
+			if(m.getLeader().getPersonID() == Client.getUser().getPersonID()){
 				cancelButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
 				editButton.setBounds(cancelButton.getX() + cancelButton.getWidth() + GuiConstants.DISTANCE, 
 						placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
