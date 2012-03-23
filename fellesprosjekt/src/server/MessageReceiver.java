@@ -109,6 +109,14 @@ public class MessageReceiver {
 			ComMessage rooms = new ComMessage(availableRooms, MessageType.RECEIVE_ROOM_AVAILABLE);
 			clientWriter.send(rooms);
 		}
+		else if(messageType.equals(MessageType.REQUEST_BOOK_ROOM)){
+			Meeting meeting = (Meeting) message.getData();
+			try{
+				database.updateDB(Queries.bookRoom(meeting.getId(),meeting.getRoom().getRomId()));
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	
