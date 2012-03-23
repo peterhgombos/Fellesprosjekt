@@ -192,7 +192,7 @@ public class NewMeeting extends JPanel{
 					return;
 				}
 				
-				Meeting m = new Meeting(-1, Client.getUser(),title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList);
+				Meeting m = new Meeting(-1, Client.getUser(),title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfParticipants);
 				ServerData.requestNewMeeting(m);;
 				
 				calendar.goToCalender();
