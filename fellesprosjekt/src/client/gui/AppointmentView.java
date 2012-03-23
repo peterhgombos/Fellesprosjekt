@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -20,6 +21,15 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.Border;
+
+import org.omg.CORBA.portable.ValueBase;
+
+import client.Client;
+
+import common.dataobjects.Appointment;
+import common.dataobjects.Meeting;
+import common.dataobjects.Person;
+import common.utilities.DateString;
 
 public class AppointmentView extends JPanel{
 	
@@ -60,15 +70,17 @@ public class AppointmentView extends JPanel{
 	private JList deniedList;
 	private JList notAnsweredList;
 	private JTextField numberOfParticipantsField;
-	private DefaultListModel leaderModel;
-	private DefaultListModel acceptedModel;
-	private DefaultListModel deniedModel;
-	private DefaultListModel notAnsweredModel;
+	private DefaultListModel leaderListModel;
+	private DefaultListModel acceptedListModel;
+	private DefaultListModel deniedListModel;
+	private DefaultListModel notAnsweredListModel;
 	private String numberOfParticipants;
 	private CalendarPanel calendarpanel;
 	
+	private Appointment appointment;
 	
-	public AppointmentView(CalendarPanel calendarPanel) {
+	
+	public AppointmentView(CalendarPanel calendarPanel, Appointment app) {
 		
 		//TESTER
 //		appointmentName = "TEST";
@@ -80,6 +92,7 @@ public class AppointmentView extends JPanel{
 //		numberOfParticipants = "123";
 		//TESTER
 		
+		appointment = app;
 		calendarpanel = calendarPanel;
 		
 		headline = new JLabel(appointmentName);
@@ -124,6 +137,29 @@ public class AppointmentView extends JPanel{
 				calendarpanel.goToCalender();
 			}
 		});
+		
+		accpectButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				//TODO Endre svar i database
+				Meeting m = (Meeting)appointment;
+				m.changeParticipantAnswer(Client.getUser(), Meeting.SVAR_OK);
+				accpectButton.setEnabled(false);
+				rejectButton.setEnabled(true);
+				setComponents();
+			}
+		});
+		rejectButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Meeting m = (Meeting)appointment;
+				m.changeParticipantAnswer(Client.getUser(), Meeting.SVAR_NEI);
+				accpectButton.setEnabled(true);
+				rejectButton.setEnabled(false);
+				setComponents();
+			}
+		});
+		
 		toCalendarButton = new JButton("Til Kalender");
 		toCalendarButton.addActionListener(new ActionListener() {
 			@Override
@@ -146,26 +182,27 @@ public class AppointmentView extends JPanel{
 			}
 		});
 		
-		leaderList = new JList();
-		acceptedList = new JList();
-		deniedList = new JList();
-		notAnsweredList = new JList();
-		leaderModel = new DefaultListModel();
-		acceptedModel = new DefaultListModel();
-		deniedModel = new DefaultListModel();
-		notAnsweredModel = new DefaultListModel();
+		leaderList = new JList(new DefaultListModel());
+		acceptedList = new JList(new DefaultListModel());
+		deniedList = new JList(new DefaultListModel());
+		notAnsweredList = new JList(new DefaultListModel());
 		
-		leaderList.setModel(leaderModel);
-		leaderModel.addElement("leder");
-		acceptedList.setModel(acceptedModel);
-		acceptedModel.addElement("deltaker");
-		acceptedModel.addElement("deltaker");
-		deniedList.setModel(deniedModel);
-		deniedModel.addElement("deltaker");
-		deniedModel.addElement("deltaker");
-		notAnsweredModel.addElement("deltaker");
-		notAnsweredList.setModel(notAnsweredModel);
+		leaderListModel = (DefaultListModel)leaderList.getModel();
+		acceptedListModel = (DefaultListModel)acceptedList.getModel();
+		deniedListModel = (DefaultListModel)deniedList.getModel();
+		notAnsweredListModel = (DefaultListModel)notAnsweredList.getModel();
+		
+		
+		acceptedList.setModel(acceptedListModel);
+		acceptedListModel.addElement("deltaker");
+		acceptedListModel.addElement("deltaker");
+		deniedList.setModel(deniedListModel);
+		deniedListModel.addElement("deltaker");
+		deniedListModel.addElement("deltaker");
+		notAnsweredListModel.addElement("deltaker");
+		notAnsweredList.setModel(notAnsweredListModel);
 		textAreaScrollPane = new JScrollPane(descriptionInput);
+		
 		
 		add(headline);
 		add(dateLabel);
@@ -197,7 +234,62 @@ public class AppointmentView extends JPanel{
 		
 	}
 	
+	
+	private void setComponents(){
+		
+//		private JTextField placeInput;
+//		
+		DateString start = appointment.getStartTime();
+		DateString end = appointment.getEndTime();
+		
+		headline.setText(appointment.getTitle());
+		dateInput.setText(start.getDay() + "." + start.getMonth() + "." + start.getYear() + (end == start? "":" - " + end.getDay() + "." + end.getMonth() + "." + end.getYear()));
+		timeInput.setText(start.getHour() + ":" + start.getMinute() + " - " + end.getHour() + ":" + end.getMinute());
+		descriptionInput.setText(appointment.getDescription());
+		
+		
+		if(appointment instanceof Meeting){
+			Meeting m = (Meeting)appointment;
+			
+			leaderListModel.addElement(m.getLeader());
+			HashMap<Person, Integer> part = m.getParticipants();
+			
+			for (Person p : part.keySet()) {
+				if(part.get(p) == Meeting.SVAR_BLANK){
+					notAnsweredListModel.addElement(p);
+				}
+				else if(part.get(p) == Meeting.SVAR_OK){
+					acceptedListModel.addElement(p);
+				}
+				else{
+					deniedListModel.addElement(p);
+				}
+			}
+			
+			if(m.getRoom() == null){
+				placeInput.setText(m.getPlace());
+			}
+			else{
+				// TODO Lag Room()
+				// placeInput = m.getRoom().toString();
+			}
+		}
+		else{
+			placeInput.setText(appointment.getPlace());
+			notAnsweredList.setVisible(false);
+			deniedList.setVisible(false);
+			acceptedList.setVisible(false);
+			leaderList.setVisible(false);
+			participantsLabel.setVisible(false);
+			participateLabel.setVisible(false);
+			notAnsweredLabel.setVisible(false);
+			meetingLeaderLabel.setVisible(false);
+			notParticipateLabel.setVisible(false);
+		}
+	}
+	
 	public void resize(){
+		setComponents();
 		
 		headline.setBounds(GuiConstants.DISTANCE*27, GuiConstants.DISTANCE, 300, 40);
 		headline.setFont(new Font(headline.getFont().getName(),0,30));
@@ -257,21 +349,38 @@ public class AppointmentView extends JPanel{
 		placeInput.setBounds(textAreaScrollPane.getX(), textAreaScrollPane.getY() + textAreaScrollPane.getHeight() + GuiConstants.GROUP_DISTANCE, 300, 30);
 		placeInput.setFont(new Font(placeInput.getFont().getName(),0,15));
 		
-		if(isLeader){
-			cancelButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
-			editButton.setBounds(cancelButton.getX() + cancelButton.getWidth() + GuiConstants.DISTANCE, 
-					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
-			toCalendarButton.setBounds(editButton.getX() + editButton.getWidth() + GuiConstants.DISTANCE, 
-					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 110, 35);
+		if(appointment instanceof Meeting){
+			if(isLeader){
+				cancelButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
+				editButton.setBounds(cancelButton.getX() + cancelButton.getWidth() + GuiConstants.DISTANCE, 
+						placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
+				toCalendarButton.setBounds(editButton.getX() + editButton.getWidth() + GuiConstants.DISTANCE, 
+						placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 110, 35);
+			}
+			else{
+				Meeting m = (Meeting)appointment;
+				accpectButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
+				rejectButton.setBounds(accpectButton.getX() + accpectButton.getWidth() + GuiConstants.DISTANCE, 
+						placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
+				toCalendarButton.setBounds(rejectButton.getX() + rejectButton.getWidth() + GuiConstants.DISTANCE, 
+						placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 110, 35);
+				
+				if(m.getParticipants().get(Client.getUser()) == Meeting.SVAR_BLANK){
+					accpectButton.setEnabled(true);
+					rejectButton.setEnabled(true);
+				}
+				else if (m.getParticipants().get(Client.getUser()) == Meeting.SVAR_OK){
+					accpectButton.setEnabled(false);
+					rejectButton.setEnabled(true);
+				}
+				else{
+					accpectButton.setEnabled(true);
+					rejectButton.setEnabled(false);
+				}
+			}	
 		}
 		else{
-			accpectButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
-			rejectButton.setBounds(accpectButton.getX() + accpectButton.getWidth() + GuiConstants.DISTANCE, 
-					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
-			toCalendarButton.setBounds(rejectButton.getX() + rejectButton.getWidth() + GuiConstants.DISTANCE, 
-					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 110, 35);
-			
-		}
-		
+			toCalendarButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
+		}	
 	}
 }
