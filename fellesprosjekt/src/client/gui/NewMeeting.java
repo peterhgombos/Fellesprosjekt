@@ -80,8 +80,10 @@ public class NewMeeting extends JPanel{
 	private HashMap<Person,Integer> participantsList;
 	private NewMeeting thisNewMeeting;
 	
+	private Meeting meeting;
 	
 
+	
 	public NewMeeting(CalendarPanel calendarPanel){
 		
 		String[] min = {"00", "15", "30", "45"};
@@ -245,6 +247,11 @@ public class NewMeeting extends JPanel{
 		add(severalDaysLabel);
 		
 
+	}
+	public NewMeeting(CalendarPanel cp, Meeting meeting){
+		new NewMeeting(cp);
+		this.meeting = meeting;
+		
 	}
 	
 	public void resize(){
