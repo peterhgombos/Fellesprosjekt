@@ -234,7 +234,6 @@ public class AppointmentView extends JPanel{
 		
 	}
 	
-	
 	private void setComponents(){
 		
 //		private JTextField placeInput;
