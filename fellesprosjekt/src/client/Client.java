@@ -16,7 +16,7 @@ public class Client {
 	
 	public static final Console console = new Console("Client");
 	
-	private JFrame frame;
+	private static JFrame frame;
 	private static Person user;
 	
 	private LogIn loginPanel;
@@ -49,7 +49,7 @@ public class Client {
 		frame.repaint();
 	}
 	
-	public JFrame getFrame (){
+	public static JFrame getFrame (){
 		return frame;
 	}
 	

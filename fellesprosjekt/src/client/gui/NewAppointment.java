@@ -13,6 +13,7 @@ import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -149,6 +150,9 @@ public class NewAppointment extends JPanel{
 		
 		scrollPane = new JScrollPane(descriptionArea);
 		
+		setLayout(null);
+		resize();
+		
 		add(scrollPane);
 		add(headlineLabel);
 		add(titleLabel);
@@ -171,6 +175,10 @@ public class NewAppointment extends JPanel{
 		add(severalDaysLabel);
 		add(endDPicker);
 		
+		Client.getFrame().resize(1201, 751);
+		Client.getFrame().resize(1200, 750);
+		
+		
 		//This is for testing:
 		datepicker.addPropertyChangeListener(new PropertyChangeListener() {
 			
@@ -180,10 +188,6 @@ public class NewAppointment extends JPanel{
 			}
 		});
 		//testing over
-		
-		setLayout(null);
-		resize();
-		repaint();
 	}
 	
 	public void resize(){
@@ -201,7 +205,7 @@ public class NewAppointment extends JPanel{
 		
 		datepicker.setBounds(GuiConstants.DISTANCE*2 + dateLabel.getWidth() + dateLabel.getX(), dateLabel.getY(), 190, GuiConstants.TEXTFIELD_HEIGTH);
 		
-		severalDays.setBounds(datepicker.getX(), dateLabel.getY() + dateLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 20, 20);
+		severalDays.setBounds(datepicker.getX(), dateLabel.getY() + dateLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 23, 23);
 		
 		severalDaysLabel.setBounds(severalDays.getX() + severalDays.getWidth() + GuiConstants.DISTANCE, severalDays.getY(), 200, GuiConstants.LABEL_HEIGTH);
 		severalDaysLabel.setFont(new Font(severalDaysLabel.getFont().getName(),0 ,10));
