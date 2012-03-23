@@ -3,6 +3,8 @@ package client.gui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import common.dataobjects.Appointment;
+
 import client.Client;
 import client.connection.ServerData;
 import client.gui.calendar.Calendar;
@@ -18,6 +20,8 @@ public class CalendarPanel extends JPanel {
 	private NewAppointment newAppointmentPanel;
 	private NewMeeting newMeetingPanel;
 	private Appointments myAppointments;
+	private AppointmentView appView;
+	
 	private JFrame frame;
 	
 	public CalendarPanel(Client client){
@@ -69,6 +73,15 @@ public class CalendarPanel extends JPanel {
 		
 		
 		add(newAppointmentPanel);
+		frame.repaint();
+	}
+	
+	public void goToAppointmentView(Appointment app){
+		removeAllComponents();
+		appView = new AppointmentView(this, app);
+		appView.setBounds(sidePanel.getX()+ sidePanel.getWidth(), 0, 900, 700);
+		
+		add(appView);
 		frame.repaint();
 	}
 	
