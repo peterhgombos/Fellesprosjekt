@@ -177,7 +177,7 @@ public class NewMeeting extends JPanel{
 				
 				String place = "";
 				if(bookMeetingroomRadioButton.isSelected()){
-					place = ((common.dataobjects.Room)roomPicker.getSelectedItem()).getId();
+					place = ((common.dataobjects.Room)roomPicker.getSelectedItem()).getRomId();
 				}
 				else if (otherPlaceRadioButton.isSelected()){
 					place = placeField.getText();

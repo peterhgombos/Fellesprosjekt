@@ -183,7 +183,7 @@ public class AppointmentView extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				
 				//TODO slette møtet i database og via ServerData
-				ServerData.
+				//ServerData.
 				
 				//calendarpanel.goToCalender();
 			}
