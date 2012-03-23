@@ -80,7 +80,7 @@ public class NewMeeting extends JPanel{
 	private int numberOfParticipants;
 	private int numberOfExternalparticipants;
 	
-
+	private Date defaultDate = new Date(System.currentTimeMillis());
 	
 	public NewMeeting(CalendarPanel calendarPanel){
 		
@@ -115,8 +115,10 @@ public class NewMeeting extends JPanel{
 		radioButtonGroup.add(otherPlaceRadioButton);
 		
 		datepicker = new JDateChooser();
+		datepicker.setDate(defaultDate);
 		datepicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		datepickerDays = new JDateChooser();
+		datepickerDays.setDate(defaultDate);
 		datepickerDays.setVisible(false);
 		datepickerDays.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		severalDays = new JCheckBox();
