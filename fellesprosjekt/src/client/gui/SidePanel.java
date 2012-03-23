@@ -54,9 +54,12 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 	private DefaultListModel employeeListModel;
 	private DefaultListModel selectedEmployeeListModel;
 	
+	private SidePanel thisSidepanel;
+	
 	public SidePanel(CalendarPanel calendarPanel) {
 		calendarpanel = calendarPanel;
-			
+		thisSidepanel = this;
+		
 		message = new JButton("Meldinger");
 		message.addActionListener(new ActionListener() {
 			
@@ -118,7 +121,7 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 					if(object != null){
 						selectedEmployeeListModel.addElement((Person)object);
 						employeeListModel.removeElement((Person)object);
-						//ServerData.requestSearchForPerson("");
+						ServerData.requestSearchForPerson("");
 					}
 				}
 			}
@@ -157,12 +160,9 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 			}
 			public void keyPressed(KeyEvent e) {}
 		});
-//		if(!this.hasFocus()){
-//			ServerData.removeMessageListener(this);
-//		}
+		
 		ServerData.addMessageListener(this);
 		ServerData.requestSearchForPerson("");
-		
 		
 		setLayout(null);
 		resize();
