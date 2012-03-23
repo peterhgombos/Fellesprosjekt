@@ -312,7 +312,9 @@ public class NewMeeting extends JPanel{
 		}
 	
 	public void addParticipants(HashMap<Person,Integer> p){
-		participantsList = p;
+		for(Person person : p.keySet()){
+			participantsList.put(person, p.get(person));
+		}
 	}
 	public HashMap<Person, Integer> getParticipantList(){
 		return participantsList;
