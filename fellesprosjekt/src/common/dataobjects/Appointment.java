@@ -3,6 +3,8 @@ package common.dataobjects;
 import java.awt.Color;
 import java.io.Serializable;
 
+import javax.xml.stream.events.StartDocument;
+
 import xml.XMLElements;
 import client.Client;
 import client.gui.calendar.ColorPicker;
@@ -10,7 +12,7 @@ import client.gui.calendar.ColorPicker;
 import common.utilities.DateString;
 
 
-public class Appointment implements Serializable {
+public class Appointment implements Serializable, Comparable {
 
 	private static final long serialVersionUID = 3662988846703010000L;
 
@@ -130,5 +132,10 @@ public class Appointment implements Serializable {
 
 	public Color getColor(){
 		return color;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		return startTime.toString().compareTo(((Appointment)o).startTime.toString());
 	}
 }

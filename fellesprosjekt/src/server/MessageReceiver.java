@@ -50,11 +50,6 @@ public class MessageReceiver {
 				Collection<Appointment> appointments = resultSetToAppointment(appointmentResult);
 				Collection<Meeting> meetings = resultSetToMeeting(meetingResult);
 
-				for(Meeting m: meetings){
-					for(Person pp : m.getParticipants().keySet()){
-					}
-				}
-
 				ComMessage sendapp = new ComMessage(appointments, MessageType.RECEIVE_APPOINTMENTS);
 				ComMessage sendmeet = new ComMessage(meetings, MessageType.RECEIVE_MEETINGS);
 
@@ -69,6 +64,9 @@ public class MessageReceiver {
 			Person authenticatedPerson = requestLogin(message);
 			ComMessage sendLogin = new ComMessage(authenticatedPerson, MessageType.RECEIVE_LOGIN);
 			clientWriter.send(sendLogin);
+		}
+		else if(messageType.equals(MessageType.REQUEST_MEETINGS_AND_APPOINTMENTS_BY_DATE_FILTER)){
+			meetingsandappointmentsbydate(message, clientWriter);
 		}
 		else if(messageType.equals(MessageType.REQUEST_NEW_APPOINTMENT)){
 			newAppointment(message);
@@ -114,6 +112,31 @@ public class MessageReceiver {
 	}
 	
 	
+	private void meetingsandappointmentsbydate(ComMessage message, ClientWriter cw) {
+		Person p = (Person)message.getData();
+		int personid = p.getPersonID();
+
+		try{
+			ResultSet appointmentResult = database.executeQuery(Queries.getAppointments(personid)); //Get the appointments where the person is a participants	
+			ResultSet meetingResult = database.executeQuery(Queries.getMeetings(personid)); //Get the meetings where the person is a participants	
+
+			Collection<Appointment> appointments = resultSetToAppointment(appointmentResult);
+			Collection<Meeting> meetings = resultSetToMeeting(meetingResult);
+
+
+			ComMessage sendapp = new ComMessage(appointments, MessageType.RECEIVE_APPOINTMENTS_BY_DATE_FILTER);
+			ComMessage sendmeet = new ComMessage(meetings, MessageType.RECEIVE_MEETINGS_BY_DATE_FILTER);
+
+			cw.send(sendapp);
+			cw.send(sendmeet);
+
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+	}
+
+
 	private ArrayList<Person> searchForMeetingParticipants(ComMessage message){
 		Appointment query = (Appointment) message.getData();
 		try{

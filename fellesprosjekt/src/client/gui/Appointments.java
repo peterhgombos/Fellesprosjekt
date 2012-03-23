@@ -3,22 +3,20 @@ package client.gui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.*;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.WindowConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -30,11 +28,10 @@ import com.toedter.calendar.JDateChooser;
 import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
 import common.dataobjects.Meeting;
-import common.dataobjects.Person;
 import common.utilities.MessageType;
 
-
-public class Appointments extends JPanel {
+@SuppressWarnings("serial")
+public class Appointments extends JPanel implements MessageListener{
 	
 	private JDateChooser datepickerFromDate;
 	private JDateChooser datepickerToDate;
@@ -59,8 +56,12 @@ public class Appointments extends JPanel {
 	
 	private CalendarPanel calendarpanel;
 	
+	private LinkedList<Appointment> appointments;
+	private LinkedList<Meeting> meetings;
 	
-	public Appointments(CalendarPanel calendarPanel){
+	public Appointments(CalendarPanel calendarPanel) {
+		appointments = new LinkedList<Appointment>();
+		meetings = new LinkedList<Meeting>();
 		
 		//ArrayList<Appointment> appointmentArrayList = new ArrayList<Appointment>();
 		calendarpanel = calendarPanel;
@@ -89,7 +90,7 @@ public class Appointments extends JPanel {
 			}
 		});
 		
-		HashMap<Integer, Appointment> appointmentList =  ServerData.getAppointments();
+		ServerData.requestAppointmensAndMeetingByDateFilter(Client.getUser());
 		HashMap<Integer, Meeting> meetingsList = ServerData.getMeetings();
 		
 		
@@ -119,10 +120,8 @@ public class Appointments extends JPanel {
 		add(datepickerFromDate);
 		add(datepickerToDate);
 		
-
 		setLayout(null);
 		resize();
-		
 	}
 	
 	public void resize(){
@@ -152,6 +151,32 @@ public class Appointments extends JPanel {
 		toCalendarButton.setBounds(list.getX(), list.getY() + GuiConstants.GROUP_DISTANCE + list.getHeight(), 140, GuiConstants.BUTTON_HEIGTH);
 		
 		System.out.println(datepickerToDate.getX() + " " + datepickerToDate.getWidth() + " " + list.getX() );
+	}
+
+	@Override
+	public void receiveMessage(ComMessage m) {
+		if(m.getType().equals(MessageType.RECEIVE_APPOINTMENTS_BY_DATE_FILTER )){
+			appointments.clear();
+			for (Appointment a : (Collection<Appointment>)m.getData()) {
+				appointments.add(a);
+			}
+		}
+		if(m.getType().equals(MessageType.RECEIVE_MEETINGS_BY_DATE_FILTER)){
+			meetings.clear();
+			for (Meeting me : (Collection<Meeting>)m.getData()) {
+				appointments.add(me);
+			}
+		}
+		LinkedList<Appointment> nyliste = new LinkedList<Appointment>();
+		if(meetingCheckBox.isSelected()){
+			nyliste.addAll(appointments);
+		}
+		if(appointmentCheckBox.isSelected()){
+			nyliste.addAll(meetings);
+		}
+		Collections.sort(nyliste);
+		
+		
 		
 	}
 }
