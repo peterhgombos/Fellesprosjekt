@@ -122,21 +122,8 @@ public class AppointmentView extends JPanel{
 		numberOfParticipantsField.setEditable(false);
 		numberOfParticipantsField.setBackground(this.getBackground());
 		
-		
 		accpectButton = new JButton("Godta");
-		accpectButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				calendarpanel.goToCalender();
-			}
-		});
 		rejectButton = new JButton("Avslå");
-		rejectButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				calendarpanel.goToCalender();
-			}
-		});
 		
 		accpectButton.addActionListener(new ActionListener() {
 			@Override
