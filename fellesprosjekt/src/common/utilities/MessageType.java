@@ -36,6 +36,9 @@ public class MessageType {
 	
 	public static final String REQUEST_ROOMS_AVAILABLE = "requestIsRoomAvailable";
 	public static final String RECEIVE_ROOM_AVAILABLE = "receiveIsRoomAvailable";
-		
+	
+	public static final String REQUEST_MEETINGS_AND_APPOINTMENTS_BY_DATE_FILTER = "requestAppointmensAndMeetingsByDateFilter";
+	public static final String RECEIVE_MEETINGS_BY_DATE_FILTER = "receiveMeetingsByDateFilter";
+	public static final String RECEIVE_APPOINTMENTS_BY_DATE_FILTER= "requestAppointmensByDateFilter";
 	
 }

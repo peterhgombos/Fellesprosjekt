@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.beans.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -23,15 +24,17 @@ import javax.swing.event.ListSelectionListener;
 
 import client.Client;
 import client.connection.MessageListener;
+import client.connection.ServerData;
 
 import com.toedter.calendar.JDateChooser;
 import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
+import common.dataobjects.Meeting;
 import common.dataobjects.Person;
 import common.utilities.MessageType;
 
 
-public class Appointments extends JPanel implements MessageListener{
+public class Appointments extends JPanel {
 	
 	private JDateChooser datepickerFromDate;
 	private JDateChooser datepickerToDate;
@@ -85,6 +88,14 @@ public class Appointments extends JPanel implements MessageListener{
 				calendarpanel.goToAppointmentView((Appointment)listModel.getElementAt(list.getSelectedIndex()));
 			}
 		});
+		
+		HashMap<Integer, Appointment> appointmentList =  ServerData.getAppointments();
+		HashMap<Integer, Meeting> meetingsList = ServerData.getMeetings();
+		
+		
+		//TODO legg til avtaler og møter etter dato
+		// TODO kunne vise bare møter og bare avtaler
+		
         listScrollPane = new JScrollPane(list);
 		
 		toCalendarButton = new JButton("Til Kalender");
@@ -142,16 +153,5 @@ public class Appointments extends JPanel implements MessageListener{
 		
 		System.out.println(datepickerToDate.getX() + " " + datepickerToDate.getWidth() + " " + list.getX() );
 		
-	}
-
-	@Override
-	public void receiveMessage(ComMessage m) {
-		if(m.getType().equals(MessageType.REQUEST_APPOINTMENTS_AND_MEETINGS)){
-			listModel.clear();
-			Collection<Appointment> appointmentsCollection = (Collection<Appointment>)m.getData();
-			for (Appointment appointment : appointmentsCollection) {
-				listModel.addElement(appointment);
-			}
-		}
 	}
 }
