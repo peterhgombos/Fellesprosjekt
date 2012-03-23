@@ -70,13 +70,11 @@ public class Calendar extends JPanel implements MessageListener {
 
 		lastWeek.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				calModel.lastWeek();
 				weekNumberField.setText(""+calModel.getWeek());
 				yearField.setText("" + calModel.getYear());
 				repaint();
-
 			}
 		});
 
