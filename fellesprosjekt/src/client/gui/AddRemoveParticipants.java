@@ -104,6 +104,9 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 		employeeListScroll = new JScrollPane(employeeList);
 		
 		addedParticipantsListmodel  = (DefaultListModel) addedParticipantsList.getModel();
+		for (Person p : newMeeting.getParticipantList().keySet()) {
+			addedParticipantsListmodel.addElement(p);
+		}
 		employeeListModel = (DefaultListModel) employeeList.getModel();
 		
 		
