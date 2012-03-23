@@ -25,6 +25,7 @@ import javax.swing.border.Border;
 import org.omg.CORBA.portable.ValueBase;
 
 import client.Client;
+import client.connection.ServerData;
 
 import common.dataobjects.Appointment;
 import common.dataobjects.Meeting;
@@ -144,6 +145,7 @@ public class AppointmentView extends JPanel{
 				//TODO Endre svar i database
 				Meeting m = (Meeting)appointment;
 				m.changeParticipantAnswer(Client.getUser(), Meeting.SVAR_OK);
+				ServerData.requestUpdateAnswers(m.getParticipants(), appointment);
 				accpectButton.setEnabled(false);
 				rejectButton.setEnabled(true);
 				setComponents();
@@ -154,6 +156,7 @@ public class AppointmentView extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				Meeting m = (Meeting)appointment;
 				m.changeParticipantAnswer(Client.getUser(), Meeting.SVAR_NEI);
+				ServerData.requestUpdateAnswers(m.getParticipants(), appointment);
 				accpectButton.setEnabled(true);
 				rejectButton.setEnabled(false);
 				setComponents();
@@ -178,7 +181,11 @@ public class AppointmentView extends JPanel{
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				calendarpanel.goToCalender();
+				
+				//TODO slette møtet i database og via ServerData
+				ServerData.
+				
+				//calendarpanel.goToCalender();
 			}
 		});
 		

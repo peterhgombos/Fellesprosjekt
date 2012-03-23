@@ -34,4 +34,8 @@ public class MessageType {
 	
 	public static final String REQUEST_UPDATE_ANSWER = "requestUpdateAnswer";
 	
+	public static final String REQUEST_ROOMS_AVAILABLE = "requestIsRoomAvailable";
+	public static final String RECEIVE_ROOM_AVAILABLE = "receiveIsRoomAvailable";
+		
+	
 }
