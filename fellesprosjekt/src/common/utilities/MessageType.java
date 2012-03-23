@@ -32,4 +32,6 @@ public class MessageType {
 	public static final String REQUEST_ADD_ATTENDANT = "requestAddAttendant";
 	public static final String RECEIVE_ADD_ATTENDANT = "receiveAddAttendant";
 	
+	public static final String REQUEST_UPDATE_ANSWER = "requestUpdateAnswer";
+	
 }
