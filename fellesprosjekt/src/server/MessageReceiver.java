@@ -168,7 +168,7 @@ public class MessageReceiver {
 	private void newMeeting(ComMessage message){
 		Meeting newMeet = (Meeting) message.getData();
 		try{
-			database.updateDB(Queries.createNewMeeting(newMeet.getTitle(), newMeet.getDescription(), newMeet.getStartTime(), newMeet.getEndTime(),newMeet.getPlace(), newMeet.getRoom() == null ? null : newMeet.getRoom().getId(), newMeet.getLeader().getPersonID()));
+			database.updateDB(Queries.createNewMeeting(newMeet.getTitle(), newMeet.getDescription(), newMeet.getStartTime(), newMeet.getEndTime(),newMeet.getPlace(), newMeet.getRoom() == null ? null : newMeet.getRoom().getRomId(), newMeet.getLeader().getPersonID()));
 			ResultSet rs = database.executeQuery(Queries.getLastMeeting());
 			
 			Meeting meeti = resultSetToMeeting(rs).get(0);
@@ -250,7 +250,8 @@ public class MessageReceiver {
 		try{
 			while(rs.next()){
 				String room = rs.getString(Database.COL_ROMID);
-				returnThis.add(new Room(room));
+				int cap = rs.getInt(Database.COL_ROMKAPASITET);
+				returnThis.add(new Room(room, cap));
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
