@@ -214,6 +214,9 @@ public class NewMeeting extends JPanel{
 		
 		scrollPane = new JScrollPane(descriptionArea);
 		
+		setLayout(null);
+		resize();
+		
 		add(headlineLabel);
 		add(titleLabel);
 		add(dateLabel);
@@ -240,8 +243,9 @@ public class NewMeeting extends JPanel{
 		add(datepickerDays);
 		add(severalDays);
 		add(severalDaysLabel);
-		setLayout(null);
-		resize();
+		
+		repaint();
+		
 		
 	}
 	

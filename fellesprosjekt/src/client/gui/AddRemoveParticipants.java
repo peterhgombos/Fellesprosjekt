@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
+import client.Client;
 import client.connection.MessageListener;
 import client.connection.ServerData;
 
@@ -230,7 +231,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 			employeeListModel.clear();
 			Collection<Person> persons = (Collection<Person>)m.getData();
 			for (Person person : persons) {
-				if(!personExistInAddedParticipantsList(person)){
+				if(!personExistInAddedParticipantsList(person) && person.getPersonID() != Client.getUser().getPersonID()){
 					employeeListModel.addElement(person);
 				}
 			}

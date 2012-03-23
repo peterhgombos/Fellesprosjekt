@@ -24,6 +24,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import client.Client;
 import client.connection.MessageListener;
 import client.connection.ServerData;
 
@@ -249,7 +250,7 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 			employeeListModel.clear();
 			Collection<Person> persons = (Collection<Person>)m.getData();
 			for (Person person : persons) {
-				if (!personExistInSelectedEmployeeList(person)){
+				if (!personExistInSelectedEmployeeList(person) && person.getPersonID() != Client.getUser().getPersonID()){
 					employeeListModel.addElement(person);
 				}
 			}
