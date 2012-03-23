@@ -9,9 +9,11 @@ import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -21,7 +23,9 @@ import common.dataobjects.ComMessage;
 import common.dataobjects.Note;
 import common.utilities.MessageType;
 
+import client.Client;
 import client.connection.MessageListener;
+import client.connection.ServerData;
 
 @SuppressWarnings("serial")
 public class Message extends JPanel implements FocusListener, MessageListener{
@@ -31,7 +35,7 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 	private JButton delete;
 	private JButton toCalender;
 	private JLabel headLine;
-	private JPanel messageList;
+	private JList messageList;
 	private JScrollPane scroll;
 	private int x;
 	private int y;
@@ -42,6 +46,7 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 	private ArrayList<JCheckBox> boxList;
 	private CalendarPanel calendar;
 	private ArrayList<Note> notesList;
+	private DefaultListModel model;
 
 	public Message(CalendarPanel calendarPanel) {
 		notesList = new ArrayList<Note>();
@@ -53,6 +58,7 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 		boxList = new ArrayList<JCheckBox>();
 		nameLabel = new JLabel();
 		calendar = calendarPanel;
+		model = new DefaultListModel();
 		 
 		
 		all = new JCheckBox();
@@ -85,8 +91,12 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 			}
 		});
 		headLine = new JLabel("Meldinger");
-		messageList = new JPanel();
+		messageList = new JList();
 		scroll = new JScrollPane(messageList);
+		ServerData.addMessageListener(this);
+		ServerData.requestNotes(Client.getUser());
+		messageList.setModel(model);
+		
 		
 		
 		add(all);
@@ -116,18 +126,7 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 		
 		scroll.setBounds(GuiConstants.DISTANCE+55, all.getY() + searchfield.getHeight() + GuiConstants.DISTANCE, 435, 250);
 		
-		for (int i = 0; i < notesList.size(); i++) {
-			checkBox = new JCheckBox();
-			nameLabel = new JLabel();
-			nameLabel.setText(notesList.get(i).getTitle());
-			checkBox.setBounds(x, y, width-8, height);
-			nameLabel.setBounds(x+width, y, width, height);
-			messageList.add(checkBox);
-			boxList.add(i,checkBox);
-			messageList.add(nameLabel);
-			y+=22;
-			messageList.setSize(messageList.getWidth(), y);
-		}
+
 		messageList.setBounds(GuiConstants.DISTANCE+55, all.getY() + searchfield.getHeight() + GuiConstants.DISTANCE, 325, messageList.getHeight());
 		messageList.setPreferredSize(messageList.getSize());
 		
@@ -158,12 +157,14 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 
 	@Override
 	public void receiveMessage(ComMessage m) {
-		if(m.getType().equals(MessageType.RECEIVE_NOTE)){
+		if(m.getType().equals(MessageType.RECEIVE_NOTES)){
+			System.out.println("MELDING!!!");
 			Collection<Note> notes = (Collection<Note>)m.getData();
 			
 			for (Note note : notes) {
-				notesList.add(note);
+				model.addElement(note);
 			}
+			System.out.println(notes.size());
 		}
 		
 	}

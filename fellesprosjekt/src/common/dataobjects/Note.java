@@ -1,11 +1,13 @@
 package common.dataobjects;
 
-import java.sql.Date;
+import java.io.Serializable;
+
 
 import common.utilities.DateString;
 
-public class Note {
-	
+public class Note implements Serializable{
+
+	private static final long serialVersionUID = 1775497913240870440L;
 	private int id;
 	private String title;
 	private DateString timeAdded;
@@ -37,5 +39,10 @@ public class Note {
 
 	public DateString getTimeAdded() {
 		return timeAdded;
+	}
+	
+	@Override
+	public String toString() {
+		return this.title;
 	}
 }
