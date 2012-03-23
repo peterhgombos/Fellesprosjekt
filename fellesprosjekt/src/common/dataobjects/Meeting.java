@@ -21,10 +21,12 @@ public class Meeting extends Appointment implements Serializable{
 	//Integer er svaret fra person
 	private HashMap<Person, Integer> participants;
 	private int externalParticipants;
+	private int capacety;
 		
-	public Meeting(int id, Person leader, String title, String description, String place, DateString start, DateString end, HashMap<Person, Integer> participants){
+	public Meeting(int id, Person leader, String title, String description, String place, DateString start, DateString end, HashMap<Person, Integer> participants, int capacety){
 		super(id, leader, title, description, place, start, end);
 		this.participants = participants;
+		this.capacety = capacety;
 	}
 
 	public Room getRoom() {
@@ -55,6 +57,10 @@ public class Meeting extends Appointment implements Serializable{
 	
 	public int getParticipantsCount(){
 		return participants.size() + externalParticipants;
+	}
+	
+	public int getCapacety(){
+		return capacety;
 	}
 	
 	public void changeCountExternalParticipants(int num){

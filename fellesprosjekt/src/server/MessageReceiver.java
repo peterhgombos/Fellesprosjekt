@@ -16,6 +16,7 @@ import common.dataobjects.ComMessage;
 import common.dataobjects.Meeting;
 import common.dataobjects.Note;
 import common.dataobjects.Person;
+import common.sendobjects.AnswerUpdates;
 import common.sendobjects.AppointmentInvites;
 import common.utilities.DateString;
 import common.utilities.MessageType;
@@ -91,6 +92,18 @@ public class MessageReceiver {
 			ArrayList<Person> persons = searchForMeetingParticipants(message);
 			ComMessage getParticipants = new ComMessage(persons, MessageType.RECEIVE_PARTICIPANTS);
 			clientWriter.send(getParticipants);
+		}
+		else if(messageType.equals(MessageType.REQUEST_UPDATE_ANSWER)){
+			AnswerUpdates answerUpdates = (AnswerUpdates) message.getData();
+			HashMap<Person, Integer> personsWithAnwsers = answerUpdates.getPersonsWithAnswer();
+			Appointment appointment = answerUpdates.getAppointment();
+			for(Person p : personsWithAnwsers.keySet()){
+				try{
+					database.updateDB(Queries.updateAnswerToInvite(p.getPersonID(), appointment.getId(), personsWithAnwsers.get(p)));
+				}catch(SQLException e){
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	
