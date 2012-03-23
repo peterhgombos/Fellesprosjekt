@@ -31,7 +31,6 @@ public class ConnectionReceiver extends Thread{
 				clientReader.start();
 			} catch (IOException e) {
 				Server.console.writeline(e.getMessage());
-				
 			}
 		}
 	}
