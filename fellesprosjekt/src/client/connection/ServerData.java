@@ -58,6 +58,13 @@ public class ServerData {
 		calendar = new InternalCalendar();
 	}
 	
+	public static HashMap<Integer, Appointment> getAppointments(){
+		return appointments;
+	}
+	public static HashMap<Integer, Meeting> getMeetings(){
+		return meetings;
+	}
+	
 	public static void resetMeetingsAndAppointments(){
 		appointments = new HashMap<Integer, Appointment>();
 		meetings = new HashMap<Integer, Meeting>();
