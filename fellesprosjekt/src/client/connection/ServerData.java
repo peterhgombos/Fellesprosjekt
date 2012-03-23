@@ -97,7 +97,7 @@ public class ServerData {
 		connection.requestBookRoom(a);
 	}
 	
-	public static void requestAvaulableRooms(Meeting meeting){
+	public static void requestAvailableRooms(Meeting meeting){
 		connection.requestAvailableRooms(meeting);
 	}
 	

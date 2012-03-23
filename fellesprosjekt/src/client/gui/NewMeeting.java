@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -26,15 +27,19 @@ import javax.swing.SwingConstants;
 import com.toedter.calendar.JDateChooser;
 
 import client.Client;
+import client.connection.MessageListener;
 import client.connection.ServerData;
 
 
+import common.dataobjects.ComMessage;
 import common.dataobjects.Meeting;
 import common.dataobjects.Person;
+import common.dataobjects.Room;
 import common.utilities.DateString;
+import common.utilities.MessageType;
 
 
-public class NewMeeting extends JPanel{
+public class NewMeeting extends JPanel implements MessageListener{
 	
 	private JDateChooser datepicker;
 	private JDateChooser datepickerDays;
@@ -80,7 +85,7 @@ public class NewMeeting extends JPanel{
 	private int numberOfParticipants;
 	private int numberOfExternalparticipants;
 	
-
+	private Date defaultDate = new Date(System.currentTimeMillis());
 	
 	public NewMeeting(CalendarPanel calendarPanel){
 		
@@ -115,13 +120,19 @@ public class NewMeeting extends JPanel{
 		radioButtonGroup.add(otherPlaceRadioButton);
 		
 		datepicker = new JDateChooser();
+		datepicker.setDate(defaultDate);
 		datepicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		datepickerDays = new JDateChooser();
+		datepickerDays.setDate(defaultDate);
 		datepickerDays.setVisible(false);
 		datepickerDays.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		severalDays = new JCheckBox();
 		severalDaysLabel = new JLabel("Flere dager");
+		
+		ServerData.addMessageListener(this);
+		
 		severalDays.addItemListener(new ItemListener() {
+		
 
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -140,6 +151,7 @@ public class NewMeeting extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				roomPicker.setEnabled(true);
 				placeField.setEditable(false);
+				ServerData.requestAvailableRooms(thisNewMeeting.meeting);
 			}
 		});
 		otherPlaceRadioButton.addActionListener(new ActionListener() {
@@ -193,7 +205,8 @@ public class NewMeeting extends JPanel{
 				}
 				
 				Meeting m = new Meeting(-1, Client.getUser(),title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfParticipants);
-				ServerData.requestNewMeeting(m);;
+				ServerData.requestNewMeeting(m);
+				ServerData.removeMessageListener(thisNewMeeting);
 				
 				calendar.goToCalender();
 			}
@@ -203,6 +216,7 @@ public class NewMeeting extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				calendar.goToCalender();
+				ServerData.removeMessageListener(thisNewMeeting);
 			}
 		});
 		
@@ -332,5 +346,15 @@ public class NewMeeting extends JPanel{
 	
 	public int getNumberOfExternalParticipants(){
 		return numberOfExternalparticipants;
+	}
+	@Override
+	public void receiveMessage(ComMessage m) {
+		
+		if(m.getType().equals(MessageType.RECEIVE_ROOM_AVAILABLE)){
+			ArrayList<Room> rooms = (ArrayList<Room>) m.getData();
+			for(Room r : rooms){
+				roomPicker.addItem(r);
+			}
+		}
 	}
 }

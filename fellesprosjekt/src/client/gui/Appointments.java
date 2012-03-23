@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -59,6 +60,8 @@ public class Appointments extends JPanel implements MessageListener{
 	private LinkedList<Appointment> appointments;
 	private LinkedList<Meeting> meetings;
 	
+	private Date defaultDate = new Date(System.currentTimeMillis());
+	
 	public Appointments(CalendarPanel calendarPanel) {
 		appointments = new LinkedList<Appointment>();
 		meetings = new LinkedList<Meeting>();
@@ -67,7 +70,9 @@ public class Appointments extends JPanel implements MessageListener{
 		calendarpanel = calendarPanel;
 		
 		datepickerFromDate = new JDateChooser();
+		datepickerFromDate.setDate(defaultDate);
 		datepickerToDate = new JDateChooser();
+		datepickerToDate.setDate(defaultDate);
 		
 		headlineLabel = new JLabel("Mine Avtaler");
 		dateLabel = new JLabel("Dato:");

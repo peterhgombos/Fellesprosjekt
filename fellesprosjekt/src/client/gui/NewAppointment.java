@@ -59,6 +59,8 @@ public class NewAppointment extends JPanel{
 	private JButton saveButton;
 	private JButton cancelButton;
 	private CalendarPanel calendar;
+	
+	private Date defaultDate = new Date(System.currentTimeMillis());
 
 	public NewAppointment(CalendarPanel calendarPanel){
 		String[] min = {"00", "15", "30", "45"};
@@ -76,8 +78,10 @@ public class NewAppointment extends JPanel{
 		
 		nameField = new JTextField();
 		datepicker = new JDateChooser();
+		datepicker.setDate(defaultDate);
 		datepicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		endDPicker = new JDateChooser();
+		endDPicker.setDate(defaultDate);
 		endDPicker.setVisible(false);
 		endDPicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		severalDaysLabel = new JLabel("Flere dager");
