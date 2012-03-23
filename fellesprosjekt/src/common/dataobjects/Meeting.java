@@ -48,6 +48,11 @@ public class Meeting extends Appointment implements Serializable{
 		participants.remove(person);
 	}
 	
+	public void changeParticipantAnswer(Person person, int answear){
+		participants.remove(person);
+		participants.put(person, answear);
+	}
+	
 	public int getParticipantsCount(){
 		return participants.size() + externalParticipants;
 	}
