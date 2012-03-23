@@ -7,18 +7,24 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;
+
+
+import common.dataobjects.ComMessage;
+import common.dataobjects.Note;
+import common.utilities.MessageType;
+
+import client.connection.MessageListener;
 
 @SuppressWarnings("serial")
-public class Message extends JPanel implements FocusListener{
+public class Message extends JPanel implements FocusListener, MessageListener{
 
 	private JCheckBox all;
 	private JTextField searchfield;
@@ -27,7 +33,6 @@ public class Message extends JPanel implements FocusListener{
 	private JLabel headLine;
 	private JPanel messageList;
 	private JScrollPane scroll;
-	private int sizeValue;
 	private int x;
 	private int y;
 	private int width;
@@ -36,9 +41,10 @@ public class Message extends JPanel implements FocusListener{
 	private JLabel nameLabel;
 	private ArrayList<JCheckBox> boxList;
 	private CalendarPanel calendar;
+	private ArrayList<Note> notesList;
 
 	public Message(CalendarPanel calendarPanel) {
-		sizeValue = 10;
+		notesList = new ArrayList<Note>();
 		x = 5;
 		y = 5;
 		width = 30;
@@ -110,10 +116,10 @@ public class Message extends JPanel implements FocusListener{
 		
 		scroll.setBounds(GuiConstants.DISTANCE+55, all.getY() + searchfield.getHeight() + GuiConstants.DISTANCE, 435, 250);
 		
-		for (int i = 0; i < sizeValue; i++) {
+		for (int i = 0; i < notesList.size(); i++) {
 			checkBox = new JCheckBox();
 			nameLabel = new JLabel();
-			nameLabel.setText("hei");
+			nameLabel.setText(notesList.get(i).getTitle());
 			checkBox.setBounds(x, y, width-8, height);
 			nameLabel.setBounds(x+width, y, width, height);
 			messageList.add(checkBox);
@@ -133,16 +139,6 @@ public class Message extends JPanel implements FocusListener{
 
 	
 	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		Message meeting = new Message(null);
-		frame.add(meeting);
-		frame.getContentPane();
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.pack();
-		frame.setSize(700, 700);
-		frame.setVisible(true);
-	}
 
 	@Override
 	public void focusGained(FocusEvent arg0) {
@@ -156,6 +152,19 @@ public class Message extends JPanel implements FocusListener{
 	public void focusLost(FocusEvent arg0) {
 		if (!searchfield.getText().equals("Søk")) {
 			searchfield.setText("Søk");
+		}
+		
+	}
+
+	@Override
+	public void receiveMessage(ComMessage m) {
+		System.out.println(m.getType());
+		if(m.getType().equals(MessageType.RECEIVE_NOTE)){
+			Collection<Note> notes = (Collection<Note>)m.getData();
+			
+			for (Note note : notes) {
+				notesList.add(note);
+			}
 		}
 		
 	}
