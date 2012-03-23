@@ -178,4 +178,8 @@ public class Queries {
 				"WHERE A.ROMNR != MOTEROM.ROMNR AND MOTEROM.KAPASITET >= " + capacity;
 
 	}
+	
+	public static String updateAnswerToInvite(int attendant, int appointment, int answer){
+		return 	"UPDATE";
+	}
 }
