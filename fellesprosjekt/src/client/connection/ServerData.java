@@ -96,6 +96,11 @@ public class ServerData {
 	public static void requestBookRoom(Appointment a){
 		connection.requestBookRoom(a);
 	}
+	
+	public static void requestAvaulableRooms(Meeting meeting){
+		connection.requestAvailableRooms(meeting);
+	}
+	
 	public static void requestNewAppointment(Appointment a){
 		connection.requestNewAppointment(a);
 	}
@@ -186,6 +191,10 @@ public class ServerData {
 	}
 	public static void removeMessageListener(MessageListener listener) {
 		ServerData.listeners.remove(listener);
+	}
+	
+	public static void requestNotes(Person person){
+		connection.requestNotes(person);
 	}
 	
 	
