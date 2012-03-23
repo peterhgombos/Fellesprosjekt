@@ -37,7 +37,6 @@ public class AppointmentView extends JPanel{
 	//Variabler som får verdier fra databasen
 	private String appointmentName;
 	private String description;
-	private boolean isLeader;
 	private String date;
 	private String time;
 	private String place;
@@ -356,15 +355,15 @@ public class AppointmentView extends JPanel{
 		placeInput.setFont(new Font(placeInput.getFont().getName(),0,15));
 		
 		if(appointment instanceof Meeting){
-			if(isLeader){
+			Meeting m = (Meeting)appointment;
+			if(m.getLeader() == Client.getUser()){
 				cancelButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
 				editButton.setBounds(cancelButton.getX() + cancelButton.getWidth() + GuiConstants.DISTANCE, 
 						placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
 				toCalendarButton.setBounds(editButton.getX() + editButton.getWidth() + GuiConstants.DISTANCE, 
 						placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 110, 35);
 			}
-			else{
-				Meeting m = (Meeting)appointment;
+			else if(m.getParticipants().containsKey(Client.getUser())){
 				accpectButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
 				rejectButton.setBounds(accpectButton.getX() + accpectButton.getWidth() + GuiConstants.DISTANCE, 
 						placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
