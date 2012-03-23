@@ -110,6 +110,10 @@ public class ServerData {
 		connection.requestGetParticipnts(app);
 	}
 	
+	public static void requestUpdateAnswers(HashMap<Person, Integer> persons, Appointment app){
+		connection.requestUpdateAnswers(persons, app);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static synchronized void receiveMessage(ComMessage message){
 		String messageType = message.getType();
