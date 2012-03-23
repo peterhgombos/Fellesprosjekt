@@ -66,6 +66,10 @@ public class Connection  {
 		writer.send(new ComMessage(app, MessageType.REQUEST_BOOK_ROOM));
 	}
 	
+	public void requestAvailableRooms(Meeting meeting){
+		writer.send(new ComMessage(meeting, MessageType.REQUEST_ROOMS_AVAILABLE));
+	}
+	
 	public synchronized void receiveMessage(ComMessage s) {
 		try{
 			ServerData.receiveMessage(s);
