@@ -77,6 +77,8 @@ public class NewMeeting extends JPanel{
 	private NewMeeting thisNewMeeting;
 	
 	private Meeting meeting;
+	private int numberOfParticipants;
+	private int numberOfExternalparticipants;
 	
 
 	
@@ -321,5 +323,14 @@ public class NewMeeting extends JPanel{
 	}
 	public Meeting getMeeting(){
 		return meeting;
+	}
+	
+	public void setNumberOfParticipants(int externalParticipants){
+		numberOfExternalparticipants = externalParticipants;
+		numberOfParticipants = externalParticipants + participantsList.values().size();
+	}
+	
+	public int getNumberOfExternalParticipants(){
+		return numberOfExternalparticipants;
 	}
 }

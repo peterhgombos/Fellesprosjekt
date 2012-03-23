@@ -84,7 +84,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 		});
 		
 		newInvited = new ArrayList<Person>();  
-		externalParticipantsField = new JTextField();
+		externalParticipantsField = new JTextField(""+newMeeting.getNumberOfExternalParticipants());
 		externalParticipantsLabel = new JLabel("Antall eksterne deltakere");
 		frame = new JFrame();
 		
@@ -148,6 +148,8 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 				newMeeting.addParticipants(participants);
 				frame.dispose();
 				ServerData.removeMessageListener(thisAddRemoveParticipants);
+				newMeeting.setNumberOfParticipants(Integer.parseInt(externalParticipantsField.getText()));
+
 			}
 		});
 		
@@ -167,6 +169,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 		}
 		ServerData.requestSearchForPerson("");
 		
+				
 		add(headline);
 		add(searchField);
 		add(externalParticipantsField);
@@ -184,7 +187,6 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 		frame.add(this);
 		frame.setVisible(true);
 		frame.setSize(700, 700);
-		
 	}
 	
 	public void resize(){
