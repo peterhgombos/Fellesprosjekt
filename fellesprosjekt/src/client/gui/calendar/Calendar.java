@@ -55,7 +55,7 @@ public class Calendar extends JPanel implements MessageListener {
 		table = new JTable();
 		//table.addMouseListener(new JTableButtonMouseListener(table));
 
-		CalRenderer renderer = new CalRenderer(panel);
+		CalRenderer renderer = new CalRenderer();
 		table.setModel(calModel);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.setRowHeight(60);
@@ -140,40 +140,6 @@ public class Calendar extends JPanel implements MessageListener {
 	public void receiveMessage(ComMessage m){
 		if(m.getType().equals(MessageType.RECEIVE_APPOINTMENTS) || m.getType().equals(MessageType.RECEIVE_MEETINGS)){
 			table.repaint();
-		}
-	}
-	class JTableButtonMouseListener implements MouseListener {
-
-		JTable table;
-		public JTableButtonMouseListener(JTable table){
-			this.table = table;
-		}
-		@Override
-		public void mouseClicked(MouseEvent e){
-			CalRenderer renderer = (CalRenderer)table.getDefaultRenderer(Object.class);
-			
-			
-			ArrayList<JButton> buttons = renderer.getButtons;
-			//System.out.print("Clicked: " + e.getLocationOnScreen());
-			//System.out.println("Buttons: " + renderer.getButtons.size());
-			for(JButton b: buttons){
-				Point p = b.getLocation();
-				Point ep = e.getPoint();
-				
-				SwingUtilities.convertPoint(table, p, b);
-				
-				try{
-				}catch (IllegalComponentStateException  is){
-				}
-			}	
-		}
-		public void mouseEntered(MouseEvent arg0){
-		}
-		public void mouseExited(MouseEvent arg0){
-		}
-		public void mousePressed(MouseEvent arg0){
-		}
-		public void mouseReleased(MouseEvent arg0){
 		}
 	}
 }
