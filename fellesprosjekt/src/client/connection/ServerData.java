@@ -93,6 +93,9 @@ public class ServerData {
 		connection.requestMeetingsAndAppointments(p);
 	}
 	
+	public static void requestBookRoom(Appointment a){
+		connection.requestBookRoom(a);
+	}
 	public static void requestNewAppointment(Appointment a){
 		connection.requestNewAppointment(a);
 	}
