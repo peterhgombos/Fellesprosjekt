@@ -201,7 +201,6 @@ public class NewAppointment extends JPanel{
 			
 			public void propertyChange(PropertyChangeEvent evt) {
 				firePropertyChange("date", evt.getOldValue(), evt.getNewValue());
-				System.out.println(datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + " " + datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + " " + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH));
 			}
 		});
 		//testing over
@@ -236,9 +235,7 @@ public class NewAppointment extends JPanel{
 		titleLabel.setFont(new Font(headlineLabel.getFont().getName(), 0, 16));
 		
 		nameField.setBounds(GuiConstants.DISTANCE*2+ titleLabel.getWidth() + titleLabel.getX(), titleLabel.getY(), 190, GuiConstants.TEXTFIELD_HEIGTH);
-		
-		System.out.println(nameField.getX());
-		
+				
 		dateLabel.setBounds(titleLabel.getX(), titleLabel.getY() + titleLabel.getHeight() + GuiConstants.DISTANCE, 100, GuiConstants.LABEL_HEIGTH);
 		dateLabel.setFont(new Font(dateLabel.getFont().getName(), 0, 16));
 		

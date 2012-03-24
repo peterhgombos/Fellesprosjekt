@@ -16,6 +16,11 @@ public class Queries {
 				");";
 	}
 
+	public static String getRoom(String id){
+		return "SELECT MOTEROM.* " +
+				"FROM MOTEROM " +
+				"WHERE MOTEROM.ROMNR = '" + id + "';";
+	}
 
 	public static String getMeetings(int personid){
 		return 	"SELECT AVTALE.* " +
@@ -183,7 +188,7 @@ public class Queries {
 				"AGAINST ('%" + search +"%' " +
 				"IN BOOLEAN MODE));";
 	}
-	
+
 
 	public static String getNotesByFilter(String search){
 		return 	"SELECT VARSEL.* " +
@@ -230,12 +235,12 @@ public class Queries {
 				"SET SVAR= " + answer +
 				" WHERE AVTALEID=" + appointment + "AND ANSATTNR=" + attendant +";";
 	}
-	
+
 	public static String deleteNote(int noteID){
 		return "DELETE FROM VARSEL "+
 				"WHERE VARSELID = " + noteID + ";" ;
 	}
-	
+
 	public static String updateAppointment(int appID, String title, String description, DateString start, DateString end, String place){
 		return 	"UPDATE AVTALE " +
 				"SET TITTEL = '" + title + "', BESKRIVELSE =  '" + description + "', TIDSPUNKT = '" + start + 

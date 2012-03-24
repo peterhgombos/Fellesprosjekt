@@ -115,10 +115,7 @@ public class Calendar extends JPanel implements MessageListener {
 		add(yearField);
 		add(nextWeek);
 		
-		scrollPane.getViewport().setViewPosition(new Point(0,table.getRowHeight()*7));
-		System.out.println(table.getRowHeight());
-		System.out.println(scrollPane.getVerticalScrollBar().getValue() + " Value");
-		
+		scrollPane.getViewport().setViewPosition(new Point(0,table.getRowHeight()*7));		
 	}
 
 	private void resize(){

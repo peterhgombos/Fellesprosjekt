@@ -124,7 +124,6 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 				ServerData.resetMeetingsAndAppointments();
 				ServerData.requestAppointmentsAndMeetings(Client.getUser());
 				for(int i = 0; i < selectedEmployeeListModel.size(); i++){
-					System.out.println(((Person)selectedEmployeeListModel.getElementAt(i)).getFirstname());
 					ServerData.requestAppointmentsAndMeetings(((Person)selectedEmployeeListModel.getElementAt(i)));
 				}
 			}
@@ -149,16 +148,13 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 				Person person = (Person)selectedEmployeeList.getSelectedValue();
 				if(person != null){
 					selectedEmployeeListModel.removeElement(person);
-					employeeListModel.addElement(person);
-//					System.out.println("kjhkj" + person.getFirstname());
-					
+					employeeListModel.addElement(person);					
 					
 					ColorPicker.reset();
 					ServerData.getCalendar().reset();
 					ServerData.resetMeetingsAndAppointments();
 					ServerData.requestAppointmentsAndMeetings(Client.getUser());
 					for(int i = 0; i < selectedEmployeeListModel.size(); i++){
-//						System.out.println(((Person)selectedEmployeeListModel.getElementAt(i)).getFirstname());
 						ServerData.requestAppointmentsAndMeetings(((Person)selectedEmployeeListModel.getElementAt(i)));
 					}
 				}

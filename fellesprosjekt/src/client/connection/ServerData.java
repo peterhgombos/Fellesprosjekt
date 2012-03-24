@@ -89,7 +89,7 @@ public class ServerData {
 		connection.requestMeetingsAndAppointments(p);
 	}
 	
-	public static void requestBookRoom(Appointment a){
+	public static void requestBookRoom(Meeting a){
 		connection.requestBookRoom(a);
 	}
 	
@@ -137,7 +137,6 @@ public class ServerData {
 	
 	@SuppressWarnings("unchecked")
 	public static synchronized void receiveMessage(ComMessage message){
-		System.out.println(message.getType());
 		
 		String messageType = message.getType();
 		
