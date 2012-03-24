@@ -347,7 +347,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 		placeLabel.setFont(new Font(placeLabel.getFont().getName(), 0, 16));
 		
 		bookMeetingroomRadioButton.setBounds(GuiConstants.DISTANCE*2+ titleLabel.getWidth() + titleLabel.getX(), placeLabel.getY(), 120, 25);
-		roomPicker.setBounds(bookMeetingroomRadioButton.getX() + bookMeetingroomRadioButton.getWidth() + GuiConstants.DISTANCE, placeLabel.getY(), 80, 25);
+		roomPicker.setBounds(bookMeetingroomRadioButton.getX() + bookMeetingroomRadioButton.getWidth() + GuiConstants.DISTANCE, placeLabel.getY(), 160, 25);
 		roomInformationLabel.setBounds(roomPicker.getX() + roomPicker.getWidth() + 10, placeLabel.getY(), 160, 25);
 		
 		otherPlaceRadioButton.setBounds(bookMeetingroomRadioButton.getX(), placeLabel.getY()+ GuiConstants.DISTANCE + 20, 120, 25);
@@ -383,6 +383,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 	public void receiveMessage(ComMessage m) {
 		
 		if(m.getType().equals(MessageType.RECEIVE_ROOM_AVAILABLE)){
+			roomPicker.removeAllItems();
 			ArrayList<Room> rooms = (ArrayList<Room>) m.getData();
 			for(Room r : rooms){
 				roomPicker.addItem(r);

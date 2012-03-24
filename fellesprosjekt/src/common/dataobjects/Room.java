@@ -21,4 +21,9 @@ public class Room implements Serializable {
 	public String getRomId(){
 		return room;
 	}
+	
+	@Override
+	public String toString() {
+		return room;
+	}
 }
