@@ -201,4 +201,8 @@ public class ServerData {
 		connection.delteNotes(notes);
 	}
 	
+	public static void requestUpdateAppointmet(Appointment app){
+		connection.requestUpdateAppointment(app);
+	}
+	
 }
