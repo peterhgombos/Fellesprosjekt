@@ -87,7 +87,9 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 					//TODO feilmelding?
 					return;
 				}
-				calendar.goToAppointmentView(((Note)messageList.getSelectedValue()).getAppointment());
+				if(((Note)messageList.getSelectedValue()).getAppointment() != null){
+					calendar.goToAppointmentView(((Note)messageList.getSelectedValue()).getAppointment());
+				}
 			}
 		});
 		
