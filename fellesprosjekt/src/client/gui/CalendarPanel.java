@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import common.dataobjects.Appointment;
+import common.dataobjects.Meeting;
 
 import client.Client;
 import client.connection.ServerData;
@@ -85,6 +86,14 @@ public class CalendarPanel extends JPanel {
 		add(newAppointmentPanel);
 		frame.repaint();
 		
+	}
+	public void goToEditMeeting(Meeting meet){
+		removeAllComponents();
+		newMeetingPanel = new NewMeeting(this, meet);
+		newMeetingPanel.setBounds(sidePanel.getX() + sidePanel.getWidth(), 0, 900, 700);
+		
+		add(newMeetingPanel);
+		frame.repaint();
 	}
 	
 	public void goToAppointmentView(Appointment app){

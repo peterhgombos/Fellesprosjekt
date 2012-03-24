@@ -106,7 +106,8 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 		
 		addedParticipantsListmodel  = (DefaultListModel) addedParticipantsList.getModel();
 		for (Person p : newMeeting.getParticipantList().keySet()) {
-			addedParticipantsListmodel.addElement(p);
+			if(p.getPersonID() != Client.getUser().getPersonID())
+				addedParticipantsListmodel.addElement(p);
 		}
 		employeeListModel = (DefaultListModel) employeeList.getModel();
 		
@@ -257,7 +258,9 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 			addedParticipantsListmodel.clear();
 			ArrayList<Person> persons = (ArrayList<Person>) m.getData();
 			for(Person p : persons){
-				addedParticipantsListmodel.addElement(p);
+				if(p.getPersonID() != Client.getUser().getPersonID()){
+					addedParticipantsListmodel.addElement(p);
+				}
 			}
 		}
 	}
