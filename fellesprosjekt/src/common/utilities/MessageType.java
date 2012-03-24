@@ -45,5 +45,6 @@ public class MessageType {
 	
 	public static final String REQUEST_NOTES = "requestNotes";
 	public static final String RECEIVE_NOTES = "receiveNotes";
+	public static final String DELETE_NOTE = "deleteNote";
 	
 }

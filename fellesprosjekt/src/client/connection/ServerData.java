@@ -193,5 +193,8 @@ public class ServerData {
 		connection.requestNotes(person);
 	}
 	
+	public static void delteNotes(ArrayList<Note> notes){
+		connection.delteNotes(notes);
+	}
 	
 }
