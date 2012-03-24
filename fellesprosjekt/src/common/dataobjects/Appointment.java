@@ -35,7 +35,7 @@ public class Appointment implements Serializable, Comparable {
 		this.endTime = end;
 		this.place = place;
 		
-		if(leader.getPersonID() == Client.getUser().getPersonID()){
+		if(leader != null && leader.getPersonID() == Client.getUser().getPersonID()){
 			color = ColorPicker.nextColor();
 		}else{
 			color = ColorPicker.otherColor();
