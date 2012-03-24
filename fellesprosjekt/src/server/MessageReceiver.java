@@ -131,7 +131,7 @@ public class MessageReceiver {
 		else if (messageType.equals(MessageType.REQUEST_NOTES)) {
 			Person p = (Person)message.getData();
 			try {
-				ResultSet rs = database.executeQuery(Queries.getNotes(p.getPersonID()));
+				ResultSet rs = database.executeQuery(Queries.getNotes(p.getPersonID(), message.getProperty("filter")));
 				ArrayList<Note> result = resultSetToNotes(rs);
 				clientWriter.send(new ComMessage(result, MessageType.RECEIVE_NOTES));
 			} catch (SQLException e) {

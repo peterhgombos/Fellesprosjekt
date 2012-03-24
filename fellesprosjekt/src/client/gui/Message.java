@@ -76,7 +76,7 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 		searchfield.addKeyListener(new KeyListener() {
 			public void keyTyped(KeyEvent e) {}
 			public void keyReleased(KeyEvent e) {
-			ServerData.requestSearchForNotes(searchfield.getText());
+			ServerData.requestNotes(Client.getUser(), searchfield.getText());
 			}
 			public void keyPressed(KeyEvent e) {}
 		});
@@ -141,7 +141,7 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 		add(showbutton);
 
 		ServerData.addMessageListener(this);
-		ServerData.requestNotes(Client.getUser());
+		ServerData.requestNotes(Client.getUser(), "");
 	}
 
 	public void resize(){
@@ -182,20 +182,13 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 			searchfield.setText("Søk");
 		}
 	}
-	private String font;
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void receiveMessage(ComMessage m) {
 		if(m.getType().equals(MessageType.RECEIVE_NOTES)){
-			for (Note note : (Collection<Note>)m.getData()) {
-				messageModel.addElement(note);
-			}
-		}
-		
-		else if (m.getType().equals(MessageType.RECEIVE_SEARCH_NOTES)) {
 			messageModel.clear();
-			Collection<Note> notes = (Collection<Note>)m.getData();
-			for (Note note : notes) {
+			for (Note note : (Collection<Note>)m.getData()) {
 				messageModel.addElement(note);
 			}
 		}

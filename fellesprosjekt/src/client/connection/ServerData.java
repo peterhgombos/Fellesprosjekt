@@ -193,8 +193,8 @@ public class ServerData {
 		ServerData.listeners.remove(listener);
 	}
 	
-	public static void requestNotes(Person person){
-		connection.requestNotes(person);
+	public static void requestNotes(Person person, String filter){
+		connection.requestNotes(person, filter);
 	}
 	
 	public static void delteNotes(ArrayList<Note> notes){

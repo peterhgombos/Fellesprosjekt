@@ -92,13 +92,14 @@ public class Queries {
 				"ORDER BY VARSELID DESC LIMIT 1;";
 	}
 
-	public static String getNotes(int deltakerId){
+	public static String getNotes(int deltakerId, String filter){
 		return	"SELECT VARSEL. * , HAR_MOTTATT.HAR_LEST " +
 				"FROM VARSEL, DELTAKER, HAR_MOTTATT "+
 				"WHERE VARSEL.AVTALEID = DELTAKER.AVTALEID " +
 				"AND DELTAKER.ANSATTNR = HAR_MOTTATT.ANSATTNR " +
 				"AND VARSEL.VARSELID = HAR_MOTTATT.VARSELID " +
 				"AND DELTAKER.ANSATTNR = " + deltakerId + " " +
+				"AND VARSEL.TITTEL LIKE '%" + filter + "%'" +
 				"ORDER  BY VARSEL.TIDSENDT;";
 	}	
 

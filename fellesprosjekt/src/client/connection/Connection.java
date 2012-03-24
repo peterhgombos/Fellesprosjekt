@@ -112,8 +112,10 @@ public class Connection  {
 		writer.send(new ComMessage(person, MessageType.REQUEST_MEETINGS_AND_APPOINTMENTS_BY_DATE_FILTER));
 	}
 
-	public void requestNotes(Person person) {
-		writer.send(new ComMessage(person, MessageType.REQUEST_NOTES));
+	public void requestNotes(Person person, String filter) {
+		ComMessage comm = new ComMessage(person, MessageType.REQUEST_NOTES);
+		comm.setProperty("filter", filter);
+		writer.send(comm);
 		
 	}
 
