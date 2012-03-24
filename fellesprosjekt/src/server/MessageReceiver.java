@@ -344,8 +344,9 @@ public class MessageReceiver {
 				HashMap<Person, Integer> participants = resultSetToPersonWithAnswer(participantRes);
 
 				Person leader = resutlSetToPerson(database.executeQuery(Queries.getLeaderForMeeting(id))).get(0);
-
-				Room orom = resultSetToRooms(database.executeQuery(Queries.getRoom(room))).get(0);
+				
+				ArrayList<Room> rom = resultSetToRooms(database.executeQuery(Queries.getRoom(room)));
+				Room orom = rom.size() > 0 ? rom.get(0) : null;
 				
 				returnthis.add(new Meeting(id, leader, title, description, place, orom, start, end, participants, external));
 			}

@@ -226,8 +226,8 @@ public class Queries {
 
 	public static String bookRoom(int appId, String roomId){
 		return	"UPDATE AVTALE " +
-				"SET ROMNR=" + roomId +
-				" WHERE AVTALEID=" + appId + ";";
+				"SET ROMNR = '" + roomId + "' " +
+				"WHERE AVTALEID = '" + appId + "';";
 	}
 
 	public static String updateAnswerToInvite(int attendant, int appointment, int answer){
