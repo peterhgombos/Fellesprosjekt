@@ -56,7 +56,6 @@ public class DateString implements Serializable {
 	}
 	
 	public DateString(String s) {
-		System.out.println(s);
 		String[] datetime = s.split(" ");
 		String[] date = datetime[0].split("-");
 		String[] time = datetime[1].split(":");

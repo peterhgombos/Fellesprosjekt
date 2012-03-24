@@ -187,8 +187,6 @@ public class NewMeeting extends JPanel implements MessageListener{
 				}
 				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem() + ":0";
 				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-				System.out.println(timeStart);
-				System.out.println(timeEnd);
 				ServerData.requestAvailableRooms(new Meeting(-1, null, null, null, null, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfParticipants));
 			}
 		});

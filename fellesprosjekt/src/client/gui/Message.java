@@ -96,7 +96,6 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 					ArrayList<Note> alnotes = new ArrayList<Note>();
 					for (int i = 0; i < messageList.getSelectedValues().length; i++) {
 						alnotes.add((Note) messageList.getModel().getElementAt(i));
-						System.out.println(((Note) messageList.getModel().getElementAt(i)).getTitle());
 					}
 					ServerData.delteNotes(alnotes);
 
