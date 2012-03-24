@@ -125,4 +125,7 @@ public class Connection  {
 		writer.send(new ComMessage(search, MessageType.REQUEST_SEARCH_NOTES));
 		
 	}
+	public void requestUpdateAppointment(Appointment app){
+		writer.send(new ComMessage(app, MessageType.REQUEST_UPDATE_APPOINTMENT));
+	}
 }
