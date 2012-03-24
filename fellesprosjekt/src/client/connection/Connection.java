@@ -116,4 +116,12 @@ public class Connection  {
 		writer.send(new ComMessage(person, MessageType.REQUEST_NOTES));
 		
 	}
+	
+	public void deleteNote(ArrayList<Note> notes){
+		writer.send(new ComMessage(notes, MessageType.DELETE_NOTE));
+	}
+
+	public void delteNotes(ArrayList<Note> notes) {
+		writer.send(new ComMessage(notes, MessageType.DELETE_NOTE));
+	}
 }
