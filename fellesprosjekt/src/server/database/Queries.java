@@ -5,13 +5,14 @@ import common.utilities.DateString;
 public class Queries {
 
 	public static String getAppointments(int personid){
-		return 	"SELECT AVTALE. * " +
+		return "SELECT AVTALE. * " +
 				"FROM AVTALE " +
 				"WHERE AVTALE.LEDER = " + personid + " " +
 				"AND NOT EXISTS ( " +
-				"SELECT  * " +
+				"SELECT  * " + 
 				"FROM DELTAKER " +
 				"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID" +
+				"AND NOT DELTAKER.ANSATTNR = AVTALE.LEDER" +
 				");";
 	}
 
@@ -214,5 +215,10 @@ public class Queries {
 		return 	"UPDATE DELTAKER " +
 				"SET SVAR= " + answer +
 				" WHERE AVTALEID=" + appointment + "AND ANSATTNR=" + attendant +";";
+	}
+	
+	public static String deleteNote(int noteID){
+		return "DELETE FROM VARSEL "+
+				"WHERE VARSELID = " + noteID + ";" ;
 	}
 }
