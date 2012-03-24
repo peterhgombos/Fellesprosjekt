@@ -71,7 +71,7 @@ public class CalRenderer extends DefaultTableCellRenderer {
 								deltakere++;
 							}
 						}
-						minfo = new JLabel(" Kommer: " + ja + "/" + deltakere);
+						minfo = new JLabel(" Kommer: " + ja + "/" + (deltakere-1));
 						minfo.setBounds(0, etime.getY() + etime.getHeight(), bredde, 14);
 					}
 					

@@ -31,7 +31,6 @@ public class AppointmentView extends JPanel{
 	private String date;
 	private String time;
 	private String place;
-	//
 	
 	private JLabel headline;
 	private JLabel dateLabel;
