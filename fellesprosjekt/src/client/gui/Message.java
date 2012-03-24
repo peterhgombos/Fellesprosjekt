@@ -189,8 +189,14 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 		if(m.getType().equals(MessageType.RECEIVE_NOTES)){
 			for (Note note : (Collection<Note>)m.getData()) {
 				messageModel.addElement(note);
-				
-				
+			}
+		}
+		
+		else if (m.getType().equals(MessageType.RECEIVE_SEARCH_NOTES)) {
+			messageModel.clear();
+			Collection<Note> notes = (Collection<Note>)m.getData();
+			for (Note note : notes) {
+				messageModel.addElement(note);
 			}
 		}
 	}
