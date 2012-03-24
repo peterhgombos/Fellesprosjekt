@@ -54,7 +54,6 @@ public class Connection  {
 	
 	public void requestNewMeeting(Meeting newMeeting){
 		writer.send(new ComMessage(newMeeting, MessageType.REQUEST_NEW_MEETING));
-		Client.console.writeline("NEW MEETING\nDeltagere: " + newMeeting.getParticipants().keySet().size());
 	}
 	
 	public void requestUpdateAnswers(HashMap<Person, Integer> persons, Appointment appointment){
@@ -62,7 +61,7 @@ public class Connection  {
 		writer.send(new ComMessage(send, MessageType.REQUEST_UPDATE_ANSWER));
 	}
 	
-	public void requestBookRoom(Appointment app){
+	public void requestBookRoom(Meeting app){
 		writer.send(new ComMessage(app, MessageType.REQUEST_BOOK_ROOM));
 	}
 	

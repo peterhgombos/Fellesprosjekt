@@ -14,6 +14,7 @@ public class Database {
 	public static final String COL_FROM = "TIDSPUNKT";
 	public static final String COL_TO = "SLUTTIDSPUNKT";
 	public static final String COL_PLACE = "STED";
+	public static final String COL_ROOM = "ROMNR";
 	
 	public static final String COL_ANSWER = "SVAR";
 	public static final String COL_PERSONID = "ANSATTNR";

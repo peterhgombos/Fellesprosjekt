@@ -89,7 +89,7 @@ public class ServerData {
 		connection.requestMeetingsAndAppointments(p);
 	}
 	
-	public static void requestBookRoom(Appointment a){
+	public static void requestBookRoom(Meeting a){
 		connection.requestBookRoom(a);
 	}
 	
