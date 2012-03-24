@@ -113,7 +113,7 @@ public class MessageReceiver {
 			catch(SQLException e){
 				e.printStackTrace();
 			}
-			
+
 		}
 		else if(messageType.equals(MessageType.REQUEST_ROOMS_AVAILABLE)){
 			ArrayList<Room> availableRooms = getAvaliableRooms(message);
@@ -151,9 +151,14 @@ public class MessageReceiver {
 				}
 			}
 
+		}			
+		else if (messageType.equals(MessageType.REQUEST_SEARCH_NOTES)) {
+			ArrayList<Note> n = searchForNotes(message);
+			ComMessage sendNotes = new ComMessage(n, MessageType.RECEIVE_SEARCH_NOTES);
+			clientWriter.send(sendNotes);
 		}
 	}
-	
+
 	private ArrayList<Note> resultSetToNotes(ResultSet rs){
 		ArrayList<Note> notes = new ArrayList<Note>(); 
 		try {
@@ -164,7 +169,7 @@ public class MessageReceiver {
 				int appointmentID = rs.getInt(Database.COL_APPOINTMENTID);
 				boolean hasRead = rs.getBoolean(Database.COL_HASREAD);
 				Appointment appointment = resultSetToAppointment(database.executeQuery(Queries.getAppointmentById(appointmentID))).get(0);
-				
+
 				Note n = new Note(varselID, title, new DateString(timesend), appointment, hasRead);
 				notes.add(n);
 			}
@@ -174,7 +179,7 @@ public class MessageReceiver {
 		}
 		return notes;
 	}
-	
+
 	private void meetingsandappointmentsbydate(ComMessage message, ClientWriter cw) {
 		Person p = (Person)message.getData();
 		int personid = p.getPersonID();
@@ -196,7 +201,7 @@ public class MessageReceiver {
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		
+
 	}
 
 
@@ -212,7 +217,7 @@ public class MessageReceiver {
 		}
 		return null;
 	}
-	
+
 	private ArrayList<Room> getAvaliableRooms(ComMessage message){
 		Meeting meeting = (Meeting) message.getData();
 		try{
@@ -236,13 +241,13 @@ public class MessageReceiver {
 			return null;
 		}
 	}
-	
+
 	private void newAppointment(ComMessage message){
 		Appointment newApp = (Appointment) message.getData();
 		try{
 			database.updateDB(Queries.createNewAppointment(newApp.getTitle(), newApp.getDescription(), newApp.getStartTime(), newApp.getEndTime(),newApp.getPlace(), newApp.getLeader().getPersonID()));
 			ResultSet rs = database.executeQuery(Queries.getLastAppointment());
-			
+
 			Appointment appo = resultSetToAppointment(rs).get(0);
 			ComMessage comMesNewApp = new ComMessage(appo, MessageType.RECEIVE_NEW_APPOINTMENT);
 			database.updateDB(Queries.addPersonToAttend(appo.getLeader().getPersonID(), appo.getId()));
@@ -256,21 +261,21 @@ public class MessageReceiver {
 		try{
 			database.updateDB(Queries.createNewMeeting(newMeet.getTitle(), newMeet.getDescription(), newMeet.getStartTime(), newMeet.getEndTime(),newMeet.getPlace(), newMeet.getRoom() == null ? null : newMeet.getRoom().getRomId(), newMeet.getLeader().getPersonID()));
 			ResultSet rs = database.executeQuery(Queries.getLastMeeting());
-			
+
 			Meeting meeti = resultSetToMeeting(rs).get(0);
-			
+
 			for(Person p : newMeet.getParticipants().keySet()){
 				database.updateDB(Queries.addPersonToAttend(p.getPersonID(), meeti.getId()));
 			}
 			database.updateDB(Queries.addPersonToAttend(meeti.getLeader().getPersonID(), meeti.getId()));
 			ComMessage comMesNewMeet = new ComMessage(meeti, MessageType.RECEIVE_NEW_MEETING);
-			
+
 			sendToAll(comMesNewMeet);
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
 	}
-	
+
 	private Note newNote(ComMessage message){
 		Note newNote = (Note) message.getData();
 		try{
@@ -282,7 +287,7 @@ public class MessageReceiver {
 			return null;
 		}
 	}
-	
+
 	private ArrayList<Person> searchForPerson(ComMessage message){
 		String query = (String) message.getData();
 		try{
@@ -292,7 +297,17 @@ public class MessageReceiver {
 			return null;
 		}
 	}
-	
+
+	private ArrayList<Note> searchForNotes(ComMessage message){
+		String query = (String) message.getData();
+		try {
+			return resultSetToNotes(database.executeQuery(Queries.getNotesByFilter(query)));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	private void addAttendant(ComMessage message){
 		AppointmentInvites received = (AppointmentInvites) message.getData();
 		ArrayList<Person> invited = received.getInvited();
@@ -306,7 +321,7 @@ public class MessageReceiver {
 			}
 		}
 	}
-	
+
 	private ArrayList<Meeting> resultSetToMeeting(ResultSet result){
 		ArrayList<Meeting> returnthis = new ArrayList<Meeting>();
 		try{
@@ -321,9 +336,9 @@ public class MessageReceiver {
 
 				ResultSet participantRes = database.executeQuery(Queries.getAnsFromParticipants(id));
 				HashMap<Person, Integer> participants = resultSetToPersonWithAnswer(participantRes);
-				
+
 				Person leader = resutlSetToPerson(database.executeQuery(Queries.getLeaderForMeeting(id))).get(0);
-				
+
 				returnthis.add(new Meeting(id, leader, title, description, place, start, end, participants,external));
 			}
 		}catch(SQLException e){
@@ -331,7 +346,7 @@ public class MessageReceiver {
 		}
 		return returnthis;
 	}
-	
+
 	private ArrayList<Room> resultSetToRooms(ResultSet rs){
 		ArrayList<Room> returnThis = new ArrayList<Room>();
 		try{
@@ -356,9 +371,9 @@ public class MessageReceiver {
 				String place = result.getString(Database.COL_PLACE);
 				DateString start = new DateString(result.getTimestamp(Database.COL_FROM));
 				DateString end = new DateString(result.getTimestamp(Database.COL_TO));
-				
+
 				Person leader = resutlSetToPerson(database.executeQuery(Queries.getLeaderForMeeting(id))).get(0);
-				
+
 				returnthis.add(new Appointment(id, leader, title, description, place, start, end));
 			}
 		}catch(SQLException e){
@@ -386,7 +401,7 @@ public class MessageReceiver {
 		}
 		return returnthis;
 	}
-	
+
 	private ArrayList<Person> resutlSetToPerson(ResultSet rs){
 		ArrayList<Person> returnSet = new ArrayList<Person>();
 		try{
@@ -422,17 +437,17 @@ public class MessageReceiver {
 		}
 		return null;
 	}
-	
+
 	private Note resultSetToSingleNote(ResultSet rs){
-//		try{
-//			while(rs.next()){
-//				ResultSet appointmentResult = database.executeQuery(Queries.getAppointment(rs.getInt("AVTALE")));
-//				Appointment app = resultSetToAppointment(appointmentResult).get(0);
-//				return new Note(rs.getInt("AVTALEID"), rs.getString("TITTEL"), new DateString(rs.getDate("TIDSENDT")), app);
-//			}
-//		}catch(SQLException e){
-//			e.printStackTrace();
-//		}
+		//		try{
+			//			while(rs.next()){
+		//				ResultSet appointmentResult = database.executeQuery(Queries.getAppointment(rs.getInt("AVTALE")));
+		//				Appointment app = resultSetToAppointment(appointmentResult).get(0);
+		//				return new Note(rs.getInt("AVTALEID"), rs.getString("TITTEL"), new DateString(rs.getDate("TIDSENDT")), app);
+		//			}
+		//		}catch(SQLException e){
+		//			e.printStackTrace();
+		//		}
 		return null;
 	}
 
@@ -445,5 +460,5 @@ public class MessageReceiver {
 			client.send(message);
 		}
 	}
-	
+
 }

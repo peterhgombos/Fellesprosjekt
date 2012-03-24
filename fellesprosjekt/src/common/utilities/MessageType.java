@@ -48,7 +48,7 @@ public class MessageType {
 	public static final String DELETE_NOTE = "deleteNote";
 	
 	public static final String REQUEST_SEARCH_NOTES = "requestSearchNotes";
-	public static final Object RECEIVE_SEARCH_NOTES ="receiveSearchNotes" ;
+	public static final String RECEIVE_SEARCH_NOTES ="receiveSearchNotes" ;
 	
 	public static final String REQUEST_UPDATE_APPOINTMENT = "updateAppointment";
 	public static final String REQUEST_UPDATE_MEETING = "updateMeeting";
