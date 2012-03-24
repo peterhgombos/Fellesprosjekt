@@ -60,6 +60,7 @@ public class NewAppointment extends JPanel{
 	private JButton cancelButton;
 	private CalendarPanel calendar;
 	private boolean isInEdit=false;
+	private int existingAppointmentId; 
 	
 	private Date defaultDate = new Date(System.currentTimeMillis());
 
@@ -137,8 +138,15 @@ public class NewAppointment extends JPanel{
 					return;
 				}
 
-				Appointment a = new Appointment(-1, Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
-				ServerData.requestNewAppointment(a);
+				
+				if(isInEdit){
+					Appointment a = new Appointment(existingAppointmentId, Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
+					ServerData.requestUpdateAppointmet(a);
+				}
+				else{
+					Appointment a = new Appointment(-1, Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
+					ServerData.requestNewAppointment(a);
+				}
 				
 				calendar.goToCalender();
 			}
@@ -214,6 +222,8 @@ public class NewAppointment extends JPanel{
 		
 		descriptionArea.setText(app.getDescription());
 		placeField.setText(app.getPlace());
+		
+		existingAppointmentId = app.getId();
 		
 	}
 	

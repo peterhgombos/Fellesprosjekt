@@ -359,7 +359,8 @@ public class AppointmentView extends JPanel{
 			}	
 		}
 		else{
-			toCalendarButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 110, 35);
+			editButton.setBounds(placeInput.getX() , placeInput.getY() + placeInput.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
+			toCalendarButton.setBounds(editButton.getX() + editButton.getWidth() + GuiConstants.DISTANCE, editButton.getY(), 110, 35);
 		}	
 	}
 }
