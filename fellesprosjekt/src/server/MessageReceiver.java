@@ -105,6 +105,16 @@ public class MessageReceiver {
 				}
 			}
 		}
+		else if(messageType.equals(MessageType.REQUEST_UPDATE_APPOINTMENT)){
+			Appointment a = (Appointment) message.getData();
+			try{
+				database.updateDB(Queries.updateAppointment(a.getId(), a.getTitle(), a.getDescription(), a.getStartTime(), a.getEndTime(), a.getPlace(), a.get, a.))
+			}
+			catch{
+				
+			}
+			
+		}
 		else if(messageType.equals(MessageType.REQUEST_ROOMS_AVAILABLE)){
 			ArrayList<Room> availableRooms = getAvaliableRooms(message);
 			ComMessage rooms = new ComMessage(availableRooms, MessageType.RECEIVE_ROOM_AVAILABLE);
@@ -435,4 +445,5 @@ public class MessageReceiver {
 			client.send(message);
 		}
 	}
+	
 }

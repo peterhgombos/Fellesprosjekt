@@ -236,9 +236,9 @@ public class Queries {
 				"WHERE VARSELID = " + noteID + ";" ;
 	}
 	
-	public static String updateAppointment(int appID, String title, String description, DateString start, DateString end, String place, String roomID, int external){
-		return "UPDATE AVTALE( TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED, ROMNR, EKSTERNE) " +
-				"VALUES ('" + title +"','" + description + "','" + start + "','" + start + "'.'" + end + "','" + place + "','" + roomID + "'," + external + ") "+
+	public static String updateAppointment(int appID, String title, String description, DateString start, DateString end, String place){
+		return "UPDATE AVTALE( TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED) " +
+				"VALUES ('" + title +"','" + description + "','" + start + "','" + start + "'.'" + end + "','" + place + "') "+
 				"WHERE AVTALEID=" + appID + ";";
 	}
 }
