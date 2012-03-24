@@ -39,6 +39,7 @@ import common.utilities.DateString;
 import common.utilities.MessageType;
 
 
+@SuppressWarnings("serial")
 public class NewMeeting extends JPanel implements MessageListener{
 	
 	private JDateChooser datepicker;
@@ -151,7 +152,17 @@ public class NewMeeting extends JPanel implements MessageListener{
 			public void actionPerformed(ActionEvent e) {
 				roomPicker.setEnabled(true);
 				placeField.setEditable(false);
-				ServerData.requestAvailableRooms(thisNewMeeting.meeting);
+				String dateStart = datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH);;
+				String dateEnd;
+				if(datepickerDays.isEnabled()  && datepickerDays.isVisible()){
+					dateEnd = datepickerDays.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepickerDays.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + "-" + datepickerDays.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); ;
+				}
+				else{
+					dateEnd = dateStart;
+				}
+				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem() + ":0";
+				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
+				ServerData.requestAvailableRooms(new Meeting(-1, null, null, null, null, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + "  " + timeEnd), null, numberOfParticipants));
 			}
 		});
 		otherPlaceRadioButton.addActionListener(new ActionListener() {
