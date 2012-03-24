@@ -11,7 +11,7 @@ public class Queries {
 				"AND NOT EXISTS ( " +
 				"SELECT  * " + 
 				"FROM DELTAKER " +
-				"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID" +
+				"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID " +
 				"AND NOT DELTAKER.ANSATTNR = AVTALE.LEDER" +
 				");";
 	}
