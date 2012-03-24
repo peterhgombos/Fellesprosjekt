@@ -185,10 +185,9 @@ public class Queries {
 	
 
 	public static String getNotesByFilter(String search){
-		return 	"SELECT Notes.* FROM NOTES " + 
-				"WHERE (TITTEL LIKE '%" + search + "%' ) " +
-				"AGAINST ('%" + search +"%' " +
-				"IN BOOLEAN MODE));";
+		return 	"SELECT VARSEL.* " +
+				"FROM VARSEL " + 
+				"WHERE VARSEL.TITTEL LIKE '%" + search + "%'";
 	}
 
 	public static String createNewAppointment(String title, String description, DateString startTime, DateString endTime, String place, int leader){
