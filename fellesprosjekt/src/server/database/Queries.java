@@ -199,9 +199,9 @@ public class Queries {
 
 	public static String getRoomsForTimeSlot(DateString start, DateString end, int capacity) {
 		return "SELECT DISTINCT MOTEROM.ROMNR " +
-				"FROM MOTEROM, AVTALE " +
-				"JOIN AVTALE A ON " + start +  " <= B.SLUTTIDSPUNKT AND " + end + " >= B.TIDSPUNKT " + 
-				"WHERE A.ROMNR != MOTEROM.ROMNR AND MOTEROM.KAPASITET >= " + capacity + ";";
+				"FROM MOTEROM, AVTALE AS B " +
+				"JOIN AVTALE A ON '" + start +  "' <= B.SLUTTIDSPUNKT AND '" + end + "' >= B.TIDSPUNKT " + 
+				"WHERE A.ROMNR <> MOTEROM.ROMNR AND MOTEROM.KAPASITET >= " + capacity + ";";
 
 	}
 
