@@ -93,11 +93,13 @@ public class Queries {
 	}
 
 	public static String getNotes(int deltakerId){
-		return	"SELECT VARSEL.* " +
-				"FROM VARSEL, DELTAKER "+
-				"WHERE VARSEL.AVTALEID = DELTAKER.AVTALEID "+
-				"AND DELTAKER.ANSATTNR = " + deltakerId + 
-				" ORDER BY VARSEL.TIDSENDT;";
+		return	"SELECT VARSEL. * , HAR_MOTTATT.HAR_LEST " +
+				"FROM VARSEL, DELTAKER, HAR_MOTTATT "+
+				"WHERE VARSEL.AVTALEID = DELTAKER.AVTALEID " +
+				"AND DELTAKER.ANSATTNR = HAR_MOTTATT.ANSATTNR " +
+				"AND VARSEL.VARSELID = HAR_MOTTATT.VARSELID " +
+				"AND DELTAKER.ANSATTNR = " + deltakerId + " " +
+				"ORDER  BY VARSEL.TIDSENDT;";
 	}	
 
 	public static String getLastAppointment(){

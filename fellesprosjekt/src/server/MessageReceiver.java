@@ -152,10 +152,11 @@ public class MessageReceiver {
 				int varselID = rs.getInt(Database.COL_VARSELID);
 				Timestamp timesend = rs.getTimestamp(Database.COL_TIMESEND);
 				int appointmentID = rs.getInt(Database.COL_APPOINTMENTID);
+				boolean hasRead = rs.getBoolean(Database.COL_HASREAD);
 				
 				Appointment appointment = resultSetToAppointment(database.executeQuery(Queries.getAppointmentById(appointmentID))).get(0);
 				
-				Note n = new Note(varselID, title, new DateString(timesend), appointment);
+				Note n = new Note(varselID, title, new DateString(timesend), appointment, hasRead);
 				notes.add(n);
 			}
 		} catch (SQLException e) {

@@ -29,6 +29,7 @@ public class Database {
 	public static final String COL_NOTE_TITLE = "TITTEL";
 	public static final String COL_VARSELID = "VARSELID";
 	public static final String COL_TIMESEND = "TIDSENDT";
+	public static final String COL_HASREAD = "HAR_LEST";
 
 	
 	
