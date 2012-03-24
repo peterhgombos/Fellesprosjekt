@@ -162,7 +162,9 @@ public class NewMeeting extends JPanel implements MessageListener{
 				}
 				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem() + ":0";
 				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-				ServerData.requestAvailableRooms(new Meeting(-1, null, null, null, null, new DateString(dateStart + " " + timeStart + ":0"), new DateString(dateEnd + "  " + timeEnd + ":0"), null, numberOfParticipants));
+				System.out.println(timeStart);
+				System.out.println(timeEnd);
+				ServerData.requestAvailableRooms(new Meeting(-1, null, null, null, null, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + "  " + timeEnd), null, numberOfParticipants));
 			}
 		});
 		otherPlaceRadioButton.addActionListener(new ActionListener() {
