@@ -78,6 +78,7 @@ public class AppointmentView extends JPanel{
 		
 		appointment = app;
 		calendarpanel = calendarPanel;
+		AppointmentView thisAppointmentView = this;
 		
 		headline = new JLabel(appointmentName);
 		timeLabel = new JLabel("Tid");
@@ -143,7 +144,12 @@ public class AppointmentView extends JPanel{
 		editButton = new JButton("Rediger");
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calendarpanel.goToEditAppointmet(appointment);
+				if(appointment instanceof Meeting){
+					calendarpanel.goToEditMeeting((Meeting)appointment);
+				}
+				else{
+					calendarpanel.goToEditAppointmet(appointment);
+				}
 			}
 		});
 		cancelButton = new JButton("Avlys");

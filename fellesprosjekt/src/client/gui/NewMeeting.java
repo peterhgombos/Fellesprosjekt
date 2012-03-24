@@ -88,7 +88,32 @@ public class NewMeeting extends JPanel implements MessageListener{
 	
 	private Date defaultDate = new Date(System.currentTimeMillis());
 	
-	public NewMeeting(CalendarPanel calendarPanel){
+	private boolean isInEdit = false;
+	
+	public NewMeeting(CalendarPanel pal){
+		init(pal);
+	}
+	
+	public NewMeeting(CalendarPanel pal, Meeting meet){
+		init(pal);
+		
+		isInEdit=true;
+		
+		headlineLabel.setText("Rediger: " + meet.getTitle());
+		nameField.setText(meet.getTitle());
+		
+		startTimeHoursField.setSelectedIndex(meet.getStartTime().getHour());
+		startTimeMinField.setSelectedIndex(meet.getStartTime().getMinute());
+		endTimeHoursField.setSelectedIndex(meet.getEndTime().getHour());
+		endTimeMinField.setSelectedIndex(meet.getEndTime().getMinute());
+		
+		descriptionArea.setText(meet.getDescription());
+		placeField.setText(meet.getPlace());
+		participantsList = meet.getParticipants();
+		
+	}
+	
+	private void init(CalendarPanel calendarPanel){
 		
 		String[] min = {"00", "15", "30", "45"};
 		String[] hours= {"00","01","02","03","04","05","06","07","08","09","10", "11","12","13","14","15","16","17","18","19","20","21","22","23"};
@@ -273,11 +298,6 @@ public class NewMeeting extends JPanel implements MessageListener{
 		
 		Client.getFrame().resize(GuiConstants.FRAME_WIDTH+1, GuiConstants.FRAME_HEIGTH+1);
 		Client.getFrame().resize(GuiConstants.FRAME_WIDTH, GuiConstants.FRAME_HEIGTH);
-	}
-	public NewMeeting(CalendarPanel cp, Meeting meeting){
-		new NewMeeting(cp);
-		this.meeting = meeting;
-		
 	}
 	
 	public void resize(){
