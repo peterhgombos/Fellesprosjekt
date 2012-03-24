@@ -41,7 +41,7 @@ public class Meeting extends Appointment implements Serializable{
 		return participants;
 	}
 	
-	//Sjekke om deltakeren er med fra f�r?
+	//Sjekke om deltakeren er med fra før?
 	public void addParticipant(Person person, int answear) {
 		participants.put(person, answear);
 	}
