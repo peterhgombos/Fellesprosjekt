@@ -6,6 +6,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -70,6 +72,14 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 			}
 		});
 		searchfield = new JTextField("Søk");
+		
+		searchfield.addKeyListener(new KeyListener() {
+			public void keyTyped(KeyEvent e) {}
+			public void keyReleased(KeyEvent e) {
+			ServerData.requestSearchForPerson(searchfield.getText());
+			}
+			public void keyPressed(KeyEvent e) {}
+		});
 
 		messageList = new JList();
 		messageModel = new DefaultListModel();

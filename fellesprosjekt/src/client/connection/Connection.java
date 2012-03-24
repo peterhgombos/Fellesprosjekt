@@ -120,4 +120,9 @@ public class Connection  {
 	public void delteNotes(ArrayList<Note> notes) {
 		writer.send(new ComMessage(notes, MessageType.DELETE_NOTE));
 	}
+
+	public void requestSearchForNotes(String search) {
+		writer.send(new ComMessage(search, MessageType.REQUEST_SEARCH_NOTES));
+		
+	}
 }
