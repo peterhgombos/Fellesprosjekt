@@ -46,12 +46,14 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 
 	private CalendarPanel calendar;
 	private ArrayList<Note> notes;
+	private MessageRendrer rendrer;
 
 	public Message(CalendarPanel calendarPanel) {
 		calendar = calendarPanel;
 
 		headLine = new JLabel("Meldinger");
 		notes = new ArrayList<Note>();
+		rendrer = new MessageRendrer();
 
 		all = new JCheckBox();
 		all.addItemListener(new ItemListener() {
@@ -72,6 +74,7 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 		messageList = new JList();
 		messageModel = new DefaultListModel();
 		messageList.setModel(messageModel);
+		messageList.setCellRenderer(rendrer);
 		messageList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 		scroll = new JScrollPane(messageList);
@@ -169,13 +172,15 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 			searchfield.setText("Søk");
 		}
 	}
-
+	private String font;
 	@SuppressWarnings("unchecked")
 	@Override
 	public void receiveMessage(ComMessage m) {
 		if(m.getType().equals(MessageType.RECEIVE_NOTES)){
 			for (Note note : (Collection<Note>)m.getData()) {
 				messageModel.addElement(note);
+				
+				
 			}
 		}
 	}

@@ -24,12 +24,17 @@ public class Note implements Serializable{
 		this.title = title;
 		this.timeAdded = timeAdded;
 		this.appointment = appointment;
-		this.hasRead = this.hasRead;
+		this.hasRead = hasRead;
 	}
 	
 	public Appointment getAppointment() {
 		return appointment;
 	}
+	
+	public boolean isRead(){
+		return hasRead;
+	}
+	
 	
 	public int getID(){
 		return id;
