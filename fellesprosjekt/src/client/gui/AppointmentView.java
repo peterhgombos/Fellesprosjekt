@@ -142,9 +142,8 @@ public class AppointmentView extends JPanel{
 		});
 		editButton = new JButton("Rediger");
 		editButton.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
-				calendarpanel.goToNewAppointment();
+				calendarpanel.goToEditAppointmet(appointment);
 			}
 		});
 		cancelButton = new JButton("Avlys");
