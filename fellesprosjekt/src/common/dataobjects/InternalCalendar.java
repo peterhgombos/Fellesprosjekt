@@ -110,7 +110,7 @@ public class InternalCalendar {
 		}
 	}
 	public void addMeetings(Collection<Meeting> meetings){
-		for(Appointment a: meetings){
+		for(Meeting a: meetings){
 			addToCal(a);
 		}
 	}

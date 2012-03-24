@@ -13,6 +13,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import client.connection.ServerData;
 
 import common.dataobjects.Appointment;
+import common.dataobjects.Meeting;
+import common.dataobjects.Person;
 
 @SuppressWarnings("serial")
 public class CalRenderer extends DefaultTableCellRenderer {
@@ -35,8 +37,9 @@ public class CalRenderer extends DefaultTableCellRenderer {
 		if(result != null){
 			int bredde = 134 / result.size();
 			int i = 0;
-			ArrayList<Appointment> clone = (ArrayList<Appointment>)result.clone();
-			for(Appointment a : clone){
+			for(int j = 0; j < result.size(); j++){
+				
+				Appointment a = result.get(j);
 				
 				JPanel innerpanel = new JPanel(null);
 				
@@ -50,10 +53,27 @@ public class CalRenderer extends DefaultTableCellRenderer {
 					
 					JLabel stime = new JLabel(" Fra: " + format.format(a.getStartTime().getHour()) + ":" + format.format(a.getStartTime().getMinute()));
 					JLabel etime = new JLabel(" Til: " + format.format(a.getEndTime().getHour()) + ":" + format.format(a.getEndTime().getMinute()));
+					JLabel minfo = null;
 					
 					title.setBounds(0, 3, bredde , 14);
 					stime.setBounds(0, title.getY() + title.getHeight(), bredde, 14);
 					etime.setBounds(0, stime.getY() + stime.getHeight(), bredde, 14);
+					
+					if(a instanceof Meeting){
+						Meeting m = (Meeting)a;
+						int deltakere = 0;
+						int ja = 0;
+						for(Person per : m.getParticipants().keySet()){
+							if(m.getParticipants().get(per) == Meeting.SVAR_OK){
+								ja++;
+								deltakere++;
+							}else{
+								deltakere++;
+							}
+						}
+						minfo = new JLabel(" Kommer: " + ja + "/" + deltakere);
+						minfo.setBounds(0, etime.getY() + etime.getHeight(), bredde, 14);
+					}
 					
 					title.setBackground(innerpanel.getBackground());
 					stime.setBackground(innerpanel.getBackground());
@@ -62,6 +82,9 @@ public class CalRenderer extends DefaultTableCellRenderer {
 					innerpanel.add(title);
 					innerpanel.add(stime);
 					innerpanel.add(etime);
+					if(minfo != null){
+						innerpanel.add(minfo);
+					}
 				}
 				i++;
 			}
