@@ -80,19 +80,15 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 		delete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				if(messageList.getSelectedValues().length > 0){
-					//TODO feilmelding?
-					
+					ArrayList<Note> alnotes = new ArrayList<Note>();
 					for (int i = 0; i < messageList.getSelectedValues().length; i++) {
-						ArrayList<Note> notes = new ArrayList<Note>();
-						notes.add((Note) messageList.getModel().getElementAt(i));
-						
-
+						alnotes.add((Note) messageList.getModel().getElementAt(i));
+						System.out.println(((Note) messageList.getModel().getElementAt(i)).getTitle());
 					}
-					ServerData.delteNotes(notes);
-					System.out.println("iiiii");
+					ServerData.delteNotes(alnotes);
 
-					for (int i = 0; i < notes.size(); i++) {
-						messageModel.removeElement(notes.get(i));
+					for (int i = 0; i < alnotes.size(); i++) {
+						messageModel.removeElement(alnotes.get(i));
 					}
 				}
 			}
