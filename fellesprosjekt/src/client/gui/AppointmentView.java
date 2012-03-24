@@ -1,17 +1,12 @@
 package client.gui;
 
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -19,11 +14,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.WindowConstants;
-import javax.swing.border.Border;
-
-import org.omg.CORBA.portable.ValueBase;
-
 import client.Client;
 import client.connection.ServerData;
 
@@ -32,6 +22,7 @@ import common.dataobjects.Meeting;
 import common.dataobjects.Person;
 import common.utilities.DateString;
 
+@SuppressWarnings("serial")
 public class AppointmentView extends JPanel{
 	
 	//Variabler som får verdier fra databasen
@@ -80,17 +71,10 @@ public class AppointmentView extends JPanel{
 	private Appointment appointment;
 	
 	
+	@SuppressWarnings("deprecation")
 	public AppointmentView(CalendarPanel calendarPanel, Appointment app) {
 		
-		//TESTER
-//		appointmentName = "TEST";
-//		isLeader = false;
-//		description = "Dette er en laaaaaaaaaaaaang beskrivelse til TEST!! <3 dette kommme efi fsei FJ ISE HFUDF DSF H SFH SFSHFIS HFISF HSIF SIFH SIF HSIGHSI H SI FHSIF HSIF HSIGH SIGH SIG HSIDHG SIGH SIDHG SIHDGISHG SIGHSIDGH SIDGH SDIGHSDIHG SIF GSIDGH SIDH GSIDHG SIDH GIDSGH ISDHG ISDG HSIDHG ISD HGSIDHG ISDH GISH NSIDG HSIG SIDG HSIGH SIG HSIGHSIHG SIDG HSIDG SD GSHDI GSIDHG ISDHG ISDHG ISDH GISH GISHG ISDGH IDSGH ISG HSIDG SIDGH IDS HGSID HGSID HGDSIHG SIGH SID HGISD HGISDHFGIDSHGISDUUUUUUU D  D D  D D D D D D D  DD FJIHSDHF I SDHIFUSDHFIUDH GUID FXICG DFGI FCIGDXIGUSTDGICFHGOD HGUDYFGOSHDGOUDSAZHFUIASGHISDFHGOUDFASHGIUAFD HGAFDHGOADSHGOASHGADSH FGIUASEHF USOe fausd g";
-//		date = "30.03.2012";
-//		time = "12:00-13:00";
-//		place = "NTNU";
-//		numberOfParticipants = "123";
-		//TESTER
+
 		
 		appointment = app;
 		calendarpanel = calendarPanel;
@@ -225,8 +209,7 @@ public class AppointmentView extends JPanel{
 	
 	private void setComponents(){
 		
-//		private JTextField placeInput;
-//		
+	
 		DateString start = appointment.getStartTime();
 		DateString end = appointment.getEndTime();
 		
@@ -370,7 +353,7 @@ public class AppointmentView extends JPanel{
 			}	
 		}
 		else{
-			toCalendarButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
+			toCalendarButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 110, 35);
 		}	
 	}
 }

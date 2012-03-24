@@ -6,6 +6,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.swing.DefaultListModel;
@@ -30,26 +31,28 @@ import common.utilities.MessageType;
 public class Message extends JPanel implements FocusListener, MessageListener{
 
 	private JLabel headLine;
-	
+
 	private JCheckBox all;
-	
+
 	private JTextField searchfield;
-	
+
 	private JButton showbutton;
 	private JButton delete;
 	private JButton toCalender;
-	
+
 	private JList messageList;
 	private DefaultListModel messageModel;
 	private JScrollPane scroll;
-	
+
 	private CalendarPanel calendar;
-	
+	private ArrayList<Note> notes;
+
 	public Message(CalendarPanel calendarPanel) {
 		calendar = calendarPanel;
-		
+
 		headLine = new JLabel("Meldinger");
-		
+		notes = new ArrayList<Note>();
+
 		all = new JCheckBox();
 		all.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e){
@@ -65,21 +68,32 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 			}
 		});
 		searchfield = new JTextField("Søk");
-		
+
 		messageList = new JList();
 		messageModel = new DefaultListModel();
 		messageList.setModel(messageModel);
 		messageList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		
+
 		scroll = new JScrollPane(messageList);
-		
+
 		delete = new JButton("Slett");
 		delete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
-				//TODO delete message
+				if(messageList.getSelectedValues().length > 0){
+					ArrayList<Note> alnotes = new ArrayList<Note>();
+					for (int i = 0; i < messageList.getSelectedValues().length; i++) {
+						alnotes.add((Note) messageList.getModel().getElementAt(i));
+						System.out.println(((Note) messageList.getModel().getElementAt(i)).getTitle());
+					}
+					ServerData.delteNotes(alnotes);
+
+					for (int i = 0; i < alnotes.size(); i++) {
+						messageModel.removeElement(alnotes.get(i));
+					}
+				}
 			}
 		});
-		
+
 		showbutton = new JButton("Vis");
 		showbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
@@ -92,52 +106,52 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 				}
 			}
 		});
-		
+
 		toCalender = new JButton("Til Kalender");
 		toCalender.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				calendar.goToCalender();
 			}
 		});
-		
+
 		setLayout(null);
 		resize();
-		
+
 		add(headLine);
 		add(all);
 		add(searchfield);
-		
+
 		add(scroll);
-		
+
 		add(toCalender);
 		add(delete);
 		add(showbutton);
-		
+
 		ServerData.addMessageListener(this);
 		ServerData.requestNotes(Client.getUser());
 	}
-	
+
 	public void resize(){
 		headLine.setBounds(GuiConstants.HEADLINE_X, GuiConstants.HEADLINE_Y, GuiConstants.HEADLINE_WIDTH, GuiConstants.HEADLINE_HEIGTH);
 		headLine.setFont(GuiConstants.FONT_30);
-		
+
 		all.setBounds(headLine.getX(), headLine.getY() + headLine.getHeight() + GuiConstants.GROUP_DISTANCE, (int)all.getPreferredSize().getWidth(), (int)all.getPreferredSize().getHeight());
-		
+
 		searchfield.setBounds(all.getX() + all.getWidth() + GuiConstants.DISTANCE, all.getY(), 470 - all.getWidth() - GuiConstants.DISTANCE, 25);
 		searchfield.setFont(GuiConstants.FONT_14);
 		searchfield.addFocusListener(this);
-		
+
 		scroll.setBounds(headLine.getX(), all.getY() + searchfield.getHeight() + GuiConstants.DISTANCE, 470, 250);
 
 		messageList.setBounds(headLine.getX(), scroll.getY(), scroll.getWidth() - 5, messageList.getHeight());
 		messageList.setPreferredSize(messageList.getSize());
-		
+
 		showbutton.setBounds(headLine.getX(), scroll.getY() + scroll.getHeight() + GuiConstants.DISTANCE, GuiConstants.BUTTON_WIDTH, GuiConstants.BUTTON_HEIGTH);
 		showbutton.setFont(GuiConstants.FONT_14);
-		
+
 		delete.setBounds(showbutton.getX() + showbutton.getWidth() + GuiConstants.DISTANCE, showbutton.getY(),  GuiConstants.BUTTON_WIDTH, GuiConstants.BUTTON_HEIGTH);
 		delete.setFont(GuiConstants.FONT_14);
-		
+
 		toCalender.setBounds(delete.getX() + delete.getWidth() + GuiConstants.DISTANCE, showbutton.getY(), GuiConstants.BUTTON_WIDTH, GuiConstants.BUTTON_HEIGTH);
 		toCalender.setFont(GuiConstants.FONT_14);
 	}

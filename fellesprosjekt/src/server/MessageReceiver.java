@@ -129,15 +129,18 @@ public class MessageReceiver {
 			}
 		}
 		else if (messageType.equals(MessageType.DELETE_NOTE)) {
-			Note n = (Note)message.getData();
-			
-			try {
-				database.updateDB(Queries.deleteNote(n.getID()));
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			Server.console.writeline("delete notes");
+			ArrayList<Note> n = (ArrayList<Note>)message.getData();
+			for (Note note : n) {
+				try {
+					database.updateDB(Queries.deleteNote(note.getID()));
+					Server.console.writeline("delete" + note.getTitle());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+
 		}
 	}
 	
