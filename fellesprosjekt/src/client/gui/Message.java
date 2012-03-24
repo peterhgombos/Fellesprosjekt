@@ -76,7 +76,7 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 		searchfield.addKeyListener(new KeyListener() {
 			public void keyTyped(KeyEvent e) {}
 			public void keyReleased(KeyEvent e) {
-			ServerData.requestSearchForPerson(searchfield.getText());
+			ServerData.requestSearchForNotes(searchfield.getText());
 			}
 			public void keyPressed(KeyEvent e) {}
 		});

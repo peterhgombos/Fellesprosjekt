@@ -182,6 +182,14 @@ public class Queries {
 				"AGAINST ('%" + search +"%' " +
 				"IN BOOLEAN MODE));";
 	}
+	
+
+	public static String getNotesByFilter(String search){
+		return 	"SELECT Notes.* FROM NOTES " + 
+				"WHERE (TITTEL LIKE '%" + search + "%' ) " +
+				"AGAINST ('%" + search +"%' " +
+				"IN BOOLEAN MODE));";
+	}
 
 	public static String createNewAppointment(String title, String description, DateString startTime, DateString endTime, String place, int leader){
 		return  "INSERT INTO AVTALE (TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED, LEDER) " +
