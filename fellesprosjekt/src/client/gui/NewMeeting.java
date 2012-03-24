@@ -31,6 +31,7 @@ import client.connection.MessageListener;
 import client.connection.ServerData;
 
 
+import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
 import common.dataobjects.Meeting;
 import common.dataobjects.Person;
@@ -89,6 +90,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 	private Date defaultDate = new Date(System.currentTimeMillis());
 	
 	private boolean isInEdit = false;
+	private int existingAppointmentId;
 	
 	public NewMeeting(CalendarPanel pal){
 		init(pal);
@@ -110,6 +112,9 @@ public class NewMeeting extends JPanel implements MessageListener{
 		descriptionArea.setText(meet.getDescription());
 		placeField.setText(meet.getPlace());
 		participantsList = meet.getParticipants();
+		
+		existingAppointmentId = meet.getId();
+		
 		
 	}
 	
@@ -154,6 +159,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 		datepickerDays.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		severalDays = new JCheckBox();
 		severalDaysLabel = new JLabel("Flere dager");
+		
 		
 		ServerData.addMessageListener(this);
 		
@@ -240,6 +246,10 @@ public class NewMeeting extends JPanel implements MessageListener{
 				else if(bookMeetingroomRadioButton.isSelected() && participantsList.size()<2){
 					UserInformationMessages.showErrormessage("Det må være minst 2 deltakere for å booke et møterom");
 					return;
+				}
+				else if(isInEdit){
+					Meeting a = new Meeting(existingAppointmentId, Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfExternalparticipants);
+					ServerData.requestUpdateAppointmet(a);
 				}
 				
 				Meeting m = new Meeting(-1, Client.getUser(),title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfParticipants);
