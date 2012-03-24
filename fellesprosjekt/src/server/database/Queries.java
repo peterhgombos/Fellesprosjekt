@@ -208,7 +208,7 @@ public class Queries {
 	}
 
 	public static String getRoomsForTimeSlot(DateString start, DateString end, int capacity) {
-		return 	"SELECT DISTINCT MOTEROM.ROMNR " +
+		return 	"SELECT DISTINCT MOTEROM.* " +
 				"FROM MOTEROM, AVTALE " +
 				"WHERE NOT EXISTS ( " +
 				"SELECT * " +
