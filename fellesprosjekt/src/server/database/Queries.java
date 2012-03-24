@@ -237,8 +237,8 @@ public class Queries {
 	}
 	
 	public static String updateAppointment(int appID, String title, String description, DateString start, DateString end, String place){
-		return "UPDATE AVTALE( TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED) " +
-				"VALUES ('" + title +"','" + description + "','" + start + "','" + start + "'.'" + end + "','" + place + "') "+
+		return "UPDATE AVTALE ( TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED) " +
+				"VALUES '" + title +"','" + description + "','" + start + "','" + end + "','" + place + "' "+
 				"WHERE AVTALEID=" + appID + ";";
 	}
 }
