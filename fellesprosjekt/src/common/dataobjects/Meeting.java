@@ -1,12 +1,11 @@
 package common.dataobjects;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.HashMap;
 
-import common.utilities.DateString;
-
 import xml.XMLElements;
+
+import common.utilities.DateString;
 
 
 public class Meeting extends Appointment implements Serializable{
@@ -18,14 +17,13 @@ public class Meeting extends Appointment implements Serializable{
 	public static final int SVAR_NEI = 2;
 	
 	private Room room;
-	//Integer er svaret fra person
 	private HashMap<Person, Integer> participants;
 	private int externalParticipants;
-	private int capacety;
 		
-	public Meeting(int id, Person leader, String title, String description, String place, DateString start, DateString end, HashMap<Person, Integer> participants, int externalParticipants){
+	public Meeting(int id, Person leader, String title, String description, String place, Room room, DateString start, DateString end, HashMap<Person, Integer> participants, int externalParticipants){
 		super(id, leader, title, description, place, start, end);
 		this.participants = participants;
+		this.room = room;
 		this.externalParticipants = externalParticipants;
 	}
 
@@ -56,7 +54,7 @@ public class Meeting extends Appointment implements Serializable{
 	}
 	
 	
-	public int getCapacty(){
+	public int getNumberOfParticipants(){
 		return participants.size() + externalParticipants;
 	}
 	

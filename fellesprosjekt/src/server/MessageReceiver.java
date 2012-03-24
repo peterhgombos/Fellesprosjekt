@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+import javax.management.Query;
+
 import server.database.Database;
 import server.database.Queries;
 import client.authentication.Login;
@@ -221,7 +223,7 @@ public class MessageReceiver {
 	private ArrayList<Room> getAvaliableRooms(ComMessage message){
 		Meeting meeting = (Meeting) message.getData();
 		try{
-			ResultSet rs = database.executeQuery(Queries.getRoomsForTimeSlot(meeting.getStartTime(), meeting.getEndTime(), meeting.getCapacty()));
+			ResultSet rs = database.executeQuery(Queries.getRoomsForTimeSlot(meeting.getStartTime(), meeting.getEndTime(), meeting.getNumberOfParticipants()));
 			return resultSetToRooms(rs);
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -268,6 +270,9 @@ public class MessageReceiver {
 				database.updateDB(Queries.addPersonToAttend(p.getPersonID(), meeti.getId()));
 			}
 			database.updateDB(Queries.addPersonToAttend(meeti.getLeader().getPersonID(), meeti.getId()));
+			
+			database.updateDB(Queries.bookRoom(meeti.getId(), meeti.getRoom().getRomId()));
+			
 			ComMessage comMesNewMeet = new ComMessage(meeti, MessageType.RECEIVE_NEW_MEETING);
 
 			sendToAll(comMesNewMeet);
@@ -330,6 +335,7 @@ public class MessageReceiver {
 				String title = result.getString(Database.COL_TITLE);
 				String description = result.getString(Database.COL_DESCRIPTION);
 				String place = result.getString(Database.COL_PLACE);
+				String room = result.getString(Database.COL_ROOM);
 				DateString start = new DateString(result.getTimestamp(Database.COL_FROM));
 				DateString end = new DateString(result.getTimestamp(Database.COL_TO));
 				int external = result.getInt(Database.COL_EXTERNAL);
@@ -339,7 +345,9 @@ public class MessageReceiver {
 
 				Person leader = resutlSetToPerson(database.executeQuery(Queries.getLeaderForMeeting(id))).get(0);
 
-				returnthis.add(new Meeting(id, leader, title, description, place, start, end, participants,external));
+				Room orom = resultSetToRooms(database.executeQuery(Queries.getRoom(room))).get(0);
+				
+				returnthis.add(new Meeting(id, leader, title, description, place, orom, start, end, participants, external));
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
