@@ -242,8 +242,16 @@ public class Queries {
 	}
 
 	public static String updateAppointment(int appID, String title, String description, DateString start, DateString end, String place){
-		return "UPDATE AVTALE ( TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED) " +
-				"VALUES '" + title +"','" + description + "','" + start + "','" + end + "','" + place + "' "+
-				"WHERE AVTALEID=" + appID + ";";
+		return 	"UPDATE AVTALE " +
+				"SET TITTEL = '" + title + "', BESKRIVELSE =  '" + description + "', TIDSPUNKT = '" + start + 
+				"', SLUTTIDSPUNKT= '" + end + "', STED= '" + place + "' " +
+				"WHERE AVTALE.AVTALEID = " + appID + ";";
+	}
+	
+	public static String updateMeeting(int appID, String title, String description, DateString start, DateString end, String place, String room){
+		return 	"UPDATE AVTALE " + 
+				"SET TITTEL = '" + title + "', BESKRIVELSE =  '" + description + "', TIDSPUNKT = '" + start + 
+				"', SLUTTIDSPUNKT= '" + end + "', STED= '" + place + "' " +
+				"WHERE AVTALE.AVTALEID = " + appID + ";";
 	}
 }
