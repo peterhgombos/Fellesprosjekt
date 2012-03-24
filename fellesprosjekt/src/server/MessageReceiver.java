@@ -108,10 +108,10 @@ public class MessageReceiver {
 		else if(messageType.equals(MessageType.REQUEST_UPDATE_APPOINTMENT)){
 			Appointment a = (Appointment) message.getData();
 			try{
-				database.updateDB(Queries.updateAppointment(a.getId(), a.getTitle(), a.getDescription(), a.getStartTime(), a.getEndTime(), a.getPlace(), a.get, a.))
+				database.updateDB(Queries.updateAppointment(a.getId(), a.getTitle(), a.getDescription(), a.getStartTime(), a.getEndTime(), a.getPlace()));
 			}
-			catch{
-				
+			catch(SQLException e){
+				e.printStackTrace();
 			}
 			
 		}
