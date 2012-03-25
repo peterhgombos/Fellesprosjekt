@@ -155,11 +155,33 @@ public class MessageReceiver {
 			}
 
 		}	
-		
+
 		else if (messageType.equals(MessageType.DELETE_APPOINTMENT)) {
 			Appointment app = (Appointment) message.getData();
 			try {
 				database.updateDB(Queries.deleteAppointment(app.getId()));
+
+				database.updateDB(Queries.createNote("Avlyst:" + app.getTitle(), -1));
+				ResultSet noters = database.executeQuery(Queries.getLastNote());
+
+				Note n = resultSetToSingleNote(noters);
+
+				if (app instanceof Meeting) {
+					Meeting newMeet = (Meeting) app;
+					for(Person p : newMeet.getParticipants().keySet()){
+						if(p.getPersonID() != newMeet.getLeader().getPersonID()){
+							database.updateDB(Queries.addNoteToPerson(p.getPersonID(), n.getID()));
+							ClientWriter cw = idClients.get(p.getPersonID());
+							if(cw != null){
+								cw.send(new ComMessage(null, MessageType.WARNING));
+							}
+						}
+
+
+					}
+				}
+
+
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -227,7 +249,7 @@ public class MessageReceiver {
 			for (Appointment app : appointments) {
 				System.out.println(app.getTitle());
 			}
-			
+
 			ComMessage sendapp = new ComMessage(appointments, MessageType.RECEIVE_APPOINTMENTS_BY_DATE_FILTER);
 			ComMessage sendmeet = new ComMessage(meetings, MessageType.RECEIVE_MEETINGS_BY_DATE_FILTER);
 
@@ -302,24 +324,22 @@ public class MessageReceiver {
 
 			database.updateDB(Queries.createNote("Invitasjon:" + meeti.getTitle(), meeti.getId()));
 			ResultSet noters = database.executeQuery(Queries.getLastNote());
-			
+
 			Note n = resultSetToSingleNote(noters);
-			
+
 			for(Person p : newMeet.getParticipants().keySet()){
 				database.updateDB(Queries.addNoteToPerson(p.getPersonID(), n.getID()));
 				database.updateDB(Queries.addPersonToAttend(p.getPersonID(), meeti.getId()));
 				ClientWriter cw = idClients.get(p.getPersonID());
-				if(cw != null){
+				if(cw != null && p.getPersonID() != newMeet.getLeader().getPersonID()){
 					cw.send(new ComMessage(null, MessageType.WARNING));
 				}
 			}
-			database.updateDB(Queries.addPersonToAttend(meeti.getLeader().getPersonID(), meeti.getId()));
-			idClients.get(meeti.getLeader().getPersonID()).send(new ComMessage(null, MessageType.WARNING));
-			
+			database.updateDB(Queries.addPersonToAttend(meeti.getLeader().getPersonID(), meeti.getId()));			
 			if(meeti.getRoom() != null){
 				database.updateDB(Queries.bookRoom(meeti.getId(), meeti.getRoom().getRomId()));
 			}
-			
+
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
