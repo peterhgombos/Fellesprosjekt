@@ -210,4 +210,8 @@ public class ServerData {
 		
 	}
 	
+	public static void getNewOldNotes(ArrayList<Note> notes){
+		connection.requestOldNewNotes(notes);
+	}
+	
 }

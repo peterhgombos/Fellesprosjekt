@@ -155,6 +155,22 @@ public class MessageReceiver {
 			}
 
 		}	
+		
+		else if (messageType.equals(MessageType.GET_OLD_NEW_NOTES)) {
+			Person p = (Person) message.getData();
+			try {
+				ResultSet rs = database.executeQuery(Queries.oldNewNotes(p.getPersonID()));
+				int i = 0;
+				while (rs.next()) {
+					i++;
+				}
+				if (i > 0) {
+					clientWriter.send(new ComMessage(null, MessageType.WARNING));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 
 		else if (messageType.equals(MessageType.DELETE_APPOINTMENT)) {
 			Appointment app = (Appointment) message.getData();
@@ -183,7 +199,6 @@ public class MessageReceiver {
 
 
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
