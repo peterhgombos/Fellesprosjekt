@@ -69,15 +69,13 @@ public class AppointmentView extends JPanel{
 	
 	private Appointment appointment;
 	
+	private AppointmentView thisAppointmentView;
 	
 	@SuppressWarnings("deprecation")
 	public AppointmentView(CalendarPanel calendarPanel, Appointment app) {
-		
-
-		
 		appointment = app;
 		calendarpanel = calendarPanel;
-		AppointmentView thisAppointmentView = this;
+		thisAppointmentView = this;
 		
 		headline = new JLabel(appointmentName);
 		timeLabel = new JLabel("Tid");
