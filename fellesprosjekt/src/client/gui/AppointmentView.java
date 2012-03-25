@@ -184,7 +184,8 @@ public class AppointmentView extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				
 				ServerData.deleteAppointment(appointment);
-				calendarpanel.goToCalender();
+				UserInformationMessages.showMessage(appointment.getTitle() + " er slettet");
+				calendarpanel.goToMyAppointments();
 			}
 		});
 		
