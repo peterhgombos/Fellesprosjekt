@@ -203,5 +203,10 @@ public class ServerData {
 	public static void requestUpdateAppointmet(Appointment app){
 		connection.requestUpdateAppointment(app);
 	}
+
+	public static void deleteAppointment(Appointment app) {
+		connection.deleteAppointment(app);
+		
+	}
 	
 }

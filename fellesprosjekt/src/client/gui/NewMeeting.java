@@ -160,6 +160,12 @@ public class NewMeeting extends JPanel implements MessageListener{
 		severalDays = new JCheckBox();
 		severalDaysLabel = new JLabel("Flere dager");
 		
+		startTimeHoursField = new JComboBox(hours);
+		endTimeHoursField = new JComboBox(hours);
+		startTimeMinField = new JComboBox(min);
+		endTimeMinField = new JComboBox(min);
+		roomPicker = new JComboBox();
+		
 		
 		ServerData.addMessageListener(this);
 		
@@ -179,6 +185,39 @@ public class NewMeeting extends JPanel implements MessageListener{
 			}
 		});
 		
+		endTimeHoursField.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String timeEnd = "";
+				
+				if(Integer.parseInt(""+endTimeHoursField.getSelectedItem()) > Integer.parseInt(""+startTimeHoursField.getSelectedItem())){
+					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
+				}
+				else {
+					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
+					return;
+				}
+				
+			}
+		});
+		
+		endTimeMinField.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String timeEnd = "";
+				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem())> Integer.parseInt(""+ endTimeMinField.getSelectedItem()))){
+					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
+				}
+				else {
+					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
+					return;
+				}
+				
+			}
+		});
+		
 		bookMeetingroomRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				roomPicker.setEnabled(true);
@@ -193,8 +232,6 @@ public class NewMeeting extends JPanel implements MessageListener{
 				}
 				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem() + ":0";
 				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-				System.out.println(timeStart);
-				System.out.println(timeEnd);
 				ServerData.requestAvailableRooms(new Meeting(-1, null, null, null, null, null, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfParticipants));
 			}
 		});
@@ -228,7 +265,6 @@ public class NewMeeting extends JPanel implements MessageListener{
 				
 				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem() + ":0";
 				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-				
 				String description = descriptionArea.getText();
 				
 				String place = "";
@@ -246,13 +282,21 @@ public class NewMeeting extends JPanel implements MessageListener{
 					UserInformationMessages.showErrormessage("Du må lage en tittel");
 					return;
 				}
-				else if(bookMeetingroomRadioButton.isSelected() && participantsList.size()<2){
+				
+				
+				
+				else if(bookMeetingroomRadioButton.isSelected() && numberOfParticipants<1 ){
 					UserInformationMessages.showErrormessage("Det må være minst 2 deltakere for å booke et møterom");
 					return;
 				}
 				else if(isInEdit){
 					Meeting a = new Meeting(existingAppointmentId, Client.getUser(), title, description, place, nyttrom, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfExternalparticipants);
 					ServerData.requestUpdateAppointmet(a);
+				}
+				
+				if (numberOfParticipants < 1) {
+					UserInformationMessages.showErrormessage("Du må legge til minst en deltaker");
+					return;
 				}
 				
 				Meeting m = new Meeting(-1, Client.getUser(),title, description, place, nyttrom, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfParticipants);
@@ -271,11 +315,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 			}
 		});
 		
-		startTimeHoursField = new JComboBox(hours);
-		endTimeHoursField = new JComboBox(hours);
-		startTimeMinField = new JComboBox(min);
-		endTimeMinField = new JComboBox(min);
-		roomPicker = new JComboBox();
+
 		
 		scrollPane = new JScrollPane(descriptionArea);
 		

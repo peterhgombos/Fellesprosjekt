@@ -188,15 +188,15 @@ public class Queries {
 	}
 
 	public static String getRoomsForTimeSlot(DateString start, DateString end, int capacity) {
-		return 	"SELECT DISTINCT MOTEROM.* " +
+		return 	"SELECT DISTINCT MOTEROM .  * " +
 				"FROM MOTEROM, AVTALE " +
-				"WHERE NOT EXISTS ( " +
-				"SELECT * " +
+				"WHERE MOTEROM.KAPASITET >= " + capacity + 
+				" AND " +
+				"NOT EXISTS ( "+
+				"SELECT  * " +
 				"FROM AVTALE AS B " +
-				"WHERE '2012-05-16 12:00:00' <= B.SLUTTIDSPUNKT " +
-				"AND '2012-05-16 14:00:00' >= B.TIDSPUNKT " +
-				"AND B.ROMNR = MOTEROM.ROMNR" +
-				");";
+				"WHERE '" + end + "' <= B.SLUTTIDSPUNKT " +
+				"AND  ' " + start + "' >= B.TIDSPUNKT AND B.ROMNR = MOTEROM.ROMNR ); ";
 	}
 
 	public static String bookRoom(int appId, String roomId){
@@ -228,5 +228,12 @@ public class Queries {
 				"SET TITTEL = '" + title + "', BESKRIVELSE =  '" + description + "', TIDSPUNKT = '" + start + 
 				"', SLUTTIDSPUNKT= '" + end + "', STED= '" + place + "' " +
 				"WHERE AVTALE.AVTALEID = " + appID + ";";
+	}
+	
+	public static String deleteAppointment(int appID){
+		return  "DELETE AVTALE. * , "+
+				"DELTAKER. *  FROM AVTALE," +
+				"DELTAKER WHERE AVTALE.AVTALEID = " + appID +
+				" AND AVTALE.AVTALEID = DELTAKER.AVTALEID;";
 	}
 }

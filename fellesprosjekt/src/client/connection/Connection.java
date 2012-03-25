@@ -129,4 +129,9 @@ public class Connection  {
 	public void requestUpdateAppointment(Appointment app){
 		writer.send(new ComMessage(app, MessageType.REQUEST_UPDATE_APPOINTMENT));
 	}
+
+	public void deleteAppointment(Appointment app) {
+		writer.send(new ComMessage(app, MessageType.DELETE_APPOINTMENT));
+		
+	}
 }
