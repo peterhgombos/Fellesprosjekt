@@ -211,6 +211,12 @@ public class Queries {
 		return	"INSERT INTO DELTAKER (ANSATTNR, AVTALEID, SVAR) " +
 				"VALUES (" + personId + ", " + appId + ", 0);";
 	}
+	public static String setAnswer(int personId, int appId, int answer){
+		return	"UPDATE DELTAKER " +
+				"SET SVAR = " + answer + " " +
+				"WHERE DELTAKER.ANSATTNR = " + personId + " " +
+				"AND DELTAKER.AVTALEID = " + appId + ";";
+	}
 
 	public static String getRoomsForTimeSlot(DateString start, DateString end, int capacity) {
 		return 	"SELECT DISTINCT MOTEROM.* " +

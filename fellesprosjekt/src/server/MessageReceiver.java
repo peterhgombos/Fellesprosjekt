@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-import javax.management.Query;
-
 import server.database.Database;
 import server.database.Queries;
 import client.authentication.Login;
@@ -192,7 +190,6 @@ public class MessageReceiver {
 
 			Collection<Appointment> appointments = resultSetToAppointment(appointmentResult);
 			Collection<Meeting> meetings = resultSetToMeeting(meetingResult);
-
 
 			ComMessage sendapp = new ComMessage(appointments, MessageType.RECEIVE_APPOINTMENTS_BY_DATE_FILTER);
 			ComMessage sendmeet = new ComMessage(meetings, MessageType.RECEIVE_MEETINGS_BY_DATE_FILTER);
