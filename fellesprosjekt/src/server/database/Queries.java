@@ -35,31 +35,6 @@ public class Queries {
 				");";
 	}
 
-	public static String getAppointmentsWithdatefilter(int personid){
-		return 	"SELECT AVTALE. * " +
-				"FROM AVTALE " +
-				"WHERE AVTALE.LEDER = " + personid + " " +
-				"AND NOT EXISTS ( " +
-				"SELECT  * " +
-				"FROM DELTAKER " +
-				"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID" +
-				");";
-	}
-
-
-	public static String getMeetingsWithdatefilter(int personid){
-		return 	"SELECT AVTALE.* " +
-				"FROM AVTALE, DELTAKER " +
-				"WHERE DELTAKER.ANSATTNR = " + personid + " " + 
-				"AND DELTAKER.AVTALEID = AVTALE.AVTALEID " +
-				"AND EXISTS( " +
-				"SELECT * " +
-				"FROM DELTAKER " +
-				"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID " +
-				"AND NOT DELTAKER.ANSATTNR = AVTALE.LEDER" +
-				");";
-	}
-
 	public static String getLeaderForMeeting(int avtaleid){
 		return 	"SELECT ANSATT.* " +
 				"FROM ANSATT, AVTALE " + 
