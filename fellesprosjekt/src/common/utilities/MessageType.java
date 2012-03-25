@@ -52,6 +52,7 @@ public class MessageType {
 	
 	public static final String REQUEST_UPDATE_APPOINTMENT = "updateAppointment";
 	public static final String REQUEST_UPDATE_MEETING = "updateMeeting";
+	public static final Object WARNING = "warning";
 	
 	
 	

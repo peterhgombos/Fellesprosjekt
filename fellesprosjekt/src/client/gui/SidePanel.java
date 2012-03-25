@@ -1,5 +1,7 @@
 package client.gui;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -61,6 +63,8 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				calendarpanel.goToMessages();
+				message.setForeground(Color.BLACK);
+				message.setFont(new Font(message.getFont().getName(), 0, message.getFont().getSize()));
 				
 			}
 		});
@@ -263,6 +267,10 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 					employeeListModel.addElement(person);
 				}
 			}
+		}
+		else if (m.getType().equals(MessageType.WARNING)) {
+			message.setFont(new Font(message.getFont().getName(), Font.BOLD, message.getFont().getSize()));
+			message.setForeground(Color.RED);
 		}
 	}
 }

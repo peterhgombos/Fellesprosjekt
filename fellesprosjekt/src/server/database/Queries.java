@@ -218,9 +218,10 @@ public class Queries {
 				"WHERE NOT EXISTS ( " +
 				"SELECT * " +
 				"FROM AVTALE AS B " +
-				"WHERE '2012-05-16 12:00:00' <= B.SLUTTIDSPUNKT " +
-				"AND '2012-05-16 14:00:00' >= B.TIDSPUNKT " +
+				"WHERE '" + start + "' <= B.SLUTTIDSPUNKT " +
+				"AND '" + end + "' >= B.TIDSPUNKT " +
 				"AND B.ROMNR = MOTEROM.ROMNR" +
+				"AND MOTEROM.KAPASITET >= " + capacity + " " +
 				");";
 	}
 
