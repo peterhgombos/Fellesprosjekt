@@ -254,4 +254,11 @@ public class Queries {
 				"', SLUTTIDSPUNKT= '" + end + "', STED= '" + place + "' " +
 				"WHERE AVTALE.AVTALEID = " + appID + ";";
 	}
+	
+	public static String deleteAppointment(int appID){
+		return  "DELETE AVTALE. * , "+
+				"DELTAKER. *  FROM AVTALE," +
+				"DELTAKER WHERE AVTALE.AVTALEID = " + appID +
+				" AND AVTALE.AVTALEID = DELTAKER.AVTALEID;";
+	}
 }

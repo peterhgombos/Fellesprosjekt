@@ -178,6 +178,16 @@ public class AppointmentView extends JPanel{
 		textAreaScrollPane = new JScrollPane(descriptionInput);
 		
 		
+		cancelButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				ServerData.deleteAppointment(appointment);
+				calendarpanel.goToCalender();
+			}
+		});
+		
 		add(headline);
 		add(dateLabel);
 		add(timeLabel);
@@ -324,6 +334,7 @@ public class AppointmentView extends JPanel{
 		
 		placeInput.setBounds(textAreaScrollPane.getX(), textAreaScrollPane.getY() + textAreaScrollPane.getHeight() + GuiConstants.GROUP_DISTANCE, 300, 30);
 		placeInput.setFont(new Font(placeInput.getFont().getName(),0,15));
+
 		
 		if(appointment instanceof Meeting){
 			Meeting m = (Meeting)appointment;
@@ -356,8 +367,12 @@ public class AppointmentView extends JPanel{
 			}	
 		}
 		else{
-			editButton.setBounds(placeInput.getX() , placeInput.getY() + placeInput.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
+			cancelButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
+			cancelButton.setText("Slett");
+			editButton.setBounds(cancelButton.getX() + cancelButton.getWidth() + GuiConstants.DISTANCE , cancelButton.getY(), 80, 35);
 			toCalendarButton.setBounds(editButton.getX() + editButton.getWidth() + GuiConstants.DISTANCE, editButton.getY(), 110, 35);
+
+
 		}	
 	}
 }

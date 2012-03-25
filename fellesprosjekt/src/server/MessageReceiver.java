@@ -159,7 +159,17 @@ public class MessageReceiver {
 				}
 			}
 
-		}			
+		}	
+		
+		else if (messageType.equals(MessageType.DELETE_APPOINTMENT)) {
+			Appointment app = (Appointment) message.getData();
+			try {
+				database.updateDB(Queries.deleteAppointment(app.getId()));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		else if (messageType.equals(MessageType.REQUEST_SEARCH_NOTES)) {
 			ArrayList<Note> n = searchForNotes(message);
 			ComMessage sendNotes = new ComMessage(n, MessageType.RECEIVE_SEARCH_NOTES);
