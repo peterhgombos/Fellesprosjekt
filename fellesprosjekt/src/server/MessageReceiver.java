@@ -83,11 +83,6 @@ public class MessageReceiver {
 			Server.console.writeline("new meeting");
 			newMeeting(message);
 		}
-		else if(messageType.equals(MessageType.REQUEST_NEW_NOTE)){
-			Note createdNote = newNote(message);
-			ComMessage sendNote = new ComMessage(createdNote, MessageType.RECEIVE_NEW_NOTE);
-			clientWriter.send(sendNote);
-		}
 		else if(messageType.equals(MessageType.REQUEST_SEARCH_PERSON)){
 			ArrayList<Person> filteredPersons = searchForPerson(message);
 			ComMessage sendPersons = new ComMessage(filteredPersons, MessageType.RECEIVE_SEARCH_PERSON);
@@ -197,6 +192,22 @@ public class MessageReceiver {
 		return notes;
 	}
 
+	private Note resultSetToSingleNote(ResultSet rs){
+		Note notes = null;
+		try {
+			while (rs.next()) {
+				String title = rs.getString(Database.COL_TITLE);
+				int varselID = rs.getInt(Database.COL_VARSELID);
+				Timestamp timesend = rs.getTimestamp(Database.COL_TIMESEND);
+
+				notes = new Note(varselID, title, new DateString(timesend), null, false);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return notes;
+	}
+
 	private void meetingsandappointmentsbydate(ComMessage message, ClientWriter cw) {
 		Person p = (Person)message.getData();
 		int personid = p.getPersonID();
@@ -289,7 +300,13 @@ public class MessageReceiver {
 
 			Meeting meeti = resultSetToMeeting(rs).get(0);
 
+			database.updateDB(Queries.createNote("Invitasjon:" + meeti.getTitle(), meeti.getId()));
+			ResultSet noters = database.executeQuery(Queries.getLastNote());
+			
+			Note n = resultSetToSingleNote(noters);
+			
 			for(Person p : newMeet.getParticipants().keySet()){
+				database.updateDB(Queries.addNoteToPerson(p.getPersonID(), n.getID()));
 				database.updateDB(Queries.addPersonToAttend(p.getPersonID(), meeti.getId()));
 				ClientWriter cw = idClients.get(p.getPersonID());
 				if(cw != null){
@@ -305,18 +322,6 @@ public class MessageReceiver {
 			
 		}catch(SQLException e){
 			e.printStackTrace();
-		}
-	}
-
-	private Note newNote(ComMessage message){
-		Note newNote = (Note) message.getData();
-		try{
-			database.updateDB(Queries.newNote(newNote.getTitle(), newNote.getAppointment().getId()));
-			ResultSet newDbNote = database.executeQuery(Queries.getLastNote());
-			return resultSetToSingleNote(newDbNote);
-		}catch(SQLException e){
-			e.printStackTrace();
-			return null;
 		}
 	}
 
@@ -471,19 +476,6 @@ public class MessageReceiver {
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		return null;
-	}
-
-	private Note resultSetToSingleNote(ResultSet rs){
-		//		try{
-			//			while(rs.next()){
-				//				ResultSet appointmentResult = database.executeQuery(Queries.getAppointment(rs.getInt("AVTALE")));
-		//				Appointment app = resultSetToAppointment(appointmentResult).get(0);
-		//				return new Note(rs.getInt("AVTALEID"), rs.getString("TITTEL"), new DateString(rs.getDate("TIDSENDT")), app);
-		//			}
-		//		}catch(SQLException e){
-		//			e.printStackTrace();
-		//		}
 		return null;
 	}
 

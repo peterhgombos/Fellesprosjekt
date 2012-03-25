@@ -105,6 +105,21 @@ public class Queries {
 		return	"SELECT * FROM AVTALE " +
 				"WHERE AVTALE.AVTALEID = " + appId + ";";
 	}
+	
+	public static String createNote(String title, int appID){
+		return "INSERT INTO VARSEL VALUES(NULL, '" + title + "', NULL, " + appID + 
+				" );";
+	}
+	
+	public static String addNoteToPerson(int personID, int noteID){
+		return "INSERT INTO HAR_MOTTATT VALUES( " + personID + ", " + noteID + ", " + " 0);";
+	}
+	
+	public static String upDateNoteToPerson(int personID, int noteID){
+		return "UPDATE HAR_MOTTATT SET HAR_LEST = 1 "+
+				"WHERE PERSONID = " + personID  + 
+				" AND VARSELID = " + noteID + " ;";
+	}
 	//	
 	//
 	//	public static String getAppointmentsAsLeader(int personid){
