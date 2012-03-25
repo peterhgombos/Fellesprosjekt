@@ -12,6 +12,7 @@ import server.Server;
 import common.dataobjects.*;
 import common.sendobjects.AnswerUpdates;
 import common.sendobjects.AppointmentInvites;
+import common.utilities.DateString;
 import common.utilities.MessageType;
 
 import client.Client;
@@ -107,8 +108,11 @@ public class Connection  {
 		writer.send(new ComMessage(app, MessageType.REQUEST_PARTICIPANTS));		
 	}
 
-	public void requestAppointmentsAndMeetingsByDateFilter(Person person) {
-		writer.send(new ComMessage(person, MessageType.REQUEST_MEETINGS_AND_APPOINTMENTS_BY_DATE_FILTER));
+	public void requestAppointmentsAndMeetingsByDateFilter(Person person, DateString start, DateString end) {
+		ComMessage cm = new ComMessage(person, MessageType.REQUEST_MEETINGS_AND_APPOINTMENTS_BY_DATE_FILTER);
+		cm.setProperty("dstart", start.toString());
+		cm.setProperty("dend", end.toString());
+		writer.send(cm);
 	}
 
 	public void requestNotes(Person person, String filter) {

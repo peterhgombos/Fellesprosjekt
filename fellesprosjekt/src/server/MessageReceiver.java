@@ -232,11 +232,15 @@ public class MessageReceiver {
 
 	private void meetingsandappointmentsbydate(ComMessage message, ClientWriter cw) {
 		Person p = (Person)message.getData();
+		
+		DateString startd = new DateString(message.getProperty("dstart"));
+		DateString endd = new DateString(message.getProperty("dend"));
+		
 		int personid = p.getPersonID();
 
 		try{
-			ResultSet appointmentResult = database.executeQuery(Queries.getAppointments(personid)); //Get the appointments where the person is a participants	
-			ResultSet meetingResult = database.executeQuery(Queries.getMeetings(personid)); //Get the meetings where the person is a participants	
+			ResultSet appointmentResult = database.executeQuery(Queries.getAppointmentsByDate(personid, startd, endd)); //Get the appointments where the person is a participants	
+			ResultSet meetingResult = database.executeQuery(Queries.getMeetingsByDate(personid, startd, endd)); //Get the meetings where the person is a participants	
 
 			ArrayList<Appointment> appointments = resultSetToAppointment(appointmentResult);
 			ArrayList<Meeting> meetings = resultSetToMeeting(meetingResult);

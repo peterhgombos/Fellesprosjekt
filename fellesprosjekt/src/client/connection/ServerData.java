@@ -13,6 +13,7 @@ import common.dataobjects.Meeting;
 import common.dataobjects.Note;
 import common.dataobjects.Person;
 import common.dataobjects.Room;
+import common.utilities.DateString;
 import common.utilities.MessageType;
 
 public class ServerData {
@@ -129,8 +130,8 @@ public class ServerData {
 		connection.requestUpdateAnswers(persons, app);
 	}
 	
-	public static void requestAppointmensAndMeetingByDateFilter(Person person){
-		connection.requestAppointmentsAndMeetingsByDateFilter(person);
+	public static void requestAppointmensAndMeetingByDateFilter(Person person, DateString start, DateString end){
+		connection.requestAppointmentsAndMeetingsByDateFilter(person, start, end);
 	}
 	
 	
