@@ -165,6 +165,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 		startTimeMinField = new JComboBox(min);
 		endTimeMinField = new JComboBox(min);
 		roomPicker = new JComboBox();
+		roomPicker.setEnabled(false);
 		
 		
 		ServerData.addMessageListener(this);
@@ -221,7 +222,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 		bookMeetingroomRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				roomPicker.setEnabled(true);
-				placeField.setEditable(false);
+				placeField.setText("");
 				String dateStart = datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH);;
 				String dateEnd;
 				if(datepickerDays.isEnabled()  && datepickerDays.isVisible()){
@@ -238,7 +239,9 @@ public class NewMeeting extends JPanel implements MessageListener{
 		otherPlaceRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				roomPicker.setEnabled(false);
-				placeField.setEditable(true);
+				roomPicker.setSelectedIndex(-1);
+				placeField.setEnabled(true);
+				
 			}
 		});
 		
