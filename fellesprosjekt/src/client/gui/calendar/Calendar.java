@@ -34,12 +34,19 @@ public class Calendar extends JPanel implements MessageListener {
 
 	private String[] dayName = {"", "Mandag", "Tirsdag", "Onsag", "Torsdag", "Fredag", "Lørdag", "Søndag"};
 
+	
+	public void weekChanged(){
+		for(int i = 1; i < table.getModel().getColumnCount(); i++){
+			table.getColumnModel().getColumn(i).setHeaderValue(dayName[i] + "" + ServerData.getCalendar().getDateForDay(calModel.getYear(), calModel.getWeek(), i));
+		}
+	}
+	
 	public Calendar(CalendarPanel panel){
 		setLayout(null);
 
 		ServerData.getCalendar().getCalendar().setTimeInMillis(System.currentTimeMillis());
 
-		calModel = new CalModel();
+		calModel = new CalModel(this);
 		weekLabel = new JLabel("Uke");
 		lastWeek = new JButton("<");
 		nextWeek = new JButton(">");
@@ -59,7 +66,7 @@ public class Calendar extends JPanel implements MessageListener {
 		for(int i = 1; i < table.getModel().getColumnCount(); i++){
 			TableColumn col = table.getColumnModel().getColumn(i);
 			col.setMinWidth(134);
-			col.setHeaderValue(dayName[i]);
+			//col.setHeaderValue(dayName[i] + ServerData.getCalendar().dayToWeekDay(i));
 		}
 
 		lastWeek.addActionListener(new ActionListener() {
@@ -116,6 +123,7 @@ public class Calendar extends JPanel implements MessageListener {
 		add(nextWeek);
 		
 		scrollPane.getViewport().setViewPosition(new Point(0,table.getRowHeight()*7));		
+		weekChanged();
 	}
 
 	private void resize(){

@@ -14,8 +14,10 @@ public class CalModel extends AbstractTableModel{
 	private int week;
 	private int year;
 	private InternalCalendar cal;
+	private client.gui.calendar.Calendar listener;
 	
-	public CalModel(){
+	public CalModel(client.gui.calendar.Calendar calendar){
+		listener = calendar;
 		cal = ServerData.getCalendar();
 		this.year = cal.getCalendar().get(Calendar.YEAR);
 		this.week = cal.getCalendar().get(Calendar.WEEK_OF_YEAR);
@@ -33,12 +35,14 @@ public class CalModel extends AbstractTableModel{
 		cal = ServerData.getCalendar();
 		cal.getCalendar().set(Calendar.WEEK_OF_YEAR, weekNumber);
 		week = cal.getCalendar().get(Calendar.WEEK_OF_YEAR);
+		listener.weekChanged();
 	}
 	
 	public void setYear(int year){
 		cal = ServerData.getCalendar();
 		cal.getCalendar().set(Calendar.YEAR, year);
 		this.year = cal.getCalendar().get(Calendar.YEAR);
+		listener.weekChanged();
 	}
 	
 	public void nextWeek(){
@@ -56,6 +60,7 @@ public class CalModel extends AbstractTableModel{
 			cal.getCalendar().set(Calendar.WEEK_OF_YEAR, week);
 			
 		}
+		listener.weekChanged();
 	}
 	public void lastWeek(){
 
@@ -72,6 +77,7 @@ public class CalModel extends AbstractTableModel{
 			week = cal.getCalendar().getActualMaximum(Calendar.WEEK_OF_YEAR);
 			cal.getCalendar().set(Calendar.WEEK_OF_YEAR, week);	
 		}
+		listener.weekChanged();
 	}
 
 	@Override

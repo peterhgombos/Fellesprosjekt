@@ -97,6 +97,31 @@ public class InternalCalendar {
 		return false;
 	}
 	
+	public String getDateForDay(int year, int week, int day){
+		int currentday = 1;
+		if(day == 1 ){
+			currentday = Calendar.MONDAY;
+		}else if(day == 2 ){
+			currentday = Calendar.TUESDAY;
+		}else if(day == 3 ){
+			currentday = Calendar.WEDNESDAY;
+		}else if(day == 4 ){
+			currentday = Calendar.THURSDAY;
+		}else if(day == 5 ){
+			currentday = Calendar.FRIDAY;
+		}else if(day == 6 ){
+			currentday = Calendar.SATURDAY;
+		}else if(day == 7 ){
+			currentday = Calendar.SUNDAY;
+		}
+		
+		calendar.set(Calendar.YEAR, year);
+		calendar.set(Calendar.WEEK_OF_YEAR, week);
+		calendar.set(Calendar.DAY_OF_WEEK, currentday);
+		
+		return " " +calendar.get(Calendar.DAY_OF_MONTH)+"."+ calendar.get(Calendar.MONTH);
+	}
+	
 	public void addAppointment(Appointment appointment){
 		addToCal(appointment);
 	}
