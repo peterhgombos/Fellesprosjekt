@@ -269,6 +269,7 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 			}
 		}
 		else if (m.getType().equals(MessageType.WARNING)) {
+			System.out.println("WARNING");
 			message.setFont(new Font(message.getFont().getName(), Font.BOLD, message.getFont().getSize()));
 			message.setForeground(Color.RED);
 		}

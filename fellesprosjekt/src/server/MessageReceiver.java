@@ -25,11 +25,13 @@ import common.utilities.MessageType;
 
 public class MessageReceiver {
 
-	private HashMap<InetAddress, ClientWriter> clients;
+	private HashMap<InetAddress, ClientWriter> ipClients;
+	private HashMap<Integer, ClientWriter> idClients;
 	private Database database;
 
 	public MessageReceiver() {
-		clients = new HashMap<InetAddress, ClientWriter>();
+		ipClients = new HashMap<InetAddress, ClientWriter>();
+		idClients = new HashMap<Integer, ClientWriter>();
 		database = new Database();
 		database.connect();
 	}
@@ -37,7 +39,7 @@ public class MessageReceiver {
 
 	public synchronized void receiveMessage(InetAddress ip, ComMessage message){
 		String messageType = message.getType();
-		ClientWriter clientWriter = clients.get(ip);
+		ClientWriter clientWriter = ipClients.get(ip);
 
 		if(messageType.equals(MessageType.REQUEST_APPOINTMENTS_AND_MEETINGS)){
 
@@ -65,14 +67,20 @@ public class MessageReceiver {
 			Person authenticatedPerson = requestLogin(message);
 			ComMessage sendLogin = new ComMessage(authenticatedPerson, MessageType.RECEIVE_LOGIN);
 			clientWriter.send(sendLogin);
+			if(authenticatedPerson != null){
+				System.out.println(authenticatedPerson.getPersonID());
+				idClients.put(authenticatedPerson.getPersonID(), clientWriter);
+			}
 		}
 		else if(messageType.equals(MessageType.REQUEST_MEETINGS_AND_APPOINTMENTS_BY_DATE_FILTER)){
 			meetingsandappointmentsbydate(message, clientWriter);
 		}
 		else if(messageType.equals(MessageType.REQUEST_NEW_APPOINTMENT)){
-			newAppointment(message);
+			newAppointment(clientWriter, message);
 		}
 		else if(messageType.equals(MessageType.REQUEST_NEW_MEETING)){
+			//TODO
+			Server.console.writeline("new meeting");
 			newMeeting(message);
 		}
 		else if(messageType.equals(MessageType.REQUEST_NEW_NOTE)){
@@ -140,13 +148,13 @@ public class MessageReceiver {
 		}
 		else if (messageType.equals(MessageType.DELETE_NOTE)) {
 			Server.console.writeline("delete notes");
+			@SuppressWarnings("unchecked")
 			ArrayList<Note> n = (ArrayList<Note>)message.getData();
 			for (Note note : n) {
 				try {
 					database.updateDB(Queries.deleteNote(note.getID()));
 					Server.console.writeline("delete" + note.getTitle());
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -174,7 +182,6 @@ public class MessageReceiver {
 				notes.add(n);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return notes;
@@ -241,7 +248,7 @@ public class MessageReceiver {
 		}
 	}
 
-	private void newAppointment(ComMessage message){
+	private void newAppointment(ClientWriter from, ComMessage message){
 		Appointment newApp = (Appointment) message.getData();
 		try{
 			database.updateDB(Queries.createNewAppointment(newApp.getTitle(), newApp.getDescription(), newApp.getStartTime(), newApp.getEndTime(),newApp.getPlace(), newApp.getLeader().getPersonID()));
@@ -250,7 +257,7 @@ public class MessageReceiver {
 			Appointment appo = resultSetToAppointment(rs).get(0);
 			ComMessage comMesNewApp = new ComMessage(appo, MessageType.RECEIVE_NEW_APPOINTMENT);
 			database.updateDB(Queries.addPersonToAttend(appo.getLeader().getPersonID(), appo.getId()));
-			sendToAll(comMesNewApp);
+			from.send(comMesNewApp);
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -265,14 +272,18 @@ public class MessageReceiver {
 
 			for(Person p : newMeet.getParticipants().keySet()){
 				database.updateDB(Queries.addPersonToAttend(p.getPersonID(), meeti.getId()));
+				ClientWriter cw = idClients.get(p.getPersonID());
+				if(cw != null){
+					cw.send(new ComMessage(null, MessageType.WARNING));
+				}
 			}
 			database.updateDB(Queries.addPersonToAttend(meeti.getLeader().getPersonID(), meeti.getId()));
+			idClients.get(meeti.getLeader().getPersonID()).send(new ComMessage(null, MessageType.WARNING));
 			
-			database.updateDB(Queries.bookRoom(meeti.getId(), meeti.getRoom().getRomId()));
+			if(meeti.getRoom() != null){
+				database.updateDB(Queries.bookRoom(meeti.getId(), meeti.getRoom().getRomId()));
+			}
 			
-			ComMessage comMesNewMeet = new ComMessage(meeti, MessageType.RECEIVE_NEW_MEETING);
-
-			sendToAll(comMesNewMeet);
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -341,10 +352,10 @@ public class MessageReceiver {
 				HashMap<Person, Integer> participants = resultSetToPersonWithAnswer(participantRes);
 
 				Person leader = resutlSetToPerson(database.executeQuery(Queries.getLeaderForMeeting(id))).get(0);
-				
+
 				ArrayList<Room> rom = resultSetToRooms(database.executeQuery(Queries.getRoom(room)));
 				Room orom = rom.size() > 0 ? rom.get(0) : null;
-				
+
 				returnthis.add(new Meeting(id, leader, title, description, place, orom, start, end, participants, external));
 			}
 		}catch(SQLException e){
@@ -447,7 +458,7 @@ public class MessageReceiver {
 	private Note resultSetToSingleNote(ResultSet rs){
 		//		try{
 			//			while(rs.next()){
-		//				ResultSet appointmentResult = database.executeQuery(Queries.getAppointment(rs.getInt("AVTALE")));
+				//				ResultSet appointmentResult = database.executeQuery(Queries.getAppointment(rs.getInt("AVTALE")));
 		//				Appointment app = resultSetToAppointment(appointmentResult).get(0);
 		//				return new Note(rs.getInt("AVTALEID"), rs.getString("TITTEL"), new DateString(rs.getDate("TIDSENDT")), app);
 		//			}
@@ -458,12 +469,17 @@ public class MessageReceiver {
 	}
 
 	public synchronized void addClient(ClientWriter clientWriter){
-		clients.put(clientWriter.getIP(), clientWriter);
+		ipClients.put(clientWriter.getIP(), clientWriter);
 	}
 
-	public synchronized void sendToAll(ComMessage message){
-		for (ClientWriter client : clients.values()) {
-			client.send(message);
+	private synchronized void sendToAll(Meeting m, ComMessage message){
+		System.out.println("sendtoall");
+		for(Person person: m.getParticipants().keySet()){
+			Server.console.writeline(person.getFirstname());
+			ClientWriter cw = idClients.get(person.getPersonID());
+			if(cw != null /*&& person.getPersonID() != m.getLeader().getPersonID()*/){
+				cw.send(message);
+			}
 		}
 	}
 

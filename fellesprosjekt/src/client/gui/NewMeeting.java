@@ -207,7 +207,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String timeEnd = "";
-				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField)> Integer.parseInt(""+ endTimeMinField))){
+				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem())> Integer.parseInt(""+ endTimeMinField.getSelectedItem()))){
 					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
 				}
 				else {
