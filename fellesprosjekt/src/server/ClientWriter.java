@@ -7,10 +7,7 @@ import java.net.Socket;
 
 import common.dataobjects.ComMessage;
 
-
-
 public class ClientWriter{
-	
 	
 	private Socket socket;
 	private ObjectOutputStream writer;
