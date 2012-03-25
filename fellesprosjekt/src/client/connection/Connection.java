@@ -134,4 +134,8 @@ public class Connection  {
 		writer.send(new ComMessage(app, MessageType.DELETE_APPOINTMENT));
 		
 	}
+	
+	public void requestOldNewNotes(ArrayList<Note> note){
+		writer.send(new ComMessage(note, MessageType.GET_OLD_NEW_NOTES));
+	}
 }
