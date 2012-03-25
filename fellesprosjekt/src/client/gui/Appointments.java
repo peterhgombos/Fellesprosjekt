@@ -1,11 +1,8 @@
 package client.gui;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -91,48 +88,51 @@ public class Appointments extends JPanel implements MessageListener{
 		appointmentCheckBox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(appointmentCheckBox.isSelected()){
-					listModel.clear();
-					nyliste.addAll(appointments);
-//					if(meetingCheckBox.isSelected()){
-//						nyliste.addAll(meetings);
-//					}
-				}
-				else{
-					listModel.clear();
-					nyliste.removeAll(appointments);
-//					if(meetingCheckBox.isSelected()){
-//						nyliste.addAll(meetings);
-//					}
-				}
-				Collections.sort(nyliste);
-				for (Appointment appointment : nyliste) {		
-					listModel.addElement(appointment);
-				}
+				displaydata();
+//				if(appointmentCheckBox.isSelected()){
+//					listModel.clear();
+//					nyliste.addAll(appointments);
+////					if(meetingCheckBox.isSelected()){
+////						nyliste.addAll(meetings);
+////					}
+//				}
+//				else{
+//					listModel.clear();
+//					nyliste.removeAll(appointments);
+////					if(meetingCheckBox.isSelected()){
+////						nyliste.addAll(meetings);
+////					}
+//				}
+//				Collections.sort(nyliste);
+//				for (Appointment appointment : nyliste) {		
+//					listModel.addElement(appointment);
+//				}
 			}
 		});
 		meetingCheckBox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(meetingCheckBox.isSelected()){
-					listModel.clear();
-					nyliste.addAll(meetings);
-//					if(appointmentCheckBox.isSelected()){
-//						nyliste.addAll(appointments);
-//					}
-				}
-				else{
-					listModel.clear();
-					nyliste.removeAll(meetings);
-//					if(appointmentCheckBox.isSelected()){
-//						nyliste.addAll(appointments);
-//					}
-				}
-				Collections.sort(nyliste);
-				for (Appointment appointment : nyliste) {		
-					listModel.addElement(appointment);
-				}
+				displaydata();
 			}
+//				if(meetingCheckBox.isSelected()){
+//					listModel.clear();
+//					nyliste.addAll(meetings);
+////					if(appointmentCheckBox.isSelected()){
+////						nyliste.addAll(appointments);
+////					}
+//				}
+//				else{
+//					listModel.clear();
+//					nyliste.removeAll(meetings);
+////					if(appointmentCheckBox.isSelected()){
+////						nyliste.addAll(appointments);
+////					}
+//				}
+//				Collections.sort(nyliste);
+//				for (Appointment appointment : nyliste) {		
+//					listModel.addElement(appointment);
+//				}
+//			}
 			
 		});
 		
@@ -223,28 +223,26 @@ public class Appointments extends JPanel implements MessageListener{
 	public void receiveMessage(ComMessage m) {
 		if(m.getType().equals(MessageType.RECEIVE_APPOINTMENTS_BY_DATE_FILTER )){
 			appointments.clear();
-			for (Appointment a : (Collection<Appointment>)m.getData()) {
+			for (Appointment a : (ArrayList<Appointment>)m.getData()) {
 				appointments.add(a);
 			}
 		}
 		if(m.getType().equals(MessageType.RECEIVE_MEETINGS_BY_DATE_FILTER)){
 			meetings.clear();
-			for (Meeting me : (Collection<Meeting>)m.getData()) {
-				appointments.add(me);
+			for (Meeting me : (ArrayList<Meeting>)m.getData()) {
+				meetings.add(me);
 			}
 		}
-		System.out.println(appointments + " " + meetings + " " + nyliste);
-		//displaydata();
-		System.out.println(appointments + " " + meetings + " " + nyliste);
-		
+		displaydata();
 	}
 	private void displaydata(){
 		listModel.clear();
+		nyliste.clear();
 		if(meetingCheckBox.isSelected()){
-			nyliste.addAll(appointments);
+			nyliste.addAll(meetings);
 		}
 		if(appointmentCheckBox.isSelected()){
-			nyliste.addAll(meetings);
+			nyliste.addAll(appointments);
 		}
 		Collections.sort(nyliste);
 		for (Appointment appointment : nyliste) {		

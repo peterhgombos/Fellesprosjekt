@@ -205,8 +205,8 @@ public class MessageReceiver {
 			ResultSet appointmentResult = database.executeQuery(Queries.getAppointments(personid)); //Get the appointments where the person is a participants	
 			ResultSet meetingResult = database.executeQuery(Queries.getMeetings(personid)); //Get the meetings where the person is a participants	
 
-			Collection<Appointment> appointments = resultSetToAppointment(appointmentResult);
-			Collection<Meeting> meetings = resultSetToMeeting(meetingResult);
+			ArrayList<Appointment> appointments = resultSetToAppointment(appointmentResult);
+			ArrayList<Meeting> meetings = resultSetToMeeting(meetingResult);
 
 			System.out.println("møter:");
 			for (Meeting meeting : meetings) {
