@@ -3,6 +3,8 @@ package client.gui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -59,12 +61,14 @@ public class Appointments extends JPanel implements MessageListener{
 	
 	private LinkedList<Appointment> appointments;
 	private LinkedList<Meeting> meetings;
+	private LinkedList<Appointment> nyliste = new LinkedList<Appointment>();
 	
 	private Date defaultDate = new Date(System.currentTimeMillis());
 	
 	public Appointments(CalendarPanel calendarPanel) {
 		appointments = new LinkedList<Appointment>();
 		meetings = new LinkedList<Meeting>();
+		nyliste = new LinkedList<Appointment>();
 		
 		//ArrayList<Appointment> appointmentArrayList = new ArrayList<Appointment>();
 		calendarpanel = calendarPanel;
@@ -81,22 +85,56 @@ public class Appointments extends JPanel implements MessageListener{
 		
 		appointmentCheckBox = new JCheckBox("Personlige Avtaler");
 		meetingCheckBox = new JCheckBox("Møter");
+		appointmentCheckBox.setSelected(true);
+		meetingCheckBox.setSelected(true);		
 		
 		appointmentCheckBox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				displaydata();
+				if(appointmentCheckBox.isSelected()){
+					listModel.clear();
+					nyliste.addAll(appointments);
+//					if(meetingCheckBox.isSelected()){
+//						nyliste.addAll(meetings);
+//					}
+				}
+				else{
+					listModel.clear();
+					nyliste.removeAll(appointments);
+//					if(meetingCheckBox.isSelected()){
+//						nyliste.addAll(meetings);
+//					}
+				}
+				Collections.sort(nyliste);
+				for (Appointment appointment : nyliste) {		
+					listModel.addElement(appointment);
+				}
 			}
 		});
 		meetingCheckBox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				displaydata();
+				if(meetingCheckBox.isSelected()){
+					listModel.clear();
+					nyliste.addAll(meetings);
+//					if(appointmentCheckBox.isSelected()){
+//						nyliste.addAll(appointments);
+//					}
+				}
+				else{
+					listModel.clear();
+					nyliste.removeAll(meetings);
+//					if(appointmentCheckBox.isSelected()){
+//						nyliste.addAll(appointments);
+//					}
+				}
+				Collections.sort(nyliste);
+				for (Appointment appointment : nyliste) {		
+					listModel.addElement(appointment);
+				}
 			}
+			
 		});
-		
-		appointmentCheckBox.setSelected(true);
-		meetingCheckBox.setSelected(true);
 		
 		startDateField = new JTextField();
 		endDateField = new JTextField();
@@ -132,6 +170,7 @@ public class Appointments extends JPanel implements MessageListener{
 			}
 		});
 		
+		displaydata();
 		add(headlineLabel);
 		add(dateLabel);
 		add(startDateLabel);
@@ -194,10 +233,12 @@ public class Appointments extends JPanel implements MessageListener{
 				appointments.add(me);
 			}
 		}
-		displaydata();
+		System.out.println(appointments + " " + meetings + " " + nyliste);
+		//displaydata();
+		System.out.println(appointments + " " + meetings + " " + nyliste);
+		
 	}
 	private void displaydata(){
-		LinkedList<Appointment> nyliste = new LinkedList<Appointment>();
 		listModel.clear();
 		if(meetingCheckBox.isSelected()){
 			nyliste.addAll(appointments);
@@ -210,4 +251,6 @@ public class Appointments extends JPanel implements MessageListener{
 			listModel.addElement(appointment);
 		}
 	}
+	
+	
 }

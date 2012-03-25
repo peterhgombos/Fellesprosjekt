@@ -208,6 +208,15 @@ public class MessageReceiver {
 			Collection<Appointment> appointments = resultSetToAppointment(appointmentResult);
 			Collection<Meeting> meetings = resultSetToMeeting(meetingResult);
 
+			System.out.println("møter:");
+			for (Meeting meeting : meetings) {
+				System.out.println(meeting.getTitle());
+			}
+			System.out.println("Avtaler");
+			for (Appointment app : appointments) {
+				System.out.println(app.getTitle());
+			}
+			
 			ComMessage sendapp = new ComMessage(appointments, MessageType.RECEIVE_APPOINTMENTS_BY_DATE_FILTER);
 			ComMessage sendmeet = new ComMessage(meetings, MessageType.RECEIVE_MEETINGS_BY_DATE_FILTER);
 
