@@ -35,6 +35,34 @@ public class Queries {
 				");";
 	}
 
+	public static String getMeetingsByDate(int personid, DateString startDate, DateString endDate){
+		return 	"SELECT AVTALE. * " +  
+				"FROM AVTALE, DELTAKER " + 
+				"WHERE DELTAKER.ANSATTNR = " + personid + " " +
+				"AND DELTAKER.AVTALEID = AVTALE.AVTALEID AND AVTALE.TIDSPUNKT " +
+				"BETWEEN  " + startDate + " AND "+ endDate + " " +
+				"AND EXISTS ( " + 
+				"SELECT  * " +
+				"FROM DELTAKER " +
+				"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID " +
+				"AND NOT DELTAKER.ANSATTNR = AVTALE.LEDER " +
+				");";
+	}
+	
+	public static String getAppointmentsByDate(int personid, DateString startDate, DateString endDate){
+		return	"SELECT AVTALE.* " +
+				"FROM AVTALE " +
+				"WHERE AVTALE.LEDER = " + personid + " " + 
+				"AND AVTALE.TIDSPUNKT " +
+				"BETWEEN " + startDate + " AND " + endDate + " " + 
+				"AND NOT EXISTS( " +
+				"SELECT * " +
+				"FROM DELTAKER " +
+				"WHERE DELTAKER.AVTALEID = AVTALE.AVTALEID " +
+				"AND NOT DELTAKER.ANSATTNR = AVTALE.LEDER " +
+				");";
+	}
+	
 	public static String getLeaderForMeeting(int avtaleid){
 		return 	"SELECT ANSATT.* " +
 				"FROM ANSATT, AVTALE " + 
