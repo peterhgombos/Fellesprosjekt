@@ -211,24 +211,17 @@ public class Queries {
 		return	"INSERT INTO DELTAKER (ANSATTNR, AVTALEID, SVAR) " +
 				"VALUES (" + personId + ", " + appId + ", 0);";
 	}
-	public static String setAnswer(int personId, int appId, int answer){
-		return	"UPDATE DELTAKER " +
-				"SET SVAR = " + answer + " " +
-				"WHERE DELTAKER.ANSATTNR = " + personId + " " +
-				"AND DELTAKER.AVTALEID = " + appId + ";";
-	}
 
 	public static String getRoomsForTimeSlot(DateString start, DateString end, int capacity) {
-		return 	"SELECT DISTINCT MOTEROM.* " +
+		return 	"SELECT DISTINCT MOTEROM .  * " +
 				"FROM MOTEROM, AVTALE " +
-				"WHERE NOT EXISTS ( " +
-				"SELECT * " +
+				"WHERE MOTEROM.KAPASITET >= " + capacity + 
+				" AND " +
+				"NOT EXISTS ( "+
+				"SELECT  * " +
 				"FROM AVTALE AS B " +
-				"WHERE '" + start + "' <= B.SLUTTIDSPUNKT " +
-				"AND '" + end + "' >= B.TIDSPUNKT " +
-				"AND B.ROMNR = MOTEROM.ROMNR" +
-				"AND MOTEROM.KAPASITET >= " + capacity + " " +
-				");";
+				"WHERE '" + end + "' <= B.SLUTTIDSPUNKT " +
+				"AND  ' " + start + "' >= B.TIDSPUNKT AND B.ROMNR = MOTEROM.ROMNR ); ";
 	}
 
 	public static String bookRoom(int appId, String roomId){
