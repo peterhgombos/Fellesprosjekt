@@ -40,7 +40,7 @@ public class Queries {
 				"FROM AVTALE, DELTAKER " + 
 				"WHERE DELTAKER.ANSATTNR = " + personid + " " +
 				"AND DELTAKER.AVTALEID = AVTALE.AVTALEID AND AVTALE.TIDSPUNKT " +
-				"BETWEEN  " + startDate + " AND "+ endDate + " " +
+				"BETWEEN  '" + startDate + "' AND '"+ endDate + "' " +
 				"AND EXISTS ( " + 
 				"SELECT  * " +
 				"FROM DELTAKER " +
@@ -54,7 +54,7 @@ public class Queries {
 				"FROM AVTALE " +
 				"WHERE AVTALE.LEDER = " + personid + " " + 
 				"AND AVTALE.TIDSPUNKT " +
-				"BETWEEN " + startDate + " AND " + endDate + " " + 
+				"BETWEEN '" + startDate + "' AND '" + endDate + "' " + 
 				"AND NOT EXISTS( " +
 				"SELECT * " +
 				"FROM DELTAKER " +
