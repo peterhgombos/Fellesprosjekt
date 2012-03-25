@@ -279,4 +279,12 @@ public class Queries {
 				"DELTAKER WHERE AVTALE.AVTALEID = " + appID +
 				" AND AVTALE.AVTALEID = DELTAKER.AVTALEID;";
 	}
+	
+	public static String oldNewNotes(int personID){
+		return "SELECT VARSEL.* " +
+				"FROM VARSEL, HAR_MOTTATT " +
+				"WHERE VARSEL.VARSELID = HAR_MOTATT.VARSELID " +
+				"AND HAR_MOTTATT.HAR_LEST = 0 " +
+				"AND HAR_MOTTATT.ANSATTNR = " + personID ;
+	}
 }
