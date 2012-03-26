@@ -48,6 +48,7 @@ public class CalendarPanel extends JPanel {
 		
 		calendarPanel = new Calendar(this);
 		calendarPanel.setBounds(sidePanel.getX() + sidePanel.getWidth(), 0, 1000, 700);
+		ServerData.getCalendar().reset();
 		ServerData.requestAppointmentsAndMeetings(Client.getUser());
 		calendarPanel.repaint();
 		
