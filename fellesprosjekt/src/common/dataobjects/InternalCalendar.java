@@ -37,12 +37,16 @@ public class InternalCalendar {
 		int day = dayToWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
 		int hourInWeek = day * 24 + calendar.get(Calendar.HOUR_OF_DAY);
 
-		calendar.set(app.getEndTime().getYear(), app.getEndTime().getMonth() -1, app.getEndTime().getDay(), app.getEndTime().getHour(), 0);
+		calendar.set(app.getEndTime().getYear(), app.getEndTime().getMonth() -1, app.getEndTime().getDay(), app.getEndTime().getHour(), app.getEndTime().getMinute());
 		int eYear = calendar.get(Calendar.YEAR);
 		int eDay = dayToWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
 		int eWeek = calendar.get(Calendar.WEEK_OF_YEAR);
 		int eHourInWeek = eDay * 24 + calendar.get(Calendar.HOUR_OF_DAY);
-
+		
+		int eMin = calendar.get(Calendar.MINUTE);
+		if(eMin > 15){
+			eHourInWeek++;
+		}
 
 		
 		int weeks = 1;
