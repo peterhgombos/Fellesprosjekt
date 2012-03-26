@@ -97,9 +97,9 @@ public class NewMeeting extends JPanel implements MessageListener{
 	}
 	
 	public NewMeeting(CalendarPanel pal, Meeting meet){
+		isInEdit=true;
 		init(pal);
 		
-		isInEdit=true;
 		
 		headlineLabel.setText("Rediger: " + meet.getTitle());
 		nameField.setText(meet.getTitle());
