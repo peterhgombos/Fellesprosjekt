@@ -206,6 +206,15 @@ public class MessageReceiver {
 			ComMessage sendNotes = new ComMessage(n, MessageType.RECEIVE_SEARCH_NOTES);
 			clientWriter.send(sendNotes);
 		}
+		
+		else if (messageType.equals(MessageType.UPDATE_NOTE_AS_READ)) {
+			Note n = (Note) message.getData();
+			try {
+				database.updateDB(Queries.upDateNoteToPerson(n.getPersonId(), n.getID()));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private ArrayList<Note> resultSetToNotes(ResultSet rs){

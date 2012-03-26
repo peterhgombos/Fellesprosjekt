@@ -55,6 +55,7 @@ public class MessageType {
 	public static final String WARNING = "warning";
 	public static final String DELETE_APPOINTMENT = "deleteAppointment";
 	public static final String GET_OLD_NEW_NOTES = "getOldNewNotes";
+	public static final String UPDATE_NOTE_AS_READ = "upDateNoteToPerson";
 	
 	
 }

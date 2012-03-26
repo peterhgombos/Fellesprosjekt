@@ -145,7 +145,7 @@ public class Queries {
 	
 	public static String upDateNoteToPerson(int personID, int noteID){
 		return "UPDATE HAR_MOTTATT SET HAR_LEST = 1 "+
-				"WHERE PERSONID = " + personID  + 
+				"WHERE ANSATTNR = " + personID  + 
 				" AND VARSELID = " + noteID + " ;";
 	}
 	//	

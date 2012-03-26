@@ -152,4 +152,9 @@ public class Connection  {
 	public void requestOldNewNotes(ArrayList<Note> note){
 		writer.send(new ComMessage(note, MessageType.GET_OLD_NEW_NOTES));
 	}
+	
+	public void updateNoteAsReadForPerson(Person p, Note n) {
+		n.setPersonId(p.getPersonID());
+		writer.send(new ComMessage(n, MessageType.UPDATE_NOTE_AS_READ));
+	}
 }

@@ -185,4 +185,8 @@ public class ServerData {
 		connection.requestOldNewNotes(notes);
 	}
 	
+	public static void markNoteAsRead(Person person, Note note) {
+		connection.updateNoteAsReadForPerson(person, note);
+	}
+	
 }

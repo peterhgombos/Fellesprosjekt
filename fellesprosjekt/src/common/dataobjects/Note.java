@@ -8,6 +8,7 @@ import common.utilities.DateString;
 public class Note implements Serializable{
 
 	private static final long serialVersionUID = 1775497913240870440L;
+	private int personId;
 	private int id;
 	private String title;
 	private DateString timeAdded;
@@ -51,5 +52,13 @@ public class Note implements Serializable{
 	@Override
 	public String toString() {
 		return this.title;
+	}
+
+	public int getPersonId() {
+		return personId;
+	}
+
+	public void setPersonId(int personId) {
+		this.personId = personId;
 	}
 }
