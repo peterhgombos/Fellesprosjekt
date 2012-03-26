@@ -1,6 +1,9 @@
 package client.connection;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -24,10 +27,17 @@ public class Connection  {
 	private Socket socket;
 	private ServerWriter writer;
 	private LinkedList<ConnectionListener> listeners;
+	private BufferedReader reader;
+	private FileReader filereader;
 
 	public void connect() throws IOException {
+		filereader = new FileReader("res/adress");
+		reader = new BufferedReader(filereader);
+		String adress = reader.readLine();
+		reader.close();
+		filereader.close();
 		socket = new Socket();
-		socket.connect(new InetSocketAddress("localhost", Server.PORT));
+		socket.connect(new InetSocketAddress(adress, Server.PORT));
 		ServerReader serverReader = new ServerReader(socket, this);
 		serverReader.start();
 		writer = new ServerWriter(socket);
