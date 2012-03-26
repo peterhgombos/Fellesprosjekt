@@ -80,7 +80,7 @@ public class CalendarPanel extends JPanel {
 		frame.repaint();
 	}
 	
-	public void goToEditAppointmet(Appointment app){
+	public void goToEditAppointment(Appointment app){
 		removeAllComponents();
 		newAppointmentPanel = new NewAppointment(this, app);
 		newAppointmentPanel.setBounds(sidePanel.getX() + sidePanel.getWidth(), 0, 900, 700);
