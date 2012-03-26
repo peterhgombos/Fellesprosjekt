@@ -108,6 +108,15 @@ public class NewMeeting extends JPanel implements MessageListener{
 		isInEdit=true;
 		init(pal);
 		
+		DateString sdm = meet.getStartTime();
+		DateString edm = meet.getEndTime();
+		
+		GregorianCalendar gcal = new GregorianCalendar();
+		gcal.set(sdm.getYear(), sdm.getMonth(), sdm.getDay(), sdm.getHour(), sdm.getMinute());
+		datepicker.setDate(gcal.getTime());
+		
+		gcal.set(edm.getYear(), edm.getMonth(), edm.getDay(), edm.getHour(), edm.getMinute());
+		datepickerDays.setDate(gcal.getTime());
 		
 		headlineLabel.setText("Rediger: " + meet.getTitle());
 		nameField.setText(meet.getTitle());
