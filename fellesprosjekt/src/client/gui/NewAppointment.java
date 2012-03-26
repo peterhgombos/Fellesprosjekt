@@ -67,6 +67,9 @@ public class NewAppointment extends JPanel{
 
 	public NewAppointment(CalendarPanel pal){
 		init(pal);
+		datepicker.setDate(defaultDate);
+		endDPicker.setDate(datepicker.getDate());
+		
 		GregorianCalendar cal = new GregorianCalendar();
 		cal.setTimeInMillis(System.currentTimeMillis());
 		endTimeHoursField.setSelectedIndex(cal.get(Calendar.HOUR_OF_DAY) +1);
@@ -89,10 +92,10 @@ public class NewAppointment extends JPanel{
 		
 		nameField = new JTextField();
 		datepicker = new JDateChooser();
-		datepicker.setDate(defaultDate);
+		
 		datepicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		endDPicker = new JDateChooser();
-		endDPicker.setDate(datepicker.getDate());
+		
 		endDPicker.setEnabled(false);
 		endDPicker.setVisible(false);
 		endDPicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
@@ -296,9 +299,9 @@ endTimeHoursField.addActionListener(new ActionListener() {
 		nameField.setText(app.getTitle());
 		
 		startTimeHoursField.setSelectedIndex(app.getStartTime().getHour());
-		startTimeMinField.setSelectedIndex(app.getStartTime().getMinute());
+		startTimeMinField.setSelectedItem(""+app.getStartTime().getMinute());
 		endTimeHoursField.setSelectedIndex(app.getEndTime().getHour());
-		endTimeMinField.setSelectedIndex(app.getEndTime().getMinute());
+		endTimeMinField.setSelectedItem(""+app.getEndTime().getMinute());
 		
 		descriptionArea.setText(app.getDescription());
 		placeField.setText(app.getPlace());
