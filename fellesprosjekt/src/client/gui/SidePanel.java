@@ -259,7 +259,7 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 	@SuppressWarnings("unchecked")
 	@Override
 	public void receiveMessage(ComMessage m) {
-		if(m.getType().equals(MessageType.RECEIVE_SEARCH_PERSON)){
+		if(m.getType().equals(MessageType.RECEIVE_SEARCH_PERSON) && !calendarpanel.getSearchInSidePanel()){
 			employeeListModel.clear();
 			Collection<Person> persons = (Collection<Person>)m.getData();
 			for (Person person : persons) {

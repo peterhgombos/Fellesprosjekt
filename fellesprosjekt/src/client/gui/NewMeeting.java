@@ -392,6 +392,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 		
 		Client.getFrame().resize(GuiConstants.FRAME_WIDTH+1, GuiConstants.FRAME_HEIGTH+1);
 		Client.getFrame().resize(GuiConstants.FRAME_WIDTH, GuiConstants.FRAME_HEIGTH);
+		
 	}
 	
 	public void resize(){

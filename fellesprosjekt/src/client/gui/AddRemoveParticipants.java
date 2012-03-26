@@ -64,6 +64,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 	
 	public AddRemoveParticipants(CalendarPanel calendarPanel, NewMeeting meeting) {
 		
+		CalendarPanel.setSearchInSidePanelTrue();
 		thisAddRemoveParticipants = this;
 		newMeeting = meeting;
 		
@@ -150,7 +151,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 				frame.dispose();
 				ServerData.removeMessageListener(thisAddRemoveParticipants);
 				newMeeting.setNumberOfParticipants(Integer.parseInt(externalParticipantsField.getText()));
-
+				CalendarPanel.setSearchInSidePanelFalse();
 			}
 		});
 		
@@ -160,6 +161,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 			public void actionPerformed(ActionEvent e) {
 				ServerData.removeMessageListener(thisAddRemoveParticipants);
 				frame.dispose();
+				CalendarPanel.setSearchInSidePanelFalse();
 			}
 		});
 		
