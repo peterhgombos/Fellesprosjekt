@@ -246,7 +246,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String timeEnd = "";
-				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem()) > Integer.parseInt(""+ endTimeMinField.getSelectedItem())) || isInEdit){
+				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem()) > Integer.parseInt(""+ endTimeMinField.getSelectedItem())) || !isInEdit){
 					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
 					return;
 				}
