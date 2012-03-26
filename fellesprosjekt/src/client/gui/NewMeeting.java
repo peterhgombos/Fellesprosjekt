@@ -97,9 +97,9 @@ public class NewMeeting extends JPanel implements MessageListener{
 	}
 	
 	public NewMeeting(CalendarPanel pal, Meeting meet){
+		isInEdit=true;
 		init(pal);
 		
-		isInEdit=true;
 		
 		headlineLabel.setText("Rediger: " + meet.getTitle());
 		nameField.setText(meet.getTitle());
@@ -193,7 +193,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 			public void actionPerformed(ActionEvent arg0) {
 				String timeEnd = "";
 				
-				if(Integer.parseInt(""+endTimeHoursField.getSelectedItem()) >= Integer.parseInt(""+startTimeHoursField.getSelectedItem())){
+				if(Integer.parseInt(""+endTimeHoursField.getSelectedItem()) >= Integer.parseInt(""+startTimeHoursField.getSelectedItem()) || isInEdit){
 					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
 				}
 				else {
