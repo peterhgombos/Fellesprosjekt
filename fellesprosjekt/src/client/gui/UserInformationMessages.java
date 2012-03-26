@@ -17,4 +17,9 @@ public class UserInformationMessages  {
 	public static void showErrormessage(String message){
 		JOptionPane.showMessageDialog(null, message,"FEIL!",JOptionPane.ERROR_MESSAGE);
 	}
+	
+	public static boolean showConfirmationMessage(String message) {
+		 int s = JOptionPane.showConfirmDialog(null, message, "", JOptionPane.YES_NO_OPTION);
+		 return (s == JOptionPane.YES_OPTION ? true : false);
+	}
 }

@@ -145,9 +145,11 @@ public class AppointmentView extends JPanel{
 		cancelButton = new JButton("Avlys");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ServerData.deleteAppointment(appointment);
-				UserInformationMessages.showMessage(appointment.getTitle() + " er slettet");
-				calendarpanel.goToMyAppointments();
+				if (UserInformationMessages.showConfirmationMessage("Vil du slette avtalen?")) {
+					ServerData.deleteAppointment(appointment);
+					//UserInformationMessages.showMessage(appointment.getTitle() + " er slettet");
+					calendarpanel.goToMyAppointments();
+				}
 			}
 		});
 
