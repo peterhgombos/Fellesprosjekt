@@ -88,6 +88,7 @@ public class NewAppointment extends JPanel{
 		datepicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		endDPicker = new JDateChooser();
 		endDPicker.setDate(datepicker.getDate());
+		endDPicker.setEnabled(false);
 		endDPicker.setVisible(false);
 		endDPicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		severalDaysLabel = new JLabel("Flere dager");
@@ -120,6 +121,7 @@ public class NewAppointment extends JPanel{
 				
 				String dateStart = datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); 
 				String dateEnd;
+				
 				if (endDPicker.isEnabled()) {
 					
 					dateEnd = endDPicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (endDPicker.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + "-" + endDPicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); 
