@@ -169,6 +169,78 @@ public class NewAppointment extends JPanel{
 		startTimeMinField = new JComboBox(min);
 		endTimeMinField = new JComboBox(min);
 		
+endTimeHoursField.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String timeEnd = "";
+				
+				if(Integer.parseInt(""+endTimeHoursField.getSelectedItem()) >= Integer.parseInt(""+startTimeHoursField.getSelectedItem()) || isInEdit){
+					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
+				}
+				else {
+					endTimeHoursField.setSelectedIndex(1);
+					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
+					return;
+				}
+				
+			}
+		});
+		
+		endTimeMinField.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String timeEnd = "";
+				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem())> Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
+					endTimeMinField.setSelectedIndex(0);
+					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
+					return;
+				}
+				else{
+
+					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
+
+				}
+				
+			}
+		});
+		
+		startTimeHoursField.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String timeEnd = "";
+				
+				if(Integer.parseInt(""+endTimeHoursField.getSelectedItem()) >= Integer.parseInt(""+startTimeHoursField.getSelectedItem()) || isInEdit){
+					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
+				}
+				else {
+					startTimeHoursField.setSelectedIndex(0);
+					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
+					return;
+				}
+				
+			}
+		});
+		
+		startTimeMinField.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String timeEnd = "";
+				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem()) > Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
+					startTimeMinField.setSelectedIndex(0);
+					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
+					return;
+				}
+				else {
+					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
+				}
+				
+			}
+		});
+		
 		scrollPane = new JScrollPane(descriptionArea);
 		
 		setLayout(null);

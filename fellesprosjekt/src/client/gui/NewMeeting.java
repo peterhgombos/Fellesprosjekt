@@ -202,7 +202,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
 				}
 				else {
-					endTimeHoursField.setSelectedIndex(0);
+					endTimeHoursField.setSelectedIndex(1);
 					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
 					return;
 				}
@@ -215,7 +215,8 @@ public class NewMeeting extends JPanel implements MessageListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String timeEnd = "";
-				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem())> Integer.parseInt(""+ endTimeMinField.getSelectedItem())) || !isInEdit){
+				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem())> Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
+					endTimeMinField.setSelectedIndex(0);
 					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
 					return;
 				}
@@ -238,7 +239,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
 				}
 				else {
-					endTimeHoursField.setSelectedIndex(0);
+					startTimeHoursField.setSelectedIndex(0);
 					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
 					return;
 				}
@@ -251,7 +252,8 @@ public class NewMeeting extends JPanel implements MessageListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String timeEnd = "";
-				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem()) > Integer.parseInt(""+ endTimeMinField.getSelectedItem())) || !isInEdit){
+				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem()) > Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
+					startTimeMinField.setSelectedIndex(0);
 					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
 					return;
 				}
