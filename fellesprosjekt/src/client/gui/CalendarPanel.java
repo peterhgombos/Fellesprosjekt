@@ -23,6 +23,8 @@ public class CalendarPanel extends JPanel {
 	private Appointments myAppointments;
 	private AppointmentView appView;
 	
+	private static boolean notSearchInSidePanel = false;
+	
 	private JFrame frame;
 	
 	public CalendarPanel(Client client){
@@ -157,5 +159,16 @@ public class CalendarPanel extends JPanel {
 			remove(appView);
 		}
 		client.getFrame().repaint();
+	}
+	
+	public static void setSearchInSidePanelTrue(){
+		notSearchInSidePanel = true;
+	}
+	
+	public static void setSearchInSidePanelFalse(){
+		notSearchInSidePanel = false;
+	}
+	public boolean getSearchInSidePanel(){
+		return notSearchInSidePanel;
 	}
 }
