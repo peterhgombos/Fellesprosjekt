@@ -67,12 +67,12 @@ public class AppointmentView extends JPanel{
 	private String numberOfParticipants;
 	private CalendarPanel calendarpanel;
 
-	private Meeting appointment;
+	private Appointment appointment;
 
 	private AppointmentView thisAppointmentView;
 
 	@SuppressWarnings("deprecation")
-	public AppointmentView(CalendarPanel calendarPanel, Meeting app) {
+	public AppointmentView(CalendarPanel calendarPanel, Appointment app) {
 		appointment = app;
 		calendarpanel = calendarPanel;
 		thisAppointmentView = this;
@@ -324,28 +324,31 @@ public class AppointmentView extends JPanel{
 					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
 			toCalendarButton.setBounds(rejectButton.getX() + rejectButton.getWidth() + GuiConstants.DISTANCE, 
 					placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 110, 35);
+			if(appointment instanceof Meeting){
+				
+				Meeting m = (Meeting)appointment;
+				System.out.println(m.getANSWERSParticipants().get(Client.getUser().getPersonID()));
 
-			System.out.println(appointment.getANSWERSParticipants().get(Client.getUser().getPersonID()));
-			
-			if(appointment.getANSWERSParticipants().get(Client.getUser().getPersonID()) == Meeting.SVAR_BLANK){
-				accpectButton.setEnabled(true);
-				rejectButton.setEnabled(true);
+				if(m.getANSWERSParticipants().get(Client.getUser().getPersonID()) == Meeting.SVAR_BLANK){
+					accpectButton.setEnabled(true);
+					rejectButton.setEnabled(true);
+				}
+				else if (m.getANSWERSParticipants().get(Client.getUser().getPersonID()) == Meeting.SVAR_OK){
+					accpectButton.setEnabled(false);
+					rejectButton.setEnabled(true);
+				}
+				else{
+					accpectButton.setEnabled(true);
+					rejectButton.setEnabled(false);
+				}
 			}
-			else if (appointment.getANSWERSParticipants().get(Client.getUser().getPersonID()) == Meeting.SVAR_OK){
-				accpectButton.setEnabled(false);
-				rejectButton.setEnabled(true);
-			}
+
 			else{
-				accpectButton.setEnabled(true);
-				rejectButton.setEnabled(false);
-			}
-		}	
-		//		}
-	//		else{
-		//			cancelButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
-		//			cancelButton.setText("Slett");
-		//			editButton.setBounds(cancelButton.getX() + cancelButton.getWidth() + GuiConstants.DISTANCE , cancelButton.getY(), 80, 35);
-		//			toCalendarButton.setBounds(editButton.getX() + editButton.getWidth() + GuiConstants.DISTANCE, editButton.getY(), 110, 35);
-		//		}	
-	}
-}
+				cancelButton.setBounds(placeInput.getX(), placeLabel.getY() + placeLabel.getHeight() + GuiConstants.GROUP_DISTANCE, 80, 35);
+				cancelButton.setText("Slett");
+				editButton.setBounds(cancelButton.getX() + cancelButton.getWidth() + GuiConstants.DISTANCE , cancelButton.getY(), 80, 35);
+				toCalendarButton.setBounds(editButton.getX() + editButton.getWidth() + GuiConstants.DISTANCE, editButton.getY(), 110, 35);
+			}	
+		}
+		
+	}}
