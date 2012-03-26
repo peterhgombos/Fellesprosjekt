@@ -43,7 +43,7 @@ public class Connection  {
 		writer = new ServerWriter(socket);
 	}
 	
-	public void disConnect()  {
+	public void disconnect()  {
 		try{
 			socket.close();
 		}catch(IOException e){
@@ -142,6 +142,9 @@ public class Connection  {
 	}
 	public void requestUpdateAppointment(Appointment app){
 		writer.send(new ComMessage(app, MessageType.REQUEST_UPDATE_APPOINTMENT));
+	}
+	public void requestUpdateMeeting(Meeting meet) {
+		writer.send(new ComMessage(meet, MessageType.REQUEST_UPDATE_MEETING));
 	}
 
 	public void deleteAppointment(Appointment app) {
