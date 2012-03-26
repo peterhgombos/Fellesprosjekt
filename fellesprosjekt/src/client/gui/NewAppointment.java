@@ -87,7 +87,7 @@ public class NewAppointment extends JPanel{
 		datepicker.setDate(defaultDate);
 		datepicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		endDPicker = new JDateChooser();
-		endDPicker.setDate(defaultDate);
+		endDPicker.setDate(datepicker.getDate());
 		endDPicker.setVisible(false);
 		endDPicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		severalDaysLabel = new JLabel("Flere dager");
@@ -124,6 +124,7 @@ public class NewAppointment extends JPanel{
 					dateEnd = endDPicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (endDPicker.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + "-" + endDPicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); 
 				} else {
 					dateEnd = dateStart;
+					
 				}
 				
 				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem() + ":0";
@@ -143,10 +144,10 @@ public class NewAppointment extends JPanel{
 					Appointment a = new Appointment(existingAppointmentId, Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
 					ServerData.requestUpdateAppointment(a);
 				}
-				else{
-					Appointment a = new Appointment(-1, Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
-					ServerData.requestNewAppointment(a);
-				}
+				
+				Appointment a = new Appointment(-1, Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
+				ServerData.requestNewAppointment(a);
+			
 				
 				calendar.goToCalender();
 			}
