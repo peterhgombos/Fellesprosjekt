@@ -210,7 +210,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String timeEnd = "";
-				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem())> Integer.parseInt(""+ endTimeMinField.getSelectedItem()))){
+				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem())> Integer.parseInt(""+ endTimeMinField.getSelectedItem())) || !isInEdit){
 					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
 					return;
 				}
@@ -229,7 +229,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 			public void actionPerformed(ActionEvent arg0) {
 				String timeEnd = "";
 				
-				if(Integer.parseInt(""+endTimeHoursField.getSelectedItem()) >= Integer.parseInt(""+startTimeHoursField.getSelectedItem())){
+				if(Integer.parseInt(""+endTimeHoursField.getSelectedItem()) >= Integer.parseInt(""+startTimeHoursField.getSelectedItem()) || isInEdit){
 					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
 				}
 				else {
@@ -246,7 +246,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String timeEnd = "";
-				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem()) > Integer.parseInt(""+ endTimeMinField.getSelectedItem()))){
+				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem()) > Integer.parseInt(""+ endTimeMinField.getSelectedItem())) || isInEdit){
 					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
 					return;
 				}
