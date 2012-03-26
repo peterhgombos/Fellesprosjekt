@@ -115,6 +115,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 		
 		existingAppointmentId = meet.getId();
 		
+		numberOfParticipants = meet.getNumberOfParticipants();
 		
 	}
 	

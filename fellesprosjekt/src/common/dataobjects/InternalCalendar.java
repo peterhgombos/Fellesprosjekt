@@ -140,7 +140,7 @@ public class InternalCalendar {
 		calendar.set(Calendar.WEEK_OF_YEAR, week);
 		calendar.set(Calendar.DAY_OF_WEEK, currentday);
 
-		return " " +calendar.get(Calendar.DAY_OF_MONTH)+"."+ calendar.get(Calendar.MONTH);
+		return " " +calendar.get(Calendar.DAY_OF_MONTH)+"."+ (calendar.get(Calendar.MONTH)+1);
 	}
 
 	public void addAppointment(Appointment appointment){

@@ -37,7 +37,7 @@ public class Calendar extends JPanel implements MessageListener {
 	
 	public void weekChanged(){
 		for(int i = 1; i < table.getModel().getColumnCount(); i++){
-			table.getColumnModel().getColumn(i).setHeaderValue(dayName[i] + "" + ServerData.getCalendar().getDateForDay(calModel.getYear(), calModel.getWeek(), i));
+			table.getColumnModel().getColumn(i).setHeaderValue(dayName[i] + "" +  ServerData.getCalendar().getDateForDay(calModel.getYear(), calModel.getWeek(), i));
 		}
 	}
 	
