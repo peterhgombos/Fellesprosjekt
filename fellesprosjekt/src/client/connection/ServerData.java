@@ -116,34 +116,20 @@ public class ServerData {
 		
 		if(messageType.equals(MessageType.RECEIVE_APPOINTMENTS)){
 			Collection<Appointment> apps = (Collection<Appointment>)message.getData();
-			calendar.reset();
 			calendar.addAppointments(apps);
 		}
 		else if(messageType.equals(MessageType.RECEIVE_MEETINGS)){
 			Collection<Meeting> meets = (Collection<Meeting>)message.getData();
-			calendar.reset();
 			calendar.addMeetings(meets);
 		}
 		else if(messageType.equals(MessageType.RECEIVE_NEW_APPOINTMENT)){
 			Appointment app = (Appointment)message.getData();
-//			appointments.put(app.getId(), app);
-//			persons.put(app.getLeader().getPersonID(), app.getLeader());
 			calendar.addAppointment(app);
 		}
 		else if(messageType.equals(MessageType.RECEIVE_NEW_MEETING)){
 			Meeting app = (Meeting)message.getData();
-//			meetings.put(app.getId(), app);
-//			persons.put(app.getLeader().getPersonID(), app.getLeader());
-//			for(Person p: app.getParticipants().keySet()){
-//				persons.put(p.getPersonID(), p);
-//			}
 			calendar.addMeeting(app);
 		}
-		else if(messageType.equals(MessageType.RECEIVE_NEW_NOTE)){
-			Note note = (Note)message.getData();
-			//TODO what to do with this note?
-		}
-		
 		Collection<MessageListener> clone = (Collection<MessageListener>)listeners.clone();
 		for (MessageListener l : clone) {
 			l.receiveMessage(message);
