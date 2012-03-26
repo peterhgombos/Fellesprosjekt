@@ -88,6 +88,7 @@ public class NewAppointment extends JPanel{
 		datepicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		endDPicker = new JDateChooser();
 		endDPicker.setDate(datepicker.getDate());
+		endDPicker.setEnabled(false);
 		endDPicker.setVisible(false);
 		endDPicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		severalDaysLabel = new JLabel("Flere dager");
