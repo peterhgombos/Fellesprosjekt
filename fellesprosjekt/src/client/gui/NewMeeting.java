@@ -113,6 +113,10 @@ public class NewMeeting extends JPanel implements MessageListener{
 		placeField.setText(meet.getPlace());
 		participantsList = meet.getParticipants();
 		
+		if (meet.getPlace() != null) {
+			otherPlaceRadioButton.setSelected(true);
+		}
+		
 		existingAppointmentId = meet.getId();
 		
 		numberOfParticipants = meet.getNumberOfParticipants();
