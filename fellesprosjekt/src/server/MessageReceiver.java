@@ -124,6 +124,20 @@ public class MessageReceiver {
 					database.updateDB(Queries.updatePersonToAttend(p.getPersonID(), m.getId()));
 				}
 				database.updateDB(Queries.updateMeeting(m.getId(), m.getTitle(), m.getDescription(), m.getStartTime(), m.getEndTime(), m.getPlace(), m.getRoom() == null ? null :m.getRoom().getRomId()));
+			
+				/////////
+				database.updateDB(Queries.updateNote(m.getId()));
+				
+				ResultSet noters = database.executeQuery(Queries.getLastNote());
+				Note n = resultSetToSingleNote(noters);
+
+				for(Person p : m.getParticipants().keySet()){
+					database.updateDB(Queries.resetNoteToPerson(p.getPersonID(), n.getID()));
+					ClientWriter cw = idClients.get(p.getPersonID());
+					if(cw != null && p.getPersonID() != m.getLeader().getPersonID()){
+						cw.send(new ComMessage(null, MessageType.WARNING));
+					}
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -165,7 +179,6 @@ public class MessageReceiver {
 			}
 
 		}	
-		
 		else if (messageType.equals(MessageType.GET_OLD_NEW_NOTES)) {
 			Person p = (Person) message.getData();
 			try {
@@ -181,7 +194,6 @@ public class MessageReceiver {
 				e.printStackTrace();
 			}
 		}
-
 		else if (messageType.equals(MessageType.DELETE_APPOINTMENT)) {
 			Appointment app = (Appointment) message.getData();
 			try {
@@ -202,12 +214,8 @@ public class MessageReceiver {
 								cw.send(new ComMessage(null, MessageType.WARNING));
 							}
 						}
-
-
 					}
 				}
-
-
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
