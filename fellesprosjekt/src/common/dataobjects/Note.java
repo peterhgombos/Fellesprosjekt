@@ -11,15 +11,15 @@ public class Note implements Serializable{
 	private int id;
 	private String title;
 	private DateString timeAdded;
-	private Appointment appointment;
+	private Meeting appointment;
 	private boolean hasRead;
 	
-	public Note (String title, Appointment appointment){
+	public Note (String title, Meeting appointment){
 		this.title = title;
 		this.appointment = appointment;
 	}
 	
-	public Note(int id, String title, DateString timeAdded, Appointment appointment, boolean hasRead){
+	public Note(int id, String title, DateString timeAdded, Meeting appointment, boolean hasRead){
 		this.id = id;
 		this.title = title;
 		this.timeAdded = timeAdded;
@@ -27,7 +27,7 @@ public class Note implements Serializable{
 		this.hasRead = hasRead;
 	}
 	
-	public Appointment getAppointment() {
+	public Meeting getAppointment() {
 		return appointment;
 	}
 	

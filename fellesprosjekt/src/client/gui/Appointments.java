@@ -139,7 +139,7 @@ public class Appointments extends JPanel implements MessageListener{
 			public void valueChanged(ListSelectionEvent arg0) {
 				int i = list.getSelectedIndex();
 				if(i >= 0){
-					calendarpanel.goToAppointmentView((Appointment)listModel.getElementAt(i));
+					calendarpanel.goToAppointmentView((Meeting)listModel.getElementAt(i));
 				}
 			}
 		});

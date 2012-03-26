@@ -20,12 +20,6 @@ public class ServerData {
 	
 	private static InternalCalendar calendar;
 	
-	private static HashMap<Integer, Appointment> appointments;
-	private static HashMap<Integer, Meeting> meetings;
-	private static HashMap<Integer, Room> rooms;
-	private static HashMap<Integer, Person> persons;
-	private static HashMap<Integer, Note> messages;
-	
 	private static Connection connection;
 	private static LinkedList<MessageListener> listeners = new LinkedList<MessageListener>();
 	
@@ -46,40 +40,17 @@ public class ServerData {
 		
 		connected = true;
 		
-		appointments = new HashMap<Integer, Appointment>();
-		meetings = new HashMap<Integer, Meeting>();
-		rooms = new HashMap<Integer, Room>();
-		persons = new HashMap<Integer, Person>();
-		messages = new HashMap<Integer, Note>();
-		
 		calendar = new InternalCalendar();
 	}
 	
-	public static HashMap<Integer, Appointment> getAppointments(){
-		return appointments;
-	}
-	public static HashMap<Integer, Meeting> getMeetings(){
-		return meetings;
-	}
 	
 	public static void resetMeetingsAndAppointments(){
-		appointments = new HashMap<Integer, Appointment>();
-		meetings = new HashMap<Integer, Meeting>();
-		persons = new HashMap<Integer, Person>();
 		calendar = new InternalCalendar();
 	}
 	
 	public static void disConnect() {
 		connection.disConnect();
-		
 		connected = false;
-		
-		appointments = null;
-		meetings = null;
-		rooms = null;
-		persons = null;
-		messages = null;
-		
 		calendar = null;
 	}
 	
@@ -144,35 +115,35 @@ public class ServerData {
 		if(messageType.equals(MessageType.RECEIVE_APPOINTMENTS)){
 			Collection<Appointment> apps = (Collection<Appointment>)message.getData();
 			for(Appointment a: apps){
-				appointments.put(a.getId(), a);
-				persons.put(a.getLeader().getPersonID(), a.getLeader());
+				//appointments.put(a.getId(), a);
+				//persons.put(a.getLeader().getPersonID(), a.getLeader());
 			}
 			calendar.addAppointments(apps);
 		}
 		else if(messageType.equals(MessageType.RECEIVE_MEETINGS)){
 			Collection<Meeting> meets = (Collection<Meeting>)message.getData();
 			for(Meeting m: meets){
-				meetings.put(m.getId(), m);
-				persons.put(m.getLeader().getPersonID(), m.getLeader());
-				for(Person p : m.getParticipants().keySet()){
-					persons.put(p.getPersonID(), p);
-				}
+//				meetings.put(m.getId(), m);
+//				persons.put(m.getLeader().getPersonID(), m.getLeader());
+//				for(Person p : m.getParticipants().keySet()){
+//					persons.put(p.getPersonID(), p);
+//				}
 			}
 			calendar.addMeetings(meets);
 		}
 		else if(messageType.equals(MessageType.RECEIVE_NEW_APPOINTMENT)){
 			Appointment app = (Appointment)message.getData();
-			appointments.put(app.getId(), app);
-			persons.put(app.getLeader().getPersonID(), app.getLeader());
+//			appointments.put(app.getId(), app);
+//			persons.put(app.getLeader().getPersonID(), app.getLeader());
 			calendar.addAppointment(app);
 		}
 		else if(messageType.equals(MessageType.RECEIVE_NEW_MEETING)){
 			Meeting app = (Meeting)message.getData();
-			meetings.put(app.getId(), app);
-			persons.put(app.getLeader().getPersonID(), app.getLeader());
-			for(Person p: app.getParticipants().keySet()){
-				persons.put(p.getPersonID(), p);
-			}
+//			meetings.put(app.getId(), app);
+//			persons.put(app.getLeader().getPersonID(), app.getLeader());
+//			for(Person p: app.getParticipants().keySet()){
+//				persons.put(p.getPersonID(), p);
+//			}
 			calendar.addMeeting(app);
 		}
 		else if(messageType.equals(MessageType.RECEIVE_NEW_NOTE)){

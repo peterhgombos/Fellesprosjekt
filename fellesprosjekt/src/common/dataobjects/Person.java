@@ -24,6 +24,11 @@ public class Person implements Serializable {
 		this.telephone = telephone;
 	}
 	
+	@Override
+	public int hashCode(){
+		return personID;
+	}
+	
 	public Person() {
 		
 	}

@@ -96,7 +96,7 @@ public class CalendarPanel extends JPanel {
 		frame.repaint();
 	}
 	
-	public void goToAppointmentView(Appointment app){
+	public void goToAppointmentView(Meeting app){
 		removeAllComponents();
 		appView = new AppointmentView(this, app);
 		appView.setBounds(sidePanel.getX()+ sidePanel.getWidth(), 0, 900, 700);

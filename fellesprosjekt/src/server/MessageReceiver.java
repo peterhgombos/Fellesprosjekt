@@ -217,7 +217,8 @@ public class MessageReceiver {
 				Timestamp timesend = rs.getTimestamp(Database.COL_TIMESEND);
 				int appointmentID = rs.getInt(Database.COL_APPOINTMENTID);
 				boolean hasRead = rs.getBoolean(Database.COL_HASREAD);
-				Appointment appointment = resultSetToAppointment(database.executeQuery(Queries.getAppointmentById(appointmentID))).get(0);
+				
+				Meeting appointment = resultSetToMeeting(database.executeQuery(Queries.getAppointmentById(appointmentID))).get(0);
 
 				Note n = new Note(varselID, title, new DateString(timesend), appointment, hasRead);
 				notes.add(n);

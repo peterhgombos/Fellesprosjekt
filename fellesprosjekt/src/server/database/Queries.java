@@ -250,8 +250,8 @@ public class Queries {
 
 	public static String updateAnswerToInvite(int attendant, int appointment, int answer){
 		return 	"UPDATE DELTAKER " +
-				"SET SVAR= " + answer +
-				" WHERE AVTALEID=" + appointment + "AND ANSATTNR=" + attendant +";";
+				"SET SVAR= " + answer + " " +
+				"WHERE AVTALEID = " + appointment + " AND ANSATTNR = " + attendant +";";
 	}
 
 	public static String deleteNote(int noteID){
