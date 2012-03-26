@@ -68,7 +68,6 @@ public class MessageReceiver {
 			ComMessage sendLogin = new ComMessage(authenticatedPerson, MessageType.RECEIVE_LOGIN);
 			clientWriter.send(sendLogin);
 			if(authenticatedPerson != null){
-				System.out.println(authenticatedPerson.getPersonID());
 				idClients.put(authenticatedPerson.getPersonID(), clientWriter);
 			}
 		}
@@ -259,15 +258,6 @@ public class MessageReceiver {
 
 			ArrayList<Appointment> appointments = resultSetToAppointment(appointmentResult);
 			ArrayList<Meeting> meetings = resultSetToMeeting(meetingResult);
-
-			System.out.println("møter:");
-			for (Meeting meeting : meetings) {
-				System.out.println(meeting.getTitle());
-			}
-			System.out.println("Avtaler");
-			for (Appointment app : appointments) {
-				System.out.println(app.getTitle());
-			}
 
 			ComMessage sendapp = new ComMessage(appointments, MessageType.RECEIVE_APPOINTMENTS_BY_DATE_FILTER);
 			ComMessage sendmeet = new ComMessage(meetings, MessageType.RECEIVE_MEETINGS_BY_DATE_FILTER);
@@ -523,7 +513,6 @@ public class MessageReceiver {
 	}
 
 	private synchronized void sendToAll(Meeting m, ComMessage message){
-		System.out.println("sendtoall");
 		for(Person person: m.getParticipants().keySet()){
 			Server.console.writeline(person.getFirstname());
 			ClientWriter cw = idClients.get(person.getPersonID());

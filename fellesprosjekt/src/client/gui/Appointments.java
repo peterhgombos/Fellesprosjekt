@@ -2,7 +2,12 @@ package client.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,6 +33,7 @@ import com.toedter.calendar.JDateChooser;
 import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
 import common.dataobjects.Meeting;
+import common.utilities.DateString;
 import common.utilities.MessageType;
 
 @SuppressWarnings("serial")
@@ -67,7 +73,6 @@ public class Appointments extends JPanel implements MessageListener{
 		meetings = new LinkedList<Meeting>();
 		nyliste = new LinkedList<Appointment>();
 		
-		//ArrayList<Appointment> appointmentArrayList = new ArrayList<Appointment>();
 		calendarpanel = calendarPanel;
 		
 		datepickerFromDate = new JDateChooser();
@@ -75,10 +80,37 @@ public class Appointments extends JPanel implements MessageListener{
 		datepickerToDate = new JDateChooser();
 		datepickerToDate.setDate(defaultDate);
 		
+
+		datepickerFromDate.getJCalendar().addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent arg0) {
+				ChangeDateFilter();
+			}
+		});
+		datepickerToDate.getJCalendar().addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				
+				String dateStart = datepickerFromDate.getJCalendar().getCalendar().get(Calendar.YEAR) + 
+						"-" + (datepickerFromDate.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + 
+						"-" + datepickerFromDate.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH) + " 00:00:00";
+				String dateEnd = datepickerToDate.getJCalendar().getCalendar().get(Calendar.YEAR) + 
+						"-" + (datepickerToDate.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + 
+						"-" + datepickerToDate.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH) + " 23:59:59";
+				
+				System.out.println(dateStart.compareTo(dateEnd));
+			
+				if(dateStart.compareTo(dateEnd) >=0) //MÅ finne ut hva vi skal ha inni denne ifen!
+				{
+					datepickerToDate.getJCalendar().setDate(datepickerFromDate.getDate());
+				}
+				
+				ChangeDateFilter();
+			}
+		});
+		
 		headlineLabel = new JLabel("Mine Avtaler");
 		dateLabel = new JLabel("Dato:");
-		startDateLabel = new JLabel("Fra"); 	//DATEPICKER
-		endDateLabel = new JLabel("Til");		//DATEPICKER
+		startDateLabel = new JLabel("Fra"); 	
+		endDateLabel = new JLabel("Til");		
 		
 		appointmentCheckBox = new JCheckBox("Personlige Avtaler");
 		meetingCheckBox = new JCheckBox("Møter");
@@ -86,54 +118,14 @@ public class Appointments extends JPanel implements MessageListener{
 		meetingCheckBox.setSelected(true);		
 		
 		appointmentCheckBox.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				displaydata();
-//				if(appointmentCheckBox.isSelected()){
-//					listModel.clear();
-//					nyliste.addAll(appointments);
-////					if(meetingCheckBox.isSelected()){
-////						nyliste.addAll(meetings);
-////					}
-//				}
-//				else{
-//					listModel.clear();
-//					nyliste.removeAll(appointments);
-////					if(meetingCheckBox.isSelected()){
-////						nyliste.addAll(meetings);
-////					}
-//				}
-//				Collections.sort(nyliste);
-//				for (Appointment appointment : nyliste) {		
-//					listModel.addElement(appointment);
-//				}
 			}
 		});
 		meetingCheckBox.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				displaydata();
 			}
-//				if(meetingCheckBox.isSelected()){
-//					listModel.clear();
-//					nyliste.addAll(meetings);
-////					if(appointmentCheckBox.isSelected()){
-////						nyliste.addAll(appointments);
-////					}
-//				}
-//				else{
-//					listModel.clear();
-//					nyliste.removeAll(meetings);
-////					if(appointmentCheckBox.isSelected()){
-////						nyliste.addAll(appointments);
-////					}
-//				}
-//				Collections.sort(nyliste);
-//				for (Appointment appointment : nyliste) {		
-//					listModel.addElement(appointment);
-//				}
-//			}
-			
 		});
 		
 		startDateField = new JTextField();
@@ -153,12 +145,8 @@ public class Appointments extends JPanel implements MessageListener{
 		});
 		
 		ServerData.addMessageListener(this);
-		ServerData.requestAppointmensAndMeetingByDateFilter(Client.getUser());
-		HashMap<Integer, Meeting> meetingsList = ServerData.getMeetings();
 		
-		
-		//TODO legg til avtaler og møter etter dato
-		// TODO kunne vise bare møter og bare avtaler
+		ChangeDateFilter();
 		
         listScrollPane = new JScrollPane(list);
 		
@@ -249,6 +237,19 @@ public class Appointments extends JPanel implements MessageListener{
 			listModel.addElement(appointment);
 		}
 	}
+	
+	private void ChangeDateFilter(){
+		String dateStart = datepickerFromDate.getJCalendar().getCalendar().get(Calendar.YEAR) + 
+				"-" + (datepickerFromDate.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + 
+				"-" + datepickerFromDate.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH) + " 00:00:00";
+		String dateEnd = datepickerToDate.getJCalendar().getCalendar().get(Calendar.YEAR) + 
+				"-" + (datepickerToDate.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + 
+				"-" + datepickerToDate.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH) + " 23:59:59";
+		
+		ServerData.requestAppointmensAndMeetingByDateFilter(Client.getUser(), new DateString(dateStart), new DateString(dateEnd));
+		
+	}
+	
 	
 	
 }
