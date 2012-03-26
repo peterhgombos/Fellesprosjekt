@@ -334,7 +334,6 @@ public class AppointmentView extends JPanel{
 			if(appointment instanceof Meeting){
 				
 				Meeting m = (Meeting)appointment;
-				System.out.println(m.getANSWERSParticipants().get(Client.getUser().getPersonID()));
 
 				if(m.getANSWERSParticipants().get(Client.getUser().getPersonID()) == Meeting.SVAR_BLANK){
 					accpectButton.setEnabled(true);

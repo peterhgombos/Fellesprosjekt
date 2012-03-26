@@ -96,7 +96,6 @@ public class Appointments extends JPanel implements MessageListener{
 						"-" + (datepickerToDate.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + 
 						"-" + datepickerToDate.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH) + " 23:59:59";
 				
-				System.out.println(dateStart.compareTo(dateEnd));
 			
 				if(dateStart.compareTo(dateEnd) >=0) //MÅ finne ut hva vi skal ha inni denne ifen!
 				{
