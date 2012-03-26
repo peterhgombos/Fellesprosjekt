@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import client.gui.calendar.ColorPicker;
+
 import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
 import common.dataobjects.InternalCalendar;
@@ -114,21 +116,12 @@ public class ServerData {
 		
 		if(messageType.equals(MessageType.RECEIVE_APPOINTMENTS)){
 			Collection<Appointment> apps = (Collection<Appointment>)message.getData();
-			for(Appointment a: apps){
-				//appointments.put(a.getId(), a);
-				//persons.put(a.getLeader().getPersonID(), a.getLeader());
-			}
+			calendar.reset();
 			calendar.addAppointments(apps);
 		}
 		else if(messageType.equals(MessageType.RECEIVE_MEETINGS)){
 			Collection<Meeting> meets = (Collection<Meeting>)message.getData();
-			for(Meeting m: meets){
-//				meetings.put(m.getId(), m);
-//				persons.put(m.getLeader().getPersonID(), m.getLeader());
-//				for(Person p : m.getParticipants().keySet()){
-//					persons.put(p.getPersonID(), p);
-//				}
-			}
+			calendar.reset();
 			calendar.addMeetings(meets);
 		}
 		else if(messageType.equals(MessageType.RECEIVE_NEW_APPOINTMENT)){

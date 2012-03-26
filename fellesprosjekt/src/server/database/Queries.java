@@ -94,10 +94,15 @@ public class Queries {
 		return	"INSERT INTO VARSEL (TITTEL, AVTALEID) " +
 				"VALUES '" + title + "', " + appId +";"; 
 	}
+	public static String updateNote(int appId){
+		return	"UPDATE VARSEL " +
+				"SET TIDSENDT = NULL " +
+				"WHERE VARSEL.AVTALEID =" + appId + ";";
+	}
 
 	public static String getLastNote(){
 		return  "SELECT * FROM VARSEL " +
-				"ORDER BY VARSELID DESC LIMIT 1;";
+				"ORDER BY TIDSENDT DESC LIMIT 1;";
 	}
 
 	public static String getNotes(int deltakerId, String filter){
@@ -145,6 +150,11 @@ public class Queries {
 	
 	public static String upDateNoteToPerson(int personID, int noteID){
 		return "UPDATE HAR_MOTTATT SET HAR_LEST = 1 "+
+				"WHERE ANSATTNR = " + personID  + 
+				" AND VARSELID = " + noteID + " ;";
+	}
+	public static String resetNoteToPerson(int personID, int noteID){
+		return "UPDATE HAR_MOTTATT SET HAR_LEST = 0 "+
 				"WHERE ANSATTNR = " + personID  + 
 				" AND VARSELID = " + noteID + " ;";
 	}
