@@ -9,6 +9,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -66,6 +67,10 @@ public class NewAppointment extends JPanel{
 
 	public NewAppointment(CalendarPanel pal){
 		init(pal);
+		GregorianCalendar cal = new GregorianCalendar();
+		cal.setTimeInMillis(System.currentTimeMillis());
+		endTimeHoursField.setSelectedIndex(cal.get(Calendar.HOUR_OF_DAY) +1);
+		startTimeHoursField.setSelectedIndex(cal.get(Calendar.HOUR_OF_DAY));
 	}
 	private void init(CalendarPanel calendarPanel){
 		String[] min = {"00", "15", "30", "45"};

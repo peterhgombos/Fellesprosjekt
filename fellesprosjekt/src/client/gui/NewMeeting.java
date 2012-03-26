@@ -8,6 +8,7 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 
@@ -94,6 +95,10 @@ public class NewMeeting extends JPanel implements MessageListener{
 	
 	public NewMeeting(CalendarPanel pal){
 		init(pal);
+		GregorianCalendar cal = new GregorianCalendar();
+		cal.setTimeInMillis(System.currentTimeMillis());
+		endTimeHoursField.setSelectedIndex(cal.get(Calendar.HOUR_OF_DAY) +1);
+		startTimeHoursField.setSelectedIndex(cal.get(Calendar.HOUR_OF_DAY));
 	}
 	
 	public NewMeeting(CalendarPanel pal, Meeting meet){
@@ -171,8 +176,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 		endTimeMinField = new JComboBox(min);
 		roomPicker = new JComboBox();
 		roomPicker.setEnabled(false);
-		
-		endTimeHoursField.setSelectedIndex(1);
+
 		
 		ServerData.addMessageListener(this);
 		
