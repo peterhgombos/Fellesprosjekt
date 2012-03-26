@@ -143,10 +143,10 @@ public class NewAppointment extends JPanel{
 					Appointment a = new Appointment(existingAppointmentId, Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
 					ServerData.requestUpdateAppointmet(a);
 				}
-				else{
-					Appointment a = new Appointment(-1, Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
-					ServerData.requestNewAppointment(a);
-				}
+				
+				Appointment a = new Appointment(-1, Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
+				ServerData.requestNewAppointment(a);
+			
 				
 				calendar.goToCalender();
 			}
