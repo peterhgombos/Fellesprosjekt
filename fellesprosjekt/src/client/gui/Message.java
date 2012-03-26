@@ -110,6 +110,7 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 		showbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				if(messageList.getSelectedValues().length != 1){
+					UserInformationMessages.showWarningMessage("Du kan bare vise en melding om gangen.");
 					return;
 				}
 				if(((Note)messageList.getSelectedValue()).getAppointment() != null){
