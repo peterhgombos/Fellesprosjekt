@@ -322,17 +322,16 @@ public class NewMeeting extends JPanel implements MessageListener{
 				if(title.trim().equals("")){
 					UserInformationMessages.showErrormessage("Du må lage en tittel");
 					return;
-				}
-				
-				
-				
-				else if(bookMeetingroomRadioButton.isSelected() && numberOfParticipants<1 ){
+				}else if(bookMeetingroomRadioButton.isSelected() && numberOfParticipants<1 ){
 					UserInformationMessages.showErrormessage("Det må være minst 2 deltakere for å booke et møterom");
 					return;
 				}
-				else if(isInEdit){
+				
+				if(isInEdit){
 					Meeting a = new Meeting(existingAppointmentId, Client.getUser(), title, description, place, nyttrom, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfExternalparticipants);
-					ServerData.requestUpdateAppointmet(a);
+					ServerData.requestUpdateMeeting(a);
+					calendar.goToCalender();
+					return;
 				}
 				
 				if (numberOfParticipants < 1) {

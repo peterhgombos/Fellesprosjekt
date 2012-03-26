@@ -117,6 +117,17 @@ public class MessageReceiver {
 			}
 
 		}
+		else if (messageType.equals(MessageType.REQUEST_UPDATE_MEETING)) {
+			Meeting m = (Meeting) message.getData();
+			try {
+				for (Person p : m.getParticipants().keySet()) {
+					database.updateDB(Queries.updatePersonToAttend(p.getPersonID(), m.getId()));
+				}
+				database.updateDB(Queries.updateMeeting(m.getId(), m.getTitle(), m.getDescription(), m.getStartTime(), m.getEndTime(), m.getPlace(), m.getRoom() == null ? null :m.getRoom().getRomId()));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		else if(messageType.equals(MessageType.REQUEST_ROOMS_AVAILABLE)){
 			ArrayList<Room> availableRooms = getAvaliableRooms(message);
 			ComMessage rooms = new ComMessage(availableRooms, MessageType.RECEIVE_ROOM_AVAILABLE);

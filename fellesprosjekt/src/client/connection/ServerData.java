@@ -48,8 +48,8 @@ public class ServerData {
 		calendar = new InternalCalendar();
 	}
 	
-	public static void disConnect() {
-		connection.disConnect();
+	public static void disconnect() {
+		connection.disconnect();
 		connected = false;
 		calendar = null;
 	}
@@ -172,8 +172,12 @@ public class ServerData {
 		connection.delteNotes(notes);
 	}
 	
-	public static void requestUpdateAppointmet(Appointment app){
+	public static void requestUpdateAppointment(Appointment app){
 		connection.requestUpdateAppointment(app);
+	}
+	
+	public static void requestUpdateMeeting(Meeting meet) {
+		connection.requestUpdateMeeting(meet);
 	}
 
 	public static void deleteAppointment(Appointment app) {

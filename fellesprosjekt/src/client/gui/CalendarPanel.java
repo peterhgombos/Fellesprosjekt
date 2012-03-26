@@ -130,7 +130,7 @@ public class CalendarPanel extends JPanel {
 	public void logout(){
 
 		removeAll();
-		ServerData.disConnect();
+		ServerData.disconnect();
 		client.showLogin();
 
 	}

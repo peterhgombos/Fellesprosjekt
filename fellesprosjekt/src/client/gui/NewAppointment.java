@@ -87,7 +87,7 @@ public class NewAppointment extends JPanel{
 		datepicker.setDate(defaultDate);
 		datepicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		endDPicker = new JDateChooser();
-		endDPicker.setDate(defaultDate);
+		endDPicker.setDate(datepicker.getDate());
 		endDPicker.setVisible(false);
 		endDPicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		severalDaysLabel = new JLabel("Flere dager");
@@ -141,7 +141,7 @@ public class NewAppointment extends JPanel{
 				
 				if(isInEdit){
 					Appointment a = new Appointment(existingAppointmentId, Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
-					ServerData.requestUpdateAppointmet(a);
+					ServerData.requestUpdateAppointment(a);
 				}
 				
 				Appointment a = new Appointment(-1, Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
