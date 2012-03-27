@@ -86,10 +86,6 @@ public class ServerData {
 		connection.requestSearchForPerson(search);
 	}
 	
-	public static void requestSearchForNotes(String search){
-		connection.requestSearchForNotes(search);
-	}
-	
 	public static void requestAddAttendant(ArrayList<Person> invitees, Appointment appointment){
 		connection.requestAddPersons(invitees, appointment);
 	}

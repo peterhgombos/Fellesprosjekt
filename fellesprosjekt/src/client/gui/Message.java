@@ -72,11 +72,11 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 			}
 		});
 		searchfield = new JTextField("Søk");
-		
+
 		searchfield.addKeyListener(new KeyListener() {
 			public void keyTyped(KeyEvent e) {}
 			public void keyReleased(KeyEvent e) {
-			ServerData.requestNotes(Client.getUser(), searchfield.getText());
+				ServerData.requestNotes(Client.getUser(), searchfield.getText());
 			}
 			public void keyPressed(KeyEvent e) {}
 		});
@@ -114,10 +114,10 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 					return;
 				}
 				if(((Note)messageList.getSelectedValue()).getAppointment() != null){
-					ServerData.markNoteAsRead(Client.getUser(), (Note)messageList.getSelectedValue());
 					calendar.goToAppointmentView(((Note)messageList.getSelectedValue()).getAppointment());
-					
 				}
+				ServerData.markNoteAsRead(Client.getUser(), (Note)messageList.getSelectedValue());
+				ServerData.requestNotes(Client.getUser(), searchfield.getText());
 			}
 		});
 
@@ -183,7 +183,7 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 			searchfield.setText("Søk");
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void receiveMessage(ComMessage m) {
