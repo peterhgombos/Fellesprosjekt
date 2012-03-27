@@ -111,7 +111,7 @@ public class AppointmentView extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				Meeting m = (Meeting)appointment;
 				m.changeParticipantAnswer(Client.getUser(), Meeting.SVAR_OK);
-				ServerData.requestUpdateAnswers(m.getParticipants(), appointment);
+				ServerData.requestUpdateAnswers(m.getParticipants(), m);
 				accpectButton.setEnabled(false);
 				rejectButton.setEnabled(true);
 				setComponents();

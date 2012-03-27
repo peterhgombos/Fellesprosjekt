@@ -180,13 +180,6 @@ public class Queries {
 				"IN BOOLEAN MODE));";
 	}
 
-//
-//	public static String getNotesByFilter(String search){
-//		return 	"SELECT VARSEL.* " +
-//				"FROM VARSEL " + 
-//				"WHERE VARSEL.TITTEL LIKE '%" + search + "%'";
-//	}
-
 	public static String createNewAppointment(String title, String description, DateString startTime, DateString endTime, String place, int leader){
 		return  "INSERT INTO AVTALE (TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED, LEDER) " +
 				"VALUES ('" + title + "', '" + description + "', '" + startTime.toString() +
@@ -237,7 +230,7 @@ public class Queries {
 
 	public static String deleteNoteForPerson(int noteID, int person){
 		return "DELETE FROM HAR_MOTTATT "+
-				"WHERE VARSELID = " + noteID + "" +
+				"WHERE VARSELID = " + noteID + " " +
 				"AND ANSATTNR = " + person + ";" ;
 	}
 

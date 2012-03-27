@@ -57,7 +57,6 @@ public class Meeting extends Appointment implements Serializable{
 		participants.put(person, answear);
 	}
 
-
 	public int getNumberOfParticipants(){
 		return participants.size() + externalParticipants;
 	}
