@@ -9,6 +9,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import server.Server;
 
@@ -149,7 +151,6 @@ public class Connection  {
 
 	public void deleteAppointment(Appointment app) {
 		writer.send(new ComMessage(app, MessageType.DELETE_APPOINTMENT));
-		
 	}
 	
 	public void requestOldNewNotes(Person person){
@@ -159,5 +160,13 @@ public class Connection  {
 	public void updateNoteAsReadForPerson(Person p, Note n) {
 		n.setPersonId(p.getPersonID());
 		writer.send(new ComMessage(n, MessageType.UPDATE_NOTE_AS_READ));
+	}
+	
+	public void deleteParticipants(ArrayList<Person> a, Meeting m) {
+		HashMap<Person, Meeting> map = new HashMap<Person, Meeting>();
+		for (Person p : a) {
+			map.put(p, m);
+		}
+		writer.send(new ComMessage(map, MessageType.DELETE_PARTICIPANTS));
 	}
 }

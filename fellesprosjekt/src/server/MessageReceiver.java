@@ -232,6 +232,20 @@ public class MessageReceiver {
 				e.printStackTrace();
 			}
 		}
+		
+		else if (messageType.equals(MessageType.DELETE_PARTICIPANTS)) {
+			HashMap<Person, Meeting> map = (HashMap<Person, Meeting>) message.getData();
+			for (Person p : map.keySet()) {
+				int personID = p.getPersonID();
+				Meeting m = map.get(personID);
+				try {
+					database.updateDB(Queries.deleteParticipant(personID, m.getId()));
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+		}
 	}
 
 	private ArrayList<Note> resultSetToNotes(ResultSet rs, Person p){

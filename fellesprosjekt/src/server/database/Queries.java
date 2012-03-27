@@ -257,7 +257,7 @@ public class Queries {
 				"AND HAR_MOTTATT.ANSATTNR = " + personID + ";";
 	}
 	
-	public static String deleteParticipants(int personID, int avtaleID) {
+	public static String deleteParticipant(int personID, int avtaleID) {
 		return "DELETE " +
 				"FROM DELTAKERE " +
 				"WHERE DELTAKERE.ANSATTNR = " + personID + " " +

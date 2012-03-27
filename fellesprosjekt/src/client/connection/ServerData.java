@@ -172,4 +172,8 @@ public class ServerData {
 		connection.updateNoteAsReadForPerson(person, note);
 	}
 	
+	public static void deleteParticipants(ArrayList<Person> a, Meeting m){
+		connection.deleteParticipants(a, m);
+	}
+	
 }
