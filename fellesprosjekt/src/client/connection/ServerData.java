@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import client.Client;
 import client.gui.calendar.ColorPicker;
 
 import common.dataobjects.Appointment;
@@ -120,7 +121,11 @@ public class ServerData {
 		}
 		else if(messageType.equals(MessageType.RECEIVE_MEETINGS)){
 			Collection<Meeting> meets = (Collection<Meeting>)message.getData();
-			calendar.addMeetings(meets);
+			for(Meeting meeting: meets){
+				if(meeting.getANSWERSParticipants().get(Client.getUser().getPersonID()) != Meeting.SVAR_NEI){
+					calendar.addMeeting(meeting);
+				}
+			}
 		}
 		else if(messageType.equals(MessageType.RECEIVE_NEW_APPOINTMENT)){
 			Appointment app = (Appointment)message.getData();

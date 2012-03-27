@@ -69,6 +69,7 @@ public class MessageReceiver {
 			clientWriter.send(sendLogin);
 			if(authenticatedPerson != null){
 				idClients.put(authenticatedPerson.getPersonID(), clientWriter);
+				clientWriter.id = authenticatedPerson.getPersonID();
 			}
 		}
 		else if(messageType.equals(MessageType.REQUEST_MEETINGS_AND_APPOINTMENTS_BY_DATE_FILTER)){
@@ -540,14 +541,9 @@ public class MessageReceiver {
 		ipClients.put(clientWriter.getIP(), clientWriter);
 	}
 
-	private synchronized void sendToAll(Meeting m, ComMessage message){
-		for(Person person: m.getParticipants().keySet()){
-			Server.console.writeline(person.getFirstname());
-			ClientWriter cw = idClients.get(person.getPersonID());
-			if(cw != null /*&& person.getPersonID() != m.getLeader().getPersonID()*/){
-				cw.send(message);
-			}
-		}
+	public synchronized void removeClient(InetAddress inetAddress){
+		idClients.remove(ipClients.get(inetAddress).id);
+		ipClients.remove(inetAddress);
 	}
 
 }
