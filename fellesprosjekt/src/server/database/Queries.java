@@ -165,9 +165,10 @@ public class Queries {
 				" AND VARSELID = " + noteID + " ;";
 	}
 	public static String resetNoteToPerson(int personID, int noteID){
-		return "UPDATE HAR_MOTTATT SET HAR_LEST = 0 "+
-				"WHERE ANSATTNR = " + personID  + 
-				" AND VARSELID = " + noteID + " ;";
+		return "UPDATE HAR_MOTTATT " +
+				"SET HAR_LEST = 0 "+
+				"WHERE ANSATTNR = " + personID  + " " + 
+				"AND VARSELID = " + noteID + ";";
 	}
 
 	public static String getPersonsByFilter(String search){
@@ -274,5 +275,9 @@ public class Queries {
 				"WHERE DELTAKER.ANSATTNR = " + personID + " " +
 				"AND DELTAKER.AVTALEID = " + avtaleID;
 		
+	}
+
+	public static String getNoteByAppId(int id){
+		return "SELECT * FROM VARSEL WHERE AVTALEID = id ;";
 	}
 }
