@@ -70,7 +70,7 @@ public class DateString implements Serializable {
 	}
 	
 	public boolean after(DateString s) {
-		if (this.year > s.year && this.month > s.month && this.day > s.day && this.hour > s.hour && this.minute > s.minute) {
+		if (this.year >= s.year && this.month >= s.month && this.day >= s.day && this.hour >= s.hour && this.minute > s.minute) {
 			return true;
 		}
 		return false;
