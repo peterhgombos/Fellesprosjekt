@@ -133,7 +133,10 @@ public class MessageReceiver {
 				for(Person p : m.getParticipants().keySet()){
 					database.updateDB(Queries.deleteParticipant(p.getPersonID(), m.getId()));
 					database.updateDB(Queries.addPersonToAttend(p.getPersonID(), m.getId()));
-					database.updateDB(Queries.resetNoteToPerson(p.getPersonID(), n.getID()));
+					
+					database.updateDB(Queries.deleteNoteForPerson(n.getID()));
+					database.updateDB(Queries.addNoteToPerson(p.getPersonID(), n.getID()));
+					
 					ClientWriter cw = idClients.get(p.getPersonID());
 					if(cw != null && p.getPersonID() != m.getLeader().getPersonID()){
 						cw.send(new ComMessage(null, MessageType.WARNING));
