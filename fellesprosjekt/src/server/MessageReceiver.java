@@ -127,7 +127,7 @@ public class MessageReceiver {
 				/////////
 				database.updateDB(Queries.updateNote(m.getId()));
 
-				ResultSet noters = database.executeQuery(Queries.getLastNote());
+				ResultSet noters = database.executeQuery(Queries.getNoteByAppId(m.getId()));
 				Note n = resultSetToSingleNote(noters);
 
 				for(Person p : m.getParticipants().keySet()){
@@ -157,7 +157,6 @@ public class MessageReceiver {
 		else if (messageType.equals(MessageType.REQUEST_NOTES)) {
 			Person p = (Person)message.getData();
 			try {
-				//TODO
 				ResultSet rs = database.executeQuery(Queries.getNotes(p.getPersonID(), message.getProperty("filter")));
 				ArrayList<Note> result = resultSetToNotes(rs, p);
 				
@@ -251,7 +250,6 @@ public class MessageReceiver {
 
 	private ArrayList<Note> resultSetToNotes(ResultSet rs, Person p){
 		
-		//TODO
 		ArrayList<Note> notes = new ArrayList<Note>(); 
 		try {
 			while (rs.next()) {
