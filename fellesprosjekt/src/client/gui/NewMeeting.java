@@ -414,6 +414,9 @@ public class NewMeeting extends JPanel implements MessageListener{
 				if(isInEdit){
 					Meeting a = new Meeting(existingAppointmentId, Client.getUser(), Client.getUser(), title, description, place, nyttrom, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfExternalparticipants);
 					if (removedParticipants != null) {
+						for (Person p : removedParticipants) {
+							a.getParticipants().remove(p);
+						}
 						ServerData.deleteParticipants(removedParticipants, a); //Removes the removed participants from database
 						removedParticipants = null;
 					}
