@@ -3,21 +3,18 @@ package common.dataobjects;
 import java.awt.Color;
 import java.io.Serializable;
 
-import javax.xml.stream.events.StartDocument;
-
 import xml.XMLElements;
-import client.Client;
 import client.gui.calendar.ColorPicker;
 
 import common.utilities.DateString;
 
-
-public class Appointment implements Serializable, Comparable {
+public class Appointment implements Serializable, Comparable<Appointment> {
 
 	private static final long serialVersionUID = 3662988846703010000L;
 
 	private int id; 
 	private Person leader;
+	private Person owner;
 	private String title;
 	private String description;
 	private DateString startTime;
@@ -26,7 +23,7 @@ public class Appointment implements Serializable, Comparable {
 	
 	private Color color;
 
-	public Appointment(int id, Person leader, String title, String description, String place, DateString start, DateString end) throws RuntimeException {
+	public Appointment(int id, Person leader, Person owner, String title, String description, String place, DateString start, DateString end) throws RuntimeException {
 		this.id = id;
 		this.leader = leader;
 		this.title = title;
@@ -34,10 +31,18 @@ public class Appointment implements Serializable, Comparable {
 		this.startTime = start;
 		this.endTime = end;
 		this.place = place;
-		
+		this.owner = owner;
 		color = ColorPicker.nextColor();
 	}
 
+	public Person getowner(){
+		return owner;
+	}
+	
+	public void setColor(Color c){
+		color = c;
+	}
+	
 	public Appointment() {
 		
 	}
@@ -56,7 +61,6 @@ public class Appointment implements Serializable, Comparable {
 		return startTime;
 	}
 
-	//Sjekke at det er lovlig starttid
 	public void setStartTime(DateString startTime) {
 		this.startTime = startTime;
 	}
@@ -65,7 +69,6 @@ public class Appointment implements Serializable, Comparable {
 		return endTime;
 	}
 
-	//TODO Sjekke at det er lovlig sluttid
 	public void setEndTime(DateString endTime) {
 		this.endTime = endTime;
 	}
@@ -131,7 +134,7 @@ public class Appointment implements Serializable, Comparable {
 	}
 
 	@Override
-	public int compareTo(Object o) {
+	public int compareTo(Appointment o) {
 		return startTime.toString().compareTo(((Appointment)o).startTime.toString());
 	}
 	
@@ -143,4 +146,5 @@ public class Appointment implements Serializable, Comparable {
 		
 		return getTitle() + "   " + start + " - " +end;
 	}
+
 }

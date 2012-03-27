@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import client.Client;
@@ -25,7 +26,7 @@ public class LogIn extends JPanel implements MessageListener, ActionListener{
 	private JLabel passwordLabel;
 	
 	private JTextField nameField;
-	private JTextField passwordField;
+	private JPasswordField passwordField;
 	private JButton loginButton;
 	
 	private Client client;
@@ -39,7 +40,7 @@ public class LogIn extends JPanel implements MessageListener, ActionListener{
 		passwordLabel = new JLabel("Passord");
 		
 		nameField = new JTextField();
-		passwordField = new JTextField();
+		passwordField = new JPasswordField();
 		
 		loginButton = new JButton();
 		loginButton.setText("Logg Inn");

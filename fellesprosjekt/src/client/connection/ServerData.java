@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import client.gui.calendar.ColorPicker;
+import client.Client;
 
 import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
@@ -14,7 +14,6 @@ import common.dataobjects.InternalCalendar;
 import common.dataobjects.Meeting;
 import common.dataobjects.Note;
 import common.dataobjects.Person;
-import common.dataobjects.Room;
 import common.utilities.DateString;
 import common.utilities.MessageType;
 
@@ -87,10 +86,6 @@ public class ServerData {
 		connection.requestSearchForPerson(search);
 	}
 	
-	public static void requestSearchForNotes(String search){
-		connection.requestSearchForNotes(search);
-	}
-	
 	public static void requestAddAttendant(ArrayList<Person> invitees, Appointment appointment){
 		connection.requestAddPersons(invitees, appointment);
 	}
@@ -120,7 +115,11 @@ public class ServerData {
 		}
 		else if(messageType.equals(MessageType.RECEIVE_MEETINGS)){
 			Collection<Meeting> meets = (Collection<Meeting>)message.getData();
-			calendar.addMeetings(meets);
+			for(Meeting meeting: meets){
+				if(meeting.getANSWERSParticipants().get(Client.getUser().getPersonID()) != Meeting.SVAR_NEI){
+					calendar.addMeeting(meeting);
+				}
+			}
 		}
 		else if(messageType.equals(MessageType.RECEIVE_NEW_APPOINTMENT)){
 			Appointment app = (Appointment)message.getData();
@@ -170,6 +169,10 @@ public class ServerData {
 	
 	public static void markNoteAsRead(Person person, Note note) {
 		connection.updateNoteAsReadForPerson(person, note);
+	}
+	
+	public static void deleteParticipants(ArrayList<Person> a, Meeting m){
+		connection.deleteParticipants(a, m);
 	}
 	
 }

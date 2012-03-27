@@ -1,5 +1,6 @@
 package client.gui.calendar;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,19 +55,18 @@ public class Calendar extends JPanel implements MessageListener {
 		yearField = new JTextField(""+calModel.getYear());
 
 		table = new JTable();
-		//table.addMouseListener(new JTableButtonMouseListener(table));
 
 		CalRenderer renderer = new CalRenderer();
+		table.setGridColor(new Color(0x888888));
 		table.setModel(calModel);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		table.setRowHeight(60);
+		table.setRowHeight(75);
 		table.setDefaultRenderer(Object.class, renderer);
 		table.getColumnModel().getColumn(0).setMaxWidth(45);
 		table.getColumnModel().getColumn(0).setHeaderValue(dayName[0]);
 		for(int i = 1; i < table.getModel().getColumnCount(); i++){
 			TableColumn col = table.getColumnModel().getColumn(i);
 			col.setMinWidth(134);
-			//col.setHeaderValue(dayName[i] + ServerData.getCalendar().dayToWeekDay(i));
 		}
 
 		lastWeek.addActionListener(new ActionListener() {
@@ -111,9 +111,7 @@ public class Calendar extends JPanel implements MessageListener {
 
 		scrollPane = new JScrollPane(table);
 
-
 		resize();
-		
 		
 		add(lastWeek);
 		add(scrollPane);

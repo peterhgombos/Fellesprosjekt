@@ -108,10 +108,21 @@ public class Queries {
 	public static String getNotes(int deltakerId, String filter){
 		return	"SELECT VARSEL. * , HAR_MOTTATT.HAR_LEST " +
 				"FROM VARSEL, DELTAKER, HAR_MOTTATT "+
-				"WHERE VARSEL.AVTALEID = DELTAKER.AVTALEID " +
+				"WHERE " +
+				"VARSEL.AVTALEID = DELTAKER.AVTALEID " +
 				"AND DELTAKER.ANSATTNR = HAR_MOTTATT.ANSATTNR " +
 				"AND VARSEL.VARSELID = HAR_MOTTATT.VARSELID " +
 				"AND DELTAKER.ANSATTNR = " + deltakerId + " " +
+				"AND VARSEL.TITTEL LIKE '%" + filter + "%'" +
+				"ORDER  BY VARSEL.TIDSENDT;";
+	}
+	public static String getNotesAvlyst(int deltakerId, String filter){
+		return	"SELECT VARSEL. * , HAR_MOTTATT.HAR_LEST " +
+				"FROM VARSEL, HAR_MOTTATT "+
+				"WHERE " +
+				"VARSEL.AVTALEID = -1 " +
+				"AND VARSEL.VARSELID = HAR_MOTTATT.VARSELID " +
+				"AND HAR_MOTTATT.ANSATTNR = " + deltakerId + " " +
 				"AND VARSEL.TITTEL LIKE '%" + filter + "%'" +
 				"ORDER  BY VARSEL.TIDSENDT;";
 	}	
@@ -154,9 +165,10 @@ public class Queries {
 				" AND VARSELID = " + noteID + " ;";
 	}
 	public static String resetNoteToPerson(int personID, int noteID){
-		return "UPDATE HAR_MOTTATT SET HAR_LEST = 0 "+
-				"WHERE ANSATTNR = " + personID  + 
-				" AND VARSELID = " + noteID + " ;";
+		return "UPDATE HAR_MOTTATT " +
+				"SET HAR_LEST = 0 "+
+				"WHERE ANSATTNR = " + personID  + " " + 
+				"AND VARSELID = " + noteID + ";";
 	}
 
 	public static String getPersonsByFilter(String search){
@@ -168,12 +180,12 @@ public class Queries {
 				"IN BOOLEAN MODE));";
 	}
 
-
-	public static String getNotesByFilter(String search){
-		return 	"SELECT VARSEL.* " +
-				"FROM VARSEL " + 
-				"WHERE VARSEL.TITTEL LIKE '%" + search + "%'";
-	}
+//
+//	public static String getNotesByFilter(String search){
+//		return 	"SELECT VARSEL.* " +
+//				"FROM VARSEL " + 
+//				"WHERE VARSEL.TITTEL LIKE '%" + search + "%'";
+//	}
 
 	public static String createNewAppointment(String title, String description, DateString startTime, DateString endTime, String place, int leader){
 		return  "INSERT INTO AVTALE (TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED, LEDER) " +
@@ -223,8 +235,8 @@ public class Queries {
 				"WHERE AVTALEID = " + appointment + " AND ANSATTNR = " + attendant +";";
 	}
 
-	public static String deleteNote(int noteID){
-		return "DELETE FROM VARSEL "+
+	public static String deleteNoteForPerson(int noteID){
+		return "DELETE FROM HAR_MOTTATT "+
 				"WHERE VARSELID = " + noteID + ";" ;
 	}
 
@@ -255,5 +267,17 @@ public class Queries {
 				"WHERE VARSEL.VARSELID = HAR_MOTTATT.VARSELID " +
 				"AND HAR_MOTTATT.HAR_LEST = 0 " +
 				"AND HAR_MOTTATT.ANSATTNR = " + personID + ";";
+	}
+	
+	public static String deleteParticipant(int personID, int avtaleID) {
+		return "DELETE " +
+				"FROM DELTAKER " +
+				"WHERE DELTAKER.ANSATTNR = " + personID + " " +
+				"AND DELTAKER.AVTALEID = " + avtaleID;
+		
+	}
+
+	public static String getNoteByAppId(int id){
+		return "SELECT * FROM VARSEL WHERE AVTALEID = id ;";
 	}
 }

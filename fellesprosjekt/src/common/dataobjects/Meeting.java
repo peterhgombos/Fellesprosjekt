@@ -17,8 +17,8 @@ public class Meeting extends Appointment implements Serializable{
 	private HashMap<Person, Integer> participants;
 	private int externalParticipants;
 
-	public Meeting(int id, Person leader, String title, String description, String place, Room room, DateString start, DateString end, HashMap<Person, Integer> participants, int externalParticipants){
-		super(id, leader, title, description, place, start, end);
+	public Meeting(int id, Person leader, Person owner, String title, String description, String place, Room room, DateString start, DateString end, HashMap<Person, Integer> participants, int externalParticipants){
+		super(id, leader, owner, title, description, place, start, end);
 		this.participants = participants;
 		this.room = room;
 		this.externalParticipants = externalParticipants;

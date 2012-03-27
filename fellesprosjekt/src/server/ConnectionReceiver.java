@@ -25,7 +25,7 @@ public class ConnectionReceiver extends Thread{
 			try {
 				Socket socket = serverSocket.accept();
 				
-				ClientWriter clientWriter = new ClientWriter(socket);
+				ClientWriter clientWriter = new ClientWriter(server, socket);
 				server.addClient(clientWriter);				
 				ClientReader clientReader = new ClientReader(socket, server);
 				clientReader.start();
