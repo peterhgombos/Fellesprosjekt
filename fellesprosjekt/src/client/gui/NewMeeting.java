@@ -404,23 +404,25 @@ public class NewMeeting extends JPanel implements MessageListener{
 					UserInformationMessages.showErrormessage("Det må være minst 2 deltakere for å booke et møterom");
 					return;
 				}
-
-				if(isInEdit){
-					Meeting a = new Meeting(existingAppointmentId, Client.getUser(), Client.getUser(), title, description, place, nyttrom, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfExternalparticipants);
-					ServerData.requestUpdateMeeting(a);
-					calendar.goToCalender();
-					return;
-				}
+				
 
 				if (numberOfParticipants < 1) {
 					UserInformationMessages.showErrormessage("Du må legge til minst en deltaker");
 					return;
 				}
-
-				if (removedParticipants != null) {
-					ServerData.deleteParticipants(removedParticipants, meeting); //Removes the removed participants from database
-
+				
+				if(isInEdit){
+					Meeting a = new Meeting(existingAppointmentId, Client.getUser(), Client.getUser(), title, description, place, nyttrom, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfExternalparticipants);
+					if (removedParticipants != null) {
+						ServerData.deleteParticipants(removedParticipants, a); //Removes the removed participants from database
+						removedParticipants = null;
+					}
+					ServerData.requestUpdateMeeting(a);
+					calendar.goToCalender();
+					return;
 				}
+
+				
 
 				Meeting m = new Meeting(-1, Client.getUser(), Client.getUser(), title, description, place, nyttrom, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfParticipants);
 				ServerData.requestNewMeeting(m);

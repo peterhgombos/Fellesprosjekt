@@ -235,12 +235,11 @@ public class MessageReceiver {
 		}
 		
 		else if (messageType.equals(MessageType.DELETE_PARTICIPANTS)) {
-			HashMap<Person, Meeting> map = (HashMap<Person, Meeting>) message.getData();
-			for (Person p : map.keySet()) {
-				int personID = p.getPersonID();
-				Meeting m = map.get(personID);
+			ArrayList<Person> arr =  (ArrayList<Person>) message.getData();
+			for (Person p : arr) {
+				int personID = p.getPersonID();;
 				try {
-					database.updateDB(Queries.deleteParticipant(personID, m.getId()));
+					database.updateDB(Queries.deleteParticipant(personID, Integer.parseInt(message.getProperty("id"))));
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
