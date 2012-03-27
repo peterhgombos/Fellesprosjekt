@@ -278,6 +278,6 @@ public class Queries {
 	}
 
 	public static String getNoteByAppId(int id){
-		return "SELECT * FROM VARSEL WHERE AVTALEID = id ;";
+		return "SELECT * FROM VARSEL WHERE AVTALEID = " + id + ";";
 	}
 }
