@@ -91,7 +91,7 @@ public class ConnectionImpl extends AbstractConnection {
             SocketTimeoutException {
         KtnDatagram syn = constructInternalPacket(Flag.SYN);
         this.remotePort = remotePort;
-        this.remoteAddress = remoteAddress.toString();
+        this.remoteAddress = remoteAddress.getHostAddress();
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new SendTimer(new ClSocket(), syn), 0, RETRANSMIT);
         KtnDatagram synack; 
