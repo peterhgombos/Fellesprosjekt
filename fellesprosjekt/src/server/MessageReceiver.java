@@ -249,6 +249,9 @@ public class MessageReceiver {
 				if(appointment.size() > 0){
 					Note n = new Note(varselID, title, new DateString(timesend), appointment.get(0), hasRead);
 					notes.add(n);
+				}else{
+					Note n = new Note(varselID, title, new DateString(timesend), null, hasRead);
+					notes.add(n);
 				}
 			}
 		} catch (SQLException e) {
