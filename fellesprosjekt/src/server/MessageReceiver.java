@@ -165,12 +165,11 @@ public class MessageReceiver {
 			}
 		}
 		else if (messageType.equals(MessageType.DELETE_NOTE)) {
-			Server.console.writeline("delete notes");
 			@SuppressWarnings("unchecked")
 			ArrayList<Note> n = (ArrayList<Note>)message.getData();
 			for (Note note : n) {
 				try {
-					database.updateDB(Queries.deleteNote(note.getID()));
+					database.updateDB(Queries.deleteNoteForPerson(note.getID()));
 					Server.console.writeline("delete" + note.getTitle());
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -186,7 +185,8 @@ public class MessageReceiver {
 				while (rs.next()) {
 					i++;
 				}
-				if (i < 1) {
+				System.out.println("messages to read: " + i);
+				if (i > 0) {
 					clientWriter.send(new ComMessage(null, MessageType.WARNING));
 				}
 			} catch (SQLException e) {
