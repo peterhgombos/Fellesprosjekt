@@ -61,6 +61,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 	private DefaultListModel employeeListModel;
 	
 	private AddRemoveParticipants thisAddRemoveParticipants;
+	private ArrayList<Person> removedParticipants;
 	
 	public AddRemoveParticipants(CalendarPanel calendarPanel, NewMeeting meeting) {
 		
@@ -84,7 +85,8 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 			public void keyPressed(KeyEvent e) {}
 		});
 		
-		newInvited = new ArrayList<Person>();  
+		newInvited = new ArrayList<Person>(); 
+		removedParticipants = new ArrayList<Person>();
 		externalParticipantsField = new JTextField(""+newMeeting.getNumberOfExternalParticipants());
 		externalParticipantsLabel = new JLabel("Antall eksterne deltakere");
 		frame = new JFrame();
@@ -118,6 +120,9 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 			public void actionPerformed(ActionEvent e) {
 				Person person = (Person)employeeList.getSelectedValue();
 				if(person != null){
+					if (removedParticipants.contains(person)) {
+						removedParticipants.remove(person);
+					}
 					addedParticipantsListmodel.addElement(person);
 					newInvited.add(person);
 					employeeListModel.removeElement(person);
@@ -133,6 +138,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 				if(person != null){
 					employeeListModel.addElement(person);
 					addedParticipantsListmodel.removeElement(person);
+					removedParticipants.add(person);
 					if(newInvited.contains(person)){
 						newInvited.remove(person);
 					}
@@ -148,6 +154,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 					participants.put(newInvited.get(i), Meeting.SVAR_BLANK);
 				}
 				newMeeting.addParticipants(participants);
+				newMeeting.removeParticipants(removedParticipants);
 				frame.dispose();
 				ServerData.removeMessageListener(thisAddRemoveParticipants);
 				newMeeting.setNumberOfParticipants(Integer.parseInt(externalParticipantsField.getText()));
