@@ -120,6 +120,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 			public void actionPerformed(ActionEvent e) {
 				Person person = (Person)employeeList.getSelectedValue();
 				if(person != null){
+					//If clause removes person from list of removed participants if applicable
 					if (removedParticipants.contains(person)) {
 						removedParticipants.remove(person);
 					}
@@ -138,7 +139,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 				if(person != null){
 					employeeListModel.addElement(person);
 					addedParticipantsListmodel.removeElement(person);
-					removedParticipants.add(person);
+					removedParticipants.add(person); //Adds person to the list of persons removed
 					if(newInvited.contains(person)){
 						newInvited.remove(person);
 					}
@@ -154,7 +155,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 					participants.put(newInvited.get(i), Meeting.SVAR_BLANK);
 				}
 				newMeeting.addParticipants(participants);
-				newMeeting.removeParticipants(removedParticipants);
+				newMeeting.setRemovedParticipants(removedParticipants); //Tells the meeting which (if any) participants have been removed
 				frame.dispose();
 				ServerData.removeMessageListener(thisAddRemoveParticipants);
 				newMeeting.setNumberOfParticipants(Integer.parseInt(externalParticipantsField.getText()));

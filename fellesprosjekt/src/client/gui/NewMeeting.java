@@ -418,7 +418,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 				}
 
 				if (removedParticipants != null) {
-					ServerData.deleteParticipants(removedParticipants, meeting);
+					ServerData.deleteParticipants(removedParticipants, meeting); //Removes the removed participants from database
 
 				}
 
@@ -557,7 +557,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 		return numberOfExternalparticipants;
 	}
 
-	public void removeParticipants(ArrayList<Person> arr) {
+	public void setRemovedParticipants(ArrayList<Person> arr) {
 		removedParticipants = arr;
 	}
 	@Override
