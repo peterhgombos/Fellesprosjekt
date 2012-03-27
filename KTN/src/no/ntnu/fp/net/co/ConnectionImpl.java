@@ -12,6 +12,7 @@ import java.net.UnknownHostException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
 
 //import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -83,11 +84,29 @@ public class ConnectionImpl extends AbstractConnection {
      *             If there's an I/O error.
      * @throws java.net.SocketTimeoutException
      *             If timeout expires before connection is completed.
+     * @throws ClException 
      * @see Connection#connect(InetAddress, int)
      */
     public void connect(InetAddress remoteAddress, int remotePort) throws IOException,
             SocketTimeoutException {
-        throw new NotImplementedException();
+        KtnDatagram syn = constructInternalPacket(Flag.SYN);
+        this.remotePort = remotePort;
+        this.remoteAddress = remoteAddress.toString();
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new SendTimer(new ClSocket(), syn), 0, RETRANSMIT);
+        KtnDatagram synack; 
+        do{
+        	synack = receiveAck();
+        }while(synack.getFlag() != Flag.SYN_ACK);
+        timer.cancel();
+        KtnDatagram ack = constructInternalPacket(Flag.ACK);
+        try {
+			simplySendPacket(ack);
+		} catch (ClException e) {
+			e.printStackTrace();
+		}
+		return;
+
     }
 
     /**
