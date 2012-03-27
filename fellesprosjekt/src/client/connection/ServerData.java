@@ -164,8 +164,8 @@ public class ServerData {
 		
 	}
 	
-	public static void getNewOldNotes(ArrayList<Note> notes){
-		connection.requestOldNewNotes(notes);
+	public static void getNewOldNotes(Person person){
+		connection.requestOldNewNotes(person);
 	}
 	
 	public static void markNoteAsRead(Person person, Note note) {

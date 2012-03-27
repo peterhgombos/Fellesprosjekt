@@ -152,8 +152,8 @@ public class Connection  {
 		
 	}
 	
-	public void requestOldNewNotes(ArrayList<Note> note){
-		writer.send(new ComMessage(note, MessageType.GET_OLD_NEW_NOTES));
+	public void requestOldNewNotes(Person person){
+		writer.send(new ComMessage(person, MessageType.GET_OLD_NEW_NOTES));
 	}
 	
 	public void updateNoteAsReadForPerson(Person p, Note n) {

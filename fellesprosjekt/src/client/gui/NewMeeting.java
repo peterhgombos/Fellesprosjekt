@@ -95,6 +95,9 @@ public class NewMeeting extends JPanel implements MessageListener{
 	
 	public NewMeeting(CalendarPanel pal){
 		init(pal);
+		datepicker.setDate(defaultDate);
+		datepickerDays.setDate(defaultDate);
+		
 		GregorianCalendar cal = new GregorianCalendar();
 		cal.setTimeInMillis(System.currentTimeMillis());
 		endTimeHoursField.setSelectedIndex(cal.get(Calendar.HOUR_OF_DAY) +1);
@@ -105,14 +108,23 @@ public class NewMeeting extends JPanel implements MessageListener{
 		isInEdit=true;
 		init(pal);
 		
+		DateString sdm = meet.getStartTime();
+		DateString edm = meet.getEndTime();
+		
+		GregorianCalendar gcal = new GregorianCalendar();
+		gcal.set(sdm.getYear(), sdm.getMonth(), sdm.getDay(), sdm.getHour(), sdm.getMinute());
+		datepicker.setDate(gcal.getTime());
+		
+		gcal.set(edm.getYear(), edm.getMonth(), edm.getDay(), edm.getHour(), edm.getMinute());
+		datepickerDays.setDate(gcal.getTime());
 		
 		headlineLabel.setText("Rediger: " + meet.getTitle());
 		nameField.setText(meet.getTitle());
 		
 		startTimeHoursField.setSelectedIndex(meet.getStartTime().getHour());
-		startTimeMinField.setSelectedIndex(meet.getStartTime().getMinute());
+		startTimeMinField.setSelectedItem(""+meet.getStartTime().getMinute());
 		endTimeHoursField.setSelectedIndex(meet.getEndTime().getHour());
-		endTimeMinField.setSelectedIndex(meet.getEndTime().getMinute());
+		endTimeMinField.setSelectedItem(""+meet.getEndTime().getMinute());
 		
 		descriptionArea.setText(meet.getDescription());
 		placeField.setText(meet.getPlace());
@@ -161,10 +173,9 @@ public class NewMeeting extends JPanel implements MessageListener{
 		radioButtonGroup.add(otherPlaceRadioButton);
 		
 		datepicker = new JDateChooser();
-		datepicker.setDate(defaultDate);
+		
 		datepicker.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		datepickerDays = new JDateChooser();
-		datepickerDays.setDate(defaultDate);
 		datepickerDays.setVisible(false);
 		datepickerDays.setMinSelectableDate(new Date(System.currentTimeMillis()));
 		severalDays = new JCheckBox();
