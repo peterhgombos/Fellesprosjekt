@@ -157,8 +157,13 @@ public class MessageReceiver {
 		else if (messageType.equals(MessageType.REQUEST_NOTES)) {
 			Person p = (Person)message.getData();
 			try {
+				//TODO
 				ResultSet rs = database.executeQuery(Queries.getNotes(p.getPersonID(), message.getProperty("filter")));
 				ArrayList<Note> result = resultSetToNotes(rs, p);
+				
+				rs = database.executeQuery(Queries.getNotesAvlyst(p.getPersonID(), message.getProperty("filter")));
+				result.addAll(resultSetToNotes(rs, p));
+				
 				clientWriter.send(new ComMessage(result, MessageType.RECEIVE_NOTES));
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -219,11 +224,6 @@ public class MessageReceiver {
 				e.printStackTrace();
 			}
 		}
-		else if (messageType.equals(MessageType.REQUEST_SEARCH_NOTES)) {
-			ArrayList<Note> n = searchForNotes(message);
-			ComMessage sendNotes = new ComMessage(n, MessageType.RECEIVE_SEARCH_NOTES);
-			clientWriter.send(sendNotes);
-		}
 
 		else if (messageType.equals(MessageType.UPDATE_NOTE_AS_READ)) {
 			Note n = (Note) message.getData();
@@ -249,6 +249,8 @@ public class MessageReceiver {
 	}
 
 	private ArrayList<Note> resultSetToNotes(ResultSet rs, Person p){
+		
+		//TODO
 		ArrayList<Note> notes = new ArrayList<Note>(); 
 		try {
 			while (rs.next()) {
@@ -258,13 +260,18 @@ public class MessageReceiver {
 				int appointmentID = rs.getInt(Database.COL_APPOINTMENTID);
 				boolean hasRead = rs.getBoolean(Database.COL_HASREAD);
 
-				ArrayList<Meeting> appointment = resultSetToMeeting(database.executeQuery(Queries.getAppointmentById(appointmentID)), p);
-				if(appointment.size() > 0){
-					Note n = new Note(varselID, title, new DateString(timesend), appointment.get(0), hasRead);
-					notes.add(n);
-				}else{
+
+				if(appointmentID == -1){
+					System.out.println("note møte -1");
 					Note n = new Note(varselID, title, new DateString(timesend), null, hasRead);
 					notes.add(n);
+				}else{
+					ArrayList<Meeting> appointment = resultSetToMeeting(database.executeQuery(Queries.getAppointmentById(appointmentID)), p);
+					if(appointment != null && appointment.size() > 0){
+						Note n = new Note(varselID, title, new DateString(timesend), appointment.get(0), hasRead);
+						notes.add(n);
+						System.out.println("note med møte");
+					}
 				}
 			}
 		} catch (SQLException e) {
@@ -411,8 +418,9 @@ public class MessageReceiver {
 
 	private ArrayList<Note> searchForNotes(ComMessage message){
 		String query = (String) message.getData();
+		int pid = Integer.parseInt(message.getProperty("person"));
 		try {
-			return resultSetToNotes(database.executeQuery(Queries.getNotesByFilter(query)), null);
+			return resultSetToNotes(database.executeQuery(Queries.getNotes(pid, query)), null);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
