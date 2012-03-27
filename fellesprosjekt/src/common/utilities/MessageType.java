@@ -13,6 +13,7 @@ public class MessageType {
 	
 	public static final String RECEIVE_PARTICIPANTS = "receiveParticipants";
 	public static final String REQUEST_PARTICIPANTS = "requestParticipants";
+	public static final String DELETE_PARTICIPANTS = "deleteParticipants";
 	
 	public static final String REQUEST_NEW_APPOINTMENT = "requestNewAppointment";
 	public static final String RECEIVE_NEW_APPOINTMENT = "receiveNewAppointment";
@@ -46,13 +47,14 @@ public class MessageType {
 	public static final String REQUEST_NOTES = "requestNotes";
 	public static final String RECEIVE_NOTES = "receiveNotes";
 	public static final String DELETE_NOTE = "deleteNote";
+	public static final String GET_OLD_NEW_NOTES = "getOldNewNotes";
+	public static final String UPDATE_NOTE_AS_READ = "upDateNoteToPerson";
+	
 	
 	public static final String REQUEST_UPDATE_APPOINTMENT = "updateAppointment";
 	public static final String REQUEST_UPDATE_MEETING = "updateMeeting";
 	public static final String WARNING = "warning";
 	public static final String DELETE_APPOINTMENT = "deleteAppointment";
-	public static final String GET_OLD_NEW_NOTES = "getOldNewNotes";
-	public static final String UPDATE_NOTE_AS_READ = "upDateNoteToPerson";
-	
+
 	
 }
