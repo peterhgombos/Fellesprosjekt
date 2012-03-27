@@ -235,9 +235,10 @@ public class Queries {
 				"WHERE AVTALEID = " + appointment + " AND ANSATTNR = " + attendant +";";
 	}
 
-	public static String deleteNoteForPerson(int noteID){
+	public static String deleteNoteForPerson(int noteID, int person){
 		return "DELETE FROM HAR_MOTTATT "+
-				"WHERE VARSELID = " + noteID + ";" ;
+				"WHERE VARSELID = " + noteID + "" +
+				"AND ANSATTNR = " + person + ";" ;
 	}
 
 	public static String updateAppointment(int appID, String title, String description, DateString start, DateString end, String place){

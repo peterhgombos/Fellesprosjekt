@@ -134,7 +134,7 @@ public class MessageReceiver {
 					database.updateDB(Queries.deleteParticipant(p.getPersonID(), m.getId()));
 					database.updateDB(Queries.addPersonToAttend(p.getPersonID(), m.getId()));
 					
-					database.updateDB(Queries.deleteNoteForPerson(n.getID()));
+					database.updateDB(Queries.deleteNoteForPerson(n.getID(), p.getPersonID()));
 					database.updateDB(Queries.addNoteToPerson(p.getPersonID(), n.getID()));
 					
 					ClientWriter cw = idClients.get(p.getPersonID());
@@ -178,7 +178,7 @@ public class MessageReceiver {
 			ArrayList<Note> n = (ArrayList<Note>)message.getData();
 			for (Note note : n) {
 				try {
-					database.updateDB(Queries.deleteNoteForPerson(note.getID()));
+					database.updateDB(Queries.deleteNoteForPerson(note.getID(), note.getPersonId()));
 					Server.console.writeline("delete" + note.getTitle());
 				} catch (SQLException e) {
 					e.printStackTrace();
