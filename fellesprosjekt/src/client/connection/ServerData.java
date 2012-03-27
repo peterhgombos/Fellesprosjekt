@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import client.Client;
-import client.gui.calendar.ColorPicker;
 
 import common.dataobjects.Appointment;
 import common.dataobjects.ComMessage;
@@ -15,7 +14,6 @@ import common.dataobjects.InternalCalendar;
 import common.dataobjects.Meeting;
 import common.dataobjects.Note;
 import common.dataobjects.Person;
-import common.dataobjects.Room;
 import common.utilities.DateString;
 import common.utilities.MessageType;
 
