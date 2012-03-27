@@ -14,7 +14,6 @@ import java.util.GregorianCalendar;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -74,6 +73,14 @@ public class NewAppointment extends JPanel{
 		cal.setTimeInMillis(System.currentTimeMillis());
 		endTimeHoursField.setSelectedIndex(cal.get(Calendar.HOUR_OF_DAY) +1);
 		startTimeHoursField.setSelectedIndex(cal.get(Calendar.HOUR_OF_DAY));
+		startTimeHoursField.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (Integer.parseInt(endTimeHoursField.getSelectedItem().toString()) < Integer.parseInt(startTimeHoursField.getSelectedItem().toString()))
+					endTimeHoursField.setSelectedIndex(startTimeHoursField.getSelectedIndex() +1);
+			}
+		});
 	}
 	private void init(CalendarPanel calendarPanel){
 		String[] min = {"00", "15", "30", "45"};
@@ -187,21 +194,25 @@ public class NewAppointment extends JPanel{
 					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
 				}
 				else {
-					endTimeHoursField.setSelectedIndex(1);
+					endTimeHoursField.setSelectedIndex(startTimeHoursField.getSelectedIndex() +1);
 					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
 					return;
 				}
 
 			}
 		});
-
-		endTimeMinField.addActionListener(new ActionListener() {
+		
+		endTimeHoursField.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String timeEnd = "";
 				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem())> Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
-					endTimeMinField.setSelectedIndex(0);
+					int index = startTimeMinField.getSelectedIndex();
+					if ((endTimeMinField.getSelectedIndex() +1) <= endTimeMinField.getItemCount()) {
+						index = startTimeMinField.getSelectedIndex() +1;
+					}
+					endTimeMinField.setSelectedIndex(startTimeMinField.getSelectedIndex() +1);
 					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
 					return;
 				}
@@ -213,7 +224,30 @@ public class NewAppointment extends JPanel{
 
 			}
 		});
+		
+		endTimeMinField.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String timeEnd = "";
+				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem())> Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
+					int index = startTimeMinField.getSelectedIndex();
+					if ((endTimeMinField.getSelectedIndex() +1) <= endTimeMinField.getItemCount()) {
+						index = startTimeMinField.getSelectedIndex() +1;
+					}
+					endTimeMinField.setSelectedIndex(startTimeMinField.getSelectedIndex() +1);
+					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
+					return;
+				}
+				else{
+
+					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
+
+				}
+
+			}
+		});
+		
 		startTimeHoursField.addActionListener(new ActionListener() {
 
 			@Override
@@ -224,20 +258,45 @@ public class NewAppointment extends JPanel{
 					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
 				}
 				else {
-					startTimeHoursField.setSelectedIndex(0);
+					int index = 0;
+					if ((endTimeHoursField.getSelectedIndex() -1) > 0) {
+						index = endTimeHoursField.getSelectedIndex() -1;
+					}
+
+					startTimeHoursField.setSelectedIndex(index);
 					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
 					return;
 				}
 
 			}
 		});
+		
+		//Might not be necessary
+		startTimeHoursField.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String timeEnd = "";
+				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem()) > Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
+					int index = startTimeMinField.getSelectedIndex();
+					startTimeMinField.setSelectedIndex(0);
+					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
+					return;
+				}
+				else {
+					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
+				}
+
+			}
+		});
+		
 		startTimeMinField.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String timeEnd = "";
 				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem()) > Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
+					int index = startTimeMinField.getSelectedIndex();
 					startTimeMinField.setSelectedIndex(0);
 					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
 					return;
@@ -298,6 +357,7 @@ public class NewAppointment extends JPanel{
 		headlineLabel.setText("Rediger: " + app.getTitle());
 		nameField.setText(app.getTitle());
 
+
 		DateString sdm = app.getStartTime();
 		DateString edm = app.getEndTime();
 		
@@ -311,6 +371,7 @@ public class NewAppointment extends JPanel{
 		startTimeHoursField.setSelectedIndex(app.getStartTime().getHour());
 		startTimeMinField.setSelectedItem(""+app.getStartTime().getMinute());
 		endTimeHoursField.setSelectedIndex(app.getEndTime().getHour());
+
 		endTimeMinField.setSelectedItem(""+app.getEndTime().getMinute());
 
 		descriptionArea.setText(app.getDescription());
