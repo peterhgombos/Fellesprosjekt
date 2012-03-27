@@ -176,6 +176,7 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 		
 		ServerData.addMessageListener(this);
 		ServerData.requestSearchForPerson("");
+		ServerData.getNewOldNotes(Client.getUser());
 		
 		setLayout(null);
 		resize();

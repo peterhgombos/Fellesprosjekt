@@ -124,10 +124,10 @@ public class MessageReceiver {
 					database.updateDB(Queries.updatePersonToAttend(p.getPersonID(), m.getId()));
 				}
 				database.updateDB(Queries.updateMeeting(m.getId(), m.getTitle(), m.getDescription(), m.getStartTime(), m.getEndTime(), m.getPlace(), m.getRoom() == null ? null :m.getRoom().getRomId()));
-			
+
 				/////////
 				database.updateDB(Queries.updateNote(m.getId()));
-				
+
 				ResultSet noters = database.executeQuery(Queries.getLastNote());
 				Note n = resultSetToSingleNote(noters);
 
@@ -225,7 +225,7 @@ public class MessageReceiver {
 			ComMessage sendNotes = new ComMessage(n, MessageType.RECEIVE_SEARCH_NOTES);
 			clientWriter.send(sendNotes);
 		}
-		
+
 		else if (messageType.equals(MessageType.UPDATE_NOTE_AS_READ)) {
 			Note n = (Note) message.getData();
 			try {
@@ -245,11 +245,12 @@ public class MessageReceiver {
 				Timestamp timesend = rs.getTimestamp(Database.COL_TIMESEND);
 				int appointmentID = rs.getInt(Database.COL_APPOINTMENTID);
 				boolean hasRead = rs.getBoolean(Database.COL_HASREAD);
-				
-				Meeting appointment = resultSetToMeeting(database.executeQuery(Queries.getAppointmentById(appointmentID))).get(0);
 
-				Note n = new Note(varselID, title, new DateString(timesend), appointment, hasRead);
-				notes.add(n);
+				ArrayList<Meeting> appointment = resultSetToMeeting(database.executeQuery(Queries.getAppointmentById(appointmentID)));
+				if(appointment.size() > 0){
+					Note n = new Note(varselID, title, new DateString(timesend), appointment.get(0), hasRead);
+					notes.add(n);
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -275,10 +276,10 @@ public class MessageReceiver {
 
 	private void meetingsandappointmentsbydate(ComMessage message, ClientWriter cw) {
 		Person p = (Person)message.getData();
-		
+
 		DateString startd = new DateString(message.getProperty("dstart"));
 		DateString endd = new DateString(message.getProperty("dend"));
-		
+
 		int personid = p.getPersonID();
 
 		try{

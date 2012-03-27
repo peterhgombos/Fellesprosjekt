@@ -252,8 +252,8 @@ public class Queries {
 	public static String oldNewNotes(int personID){
 		return "SELECT VARSEL.* " +
 				"FROM VARSEL, HAR_MOTTATT " +
-				"WHERE VARSEL.VARSELID = HAR_MOTATT.VARSELID " +
+				"WHERE VARSEL.VARSELID = HAR_MOTTATT.VARSELID " +
 				"AND HAR_MOTTATT.HAR_LEST = 0 " +
-				"AND HAR_MOTTATT.ANSATTNR = " + personID ;
+				"AND HAR_MOTTATT.ANSATTNR = " + personID + ";";
 	}
 }
