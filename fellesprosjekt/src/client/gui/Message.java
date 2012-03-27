@@ -117,7 +117,8 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 					calendar.goToAppointmentView(((Note)messageList.getSelectedValue()).getAppointment());
 				}
 				ServerData.markNoteAsRead(Client.getUser(), (Note)messageList.getSelectedValue());
-				ServerData.requestNotes(Client.getUser(), searchfield.getText());
+				ServerData.requestNotes(Client.getUser(), "");
+				searchfield.setText("Søk");
 			}
 		});
 
