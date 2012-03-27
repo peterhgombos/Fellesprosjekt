@@ -163,10 +163,11 @@ public class MessageReceiver {
 			Person p = (Person)message.getData();
 			try {
 				ResultSet rs = database.executeQuery(Queries.getNotes(p.getPersonID(), message.getProperty("filter")));
+				System.out.println(Queries.getNotes(p.getPersonID(), message.getProperty("filter")));
 				ArrayList<Note> result = resultSetToNotes(rs, p);
-				
-				rs = database.executeQuery(Queries.getNotesAvlyst(p.getPersonID(), message.getProperty("filter")));
-				result.addAll(resultSetToNotes(rs, p));
+	
+//				rs = database.executeQuery(Queries.getNotesAvlyst(p.getPersonID(), message.getProperty("filter")));
+//				result.addAll(resultSetToNotes(rs, p));
 				
 				clientWriter.send(new ComMessage(result, MessageType.RECEIVE_NOTES));
 			} catch (SQLException e) {
@@ -256,7 +257,9 @@ public class MessageReceiver {
 		
 		ArrayList<Note> notes = new ArrayList<Note>(); 
 		try {
+			int numnotes = 0;
 			while (rs.next()) {
+				
 				String title = rs.getString(Database.COL_TITLE);
 				int varselID = rs.getInt(Database.COL_VARSELID);
 				Timestamp timesend = rs.getTimestamp(Database.COL_TIMESEND);
@@ -274,9 +277,15 @@ public class MessageReceiver {
 						Note n = new Note(varselID, title, new DateString(timesend), appointment.get(0), hasRead);
 						notes.add(n);
 						System.out.println("note med møte");
+					}else{
+						System.out.println("note møte -1");
+						Note n = new Note(varselID, title, new DateString(timesend), null, hasRead);
+						notes.add(n);
 					}
 				}
+				numnotes++;
 			}
+			System.out.println("numnotes" + numnotes);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
