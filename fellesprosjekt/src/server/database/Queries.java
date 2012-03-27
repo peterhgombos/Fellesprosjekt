@@ -223,8 +223,8 @@ public class Queries {
 				"WHERE AVTALEID = " + appointment + " AND ANSATTNR = " + attendant +";";
 	}
 
-	public static String deleteNote(int noteID){
-		return "DELETE FROM VARSEL "+
+	public static String deleteNoteForPerson(int noteID){
+		return "DELETE FROM HAR_MOTTATT "+
 				"WHERE VARSELID = " + noteID + ";" ;
 	}
 

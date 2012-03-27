@@ -12,6 +12,7 @@ public class ClientReader extends Thread {
 	private ObjectInputStream reader;
 	private Socket socket;
 	private MessageReceiver server;
+	public int id = -1;
 	
 	/**
 	 * ClientReader er en tr�d som kontinuerlig leser fra en klient og sender meldingene vidre til en sentral server

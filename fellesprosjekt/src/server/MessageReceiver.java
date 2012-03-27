@@ -69,6 +69,7 @@ public class MessageReceiver {
 			clientWriter.send(sendLogin);
 			if(authenticatedPerson != null){
 				idClients.put(authenticatedPerson.getPersonID(), clientWriter);
+				clientWriter.id = authenticatedPerson.getPersonID();
 			}
 		}
 		else if(messageType.equals(MessageType.REQUEST_MEETINGS_AND_APPOINTMENTS_BY_DATE_FILTER)){
@@ -164,12 +165,11 @@ public class MessageReceiver {
 			}
 		}
 		else if (messageType.equals(MessageType.DELETE_NOTE)) {
-			Server.console.writeline("delete notes");
 			@SuppressWarnings("unchecked")
 			ArrayList<Note> n = (ArrayList<Note>)message.getData();
 			for (Note note : n) {
 				try {
-					database.updateDB(Queries.deleteNote(note.getID()));
+					database.updateDB(Queries.deleteNoteForPerson(note.getID()));
 					Server.console.writeline("delete" + note.getTitle());
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -185,7 +185,8 @@ public class MessageReceiver {
 				while (rs.next()) {
 					i++;
 				}
-				if (i < 1) {
+				System.out.println("messages to read: " + i);
+				if (i > 0) {
 					clientWriter.send(new ComMessage(null, MessageType.WARNING));
 				}
 			} catch (SQLException e) {
@@ -261,6 +262,9 @@ public class MessageReceiver {
 				ArrayList<Meeting> appointment = resultSetToMeeting(database.executeQuery(Queries.getAppointmentById(appointmentID)), p);
 				if(appointment.size() > 0){
 					Note n = new Note(varselID, title, new DateString(timesend), appointment.get(0), hasRead);
+					notes.add(n);
+				}else{
+					Note n = new Note(varselID, title, new DateString(timesend), null, hasRead);
 					notes.add(n);
 				}
 			}
@@ -554,14 +558,9 @@ public class MessageReceiver {
 		ipClients.put(clientWriter.getIP(), clientWriter);
 	}
 
-	private synchronized void sendToAll(Meeting m, ComMessage message){
-		for(Person person: m.getParticipants().keySet()){
-			Server.console.writeline(person.getFirstname());
-			ClientWriter cw = idClients.get(person.getPersonID());
-			if(cw != null /*&& person.getPersonID() != m.getLeader().getPersonID()*/){
-				cw.send(message);
-			}
-		}
+	public synchronized void removeClient(InetAddress inetAddress){
+		idClients.remove(ipClients.get(inetAddress).id);
+		ipClients.remove(inetAddress);
 	}
 
 }
