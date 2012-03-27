@@ -22,6 +22,7 @@ import common.utilities.MessageType;
 
 import client.Client;
 import client.authentication.Login;
+import client.gui.Message;
 
 public class Connection  {
 
@@ -159,10 +160,8 @@ public class Connection  {
 	}
 	
 	public void deleteParticipants(ArrayList<Person> a, Meeting m) {
-		HashMap<Person, Meeting> map = new HashMap<Person, Meeting>();
-		for (Person p : a) {
-			map.put(p, m);
-		}
-		writer.send(new ComMessage(map, MessageType.DELETE_PARTICIPANTS));
+		ComMessage message = new ComMessage(a, MessageType.DELETE_PARTICIPANTS);
+		message.setProperty("id", ""+m.getId());
+		writer.send(message);
 	}
 }

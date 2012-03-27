@@ -271,9 +271,9 @@ public class Queries {
 	
 	public static String deleteParticipant(int personID, int avtaleID) {
 		return "DELETE " +
-				"FROM DELTAKERE " +
-				"WHERE DELTAKERE.ANSATTNR = " + personID + " " +
-				"AND DELTAKERE.AVTALEID = " + avtaleID;
+				"FROM DELTAKER " +
+				"WHERE DELTAKER.ANSATTNR = " + personID + " " +
+				"AND DELTAKER.AVTALEID = " + avtaleID;
 		
 	}
 
