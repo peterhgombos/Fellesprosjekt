@@ -116,8 +116,10 @@ public class ConnectionImpl extends AbstractConnection {
      * @see Connection#accept()
      */
     public Connection accept() throws IOException, SocketTimeoutException {
-    	ReceiveConnectionWorker recieveConn = new ReceiveConnectionWorker(this, connListener); //??
-        throw new NotImplementedException();
+    	ReceiveConnectionWorker receiveConn = new ReceiveConnectionWorker(this, connListener); //??
+    	receiveConn.run();
+    	
+    	return this;
     }
 
     /**
