@@ -35,7 +35,7 @@ public class CalRenderer extends DefaultTableCellRenderer {
 		JPanel panel = new JPanel(null);
 		panel.setBackground(new Color(0xFFFFFF));
 		if(result != null){
-			int bredde = 134 / result.size();
+			int bredde = table.getColumnModel().getColumn(column).getWidth() / result.size();
 			int i = 0;
 			for(int j = 0; j < result.size(); j++){
 				
