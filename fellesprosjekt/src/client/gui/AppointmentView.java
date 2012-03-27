@@ -193,7 +193,6 @@ public class AppointmentView extends JPanel{
 		add(timeInput);
 		add(placeInput);
 		add(textAreaScrollPane);
-		add(numberOfParticipantsField);
 		add(leaderList);
 		add(acceptedList);
 		add(deniedList);
@@ -274,8 +273,6 @@ public class AppointmentView extends JPanel{
 		participantsLabel.setBounds(dateInput.getX() + dateInput.getWidth() + GuiConstants.GROUP_DISTANCE *8, dateInput.getY(), 100, 30);
 		participantsLabel.setFont(new Font(participantsLabel.getFont().getName(),0,18));
 
-		numberOfParticipantsField.setBounds(participantsLabel.getX() + participantsLabel.getWidth() + GuiConstants.DISTANCE, participantsLabel.getY(), 
-				40, 30);
 		meetingLeaderLabel.setBounds(participantsLabel.getX(), participantsLabel.getY() + participantsLabel.getHeight() + GuiConstants.DISTANCE, 80, 30);
 		meetingLeaderLabel.setFont(new Font(meetingLeaderLabel.getFont().getName(), 0, 15));
 
