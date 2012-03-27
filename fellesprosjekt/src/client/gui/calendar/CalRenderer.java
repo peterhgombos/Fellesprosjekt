@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import client.Client;
 import client.connection.ServerData;
 
 import common.dataobjects.Appointment;
@@ -44,7 +45,7 @@ public class CalRenderer extends DefaultTableCellRenderer {
 				JPanel innerpanel = new JPanel(null);
 				
 				innerpanel.setBackground(a.getColor());
-				innerpanel.setBounds(bredde * i, 0, bredde , 60);
+				innerpanel.setBounds(bredde * i, 0, bredde , table.getRowHeight());
 				panel.add(innerpanel);
 				
 				if(row == 0 || ServerData.getCalendar().startsInHour(a, model.getYear(), model.getWeek(), ((column - 1) * 24) + row)){
@@ -54,6 +55,13 @@ public class CalRenderer extends DefaultTableCellRenderer {
 					JLabel stime = new JLabel(" Fra: " + format.format(a.getStartTime().getHour()) + ":" + format.format(a.getStartTime().getMinute()));
 					JLabel etime = new JLabel(" Til: " + format.format(a.getEndTime().getHour()) + ":" + format.format(a.getEndTime().getMinute()));
 					JLabel minfo = null;
+					JLabel owner = null;
+					
+					if(a.getowner().getPersonID() != Client.getUser().getPersonID()){
+						owner = new JLabel("  "  + a.getowner().getUsername());
+						a.setColor(ColorPicker.otherColor());
+						innerpanel.setBackground(a.getColor());
+					}
 					
 					title.setBounds(0, 3, bredde , 14);
 					stime.setBounds(0, title.getY() + title.getHeight(), bredde, 14);
@@ -79,11 +87,22 @@ public class CalRenderer extends DefaultTableCellRenderer {
 					stime.setBackground(innerpanel.getBackground());
 					etime.setBackground(innerpanel.getBackground());
 					
+					
 					innerpanel.add(title);
 					innerpanel.add(stime);
 					innerpanel.add(etime);
 					if(minfo != null){
 						innerpanel.add(minfo);
+						minfo.setBackground(innerpanel.getBackground());
+					}
+					if(owner != null){
+						if(minfo == null){
+							owner.setBounds(0, etime.getY() + etime.getHeight(), bredde, 14);
+						}else{
+							owner.setBounds(0, minfo.getY() + minfo.getHeight(), bredde, 14);
+						}
+						owner.setBackground(innerpanel.getBackground());
+						innerpanel.add(owner);
 					}
 				}
 				i++;

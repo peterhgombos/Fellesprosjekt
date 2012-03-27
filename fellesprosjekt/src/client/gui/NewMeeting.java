@@ -346,7 +346,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 				}
 				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem() + ":0";
 				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-				ServerData.requestAvailableRooms(new Meeting(-1, null, null, null, null, null, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfParticipants));
+				ServerData.requestAvailableRooms(new Meeting(-1, null, null, null, null, null, null, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfParticipants));
 			}
 		});
 		otherPlaceRadioButton.addActionListener(new ActionListener() {
@@ -403,7 +403,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 				}
 				
 				if(isInEdit){
-					Meeting a = new Meeting(existingAppointmentId, Client.getUser(), title, description, place, nyttrom, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfExternalparticipants);
+					Meeting a = new Meeting(existingAppointmentId, Client.getUser(), Client.getUser(), title, description, place, nyttrom, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfExternalparticipants);
 					ServerData.requestUpdateMeeting(a);
 					calendar.goToCalender();
 					return;
@@ -414,7 +414,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 					return;
 				}
 				
-				Meeting m = new Meeting(-1, Client.getUser(),title, description, place, nyttrom, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfParticipants);
+				Meeting m = new Meeting(-1, Client.getUser(), Client.getUser(), title, description, place, nyttrom, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfParticipants);
 				ServerData.requestNewMeeting(m);
 				ServerData.removeMessageListener(thisNewMeeting);
 				

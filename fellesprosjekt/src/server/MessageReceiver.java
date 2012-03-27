@@ -50,8 +50,8 @@ public class MessageReceiver {
 				ResultSet appointmentResult = database.executeQuery(Queries.getAppointments(personid)); //Get the appointments where the person is a participants	
 				ResultSet meetingResult = database.executeQuery(Queries.getMeetings(personid)); //Get the meetings where the person is a participants	
 
-				Collection<Appointment> appointments = resultSetToAppointment(appointmentResult);
-				Collection<Meeting> meetings = resultSetToMeeting(meetingResult);
+				Collection<Appointment> appointments = resultSetToAppointment(appointmentResult, p);
+				Collection<Meeting> meetings = resultSetToMeeting(meetingResult, p);
 
 				ComMessage sendapp = new ComMessage(appointments, MessageType.RECEIVE_APPOINTMENTS);
 				ComMessage sendmeet = new ComMessage(meetings, MessageType.RECEIVE_MEETINGS);
@@ -78,8 +78,6 @@ public class MessageReceiver {
 			newAppointment(clientWriter, message);
 		}
 		else if(messageType.equals(MessageType.REQUEST_NEW_MEETING)){
-			//TODO
-			Server.console.writeline("new meeting");
 			newMeeting(message);
 		}
 		else if(messageType.equals(MessageType.REQUEST_SEARCH_PERSON)){
@@ -159,7 +157,7 @@ public class MessageReceiver {
 			Person p = (Person)message.getData();
 			try {
 				ResultSet rs = database.executeQuery(Queries.getNotes(p.getPersonID(), message.getProperty("filter")));
-				ArrayList<Note> result = resultSetToNotes(rs);
+				ArrayList<Note> result = resultSetToNotes(rs, p);
 				clientWriter.send(new ComMessage(result, MessageType.RECEIVE_NOTES));
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -187,7 +185,7 @@ public class MessageReceiver {
 				while (rs.next()) {
 					i++;
 				}
-				if (i > 0) {
+				if (i < 1) {
 					clientWriter.send(new ComMessage(null, MessageType.WARNING));
 				}
 			} catch (SQLException e) {
@@ -236,7 +234,7 @@ public class MessageReceiver {
 		}
 	}
 
-	private ArrayList<Note> resultSetToNotes(ResultSet rs){
+	private ArrayList<Note> resultSetToNotes(ResultSet rs, Person p){
 		ArrayList<Note> notes = new ArrayList<Note>(); 
 		try {
 			while (rs.next()) {
@@ -246,7 +244,7 @@ public class MessageReceiver {
 				int appointmentID = rs.getInt(Database.COL_APPOINTMENTID);
 				boolean hasRead = rs.getBoolean(Database.COL_HASREAD);
 
-				ArrayList<Meeting> appointment = resultSetToMeeting(database.executeQuery(Queries.getAppointmentById(appointmentID)));
+				ArrayList<Meeting> appointment = resultSetToMeeting(database.executeQuery(Queries.getAppointmentById(appointmentID)), p);
 				if(appointment.size() > 0){
 					Note n = new Note(varselID, title, new DateString(timesend), appointment.get(0), hasRead);
 					notes.add(n);
@@ -286,8 +284,8 @@ public class MessageReceiver {
 			ResultSet appointmentResult = database.executeQuery(Queries.getAppointmentsByDate(personid, startd, endd)); //Get the appointments where the person is a participants	
 			ResultSet meetingResult = database.executeQuery(Queries.getMeetingsByDate(personid, startd, endd)); //Get the meetings where the person is a participants	
 
-			ArrayList<Appointment> appointments = resultSetToAppointment(appointmentResult);
-			ArrayList<Meeting> meetings = resultSetToMeeting(meetingResult);
+			ArrayList<Appointment> appointments = resultSetToAppointment(appointmentResult, p);
+			ArrayList<Meeting> meetings = resultSetToMeeting(meetingResult, p);
 
 			ComMessage sendapp = new ComMessage(appointments, MessageType.RECEIVE_APPOINTMENTS_BY_DATE_FILTER);
 			ComMessage sendmeet = new ComMessage(meetings, MessageType.RECEIVE_MEETINGS_BY_DATE_FILTER);
@@ -345,7 +343,7 @@ public class MessageReceiver {
 			database.updateDB(Queries.createNewAppointment(newApp.getTitle(), newApp.getDescription(), newApp.getStartTime(), newApp.getEndTime(),newApp.getPlace(), newApp.getLeader().getPersonID()));
 			ResultSet rs = database.executeQuery(Queries.getLastAppointment());
 
-			Appointment appo = resultSetToAppointment(rs).get(0);
+			Appointment appo = resultSetToAppointment(rs, newApp.getLeader()).get(0);
 			ComMessage comMesNewApp = new ComMessage(appo, MessageType.RECEIVE_NEW_APPOINTMENT);
 			database.updateDB(Queries.addPersonToAttend(appo.getLeader().getPersonID(), appo.getId()));
 			from.send(comMesNewApp);
@@ -359,7 +357,7 @@ public class MessageReceiver {
 			database.updateDB(Queries.createNewMeeting(newMeet.getTitle(), newMeet.getDescription(), newMeet.getStartTime(), newMeet.getEndTime(),newMeet.getPlace(), newMeet.getRoom() == null ? null : newMeet.getRoom().getRomId(), newMeet.getLeader().getPersonID()));
 			ResultSet rs = database.executeQuery(Queries.getLastMeeting());
 
-			Meeting meeti = resultSetToMeeting(rs).get(0);
+			Meeting meeti = resultSetToMeeting(rs, newMeet.getLeader()).get(0);
 
 			database.updateDB(Queries.createNote("Invitasjon:" + meeti.getTitle(), meeti.getId()));
 			ResultSet noters = database.executeQuery(Queries.getLastNote());
@@ -397,7 +395,7 @@ public class MessageReceiver {
 	private ArrayList<Note> searchForNotes(ComMessage message){
 		String query = (String) message.getData();
 		try {
-			return resultSetToNotes(database.executeQuery(Queries.getNotesByFilter(query)));
+			return resultSetToNotes(database.executeQuery(Queries.getNotesByFilter(query)), null);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -418,7 +416,7 @@ public class MessageReceiver {
 		}
 	}
 
-	private ArrayList<Meeting> resultSetToMeeting(ResultSet result){
+	private ArrayList<Meeting> resultSetToMeeting(ResultSet result, Person p){
 		ArrayList<Meeting> returnthis = new ArrayList<Meeting>();
 		try{
 			while(result.next()){
@@ -439,7 +437,7 @@ public class MessageReceiver {
 				ArrayList<Room> rom = resultSetToRooms(database.executeQuery(Queries.getRoom(room)));
 				Room orom = rom.size() > 0 ? rom.get(0) : null;
 
-				returnthis.add(new Meeting(id, leader, title, description, place, orom, start, end, participants, external));
+				returnthis.add(new Meeting(id, leader, p, title, description, place, orom, start, end, participants, external));
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -461,7 +459,7 @@ public class MessageReceiver {
 		return returnThis;
 	}
 
-	private ArrayList<Appointment> resultSetToAppointment(ResultSet result){
+	private ArrayList<Appointment> resultSetToAppointment(ResultSet result, Person p){
 		ArrayList<Appointment> returnthis = new ArrayList<Appointment>();
 		try{
 			while(result.next()){
@@ -474,7 +472,7 @@ public class MessageReceiver {
 
 				Person leader = resutlSetToPerson(database.executeQuery(Queries.getLeaderForMeeting(id))).get(0);
 
-				returnthis.add(new Appointment(id, leader, title, description, place, start, end));
+				returnthis.add(new Appointment(id, leader, p, title, description, place, start, end));
 			}
 		}catch(SQLException e){
 			e.printStackTrace();

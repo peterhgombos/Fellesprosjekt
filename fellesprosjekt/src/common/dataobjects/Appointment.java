@@ -1,6 +1,7 @@
 package common.dataobjects;
 
 import java.awt.Color;
+import java.io.ObjectInputStream.GetField;
 import java.io.Serializable;
 
 import javax.xml.stream.events.StartDocument;
@@ -18,6 +19,7 @@ public class Appointment implements Serializable, Comparable {
 
 	private int id; 
 	private Person leader;
+	private Person owner;
 	private String title;
 	private String description;
 	private DateString startTime;
@@ -26,7 +28,7 @@ public class Appointment implements Serializable, Comparable {
 	
 	private Color color;
 
-	public Appointment(int id, Person leader, String title, String description, String place, DateString start, DateString end) throws RuntimeException {
+	public Appointment(int id, Person leader, Person owner, String title, String description, String place, DateString start, DateString end) throws RuntimeException {
 		this.id = id;
 		this.leader = leader;
 		this.title = title;
@@ -34,10 +36,18 @@ public class Appointment implements Serializable, Comparable {
 		this.startTime = start;
 		this.endTime = end;
 		this.place = place;
-		
+		this.owner = owner;
 		color = ColorPicker.nextColor();
 	}
 
+	public Person getowner(){
+		return owner;
+	}
+	
+	public void setColor(Color c){
+		color = c;
+	}
+	
 	public Appointment() {
 		
 	}

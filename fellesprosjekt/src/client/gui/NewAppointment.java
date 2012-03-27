@@ -157,15 +157,13 @@ public class NewAppointment extends JPanel{
 					return;
 				}
 
-
 				if(isInEdit){
-					Appointment a = new Appointment(existingAppointmentId, Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
+					Appointment a = new Appointment(existingAppointmentId, Client.getUser(), Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
 					ServerData.requestUpdateAppointment(a);
+				}else{
+					Appointment a = new Appointment(-1, Client.getUser(),Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
+					ServerData.requestNewAppointment(a);
 				}
-
-				Appointment a = new Appointment(-1, Client.getUser(), title, description, place, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd));
-				ServerData.requestNewAppointment(a);
-
 
 				calendar.goToCalender();
 			}
@@ -201,7 +199,7 @@ public class NewAppointment extends JPanel{
 
 			}
 		});
-		
+
 		endTimeHoursField.addActionListener(new ActionListener() {
 
 			@Override
@@ -224,7 +222,7 @@ public class NewAppointment extends JPanel{
 
 			}
 		});
-		
+
 		endTimeMinField.addActionListener(new ActionListener() {
 
 			@Override
@@ -247,7 +245,7 @@ public class NewAppointment extends JPanel{
 
 			}
 		});
-		
+
 		startTimeHoursField.addActionListener(new ActionListener() {
 
 			@Override
@@ -270,7 +268,7 @@ public class NewAppointment extends JPanel{
 
 			}
 		});
-		
+
 		//Might not be necessary
 		startTimeHoursField.addActionListener(new ActionListener() {
 
@@ -289,7 +287,7 @@ public class NewAppointment extends JPanel{
 
 			}
 		});
-		
+
 		startTimeMinField.addActionListener(new ActionListener() {
 
 			@Override
@@ -360,14 +358,14 @@ public class NewAppointment extends JPanel{
 
 		DateString sdm = app.getStartTime();
 		DateString edm = app.getEndTime();
-		
+
 		GregorianCalendar gcal = new GregorianCalendar();
 		gcal.set(sdm.getYear(), sdm.getMonth(), sdm.getDay(), sdm.getHour(), sdm.getMinute());
 		datepicker.setDate(gcal.getTime());
-		
+
 		gcal.set(edm.getYear(), edm.getMonth(), edm.getDay(), edm.getHour(), edm.getMinute());
 		endDPicker.setDate(gcal.getTime());
-		
+
 		startTimeHoursField.setSelectedIndex(app.getStartTime().getHour());
 		startTimeMinField.setSelectedItem(""+app.getStartTime().getMinute());
 		endTimeHoursField.setSelectedIndex(app.getEndTime().getHour());
