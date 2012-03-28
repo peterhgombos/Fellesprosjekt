@@ -41,64 +41,80 @@ public class ConnectionImpl extends AbstractConnection {
 	@SuppressWarnings("serial")
 	class NotImplementedException extends RuntimeException {}
 
-	/** Keeps track of the used ports for each server port. */
-	private static Map<Integer, Boolean> usedPorts = Collections.synchronizedMap(new HashMap<Integer, Boolean>());
+	
+    /** Keeps track of the used ports for each server port. */
+    private static Map<Integer, Boolean> usedPorts = Collections.synchronizedMap(new HashMap<Integer, Boolean>());
 
-	/**
-	 * Initialise initial sequence number and setup state machine.
-	 * 
-	 * @param myPort
-	 *            - the local port to associate with this connection
-	 */
-	public ConnectionImpl(int myPort) {
-		this.state = State.CLOSED;
-		this.myPort = myPort;
-		this.myAddress = getIPv4Address();
+    /**
+     * Initialise initial sequence number and setup state machine.
+     * 
+     * @param myPort
+     *            - the local port to associate with this connection
+     */
+    public ConnectionImpl(int myPort) {
+    	this.state = State.CLOSED;
+    	this.myPort = myPort;
+    	this.myAddress = getIPv4Address();
+    	
+    	
+        throw new NotImplementedException();
+    }
 
+    private String getIPv4Address() {
+        try {
+            return InetAddress.getLocalHost().getHostAddress();
+        }
+        catch (UnknownHostException e) {
+            return "127.0.0.1";
+        }
+    }
 
-		throw new NotImplementedException();
-	}
-
-	private String getIPv4Address() {
-		try {
-			return InetAddress.getLocalHost().getHostAddress();
-		}
-		catch (UnknownHostException e) {
-			return "127.0.0.1";
-		}
-	}
-
-	/**
-	 * Establish a connection to a remote location.
-	 * 
-	 * @param remoteAddress
-	 *            - the remote IP-address to connect to
-	 * @param remotePort
-	 *            - the remote portnumber to connect to
-	 * @throws IOException
-	 *             If there's an I/O error.
-	 * @throws java.net.SocketTimeoutException
-	 *             If timeout expires before connection is completed.
-	 * @throws ClException 
-	 * @see Connection#connect(InetAddress, int)
-	 */
-	public void connect(InetAddress remoteAddress, int remotePort) throws IOException, SocketTimeoutException {
-		KtnDatagram syn = constructInternalPacket(Flag.SYN);
-		this.remotePort = remotePort;
-		this.remoteAddress = remoteAddress.getHostAddress();
-		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new SendTimer(new ClSocket(), syn), 0, RETRANSMIT);
-		KtnDatagram synack; 
-		do{
-			synack = receiveAck();
-		}while(synack.getFlag() != Flag.SYN_ACK);
-		timer.cancel();
-		KtnDatagram ack = constructInternalPacket(Flag.ACK);
-		try {
+    /**
+     * Establish a connection to a remote location.
+     * 
+     * @param remoteAddress
+     *            - the remote IP-address to connect to
+     * @param remotePort
+     *            - the remote portnumber to connect to
+     * @throws IOException
+     *             If there's an I/O error.
+     * @throws java.net.SocketTimeoutException
+     *             If timeout expires before connection is completed.
+     * @throws ClException 
+     * @see Connection#connect(InetAddress, int)
+     */
+    public void connect(InetAddress remoteAddress, int remotePort) throws IOException,
+            SocketTimeoutException {
+    	/* 
+    	 * If state is not closed, no connect
+    	 */
+    	if(this.state != State.CLOSED) return;
+    	
+    	/*
+    	 * Send SYN with timer until SYNACK is received.
+    	 */
+        KtnDatagram syn = constructInternalPacket(Flag.SYN);
+        this.remotePort = remotePort;
+        this.remoteAddress = remoteAddress.getHostAddress();
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new SendTimer(new ClSocket(), syn), 0, RETRANSMIT);
+        this.state = State.SYN_SENT;
+        KtnDatagram synack; 
+        do{
+        	synack = receiveAck();
+        }while(synack.getFlag() != Flag.SYN_ACK);
+        timer.cancel();
+       
+        /*
+         * Send ACK after receiving SYNACK
+         */
+        KtnDatagram ack = constructInternalPacket(Flag.ACK);
+        try {
 			simplySendPacket(ack);
 		} catch (ClException e) {
 			e.printStackTrace();
 		}
+		this.state = State.ESTABLISHED;
 		return;
 	}
 
