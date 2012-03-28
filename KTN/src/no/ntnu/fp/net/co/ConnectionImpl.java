@@ -89,22 +89,36 @@ public class ConnectionImpl extends AbstractConnection {
      */
     public void connect(InetAddress remoteAddress, int remotePort) throws IOException,
             SocketTimeoutException {
+    	/* 
+    	 * If state is not closed, no connect
+    	 */
+    	if(this.state != State.CLOSED) return;
+    	
+    	/*
+    	 * Send SYN with timer until SYNACK is received.
+    	 */
         KtnDatagram syn = constructInternalPacket(Flag.SYN);
         this.remotePort = remotePort;
         this.remoteAddress = remoteAddress.getHostAddress();
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new SendTimer(new ClSocket(), syn), 0, RETRANSMIT);
+        this.state = State.SYN_SENT;
         KtnDatagram synack; 
         do{
         	synack = receiveAck();
         }while(synack.getFlag() != Flag.SYN_ACK);
         timer.cancel();
+       
+        /*
+         * Send ACK after receiving SYNACK
+         */
         KtnDatagram ack = constructInternalPacket(Flag.ACK);
         try {
 			simplySendPacket(ack);
 		} catch (ClException e) {
 			e.printStackTrace();
 		}
+		this.state = State.ESTABLISHED;
 		return;
 
     }
