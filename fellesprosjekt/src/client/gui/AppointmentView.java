@@ -112,6 +112,7 @@ public class AppointmentView extends JPanel{
 				Meeting m = (Meeting)appointment;
 				m.changeParticipantAnswer(Client.getUser(), Meeting.SVAR_OK);
 				ServerData.requestUpdateAnswers(m.getParticipants(), m);
+				ServerData.getNewOldNotes(Client.getUser());
 				accpectButton.setEnabled(false);
 				rejectButton.setEnabled(true);
 				setComponents();
@@ -123,6 +124,7 @@ public class AppointmentView extends JPanel{
 				Meeting m = (Meeting)appointment;
 				m.changeParticipantAnswer(Client.getUser(), Meeting.SVAR_NEI);
 				ServerData.requestUpdateAnswers(m.getParticipants(), appointment);
+				ServerData.getNewOldNotes(Client.getUser());
 				accpectButton.setEnabled(true);
 				rejectButton.setEnabled(false);
 				setComponents();
