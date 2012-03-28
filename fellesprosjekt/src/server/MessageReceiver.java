@@ -134,8 +134,10 @@ public class MessageReceiver {
 					database.updateDB(Queries.deleteParticipant(p.getPersonID(), m.getId()));
 					database.updateDB(Queries.addPersonToAttend(p.getPersonID(), m.getId()));
 					
-					database.updateDB(Queries.deleteNoteForPerson(n.getID(), p.getPersonID()));
-					database.updateDB(Queries.addNoteToPerson(p.getPersonID(), n.getID()));
+					if(p.getPersonID() != m.getLeader().getPersonID()){
+						database.updateDB(Queries.deleteNoteForPerson(n.getID(), p.getPersonID()));
+						database.updateDB(Queries.addNoteToPerson(p.getPersonID(), n.getID()));
+					}
 					
 					ClientWriter cw = idClients.get(p.getPersonID());
 					if(cw != null && p.getPersonID() != m.getLeader().getPersonID()){

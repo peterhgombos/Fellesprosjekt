@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.TimeZone;
 
 
 import javax.swing.ButtonGroup;
@@ -131,8 +132,14 @@ public class NewMeeting extends JPanel implements MessageListener{
 		placeField.setText(meet.getPlace());
 		participantsList = meet.getParticipants();
 
-		if (meet.getPlace() != null) {
+		if (meet.getRoom() == null) {
 			otherPlaceRadioButton.setSelected(true);
+			placeField.setEnabled(true);
+		}else{
+			bookMeetingroomRadioButton.setSelected(true);
+			roomPicker.addItem(meet.getRoom());
+			roomPicker.setEnabled(true);
+			placeField.setEnabled(false);
 		}
 
 		existingAppointmentId = meet.getId();
@@ -338,6 +345,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 		bookMeetingroomRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				roomPicker.setEnabled(true);
+				placeField.setEnabled(false);
 				placeField.setText("");
 				String dateStart = datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH);;
 				String dateEnd;
@@ -355,9 +363,9 @@ public class NewMeeting extends JPanel implements MessageListener{
 		otherPlaceRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				roomPicker.setEnabled(false);
+				placeField.setEnabled(true);
 				roomPicker.setSelectedIndex(-1);
 				placeField.setEnabled(true);
-
 			}
 		});
 
@@ -442,8 +450,6 @@ public class NewMeeting extends JPanel implements MessageListener{
 				ServerData.removeMessageListener(thisNewMeeting);
 			}
 		});
-
-
 
 		scrollPane = new JScrollPane(descriptionArea);
 
