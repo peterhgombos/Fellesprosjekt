@@ -121,7 +121,7 @@ public class Queries {
 		return	"SELECT VARSEL.* , HAR_MOTTATT.HAR_LEST " +
 				"FROM VARSEL, HAR_MOTTATT " +
 				"WHERE " +
-				"HAR_MOTTATT.ANSATTNR = 123 " +
+				"HAR_MOTTATT.ANSATTNR = " + deltakerId + " " +
 				"AND VARSEL.TITTEL LIKE '%" + filter + "%' " +
 				"AND VARSEL.VARSELID = HAR_MOTTATT.VARSELID " +
 				"ORDER  BY VARSEL.TIDSENDT;";
