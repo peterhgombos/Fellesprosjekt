@@ -123,7 +123,7 @@ public class AppointmentView extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				Meeting m = (Meeting)appointment;
 				m.changeParticipantAnswer(Client.getUser(), Meeting.SVAR_NEI);
-				ServerData.requestUpdateAnswers(m.getParticipants(), appointment);
+				ServerData.requestUpdateAnswers(m.getParticipants(), m);
 				ServerData.getNewOldNotes(Client.getUser());
 				accpectButton.setEnabled(true);
 				rejectButton.setEnabled(false);
