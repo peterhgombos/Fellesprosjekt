@@ -22,7 +22,7 @@ public interface Connection {
      * @throws java.net.SocketTimeoutException
      *             if timeout expires before connection is completed.
      */
-    public void connect(InetAddress remoteAddress, int remotePort) throws java.io.IOException,
+    public void connect(String remoteAddress, int remotePort) throws java.io.IOException,
             java.net.SocketTimeoutException;
 
     /**

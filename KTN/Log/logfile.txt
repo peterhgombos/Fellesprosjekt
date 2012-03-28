@@ -1,0 +1,797 @@
+
+13:54:42.898     CLSocket::receive                                                                                                                       Receiving at:4065                                 
+13:56:56.158     AbstractConnection                                                                                                                      Waiting for incoming packet in receiveAck()       
+13:56:56.158     SendTimer                null:0                   null:0                   4460    SYN     -1                               0           Sending this datagram (try: 1)                    
+13:56:56.158     CLSocket::receive                                                                                                                       Receiving at:0                                    
+14:3:55.879      CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:3:55.879      SendTimer                null:32759               null:0                   3606    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:6:10.460      CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:6:10.460      SendTimer                null:32759               null:0                   9573    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:6:52.913      CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:6:52.913      SendTimer                null:32759               null:0                   713     SYN     -1                               0           Sending this datagram (try: 1)                    
+14:13:30.748     CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:13:30.748     SendTimer                null:32759               localhost:44065          4773    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:13:31.778     SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:13:31.778     SendTimer                null:32759               localhost:44065          4773    SYN     -1                               0           Sending this datagram (try: 2)                    
+14:13:32.779     SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:13:32.779     SendTimer                null:32759               localhost:44065          4773    SYN     -1                               0           Sending this datagram (try: 3)                    
+14:13:33.780     SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:13:33.780     SendTimer                null:32759               localhost:44065          4773    SYN     -1                               0           Sending this datagram (try: 4)                    
+14:13:34.781     SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:13:34.781     SendTimer                null:32759               localhost:44065          4773    SYN     -1                               0           Sending this datagram (try: 5)                    
+14:13:35.782     SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:13:35.782     SendTimer                null:32759               localhost:44065          4773    SYN     -1                               0           Sending this datagram (try: 6)                    
+14:14:35.734     CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:14:35.734     SendTimer                localhost:32759          localhost:44065          4147    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:14:36.754     SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:14:36.754     SendTimer                localhost:32759          localhost:44065          4147    SYN     -1                               0           Sending this datagram (try: 2)                    
+14:15:30.246     CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:15:30.246     SendTimer                localhost:32759          localhost:44065          8181    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:15:31.266     SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:15:31.266     SendTimer                localhost:32759          localhost:44065          8181    SYN     -1                               0           Sending this datagram (try: 2)                    
+14:16:19.318     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:16:27.968     CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:16:27.968     SendTimer                localhost:32759          localhost:44065          6842    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:16:27.988     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51464
+14:16:28.8       NETWORK                                                                                                                                 Packet 6842 send!                                 
+14:16:28.28      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:16:28.28      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:16:28.38      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:16:28.38      SendTimer                localhost:44065          null:0                   1198    SYN_ACK -1                               0           Sending this datagram (try: 1)                    
+14:16:28.760     SendTimer                localhost:32759          localhost:44065          6842    SYN     -1                               0           Sending this datagram (try: 2)                    
+14:16:28.760     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51465
+14:16:28.760     NETWORK                                                                                                                                 Packet 6842 send!                                 
+14:16:28.760     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:16:28.760     AbstractConnection                                                                                                                      Waiting for incoming packet in receiveAck()       
+14:16:28.770     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:16:28.770     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:16:29.560     SendTimer                localhost:32759          localhost:44065          6842    SYN     -1                               0           Sending this datagram (try: 3)                    
+14:16:29.560     NETWORK                                                                                                                                 Packet 6842 send!                                 
+14:16:29.560     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51466
+14:16:29.560     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:16:29.560     AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:16:29.570     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:16:29.570     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:16:30.361     SendTimer                localhost:32759          localhost:44065          6842    SYN     -1                               0           Sending this datagram (try: 4)                    
+14:16:30.361     NETWORK                                                                                                                                 Packet 6842 send!                                 
+14:16:30.361     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51467
+14:16:30.361     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:16:30.361     AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:16:30.361     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:16:30.361     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:16:31.162     SendTimer                localhost:32759          localhost:44065          6842    SYN     -1                               0           Sending this datagram (try: 5)                    
+14:16:32.173     SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:16:32.173     SendTimer                localhost:32759          localhost:44065          6842    SYN     -1                               0           Sending this datagram (try: 6)                    
+14:16:33.174     SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:16:33.174     SendTimer                localhost:32759          localhost:44065          6842    SYN     -1                               0           Sending this datagram (try: 7)                    
+14:16:34.175     SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:16:34.175     SendTimer                localhost:32759          localhost:44065          6842    SYN     -1                               0           Sending this datagram (try: 8)                    
+14:16:35.176     SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:16:35.176     SendTimer                localhost:32759          localhost:44065          6842    SYN     -1                               0           Sending this datagram (try: 9)                    
+14:19:8.958      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:19:13.88      CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:19:13.98      SendTimer                localhost:32759          127.0.0.1:44065          9022    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:19:13.108     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51479
+14:19:13.128     NETWORK                                                                                                                                 Packet 9022 send!                                 
+14:19:13.148     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:19:13.148     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:19:13.148     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:19:13.148     SendTimer                localhost:44065          null:0                   7678    SYN_ACK -1                               0           Sending this datagram (try: 1)                    
+14:19:13.890     SendTimer                localhost:32759          127.0.0.1:44065          9022    SYN     -1                               0           Sending this datagram (try: 2)                    
+14:19:13.890     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51480
+14:19:13.890     NETWORK                                                                                                                                 Packet 9022 send!                                 
+14:19:13.890     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:19:13.890     AbstractConnection                                                                                                                      Waiting for incoming packet in receiveAck()       
+14:19:13.890     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:19:13.890     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:19:14.691     SendTimer                localhost:32759          127.0.0.1:44065          9022    SYN     -1                               0           Sending this datagram (try: 3)                    
+14:19:15.692     SendTimer                                                                                                                               ERROR: Could not establish a connection to 127.0.0.1:44065
+14:19:15.692     SendTimer                localhost:32759          127.0.0.1:44065          9022    SYN     -1                               0           Sending this datagram (try: 4)                    
+14:19:16.693     SendTimer                                                                                                                               ERROR: Could not establish a connection to 127.0.0.1:44065
+14:19:16.693     SendTimer                localhost:32759          127.0.0.1:44065          9022    SYN     -1                               0           Sending this datagram (try: 5)                    
+14:22:2.924      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:22:6.744      CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:22:6.744      SendTimer                localhost:32759          127.0.0.1:44065          6733    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:22:6.764      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51494
+14:22:6.784      NETWORK                                                                                                                                 Packet 6733 send!                                 
+14:22:6.804      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:22:6.804      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:22:6.804      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:22:6.804      SendTimer                localhost:44065          null:0                   165     SYN_ACK -1                               0           Sending this datagram (try: 1)                    
+14:22:7.546      SendTimer                localhost:32759          127.0.0.1:44065          6733    SYN     -1                               0           Sending this datagram (try: 2)                    
+14:22:7.546      NETWORK                                                                                                                                 Packet 6733 send!                                 
+14:22:7.546      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51495
+14:22:7.546      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:22:7.546      AbstractConnection                                                                                                                      Waiting for incoming packet in receiveAck()       
+14:22:7.556      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:22:7.556      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:22:8.347      SendTimer                localhost:32759          127.0.0.1:44065          6733    SYN     -1                               0           Sending this datagram (try: 3)                    
+14:22:8.347      NETWORK                                                                                                                                 Packet 6733 send!                                 
+14:22:8.347      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51496
+14:22:8.347      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:22:8.347      AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:22:8.347      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:22:8.357      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:22:9.148      SendTimer                localhost:32759          127.0.0.1:44065          6733    SYN     -1                               0           Sending this datagram (try: 4)                    
+14:22:9.148      NETWORK                                                                                                                                 Packet 6733 send!                                 
+14:22:9.148      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51497
+14:22:9.148      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:22:9.169      AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:22:9.179      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:22:9.179      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:22:23.821     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:22:26.301     CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:22:26.301     SendTimer                localhost:32759          127.0.0.1:44065          6353    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:22:26.311     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51498
+14:22:26.331     NETWORK                                                                                                                                 Packet 6353 send!                                 
+14:22:26.351     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:22:26.351     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:22:26.351     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:22:26.361     SendTimer                localhost:44065          null:0                   994     SYN_ACK -1                               0           Sending this datagram (try: 1)                    
+14:22:27.93      SendTimer                localhost:32759          127.0.0.1:44065          6353    SYN     -1                               0           Sending this datagram (try: 2)                    
+14:22:27.93      NETWORK                                                                                                                                 Packet 6353 send!                                 
+14:22:27.93      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51501
+14:22:27.93      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:22:27.93      AbstractConnection                                                                                                                      Waiting for incoming packet in receiveAck()       
+14:22:27.93      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:22:27.93      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:22:27.894     SendTimer                localhost:32759          127.0.0.1:44065          6353    SYN     -1                               0           Sending this datagram (try: 3)                    
+14:22:27.894     NETWORK                                                                                                                                 Packet 6353 send!                                 
+14:22:27.894     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51502
+14:22:27.894     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:22:27.894     AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:22:27.894     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:22:27.894     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:22:28.695     SendTimer                localhost:32759          127.0.0.1:44065          6353    SYN     -1                               0           Sending this datagram (try: 4)                    
+14:22:28.695     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51503
+14:22:28.695     NETWORK                                                                                                                                 Packet 6353 send!                                 
+14:22:28.695     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:22:28.716     AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:22:28.716     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:22:28.716     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:22:29.496     SendTimer                localhost:32759          127.0.0.1:44065          6353    SYN     -1                               0           Sending this datagram (try: 5)                    
+14:22:29.496     NETWORK                                                                                                                                 Packet 6353 send!                                 
+14:22:29.496     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51504
+14:22:29.496     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:22:29.496     AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:22:29.496     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:22:29.496     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:22:30.298     SendTimer                localhost:32759          127.0.0.1:44065          6353    SYN     -1                               0           Sending this datagram (try: 6)                    
+14:25:58.521     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:26:3.751      CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:26:3.751      SendTimer                localhost:32759          localhost:44065          1517    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:26:3.781      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51518
+14:26:3.801      NETWORK                                                                                                                                 Packet 1517 send!                                 
+14:26:3.811      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:26:3.821      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:26:3.821      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:26:3.821      SendTimer                localhost:44065          null:0                   7247    SYN_ACK -1                               0           Sending this datagram (try: 1)                    
+14:26:4.553      SendTimer                localhost:32759          localhost:44065          1517    SYN     -1                               0           Sending this datagram (try: 2)                    
+14:26:4.553      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51519
+14:26:4.553      NETWORK                                                                                                                                 Packet 1517 send!                                 
+14:26:4.553      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:26:4.553      AbstractConnection                                                                                                                      Waiting for incoming packet in receiveAck()       
+14:26:4.563      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:26:4.563      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:26:5.354      SendTimer                localhost:32759          localhost:44065          1517    SYN     -1                               0           Sending this datagram (try: 3)                    
+14:26:5.354      NETWORK                                                                                                                                 Packet 1517 send!                                 
+14:26:5.354      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51520
+14:26:5.354      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:26:5.354      AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:26:5.364      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:26:5.364      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:26:6.155      SendTimer                localhost:32759          localhost:44065          1517    SYN     -1                               0           Sending this datagram (try: 4)                    
+14:26:6.155      NETWORK                                                                                                                                 Packet 1517 send!                                 
+14:26:6.155      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51521
+14:26:6.165      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:26:6.176      AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:26:6.176      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:26:6.176      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:27:48.621     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:27:50.932     CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:27:50.932     SendTimer                localhost:32759          localhost:44065          4888    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:27:50.952     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51565
+14:27:50.962     NETWORK                                                                                                                                 Packet 4888 send!                                 
+14:27:50.972     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:27:50.982     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:27:50.982     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:27:50.982     SendTimer                78.91.18.174:44065       null:0                   9648    SYN_ACK -1                               0           Sending this datagram (try: 1)                    
+14:27:51.723     SendTimer                localhost:32759          localhost:44065          4888    SYN     -1                               0           Sending this datagram (try: 2)                    
+14:27:51.723     NETWORK                                                                                                                                 Packet 4888 send!                                 
+14:27:51.723     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51566
+14:27:51.723     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:27:51.723     AbstractConnection                                                                                                                      Waiting for incoming packet in receiveAck()       
+14:27:51.733     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:27:51.733     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:27:52.524     SendTimer                localhost:32759          localhost:44065          4888    SYN     -1                               0           Sending this datagram (try: 3)                    
+14:27:52.524     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51571
+14:27:52.524     NETWORK                                                                                                                                 Packet 4888 send!                                 
+14:27:52.524     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:27:52.524     AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:27:52.524     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:27:52.524     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:27:53.325     SendTimer                localhost:32759          localhost:44065          4888    SYN     -1                               0           Sending this datagram (try: 4)                    
+14:27:53.325     NETWORK                                                                                                                                 Packet 4888 send!                                 
+14:27:53.325     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51572
+14:27:53.335     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:27:53.335     AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:27:53.335     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:27:53.335     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:37:25.793     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:37:30.353     CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:37:30.353     SendTimer                localhost:32759          localhost:44065          1186    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:37:30.373     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51653
+14:37:30.393     NETWORK                                                                                                                                 Packet 1186 send!                                 
+14:37:30.403     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:37:30.403     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:37:30.403     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:37:30.403     SendTimer                78.91.18.174:44065       null:0                   322     SYN_ACK -1                               0           Sending this datagram (try: 1)                    
+14:37:31.145     SendTimer                localhost:32759          localhost:44065          1186    SYN     -1                               0           Sending this datagram (try: 2)                    
+14:37:31.145     NETWORK                                                                                                                                 Packet 1186 send!                                 
+14:37:31.145     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51654
+14:37:31.145     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:37:31.145     AbstractConnection                                                                                                                      Waiting for incoming packet in receiveAck()       
+14:37:31.155     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:37:31.155     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:37:31.946     SendTimer                localhost:32759          localhost:44065          1186    SYN     -1                               0           Sending this datagram (try: 3)                    
+14:37:31.946     NETWORK                                                                                                                                 Packet 1186 send!                                 
+14:37:31.946     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51655
+14:37:31.946     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:37:31.946     AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:37:31.946     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:37:31.946     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:37:32.747     SendTimer                localhost:32759          localhost:44065          1186    SYN     -1                               0           Sending this datagram (try: 4)                    
+14:37:32.747     NETWORK                                                                                                                                 Packet 1186 send!                                 
+14:37:32.747     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51656
+14:37:32.757     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:37:32.757     AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:37:32.757     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:37:32.757     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:38:7.300      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:38:9.470      CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:38:9.470      SendTimer                localhost:32759          localhost:44065          7232    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:38:9.490      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51658
+14:38:9.520      NETWORK                                                                                                                                 Packet 7232 send!                                 
+14:38:9.520      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:38:9.530      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:38:9.530      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:38:9.530      SendTimer                78.91.18.174:44065       null:0                   9263    SYN_ACK -1                               0           Sending this datagram (try: 1)                    
+14:38:10.272     SendTimer                localhost:32759          localhost:44065          7232    SYN     -1                               0           Sending this datagram (try: 2)                    
+14:38:10.272     NETWORK                                                                                                                                 Packet 7232 send!                                 
+14:38:10.272     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51659
+14:38:10.272     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:38:10.272     AbstractConnection                                                                                                                      Waiting for incoming packet in receiveAck()       
+14:38:10.282     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:38:10.282     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:38:11.73      SendTimer                localhost:32759          localhost:44065          7232    SYN     -1                               0           Sending this datagram (try: 3)                    
+14:38:11.73      NETWORK                                                                                                                                 Packet 7232 send!                                 
+14:38:11.73      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51660
+14:38:11.73      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:38:11.73      AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:38:11.73      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:38:11.83      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:38:11.874     SendTimer                localhost:32759          localhost:44065          7232    SYN     -1                               0           Sending this datagram (try: 4)                    
+14:38:11.874     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51661
+14:38:11.874     NETWORK                                                                                                                                 Packet 7232 send!                                 
+14:38:11.884     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:38:11.884     AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:38:11.884     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:38:11.884     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:38:12.675     SendTimer                localhost:32759          localhost:44065          7232    SYN     -1                               0           Sending this datagram (try: 5)                    
+14:38:12.675     NETWORK                                                                                                                                 Packet 7232 send!                                 
+14:38:12.675     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51662
+14:38:12.675     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:38:12.685     AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:38:12.685     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:38:12.685     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:38:13.477     SendTimer                localhost:32759          localhost:44065          7232    SYN     -1                               0           Sending this datagram (try: 6)                    
+14:38:14.488     SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:38:14.488     SendTimer                localhost:32759          localhost:44065          7232    SYN     -1                               0           Sending this datagram (try: 7)                    
+14:40:23.852     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:40:27.352     CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:40:27.352     SendTimer                localhost:32759          localhost:44065          4331    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:40:27.392     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51670
+14:40:27.412     NETWORK                                                                                                                                 Packet 4331 send!                                 
+14:40:27.432     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:40:27.432     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:40:27.432     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:40:27.432     SendTimer                78.91.18.174:44065       null:0                   8761    SYN_ACK -1                               0           Sending this datagram (try: 1)                    
+14:40:28.154     SendTimer                localhost:32759          localhost:44065          4331    SYN     -1                               0           Sending this datagram (try: 2)                    
+14:40:28.154     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51671
+14:40:28.154     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:40:28.154     NETWORK                                                                                                                                 Packet 4331 send!                                 
+14:40:28.154     AbstractConnection                                                                                                                      Waiting for incoming packet in receiveAck()       
+14:40:28.164     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:40:28.164     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:40:28.955     SendTimer                localhost:32759          localhost:44065          4331    SYN     -1                               0           Sending this datagram (try: 3)                    
+14:40:28.955     NETWORK                                                                                                                                 Packet 4331 send!                                 
+14:40:28.955     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51672
+14:40:28.955     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:40:28.955     AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:40:28.955     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:40:28.955     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:40:29.756     SendTimer                localhost:32759          localhost:44065          4331    SYN     -1                               0           Sending this datagram (try: 4)                    
+14:40:29.756     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51673
+14:40:29.756     NETWORK                                                                                                                                 Packet 4331 send!                                 
+14:40:29.776     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:40:29.777     AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:40:29.777     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:40:29.777     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:40:30.557     SendTimer                localhost:32759          localhost:44065          4331    SYN     -1                               0           Sending this datagram (try: 5)                    
+14:40:30.557     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51674
+14:40:30.557     NETWORK                                                                                                                                 Packet 4331 send!                                 
+14:40:30.557     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:40:30.557     AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:40:30.557     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:40:30.557     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:40:31.359     SendTimer                localhost:32759          localhost:44065          4331    SYN     -1                               0           Sending this datagram (try: 6)                    
+14:42:13.711     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:42:16.431     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:42:29.454     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:42:31.984     CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:42:31.984     SendTimer                localhost:32759          localhost:44065          6644    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:42:32.4       CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51682
+14:42:32.14      NETWORK                                                                                                                                 Packet 6644 send!                                 
+14:42:32.34      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:42:32.34      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:42:32.34      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:42:32.44      SendTimer                78.91.18.174:44065       null:0                   8644    SYN_ACK -1                               0           Sending this datagram (try: 1)                    
+14:42:32.775     SendTimer                localhost:32759          localhost:44065          6644    SYN     -1                               0           Sending this datagram (try: 2)                    
+14:42:32.775     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51683
+14:42:32.775     NETWORK                                                                                                                                 Packet 6644 send!                                 
+14:42:32.775     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:42:32.775     AbstractConnection                                                                                                                      Waiting for incoming packet in receiveAck()       
+14:42:32.785     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:42:32.785     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:42:33.576     SendTimer                localhost:32759          localhost:44065          6644    SYN     -1                               0           Sending this datagram (try: 3)                    
+14:42:33.576     NETWORK                                                                                                                                 Packet 6644 send!                                 
+14:42:33.576     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51684
+14:42:33.576     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:42:33.576     AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:42:33.576     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:42:33.576     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:42:34.377     SendTimer                localhost:32759          localhost:44065          6644    SYN     -1                               0           Sending this datagram (try: 4)                    
+14:42:34.377     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51685
+14:42:34.377     NETWORK                                                                                                                                 Packet 6644 send!                                 
+14:42:34.398     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:42:34.398     AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:42:34.398     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:42:34.398     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:42:35.178     SendTimer                localhost:32759          localhost:44065          6644    SYN     -1                               0           Sending this datagram (try: 5)                    
+14:42:35.178     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51686
+14:42:35.188     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:42:35.188     AbstractConnection                                                                                                                      Received an internal packet in receiveAck         
+14:42:35.188     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:42:35.188     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:42:35.980     SendTimer                localhost:32759          localhost:44065          6644    SYN     -1                               0           Sending this datagram (try: 6)                    
+14:42:36.981     SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:42:36.981     SendTimer                localhost:32759          localhost:44065          6644    SYN     -1                               0           Sending this datagram (try: 7)                    
+14:42:37.982     SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:42:37.982     SendTimer                localhost:32759          localhost:44065          6644    SYN     -1                               0           Sending this datagram (try: 8)                    
+14:42:38.983     SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:42:38.983     SendTimer                localhost:32759          localhost:44065          6644    SYN     -1                               0           Sending this datagram (try: 9)                    
+14:42:39.984     SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:42:39.984     SendTimer                localhost:32759          localhost:44065          6644    SYN     -1                               0           Sending this datagram (try: 10)                   
+14:42:40.986     SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:42:40.986     SendTimer                localhost:32759          localhost:44065          6644    SYN     -1                               0           Sending this datagram (try: 11)                   
+14:42:42.17      SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+14:42:42.17      SendTimer                localhost:32759          localhost:44065          6644    SYN     -1                               0           Sending this datagram (try: 12)                   
+14:43:8.861      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:43:11.341     CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:43:11.351     SendTimer                localhost:32759          localhost:44065          559     SYN     -1                               0           Sending this datagram (try: 1)                    
+14:43:11.361     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51694
+14:43:11.391     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:43:11.422     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:43:11.422     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:43:11.422     SendTimer                78.91.18.174:44065       null:0                   8199    SYN_ACK -1                               0           Sending this datagram (try: 1)                    
+14:43:12.133     SendTimer                localhost:32759          localhost:44065          559     SYN     -1                               0           Sending this datagram (try: 2)                    
+14:43:12.133     NETWORK                                                                                                                                 Packet 559 send!                                  
+14:43:12.133     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51695
+14:43:12.133     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:43:12.133     AbstractConnection                                                                                                                      Waiting for incoming packet in receiveAck()       
+14:43:12.143     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:43:12.143     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:45:2.926      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:45:8.496      CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:45:8.496      SendTimer                localhost:32759          localhost:44065          8283    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:45:8.516      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51702
+14:45:8.526      NETWORK                                                                                                                                 Packet 8283 send!                                 
+14:45:8.546      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:45:8.556      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:45:8.556      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:45:8.556      SendTimer                78.91.18.174:44065       null:0                   7986    SYN_ACK -1                               0           Sending this datagram (try: 1)                    
+14:58:21.749     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:58:24.609     CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:58:24.619     SendTimer                localhost:32759          localhost:44065          4555    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:58:24.649     NETWORK                                                                                                                                 Packet 4555 send!                                 
+14:58:24.629     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51750
+14:58:24.669     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:58:24.669     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:58:24.669     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:58:24.679     SendTimer                78.91.18.174:44065       null:0                   0       SYN_ACK -1                               3550174854  Sending this datagram (try: 1)                    
+14:59:29.323     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:59:31.933     CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:59:31.943     SendTimer                localhost:32759          localhost:44065          6308    SYN     -1                               0           Sending this datagram (try: 1)                    
+14:59:31.983     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51755
+14:59:31.993     NETWORK                                                                                                                                 Packet 6308 send!                                 
+14:59:32.3       CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:59:32.13      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:59:32.13      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:59:32.13      SendTimer                78.91.18.174:44065       localhost:32759          0       SYN_ACK -1                               3550174854  Sending this datagram (try: 1)                    
+14:59:32.24      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 32759
+Remote Port:51756
+14:59:32.24      NETWORK                                                                                                                                 Packet 0 send!                                    
+14:59:32.24      CLSocket::receive                                                                                                                       Finished receiving at:32759                       
+14:59:32.34      NETWORK                                                                                                                                 Packet 0 send!                                    
+14:59:32.34      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51757
+14:59:32.34      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+15:10:1.17       CLSocket::receive                                                                                                                       Receiving at:32759                                
+15:10:1.17       SendTimer                localhost:32759          localhost:44065          2821    SYN     -1                               0           Sending this datagram (try: 1)                    
+15:10:2.37       SendTimer                                                                                                                               ERROR: Could not establish a connection to localhost:44065
+15:23:58.358     CLSocket::receive                                                                                                                       Receiving at:44065                                
+15:24:0.869      CLSocket::receive                                                                                                                       Receiving at:32759                                
+15:24:0.869      SendTimer                localhost:32759          localhost:44065          6011    SYN     -1                               0           Sending this datagram (try: 1)                    
+15:24:0.885      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51929
+15:24:0.900      NETWORK                                                                                                                                 Packet 6011 send!                                 
+15:24:0.916      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+15:24:0.916      CLSocket::receive                                                                                                                       Receiving at:44065                                
+15:24:0.916      SendTimer                78.91.18.174:44065       localhost:32759          0       SYN_ACK -1                               3550174854  Sending this datagram (try: 1)                    
+15:24:0.916      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+15:24:0.932      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 32759
+Remote Port:51930
+15:24:0.932      NETWORK                                                                                                                                 Packet 0 send!                                    
+15:24:0.932      CLSocket::receive                                                                                                                       Finished receiving at:32759                       
+15:24:0.932      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51931
+15:24:0.932      NETWORK                                                                                                                                 Packet 0 send!                                    
+15:24:0.948      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+15:24:24.460     CLSocket::receive                                                                                                                       Receiving at:44065                                
+15:24:27.2       CLSocket::receive                                                                                                                       Receiving at:32759                                
+15:24:27.2       SendTimer                localhost:32759          localhost:44065          7817    SYN     -1                               0           Sending this datagram (try: 1)                    
+15:24:27.18      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51933
+15:24:27.34      NETWORK                                                                                                                                 Packet 7817 send!                                 
+15:24:27.49      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+15:24:27.49      CLSocket::receive                                                                                                                       Receiving at:44065                                
+15:24:27.49      SendTimer                78.91.18.174:44065       localhost:32759          0       SYN_ACK -1                               3550174854  Sending this datagram (try: 1)                    
+15:24:27.49      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+15:24:27.65      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 32759
+Remote Port:51934
+15:24:27.65      NETWORK                                                                                                                                 Packet 0 send!                                    
+15:24:27.65      CLSocket::receive                                                                                                                       Finished receiving at:32759                       
+15:24:27.65      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51935
+15:24:27.65      NETWORK                                                                                                                                 Packet 0 send!                                    
+15:24:27.65      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+15:25:38.973     CLSocket::receive                                                                                                                       Receiving at:44065                                
+15:25:41.126     CLSocket::receive                                                                                                                       Receiving at:32759                                
+15:25:41.126     SendTimer                localhost:32759          localhost:44065          8162    SYN     -1                               0           Sending this datagram (try: 1)                    
+15:25:41.142     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51951
+15:25:41.157     NETWORK                                                                                                                                 Packet 8162 send!                                 
+15:25:41.173     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+15:25:41.173     CLSocket::receive                                                                                                                       Receiving at:44065                                
+15:25:41.173     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+15:25:41.173     SendTimer                78.91.18.174:44065       localhost:32759          0       SYN_ACK -1                               3550174854  Sending this datagram (try: 1)                    
+15:25:41.188     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 32759
+Remote Port:51952
+15:25:41.189     NETWORK                                                                                                                                 Packet 0 send!                                    
+15:25:41.189     CLSocket::receive                                                                                                                       Finished receiving at:32759                       
+15:25:41.189     NETWORK                                                                                                                                 Packet 0 send!                                    
+15:25:41.189     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51953
+15:25:41.189     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+15:27:23.432     CLSocket::receive                                                                                                                       Receiving at:44065                                
+15:27:25.959     CLSocket::receive                                                                                                                       Receiving at:32759                                
+15:27:25.959     SendTimer                localhost:32759          localhost:44065          5585    SYN     -1                               0           Sending this datagram (try: 1)                    
+15:27:25.975     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:51999
+15:27:25.990     NETWORK                                                                                                                                 Packet 5585 send!                                 
+15:27:26.6       CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+15:27:26.6       CLSocket::receive                                                                                                                       Receiving at:44065                                
+15:27:26.21      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+15:27:26.21      SendTimer                78.91.18.174:44065       localhost:32759          0       SYN_ACK -1                               3550174854  Sending this datagram (try: 1)                    
+15:27:26.21      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 32759
+Remote Port:52000
+15:27:26.21      NETWORK                                                                                                                                 Packet 0 send!                                    
+15:27:26.21      CLSocket::receive                                                                                                                       Finished receiving at:32759                       
+15:27:26.21      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:52001
+15:27:26.21      NETWORK                                                                                                                                 Packet 0 send!                                    
+15:27:26.37      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+15:27:28.551     CLSocket::receive                                                                                                                       Receiving at:32759                                
+15:27:28.551     SendTimer                localhost:32759          localhost:44065          924     SYN     -1                               0           Sending this datagram (try: 1)                    
+15:27:28.597     NETWORK                                                                                                                                 Packet 924 send!                                  

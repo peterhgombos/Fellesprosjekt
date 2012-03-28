@@ -60,14 +60,6 @@ public class ConnectionImpl extends AbstractConnection {
         throw new NotImplementedException();
     }
 
-    private String getIPv4Address() {
-        try {
-            return InetAddress.getLocalHost().getHostAddress();
-        }
-        catch (UnknownHostException e) {
-            return "127.0.0.1";
-        }
-    }
 
     /**
      * Establish a connection to a remote location.
@@ -83,8 +75,7 @@ public class ConnectionImpl extends AbstractConnection {
      * @throws ClException 
      * @see Connection#connect(InetAddress, int)
      */
-    public void connect(InetAddress remoteAddress, int remotePort) throws IOException,
-            SocketTimeoutException {
+    public void connect(InetAddress remoteAddress, int remotePort) throws IOException, SocketTimeoutException {
     	/* 
     	 * If state is not closed, no connect
     	 */

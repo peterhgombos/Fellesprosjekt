@@ -134,12 +134,12 @@ public class NewAppointment extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				String title = nameField.getText();
 
-				String dateStart = datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); 
+				String dateStart = datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + (isInEdit ? 0: 1)) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); 
 				String dateEnd;
 
 				if (endDPicker.isEnabled()) {
 
-					dateEnd = endDPicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (endDPicker.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + "-" + endDPicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); 
+					dateEnd = endDPicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (endDPicker.getJCalendar().getCalendar().get(Calendar.MONTH) + (isInEdit ? 0: 1)) + "-" + endDPicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); 
 				} else {
 					dateEnd = dateStart;
 
