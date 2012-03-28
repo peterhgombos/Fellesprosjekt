@@ -130,7 +130,12 @@ public class NewMeeting extends JPanel implements MessageListener{
 
 		descriptionArea.setText(meet.getDescription());
 		placeField.setText(meet.getPlace());
-		participantsList = meet.getParticipants();
+		
+		HashMap<Person, Integer> part = new HashMap<Person, Integer>();
+		for(Integer pid: meet.getParticipants().keySet()){
+			part.put(meet.getParticipants().get(pid), meet.getAnswers().get(pid));
+		}		
+		participantsList = part;
 
 		if (meet.getRoom() == null) {
 			otherPlaceRadioButton.setSelected(true);

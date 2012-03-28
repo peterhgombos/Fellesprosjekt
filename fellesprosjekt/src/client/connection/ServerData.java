@@ -94,8 +94,8 @@ public class ServerData {
 		connection.requestGetParticipnts(app);
 	}
 	
-	public static void requestUpdateAnswers(HashMap<Person, Integer> persons, Appointment app){
-		connection.requestUpdateAnswers(persons, app);
+	public static void requestUpdateAnswers(int pid, int appid, int svar){
+		connection.requestUpdateAnswers(pid, appid, svar);
 	}
 	
 	public static void requestAppointmensAndMeetingByDateFilter(Person person, DateString start, DateString end){
@@ -116,7 +116,7 @@ public class ServerData {
 		else if(messageType.equals(MessageType.RECEIVE_MEETINGS)){
 			Collection<Meeting> meets = (Collection<Meeting>)message.getData();
 			for(Meeting meeting: meets){
-				if(meeting.getANSWERSParticipants().get(Client.getUser().getPersonID()) != Meeting.SVAR_NEI){
+				if(meeting.getAnswers().get(Client.getUser().getId()) != Meeting.SVAR_NEI){
 					calendar.addMeeting(meeting);
 				}
 			}

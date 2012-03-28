@@ -64,6 +64,7 @@ public class Appointments extends JPanel implements MessageListener{
 	private LinkedList<Appointment> nyliste = new LinkedList<Appointment>();
 
 	private Date defaultDate = new Date(System.currentTimeMillis());
+	private Date defaultendDate = new Date(System.currentTimeMillis() + 1000*60*60*24*7);
 
 	public Appointments(CalendarPanel calendarPanel) {
 		appointments = new LinkedList<Appointment>();
@@ -75,7 +76,7 @@ public class Appointments extends JPanel implements MessageListener{
 		datepickerFromDate = new JDateChooser();
 		datepickerFromDate.setDate(defaultDate);
 		datepickerToDate = new JDateChooser();
-		datepickerToDate.setDate(defaultDate);
+		datepickerToDate.setDate(defaultendDate);
 
 
 		datepickerFromDate.getJCalendar().addPropertyChangeListener(new PropertyChangeListener() {
@@ -147,8 +148,6 @@ public class Appointments extends JPanel implements MessageListener{
 
 		ServerData.addMessageListener(this);
 
-		ChangeDateFilter();
-
 		listScrollPane = new JScrollPane(list);
 
 		toCalendarButton = new JButton("Til Kalender");
@@ -158,6 +157,8 @@ public class Appointments extends JPanel implements MessageListener{
 			}
 		});
 
+		ChangeDateFilter();
+		
 		displaydata();
 		add(headlineLabel);
 		add(dateLabel);

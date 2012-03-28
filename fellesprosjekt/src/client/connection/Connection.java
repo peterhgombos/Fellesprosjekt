@@ -3,26 +3,22 @@ package client.connection;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import server.Server;
+import client.authentication.Login;
 
-import common.dataobjects.*;
-import common.sendobjects.AnswerUpdates;
+import common.dataobjects.Appointment;
+import common.dataobjects.ComMessage;
+import common.dataobjects.Meeting;
+import common.dataobjects.Note;
+import common.dataobjects.Person;
 import common.sendobjects.AppointmentInvites;
 import common.utilities.DateString;
 import common.utilities.MessageType;
-
-import client.Client;
-import client.authentication.Login;
-import client.gui.Message;
 
 public class Connection  {
 
@@ -70,9 +66,10 @@ public class Connection  {
 		writer.send(new ComMessage(newMeeting, MessageType.REQUEST_NEW_MEETING));
 	}
 	
-	public void requestUpdateAnswers(HashMap<Person, Integer> persons, Appointment appointment){
-		AnswerUpdates send = new AnswerUpdates(persons, appointment);
-		writer.send(new ComMessage(send, MessageType.REQUEST_UPDATE_ANSWER));
+	public void requestUpdateAnswers(int pid, int appid, int svar){
+		System.out.println("client:" + pid + " " + appid + " " + svar);
+		writer.send(new ComMessage(pid + ":" + svar + ":" + appid, MessageType.REQUEST_UPDATE_ANSWER));
+		//writer.send(new ComMessage(appointment, MessageType.REQUEST_UPDATE_ANSWER));
 	}
 	
 	public void requestBookRoom(Meeting app){
@@ -155,7 +152,7 @@ public class Connection  {
 	}
 	
 	public void updateNoteAsReadForPerson(Person p, Note n) {
-		n.setPersonId(p.getPersonID());
+		n.setPersonId(p.getId());
 		writer.send(new ComMessage(n, MessageType.UPDATE_NOTE_AS_READ));
 	}
 	

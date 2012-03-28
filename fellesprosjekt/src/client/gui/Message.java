@@ -26,6 +26,7 @@ import client.connection.MessageListener;
 import client.connection.ServerData;
 
 import common.dataobjects.ComMessage;
+import common.dataobjects.Meeting;
 import common.dataobjects.Note;
 import common.utilities.MessageType;
 
@@ -47,14 +48,12 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 	private JScrollPane scroll;
 
 	private CalendarPanel calendar;
-	private ArrayList<Note> notes;
 	private MessageRendrer rendrer;
 
 	public Message(CalendarPanel calendarPanel) {
 		calendar = calendarPanel;
 
 		headLine = new JLabel("Meldinger");
-		notes = new ArrayList<Note>();
 		rendrer = new MessageRendrer();
 
 		all = new JCheckBox();
@@ -114,7 +113,8 @@ public class Message extends JPanel implements FocusListener, MessageListener{
 					return;
 				}
 				if(((Note)messageList.getSelectedValue()).getAppointment() != null){
-					calendar.goToAppointmentView(((Note)messageList.getSelectedValue()).getAppointment());
+					System.out.println("instanceofmeeting?" + (((Meeting)((Note)messageList.getSelectedValue()).getAppointment()) instanceof Meeting));
+					calendar.goToAppointmentView(((Meeting)((Note)messageList.getSelectedValue()).getAppointment()));
 				}
 				ServerData.markNoteAsRead(Client.getUser(), (Note)messageList.getSelectedValue());
 				ServerData.requestNotes(Client.getUser(), "");

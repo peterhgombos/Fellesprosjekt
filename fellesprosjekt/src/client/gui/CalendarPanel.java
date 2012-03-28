@@ -29,7 +29,7 @@ public class CalendarPanel extends JPanel {
 	
 	public CalendarPanel(Client client){
 		this.client = client;
-		this.frame = client.getFrame();
+		this.frame = Client.getFrame();
 		
 		setLayout(null);
 		
@@ -157,7 +157,7 @@ public class CalendarPanel extends JPanel {
 		if(appView != null){
 			remove(appView);
 		}
-		client.getFrame().repaint();
+		Client.getFrame().repaint();
 	}
 	
 	public static void setSearchInSidePanelTrue(){

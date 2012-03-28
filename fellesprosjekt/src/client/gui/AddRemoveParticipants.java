@@ -109,7 +109,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 		
 		addedParticipantsListmodel  = (DefaultListModel) addedParticipantsList.getModel();
 		for (Person p : newMeeting.getParticipantList().keySet()) {
-			if(p.getPersonID() != Client.getUser().getPersonID())
+			if(p.getId() != Client.getUser().getId())
 				addedParticipantsListmodel.addElement(p);
 		}
 		employeeListModel = (DefaultListModel) employeeList.getModel();
@@ -245,7 +245,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 	private boolean personExistInAddedParticipantsList(Person p){
 		for (int i = 0; i < addedParticipantsList.getModel().getSize(); i++) {
 			Person person = (Person)addedParticipantsListmodel.getElementAt(i);
-			if (p.getPersonID() == person.getPersonID()){
+			if (p.getId() == person.getId()){
 				return true;
 			}
 		}
@@ -259,7 +259,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 			employeeListModel.clear();
 			Collection<Person> persons = (Collection<Person>)m.getData();
 			for (Person person : persons) {
-				if(!personExistInAddedParticipantsList(person) && person.getPersonID() != Client.getUser().getPersonID()){
+				if(!personExistInAddedParticipantsList(person) && person.getId() != Client.getUser().getId()){
 					employeeListModel.addElement(person);
 				}
 			}
@@ -268,7 +268,7 @@ public class AddRemoveParticipants extends JPanel implements FocusListener, Mess
 			addedParticipantsListmodel.clear();
 			ArrayList<Person> persons = (ArrayList<Person>) m.getData();
 			for(Person p : persons){
-				if(p.getPersonID() != Client.getUser().getPersonID()){
+				if(p.getId() != Client.getUser().getId()){
 					addedParticipantsListmodel.addElement(p);
 				}
 			}

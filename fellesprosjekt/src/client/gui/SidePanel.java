@@ -250,7 +250,7 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 	private boolean personExistInSelectedEmployeeList(Person p){
 		for (int i = 0; i < selectedEmployeeList.getModel().getSize(); i++) {
 			Person person = (Person)selectedEmployeeListModel.getElementAt(i);
-			if (p.getPersonID() == person.getPersonID()){
+			if (p.getId() == person.getId()){
 				return true;
 			}
 		}
@@ -264,7 +264,7 @@ public class SidePanel extends JPanel implements FocusListener, MessageListener{
 			employeeListModel.clear();
 			Collection<Person> persons = (Collection<Person>)m.getData();
 			for (Person person : persons) {
-				if (!personExistInSelectedEmployeeList(person) && person.getPersonID() != Client.getUser().getPersonID()){
+				if (!personExistInSelectedEmployeeList(person) && person.getId() != Client.getUser().getId()){
 					employeeListModel.addElement(person);
 				}
 			}

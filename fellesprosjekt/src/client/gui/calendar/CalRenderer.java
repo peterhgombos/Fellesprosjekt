@@ -57,7 +57,7 @@ public class CalRenderer extends DefaultTableCellRenderer {
 					JLabel minfo = null;
 					JLabel owner = null;
 					
-					if(a.getowner().getPersonID() != Client.getUser().getPersonID()){
+					if(a.getowner().getId() != Client.getUser().getId()){
 						owner = new JLabel("  "  + a.getowner().getUsername());
 						a.setColor(ColorPicker.otherColor());
 						innerpanel.setBackground(a.getColor());
@@ -71,8 +71,8 @@ public class CalRenderer extends DefaultTableCellRenderer {
 						Meeting m = (Meeting)a;
 						int deltakere = 0;
 						int ja = 0;
-						for(Person per : m.getParticipants().keySet()){
-							if(m.getParticipants().get(per) == Meeting.SVAR_OK){
+						for(Person per : m.getParticipants().values()){
+							if(m.getAnswers().get(per.getId()) == Meeting.SVAR_OK){
 								ja++;
 								deltakere++;
 							}else{

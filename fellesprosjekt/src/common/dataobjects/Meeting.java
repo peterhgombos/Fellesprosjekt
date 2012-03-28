@@ -14,14 +14,22 @@ public class Meeting extends Appointment implements Serializable{
 	public static final int SVAR_NEI = 2;
 
 	private Room room;
-	private HashMap<Person, Integer> participants;
+	private HashMap<Integer, Integer> answers;
+	private HashMap<Integer, Person> members;
 	private int externalParticipants;
 
 	public Meeting(int id, Person leader, Person owner, String title, String description, String place, Room room, DateString start, DateString end, HashMap<Person, Integer> participants, int externalParticipants){
 		super(id, leader, owner, title, description, place, start, end);
-		this.participants = participants;
 		this.room = room;
 		this.externalParticipants = externalParticipants;
+		
+		answers = new HashMap<Integer, Integer>();
+		members = new HashMap<Integer, Person>();
+		
+		for(Person p: participants.keySet()){
+			answers.put(p.getId(), participants.get(p));
+			members.put(p.getId(), p);
+		}
 	}
 
 	public Room getRoom() {
@@ -32,33 +40,33 @@ public class Meeting extends Appointment implements Serializable{
 		this.room = room;
 	}
 
-	public HashMap<Person, Integer> getParticipants() {
-		return participants;
+	public HashMap<Integer, Person> getParticipants() {
+		return members;
 	}
-	public HashMap<Integer, Integer> getANSWERSParticipants() {
-		HashMap<Integer, Integer> newp = new HashMap<Integer, Integer>();
-		for(Person p: participants.keySet()){
-			newp.put(p.getPersonID(), participants.get(p));
-		}
-		return newp;
+	public HashMap<Integer, Integer> getAnswers(){
+		return answers;
 	}
-
-	//Sjekke om deltakeren er med fra før?
+	
 	public void addParticipant(Person person, int answear) {
-		participants.put(person, answear);
+		members.put(person.getId(), person);
+		answers.put(person.getId(), answear);
 	}
 
 	public void removeParticipants(Person person){
-		participants.remove(person);
+		members.remove(person.getId());
+		answers.remove(person.getId());
+	}
+	public void removeParticipant(int id){
+		members.remove(id);
+		answers.remove(id);
 	}
 
 	public void changeParticipantAnswer(Person person, int answear){
-		participants.remove(person);
-		participants.put(person, answear);
+		answers.put(person.getId(), answear);
 	}
 
 	public int getNumberOfParticipants(){
-		return participants.size() + externalParticipants;
+		return members.values().size() + externalParticipants;
 	}
 
 	public void changeCountExternalParticipants(int num){

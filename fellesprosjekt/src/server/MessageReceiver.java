@@ -18,7 +18,6 @@ import common.dataobjects.Meeting;
 import common.dataobjects.Note;
 import common.dataobjects.Person;
 import common.dataobjects.Room;
-import common.sendobjects.AnswerUpdates;
 import common.sendobjects.AppointmentInvites;
 import common.utilities.DateString;
 import common.utilities.MessageType;
@@ -36,7 +35,6 @@ public class MessageReceiver {
 		database.connect();
 	}
 
-
 	public synchronized void receiveMessage(InetAddress ip, ComMessage message){
 		String messageType = message.getType();
 		ClientWriter clientWriter = ipClients.get(ip);
@@ -44,7 +42,7 @@ public class MessageReceiver {
 		if(messageType.equals(MessageType.REQUEST_APPOINTMENTS_AND_MEETINGS)){
 
 			Person p = (Person)message.getData();
-			int personid = p.getPersonID();
+			int personid = p.getId();
 
 			try{
 				ResultSet appointmentResult = database.executeQuery(Queries.getAppointments(personid)); //Get the appointments where the person is a participants	
@@ -68,8 +66,8 @@ public class MessageReceiver {
 			ComMessage sendLogin = new ComMessage(authenticatedPerson, MessageType.RECEIVE_LOGIN);
 			clientWriter.send(sendLogin);
 			if(authenticatedPerson != null){
-				idClients.put(authenticatedPerson.getPersonID(), clientWriter);
-				clientWriter.id = authenticatedPerson.getPersonID();
+				idClients.put(authenticatedPerson.getId(), clientWriter);
+				clientWriter.id = authenticatedPerson.getId();
 			}
 		}
 		else if(messageType.equals(MessageType.REQUEST_MEETINGS_AND_APPOINTMENTS_BY_DATE_FILTER)){
@@ -95,16 +93,37 @@ public class MessageReceiver {
 			clientWriter.send(getParticipants);
 		}
 		else if(messageType.equals(MessageType.REQUEST_UPDATE_ANSWER)){
-			AnswerUpdates answerUpdates = (AnswerUpdates) message.getData();
-			HashMap<Person, Integer> personsWithAnwsers = answerUpdates.getPersonsWithAnswer();
-			Appointment appointment = answerUpdates.getAppointment();
-			for(Person p : personsWithAnwsers.keySet()){
-				try{
-					database.updateDB(Queries.updateAnswerToInvite(p.getPersonID(), appointment.getId(), personsWithAnwsers.get(p)));
-				}catch(SQLException e){
-					e.printStackTrace();
-				}
+			//TODO
+			
+			
+			
+			String s = (String)message.getData();
+			String[] ss = s.split(":");
+			int pid = Integer.parseInt(ss[0]);
+			int ans = Integer.parseInt(ss[1]);
+			int appid = Integer.parseInt(ss[2]);
+			
+			System.out.println("server:" + pid + " " + appid + " " + ans);
+			
+			try{
+				database.updateDB(Queries.updateAnswerToInvite(pid, appid, ans));
+			}catch(SQLException e){
+				e.printStackTrace();
 			}
+			
+			
+//			Meeting meettoup = (Meeting) message.getData();
+//			
+//			
+//			System.out.println(meettoup.getId());
+//			System.out.println("server: " + meettoup.getAnswers());
+//			for(Integer pid : meettoup.getAnswers().keySet()){
+//				try{
+//					database.updateDB(Queries.updateAnswerToInvite(pid, meettoup.getId(), meettoup.getAnswers().get(pid)));
+//				}catch(SQLException e){
+//					e.printStackTrace();
+//				}
+//			}
 		}
 		else if(messageType.equals(MessageType.REQUEST_UPDATE_APPOINTMENT)){
 			Appointment a = (Appointment) message.getData();
@@ -117,30 +136,30 @@ public class MessageReceiver {
 
 		}
 		else if (messageType.equals(MessageType.REQUEST_UPDATE_MEETING)) {
-			Meeting m = (Meeting) message.getData();
+			System.out.println(MessageType.REQUEST_UPDATE_MEETING);
+			Meeting um = (Meeting) message.getData();
 			try {
-				for (Person p : m.getParticipants().keySet()) {
-					database.updateDB(Queries.updatePersonToAttend(p.getPersonID(), m.getId()));
+				for (Integer pid : um.getAnswers().keySet()) {
+					database.updateDB(Queries.updatePersonToAttend(pid, um.getId()));
 				}
-				database.updateDB(Queries.updateMeeting(m.getId(), m.getTitle(), m.getDescription(), m.getStartTime(), m.getEndTime(), m.getPlace(), m.getRoom() == null ? null :m.getRoom().getRomId()));
+				database.updateDB(Queries.updateMeeting(um.getId(), um.getTitle(), um.getDescription(), um.getStartTime(), um.getEndTime(), um.getPlace(), um.getRoom() == null ? null :um.getRoom().getRomId()));
 
-				/////////
-				database.updateDB(Queries.updateNote(m.getId()));
+				database.updateDB(Queries.updateNote(um.getId()));
 
-				ResultSet noters = database.executeQuery(Queries.getNoteByAppId(m.getId()));
+				ResultSet noters = database.executeQuery(Queries.getNoteByAppId(um.getId()));
 				Note n = resultSetToSingleNote(noters);
 
-				for(Person p : m.getParticipants().keySet()){
-					database.updateDB(Queries.deleteParticipant(p.getPersonID(), m.getId()));
-					database.updateDB(Queries.addPersonToAttend(p.getPersonID(), m.getId()));
+				for(Integer pid : um.getAnswers().keySet()){
+					database.updateDB(Queries.deleteParticipant(pid, um.getId()));
+					database.updateDB(Queries.addPersonToAttend(pid, um.getId()));
 					
-					if(p.getPersonID() != m.getLeader().getPersonID()){
-						database.updateDB(Queries.deleteNoteForPerson(n.getID(), p.getPersonID()));
-						database.updateDB(Queries.addNoteToPerson(p.getPersonID(), n.getID()));
+					if(pid != um.getLeader().getId()){
+						database.updateDB(Queries.deleteNoteForPerson(n.getID(), pid));
+						database.updateDB(Queries.addNoteToPerson(pid, n.getID()));
 					}
 					
-					ClientWriter cw = idClients.get(p.getPersonID());
-					if(cw != null && p.getPersonID() != m.getLeader().getPersonID()){
+					ClientWriter cw = idClients.get(pid);
+					if(cw != null && pid != um.getLeader().getId()){
 						cw.send(new ComMessage(null, MessageType.WARNING));
 					}
 				}
@@ -164,13 +183,9 @@ public class MessageReceiver {
 		else if (messageType.equals(MessageType.REQUEST_NOTES)) {
 			Person p = (Person)message.getData();
 			try {
-				ResultSet rs = database.executeQuery(Queries.getNotes(p.getPersonID(), message.getProperty("filter")));
-				System.out.println(Queries.getNotes(p.getPersonID(), message.getProperty("filter")));
+				ResultSet rs = database.executeQuery(Queries.getNotes(p.getId(), message.getProperty("filter")));
 				ArrayList<Note> result = resultSetToNotes(rs, p);
 	
-//				rs = database.executeQuery(Queries.getNotesAvlyst(p.getPersonID(), message.getProperty("filter")));
-//				result.addAll(resultSetToNotes(rs, p));
-				
 				clientWriter.send(new ComMessage(result, MessageType.RECEIVE_NOTES));
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -182,22 +197,20 @@ public class MessageReceiver {
 			for (Note note : n) {
 				try {
 					database.updateDB(Queries.deleteNoteForPerson(note.getID(), note.getPersonId()));
-					Server.console.writeline("delete" + note.getTitle());
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
 
-		}	
+		}
 		else if (messageType.equals(MessageType.GET_OLD_NEW_NOTES)) {
 			Person p = (Person) message.getData();
 			try {
-				ResultSet rs = database.executeQuery(Queries.oldNewNotes(p.getPersonID()));
+				ResultSet rs = database.executeQuery(Queries.oldNewNotes(p.getId()));
 				int i = 0;
 				while (rs.next()) {
 					i++;
 				}
-				System.out.println("messages to read: " + i);
 				if (i > 0) {
 					clientWriter.send(new ComMessage(null, MessageType.WARNING));
 				}
@@ -217,10 +230,10 @@ public class MessageReceiver {
 
 				if (app instanceof Meeting) {
 					Meeting newMeet = (Meeting) app;
-					for(Person p : newMeet.getParticipants().keySet()){
-						if(p.getPersonID() != newMeet.getLeader().getPersonID()){
-							database.updateDB(Queries.addNoteToPerson(p.getPersonID(), n.getID()));
-							ClientWriter cw = idClients.get(p.getPersonID());
+					for(Integer pid : newMeet.getAnswers().keySet()){
+						if(pid != newMeet.getLeader().getId()){
+							database.updateDB(Queries.addNoteToPerson(pid, n.getID()));
+							ClientWriter cw = idClients.get(pid);
 							if(cw != null){
 								cw.send(new ComMessage(null, MessageType.WARNING));
 							}
@@ -242,16 +255,16 @@ public class MessageReceiver {
 		}
 		
 		else if (messageType.equals(MessageType.DELETE_PARTICIPANTS)) {
+			@SuppressWarnings("unchecked")
 			ArrayList<Person> arr =  (ArrayList<Person>) message.getData();
 			for (Person p : arr) {
-				int personID = p.getPersonID();;
+				int personID = p.getId();;
 				try {
 					database.updateDB(Queries.deleteParticipant(personID, Integer.parseInt(message.getProperty("id"))));
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
-			
 		}
 	}
 
@@ -268,9 +281,7 @@ public class MessageReceiver {
 				int appointmentID = rs.getInt(Database.COL_APPOINTMENTID);
 				boolean hasRead = rs.getBoolean(Database.COL_HASREAD);
 
-
 				if(appointmentID == -1){
-					System.out.println("note møte -1");
 					Note n = new Note(varselID, title, new DateString(timesend), null, hasRead);
 					notes.add(n);
 				}else{
@@ -278,16 +289,13 @@ public class MessageReceiver {
 					if(appointment != null && appointment.size() > 0){
 						Note n = new Note(varselID, title, new DateString(timesend), appointment.get(0), hasRead);
 						notes.add(n);
-						System.out.println("note med møte");
 					}else{
-						System.out.println("note møte -1");
 						Note n = new Note(varselID, title, new DateString(timesend), null, hasRead);
 						notes.add(n);
 					}
 				}
 				numnotes++;
 			}
-			System.out.println("numnotes" + numnotes);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -316,7 +324,7 @@ public class MessageReceiver {
 		DateString startd = new DateString(message.getProperty("dstart"));
 		DateString endd = new DateString(message.getProperty("dend"));
 
-		int personid = p.getPersonID();
+		int personid = p.getId();
 
 		try{
 			ResultSet appointmentResult = database.executeQuery(Queries.getAppointmentsByDate(personid, startd, endd)); //Get the appointments where the person is a participants	
@@ -378,12 +386,12 @@ public class MessageReceiver {
 	private void newAppointment(ClientWriter from, ComMessage message){
 		Appointment newApp = (Appointment) message.getData();
 		try{
-			database.updateDB(Queries.createNewAppointment(newApp.getTitle(), newApp.getDescription(), newApp.getStartTime(), newApp.getEndTime(),newApp.getPlace(), newApp.getLeader().getPersonID()));
+			database.updateDB(Queries.createNewAppointment(newApp.getTitle(), newApp.getDescription(), newApp.getStartTime(), newApp.getEndTime(),newApp.getPlace(), newApp.getLeader().getId()));
 			ResultSet rs = database.executeQuery(Queries.getLastAppointment());
 
 			Appointment appo = resultSetToAppointment(rs, newApp.getLeader()).get(0);
 			ComMessage comMesNewApp = new ComMessage(appo, MessageType.RECEIVE_NEW_APPOINTMENT);
-			database.updateDB(Queries.addPersonToAttend(appo.getLeader().getPersonID(), appo.getId()));
+			database.updateDB(Queries.addPersonToAttend(appo.getLeader().getId(), appo.getId()));
 			from.send(comMesNewApp);
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -392,7 +400,7 @@ public class MessageReceiver {
 	private void newMeeting(ComMessage message){
 		Meeting newMeet = (Meeting) message.getData();
 		try{
-			database.updateDB(Queries.createNewMeeting(newMeet.getTitle(), newMeet.getDescription(), newMeet.getStartTime(), newMeet.getEndTime(),newMeet.getPlace(), newMeet.getRoom() == null ? null : newMeet.getRoom().getRomId(), newMeet.getLeader().getPersonID()));
+			database.updateDB(Queries.createNewMeeting(newMeet.getTitle(), newMeet.getDescription(), newMeet.getStartTime(), newMeet.getEndTime(),newMeet.getPlace(), newMeet.getRoom() == null ? null : newMeet.getRoom().getRomId(), newMeet.getLeader().getId()));
 			ResultSet rs = database.executeQuery(Queries.getLastMeeting());
 
 			Meeting meeti = resultSetToMeeting(rs, newMeet.getLeader()).get(0);
@@ -402,15 +410,15 @@ public class MessageReceiver {
 
 			Note n = resultSetToSingleNote(noters);
 
-			for(Person p : newMeet.getParticipants().keySet()){
-				database.updateDB(Queries.addNoteToPerson(p.getPersonID(), n.getID()));
-				database.updateDB(Queries.addPersonToAttend(p.getPersonID(), meeti.getId()));
-				ClientWriter cw = idClients.get(p.getPersonID());
-				if(cw != null && p.getPersonID() != newMeet.getLeader().getPersonID()){
+			for(Integer pid : newMeet.getAnswers().keySet()){
+				database.updateDB(Queries.addNoteToPerson(pid, n.getID()));
+				database.updateDB(Queries.addPersonToAttend(pid, meeti.getId()));
+				ClientWriter cw = idClients.get(pid);
+				if(cw != null && pid != newMeet.getLeader().getId()){
 					cw.send(new ComMessage(null, MessageType.WARNING));
 				}
 			}
-			database.updateDB(Queries.addPersonToAttend(meeti.getLeader().getPersonID(), meeti.getId()));			
+			database.updateDB(Queries.addPersonToAttend(meeti.getLeader().getId(), meeti.getId()));			
 			if(meeti.getRoom() != null){
 				database.updateDB(Queries.bookRoom(meeti.getId(), meeti.getRoom().getRomId()));
 			}
@@ -430,16 +438,16 @@ public class MessageReceiver {
 		}
 	}
 
-	private ArrayList<Note> searchForNotes(ComMessage message){
-		String query = (String) message.getData();
-		int pid = Integer.parseInt(message.getProperty("person"));
-		try {
-			return resultSetToNotes(database.executeQuery(Queries.getNotes(pid, query)), null);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+//	private ArrayList<Note> searchForNotes(ComMessage message){
+//		String query = (String) message.getData();
+//		int pid = Integer.parseInt(message.getProperty("person"));
+//		try {
+//			return resultSetToNotes(database.executeQuery(Queries.getNotes(pid, query)), null);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//			return null;
+//		}
+//	}
 
 	private void addAttendant(ComMessage message){
 		AppointmentInvites received = (AppointmentInvites) message.getData();
@@ -447,7 +455,7 @@ public class MessageReceiver {
 		Appointment appointment = received.getAppointment();
 		for(Person p : invited){
 			try{
-				database.updateDB(Queries.addPersonToAttend(p.getPersonID(), appointment.getId()));
+				database.updateDB(Queries.addPersonToAttend(p.getId(), appointment.getId()));
 			}
 			catch(SQLException e){
 				e.printStackTrace();
