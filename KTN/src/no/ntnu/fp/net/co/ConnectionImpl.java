@@ -125,18 +125,27 @@ public class ConnectionImpl extends AbstractConnection {
 	 * @see Connection#accept()
 	 */
 	public Connection accept() throws IOException, SocketTimeoutException {
-		connListener = new ConnectionListener() {
-			public void connectionReceived(Connection connection){
-				
-			}
-		};
+		/*
+		 * Set state to listen
+		 */
+		this.state = State.LISTEN;
+		KtnDatagram receivedPacket = clientSocket.receive(myPort);
+		if(receivedPacket.getFlag() == Flag.SYN){
+			KtnDatagram synack = constructInternalPacket(Flag.SYN_ACK);
+			Timer timer = new Timer();
+	        timer.scheduleAtFixedRate(new SendTimer(new ClSocket(), synack), 0, RETRANSMIT);
+	        KtnDatagram ack;
+	        do{
+	        	ack = receiveAck();
+	        }while(ack.getFlag() != Flag.ACK);
+	        timer.cancel();
+	        this.state = State.ESTABLISHED;
+	        return new ConnectionImpl(myPort);
+		}
 		
-		ReceiveConnectionWorker receiveConn = new ReceiveConnectionWorker(this, connListener); //??
-		receiveConn.run();
 		
+		throw new NotImplementedException();
 		
-		
-		return this;
 	}
 
 	/**
@@ -152,7 +161,14 @@ public class ConnectionImpl extends AbstractConnection {
 	 * @see no.ntnu.fp.net.co.Connection#send(String)
 	 */
 	public void send(String msg) throws ConnectException, IOException {
-		throw new NotImplementedException();
+		if(this.state != State.ESTABLISHED) throw new ConnectException();
+		KtnDatagram packet = constructDataPacket(msg);
+		try {
+			simplySendPacket(packet);
+		} catch (ClException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -174,11 +190,9 @@ public class ConnectionImpl extends AbstractConnection {
 	 * @see Connection#close()
 	 */
 	public void close() throws IOException {
+		KtnDatagram fin = constructInternalPacket(Flag.FIN);
 
-
-		//Finally
 		this.state = State.CLOSED;
-		throw new NotImplementedException();
 	}
 
 	protected KtnDatagram constructDataPacket(String payload) {
