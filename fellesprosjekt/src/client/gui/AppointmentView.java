@@ -242,7 +242,7 @@ public class AppointmentView extends JPanel{
 				placeInput.setText(m.getPlace());
 			}
 			else{
-				placeInput = m.getRoom().toString();
+				placeInput.setText(m.getRoom().toString());
 			}
 		}
 		else{
