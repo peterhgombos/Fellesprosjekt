@@ -25,6 +25,7 @@ public class FpSocket extends AbstractConnection implements FpPacketReceiver{
 		this.myPort = port;
 		this.myAddress = "localhost";
 		this.a2Socket = new ClSocket();
+		listeners = new LinkedList<ReceiveMessageWorker.MessageListener>();
 	}
 	
 	public void close(){
