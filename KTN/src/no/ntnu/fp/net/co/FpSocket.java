@@ -122,6 +122,8 @@ public class FpSocket extends AbstractConnection implements FpPacketReceiver{
 				} else if (this.state == State.FIN_WAIT_2) {
 					//Send FINACK
 					//Goto CLOSE_WAIT
+				} else {
+					//Something obviously went wrong. Do something about it
 				}
 				//TODO
 			}
