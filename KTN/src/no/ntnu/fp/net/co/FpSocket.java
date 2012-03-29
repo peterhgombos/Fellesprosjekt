@@ -18,10 +18,10 @@ import no.ntnu.fp.net.co.ReceiveMessageWorker.MessageListener;
 public class FpSocket extends AbstractConnection implements FpPacketReceiver{
 
 	
-	ClSocket a2Socket;
-	LinkedList<MessageListener> listeners;
+	private ClSocket a2Socket;
+	private LinkedList<MessageListener> listeners;
 	
-	public FpSocket(int port){
+	public FpSocket(int port){		receiveAck();
 		this.myPort = port;
 		this.myAddress = "localhost";
 		this.a2Socket = new ClSocket();
@@ -31,7 +31,7 @@ public class FpSocket extends AbstractConnection implements FpPacketReceiver{
 	public void close(){
 
 	}
-
+	receiveAck();
 	public String receive(){
 		return "";
 	}
