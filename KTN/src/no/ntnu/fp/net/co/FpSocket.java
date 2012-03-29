@@ -21,7 +21,7 @@ public class FpSocket extends AbstractConnection implements FpPacketReceiver{
 	private ClSocket a2Socket;
 	private LinkedList<MessageListener> listeners;
 	
-	public FpSocket(int port){		receiveAck();
+	public FpSocket(int port){
 		this.myPort = port;
 		this.myAddress = "localhost";
 		this.a2Socket = new ClSocket();
@@ -31,7 +31,7 @@ public class FpSocket extends AbstractConnection implements FpPacketReceiver{
 	public void close(){
 
 	}
-	receiveAck();
+
 	public String receive(){
 		return "";
 	}
