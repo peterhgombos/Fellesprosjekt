@@ -65,6 +65,7 @@ public class FpSocket extends AbstractConnection implements FpPacketReceiver{
 			e.printStackTrace();
 		}
 		this.state = State.ESTABLISHED;
+		send("Test");
 		return;
 	}
 
@@ -72,8 +73,8 @@ public class FpSocket extends AbstractConnection implements FpPacketReceiver{
 	public void send(String msg) throws ConnectException, IOException{
 		if(this.state != State.ESTABLISHED) throw new ConnectException();
 		KtnDatagram packet = K.makePacket(Flag.NONE, remotePort, remoteAddress, myPort, myAddress, msg, 0);
-		
-		sendDataPacketWithRetransmit(packet);
+		Timer  t = new Timer();
+		t.scheduleAtFixedRate(new SendTimer(a2Socket, packet), 0, RETRANSMIT);
 	}
 
 	@Override
