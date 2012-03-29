@@ -217,131 +217,6 @@ public class NewMeeting extends JPanel implements MessageListener{
 			}
 		});
 
-		endTimeHoursField.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				String timeEnd = "";
-
-				if(Integer.parseInt(""+endTimeHoursField.getSelectedItem()) >= Integer.parseInt(""+startTimeHoursField.getSelectedItem()) || isInEdit){
-					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-				}
-				else {
-					endTimeHoursField.setSelectedIndex(startTimeHoursField.getSelectedIndex() +1);
-					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
-					return;
-				}
-
-			}
-		});
-
-		endTimeHoursField.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String timeEnd = "";
-				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem())> Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
-					int index = startTimeMinField.getSelectedIndex();
-					if ((endTimeMinField.getSelectedIndex() +1) <= endTimeMinField.getItemCount()) {
-						index = startTimeMinField.getSelectedIndex() +1;
-					}
-					endTimeMinField.setSelectedIndex(startTimeMinField.getSelectedIndex() +1);
-					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
-					return;
-				}
-				else{
-
-					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-
-				}
-
-			}
-		});
-
-		endTimeMinField.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String timeEnd = "";
-				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem())> Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
-					int index = startTimeMinField.getSelectedIndex();
-					if ((endTimeMinField.getSelectedIndex() +1) <= endTimeMinField.getItemCount()) {
-						index = startTimeMinField.getSelectedIndex() +1;
-					}
-					endTimeMinField.setSelectedIndex(startTimeMinField.getSelectedIndex() +1);
-					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
-					return;
-				}
-				else{
-
-					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-
-				}
-
-			}
-		});
-
-		startTimeHoursField.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				String timeEnd = "";
-
-				if(Integer.parseInt(""+endTimeHoursField.getSelectedItem()) >= Integer.parseInt(""+startTimeHoursField.getSelectedItem()) || isInEdit){
-					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-				}
-				else {
-					int index = 0;
-					if ((endTimeHoursField.getSelectedIndex() -1) > 0) {
-						index = endTimeHoursField.getSelectedIndex() -1;
-					}
-
-					startTimeHoursField.setSelectedIndex(index);
-					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
-					return;
-				}
-
-			}
-		});
-
-		//Might not be necessary
-		startTimeHoursField.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String timeEnd = "";
-				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem()) > Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
-					int index = startTimeMinField.getSelectedIndex();
-					startTimeMinField.setSelectedIndex(0);
-					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
-					return;
-				}
-				else {
-					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-				}
-
-			}
-		});
-
-		startTimeMinField.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String timeEnd = "";
-				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem()) > Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
-					int index = startTimeMinField.getSelectedIndex();
-					startTimeMinField.setSelectedIndex(0);
-					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
-					return;
-				}
-				else {
-					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-				}
-
-			}
-		});
-
-
 		bookMeetingroomRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				roomPicker.setEnabled(true);
@@ -390,12 +265,9 @@ public class NewMeeting extends JPanel implements MessageListener{
 					dateEnd = dateStart;
 				}
 
-				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem() + ":0";
-				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-				String description = descriptionArea.getText();
-
 				String place = "";
 				Room nyttrom = null;
+				
 
 				if(bookMeetingroomRadioButton.isSelected()){
 					nyttrom = ((common.dataobjects.Room)roomPicker.getSelectedItem());
@@ -412,6 +284,25 @@ public class NewMeeting extends JPanel implements MessageListener{
 					UserInformationMessages.showErrormessage("Det må være minst 2 deltakere for å booke et møterom");
 					return;
 				}
+				
+				
+				String description = descriptionArea.getText();
+				String timeStart = "";
+				String timeEnd = "";
+				
+				if (Integer.parseInt(""+endTimeHoursField.getSelectedItem()) < Integer.parseInt(""+startTimeHoursField.getSelectedItem()) && !isInEdit){
+					UserInformationMessages.showErrormessage("Du kan ikke sette møter som går bakover i tid");
+					return;
+				}
+				else if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem()) > Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
+					UserInformationMessages.showErrormessage("Du kan ikke sette møter som går bakover i tid");
+					return;
+				}
+				else{
+					timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem() + ":0";
+					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
+				}
+
 				
 
 				if (numberOfParticipants < 1) {
@@ -433,7 +324,6 @@ public class NewMeeting extends JPanel implements MessageListener{
 					return;
 				}
 
-				
 
 				Meeting m = new Meeting(-1, Client.getUser(), Client.getUser(), title, description, place, nyttrom, new DateString(dateStart + " " + timeStart), new DateString(dateEnd + " " + timeEnd), participantsList, numberOfParticipants);
 				ServerData.requestNewMeeting(m);

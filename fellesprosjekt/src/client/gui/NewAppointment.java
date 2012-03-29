@@ -71,15 +71,8 @@ public class NewAppointment extends JPanel{
 		cal.setTimeInMillis(System.currentTimeMillis());
 		endTimeHoursField.setSelectedIndex(cal.get(Calendar.HOUR_OF_DAY) +1);
 		startTimeHoursField.setSelectedIndex(cal.get(Calendar.HOUR_OF_DAY));
-		startTimeHoursField.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (Integer.parseInt(endTimeHoursField.getSelectedItem().toString()) < Integer.parseInt(startTimeHoursField.getSelectedItem().toString()))
-					endTimeHoursField.setSelectedIndex(startTimeHoursField.getSelectedIndex() +1);
-			}
-		});
 	}
+	
 	private void init(CalendarPanel calendarPanel){
 		String[] min = {"00", "15", "30", "45"};
 		String[] hours= {"00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"};
@@ -141,11 +134,31 @@ public class NewAppointment extends JPanel{
 					dateEnd = dateStart;
 				}
 
-				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem() + ":0";
-				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
+//				String timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem() + ":0";
+//				String timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
 
+//				String description = descriptionArea.getText();
+
+				
 				String description = descriptionArea.getText();
-
+				String timeStart = "";
+				String timeEnd = "";
+				
+				if (Integer.parseInt(""+endTimeHoursField.getSelectedItem()) < Integer.parseInt(""+startTimeHoursField.getSelectedItem()) && !isInEdit){
+					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
+					return;
+				}
+				else if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem()) > Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
+					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
+					return;
+				}
+				else{
+					timeStart = startTimeHoursField.getSelectedItem() + ":" + startTimeMinField.getSelectedItem() + ":0";
+					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
+				}
+				
+				
+				
 				String place = placeField.getText();
 
 				if(title.trim().equals("")){
@@ -178,129 +191,6 @@ public class NewAppointment extends JPanel{
 		startTimeMinField = new JComboBox(min);
 		endTimeMinField = new JComboBox(min);
 
-		endTimeHoursField.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				String timeEnd = "";
-
-				if(Integer.parseInt(""+endTimeHoursField.getSelectedItem()) >= Integer.parseInt(""+startTimeHoursField.getSelectedItem()) || isInEdit){
-					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-				}
-				else {
-					endTimeHoursField.setSelectedIndex(startTimeHoursField.getSelectedIndex() +1);
-					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
-					return;
-				}
-
-			}
-		});
-
-		endTimeHoursField.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String timeEnd = "";
-				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem())> Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
-					int index = startTimeMinField.getSelectedIndex();
-					if ((endTimeMinField.getSelectedIndex() +1) <= endTimeMinField.getItemCount()) {
-						index = startTimeMinField.getSelectedIndex() +1;
-					}
-					endTimeMinField.setSelectedIndex(startTimeMinField.getSelectedIndex() +1);
-					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
-					return;
-				}
-				else{
-
-					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-
-				}
-
-			}
-		});
-
-		endTimeMinField.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String timeEnd = "";
-				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem())> Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
-					int index = startTimeMinField.getSelectedIndex();
-					if ((endTimeMinField.getSelectedIndex() +1) <= endTimeMinField.getItemCount()) {
-						index = startTimeMinField.getSelectedIndex() +1;
-					}
-					endTimeMinField.setSelectedIndex(startTimeMinField.getSelectedIndex() +1);
-					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
-					return;
-				}
-				else{
-
-					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-
-				}
-
-			}
-		});
-
-		startTimeHoursField.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				String timeEnd = "";
-
-				if(Integer.parseInt(""+endTimeHoursField.getSelectedItem()) >= Integer.parseInt(""+startTimeHoursField.getSelectedItem()) || isInEdit){
-					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-				}
-				else {
-					int index = 0;
-					if ((endTimeHoursField.getSelectedIndex() -1) > 0) {
-						index = endTimeHoursField.getSelectedIndex() -1;
-					}
-
-					startTimeHoursField.setSelectedIndex(index);
-					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
-					return;
-				}
-
-			}
-		});
-
-		//Might not be necessary
-		startTimeHoursField.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String timeEnd = "";
-				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem()) > Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
-					int index = startTimeMinField.getSelectedIndex();
-					startTimeMinField.setSelectedIndex(0);
-					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
-					return;
-				}
-				else {
-					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-				}
-
-			}
-		});
-
-		startTimeMinField.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String timeEnd = "";
-				if((Integer.parseInt(""+endTimeHoursField.getSelectedItem()) == Integer.parseInt(""+startTimeHoursField.getSelectedItem())) && (Integer.parseInt(""+startTimeMinField.getSelectedItem()) > Integer.parseInt(""+ endTimeMinField.getSelectedItem())) && !isInEdit){
-					int index = startTimeMinField.getSelectedIndex();
-					startTimeMinField.setSelectedIndex(0);
-					UserInformationMessages.showErrormessage("Du kan ikke sette avtaler som går bakover i tid");
-					return;
-				}
-				else {
-					timeEnd = endTimeHoursField.getSelectedItem() + ":" + endTimeMinField.getSelectedItem() + ":0";
-				}
-
-			}
-		});
 
 		scrollPane = new JScrollPane(descriptionArea);
 
