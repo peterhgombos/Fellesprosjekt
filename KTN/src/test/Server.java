@@ -12,9 +12,10 @@ public class Server {
 	
 	public static void main(String[] args){
 		
-		FpServerSocket ssocket = new FpServerSocket(44065);
+		FpServerSocket sSocket = new FpServerSocket(44065);
+		
 		try{
-			FpSocket s = (FpSocket)ssocket.accept();
+			FpSocket s = (FpSocket)sSocket.accept();
 		}catch(SocketTimeoutException e){
 			c.writeline(e.getMessage());
 			return;

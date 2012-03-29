@@ -3,6 +3,7 @@ package no.ntnu.fp.net.co;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
+import java.util.LinkedList;
 import java.util.Timer;
 
 import test.Client;
@@ -12,11 +13,13 @@ import no.ntnu.fp.net.cl.ClException;
 import no.ntnu.fp.net.cl.ClSocket;
 import no.ntnu.fp.net.cl.KtnDatagram;
 import no.ntnu.fp.net.cl.KtnDatagram.Flag;
+import no.ntnu.fp.net.co.ReceiveMessageWorker.MessageListener;
 
 public class FpSocket extends AbstractConnection implements FpPacketReceiver{
 
 	
 	ClSocket a2Socket;
+	LinkedList<MessageListener> listeners;
 	
 	public FpSocket(int port){
 		this.myPort = port;
@@ -74,7 +77,10 @@ public class FpSocket extends AbstractConnection implements FpPacketReceiver{
 
 	@Override
 	protected boolean isValid(KtnDatagram packet){
-		// TODO Auto-generated method stub
+		if (packet.calculateChecksum() == packet.getChecksum()) {
+			return true;
+		}
+		Client.c.writeline("Calculated: " + packet.calculateChecksum() + " Reference: " + packet.getChecksum());
 		return false;
 	}
 
@@ -82,10 +88,44 @@ public class FpSocket extends AbstractConnection implements FpPacketReceiver{
 	public Connection accept() throws IOException, SocketTimeoutException{
 		throw new IOException("Sockets can't accept!");
 	}
+	
+	public void addListener(MessageListener l) {
+		listeners.add(l);
+	}
+	
+	public void removeListener(MessageListener l) {
+		listeners.remove(l);
+	}
 
 	@Override
 	public void receivePacket(KtnDatagram packet){
-		// TODO Auto-generated method stub
+		if (isValid(packet) && packet.getDest_addr() == myAddress && packet.getDest_port() == myPort) {
+			if (packet.getFlag() == Flag.NONE) {
+				for (MessageListener l : listeners) {
+					l.messageReceived(packet.getPayload().toString());
+				}
+			} else if (packet.getFlag() == Flag.ACK) {
+				if (this.state == State.ESTABLISHED) {
+					//A previously sent packet has obviously been ack'd. Deal with it appropriately
+				} else if (this.state == State.FIN_WAIT_1) {		//FIN_WAIT_1 should be waiting for a FIN or FINACK
+					//Goto FIN_WAIT_2 (Waiting for a FIN)
+				} else {
+					//Something obviously went wrong. Do something about it
+				}
+				//TODO
+			} else if (packet.getFlag() == Flag.FIN) {
+				if (this.state == State.ESTABLISHED) {
+					//Send FINACK - Go to WAIT_CLOSE
+				} else if (this.state == State.FIN_WAIT_1) {
+					//Send FINACK
+					//Goto CLOSE_WAIT
+				} else if (this.state == State.FIN_WAIT_2) {
+					//Send FINACK
+					//Goto CLOSE_WAIT
+				}
+				//TODO
+			}
+		}
 		
 	}
 
