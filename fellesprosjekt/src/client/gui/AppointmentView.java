@@ -113,8 +113,8 @@ public class AppointmentView extends JPanel{
 				ServerData.requestUpdateAnswers(Client.getUser().getId(), m.getId(), Meeting.SVAR_OK);
 				//ServerData.getNewOldNotes(Client.getUser());
 				accpectButton.setEnabled(false);
-				rejectButton.setEnabled(false);
-				//setComponents();
+				rejectButton.setEnabled(true);
+				setComponents();
 				//calendarpanel.goToCalender();
 			}
 		});
@@ -124,9 +124,9 @@ public class AppointmentView extends JPanel{
 				m.changeParticipantAnswer(Client.getUser(), Meeting.SVAR_NEI);
 				ServerData.requestUpdateAnswers(Client.getUser().getId(), m.getId(), Meeting.SVAR_NEI);
 				//ServerData.getNewOldNotes(Client.getUser());
-				accpectButton.setEnabled(false);
+				accpectButton.setEnabled(true);
 				rejectButton.setEnabled(false);
-				//setComponents();
+				setComponents();
 				//calendarpanel.goToCalender();
 			}
 		});
