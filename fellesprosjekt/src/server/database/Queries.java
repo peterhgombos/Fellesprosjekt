@@ -104,19 +104,7 @@ public class Queries {
 		return  "SELECT * FROM VARSEL " +
 				"ORDER BY TIDSENDT DESC LIMIT 1;";
 	}
-//
-//	public static String getNotes(int deltakerId, String filter){
-//		return	"SELECT VARSEL. * , HAR_MOTTATT.HAR_LEST " +
-//				"FROM VARSEL, DELTAKER, HAR_MOTTATT "+
-//				"WHERE " +
-//				"VARSEL.AVTALEID = DELTAKER.AVTALEID " +
-//				"AND DELTAKER.ANSATTNR = HAR_MOTTATT.ANSATTNR " +
-//				"AND VARSEL.VARSELID = HAR_MOTTATT.VARSELID " +
-//				"AND DELTAKER.ANSATTNR = " + deltakerId + " " +
-//				"AND VARSEL.TITTEL LIKE '%" + filter + "%'" +
-//				"ORDER  BY VARSEL.TIDSENDT;";
-//	}
-	
+
 	public static String getNotes(int deltakerId, String filter){
 		return	"SELECT VARSEL.* , HAR_MOTTATT.HAR_LEST " +
 				"FROM VARSEL, HAR_MOTTATT " +
@@ -124,19 +112,8 @@ public class Queries {
 				"HAR_MOTTATT.ANSATTNR = " + deltakerId + " " +
 				"AND VARSEL.TITTEL LIKE '%" + filter + "%' " +
 				"AND VARSEL.VARSELID = HAR_MOTTATT.VARSELID " +
-				"ORDER  BY VARSEL.TIDSENDT;";
+				"ORDER  BY VARSEL.TIDSENDT DESC;";
 	}
-	
-//	public static String getNotesAvlyst(int deltakerId, String filter){
-//		return	"SELECT VARSEL. * , HAR_MOTTATT.HAR_LEST " +
-//				"FROM VARSEL, HAR_MOTTATT "+
-//				"WHERE " +
-//				"VARSEL.AVTALEID = -1 " +
-//				"AND VARSEL.VARSELID = HAR_MOTTATT.VARSELID " +
-//				"AND HAR_MOTTATT.ANSATTNR = " + deltakerId + " " +
-//				"AND VARSEL.TITTEL LIKE '%" + filter + "%'" +
-//				"ORDER  BY VARSEL.TIDSENDT;";
-//	}	
 
 	public static String getLastAppointment(){
 		return	"SELECT * FROM AVTALE " +
