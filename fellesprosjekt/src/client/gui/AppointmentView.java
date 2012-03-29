@@ -74,7 +74,7 @@ public class AppointmentView extends JPanel{
 		if(app instanceof Meeting){
 			System.out.println("constructor: " + ((Meeting)app).getAnswers());
 		}
-		
+
 
 		headline = new JLabel(appointmentName);
 		timeLabel = new JLabel("Tid");
@@ -109,6 +109,7 @@ public class AppointmentView extends JPanel{
 		accpectButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Meeting m = (Meeting)appointment;
+				m.changeParticipantAnswer(Client.getUser(), Meeting.SVAR_OK);
 				ServerData.requestUpdateAnswers(Client.getUser().getId(), m.getId(), Meeting.SVAR_OK);
 				//ServerData.getNewOldNotes(Client.getUser());
 				accpectButton.setEnabled(false);
@@ -220,8 +221,8 @@ public class AppointmentView extends JPanel{
 			notAnsweredListModel.clear();
 			acceptedListModel.clear();
 			deniedListModel.clear();
-			
-			
+
+
 			leaderListModel.addElement(m.getLeader());
 
 			for (Integer pid : m.getAnswers().keySet()) {
@@ -238,12 +239,7 @@ public class AppointmentView extends JPanel{
 				}
 			}
 
-			if(m.getRoom() == null){
-				placeInput.setText(m.getPlace());
-			}
-			else{
-				placeInput.setText(m.getRoom().toString());
-			}
+			placeInput.setText(m.getPlace());
 		}
 		else{
 			placeInput.setText(appointment.getPlace());

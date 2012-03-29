@@ -134,12 +134,12 @@ public class NewAppointment extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				String title = nameField.getText();
 
-				String dateStart = datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + (isInEdit ? 0: 1)) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); 
+				String dateStart = datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepicker.getJCalendar().getCalendar().get(Calendar.MONTH)) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); 
 				String dateEnd;
 
 				if (endDPicker.isEnabled()) {
 
-					dateEnd = endDPicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (endDPicker.getJCalendar().getCalendar().get(Calendar.MONTH) + (isInEdit ? 0: 1)) + "-" + endDPicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); 
+					dateEnd = endDPicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (endDPicker.getJCalendar().getCalendar().get(Calendar.MONTH)) + "-" + endDPicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); 
 				} else {
 					dateEnd = dateStart;
 
@@ -360,10 +360,10 @@ public class NewAppointment extends JPanel{
 		DateString edm = app.getEndTime();
 
 		GregorianCalendar gcal = new GregorianCalendar();
-		gcal.set(sdm.getYear(), sdm.getMonth(), sdm.getDay(), sdm.getHour(), sdm.getMinute());
+		gcal.set(sdm.getYear(), sdm.getMonth() - 1, sdm.getDay(), sdm.getHour(), sdm.getMinute());
 		datepicker.setDate(gcal.getTime());
 
-		gcal.set(edm.getYear(), edm.getMonth(), edm.getDay(), edm.getHour(), edm.getMinute());
+		gcal.set(edm.getYear(), edm.getMonth() - 1, edm.getDay(), edm.getHour(), edm.getMinute());
 		endDPicker.setDate(gcal.getTime());
 
 		startTimeHoursField.setSelectedIndex(app.getStartTime().getHour());
