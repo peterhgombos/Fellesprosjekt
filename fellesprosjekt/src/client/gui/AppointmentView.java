@@ -68,7 +68,6 @@ public class AppointmentView extends JPanel{
 
 	private Appointment appointment;
 
-	@SuppressWarnings("deprecation")
 	public AppointmentView(CalendarPanel calendarPanel, Appointment app) {
 		appointment = app;
 		calendarpanel = calendarPanel;
@@ -243,8 +242,7 @@ public class AppointmentView extends JPanel{
 				placeInput.setText(m.getPlace());
 			}
 			else{
-				// TODO Lag Room()
-				// placeInput = m.getRoom().toString();
+				placeInput = m.getRoom().toString();
 			}
 		}
 		else{
