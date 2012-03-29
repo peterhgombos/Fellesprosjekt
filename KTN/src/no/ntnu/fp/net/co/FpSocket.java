@@ -44,6 +44,7 @@ public class FpSocket extends AbstractConnection implements FpPacketReceiver{
 		
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new SendTimer(a2Socket, syn), 0, RETRANSMIT);
+		//TODO Make connection timeout/stop after a given number of attempts
 		this.state = State.SYN_SENT;
 		KtnDatagram synack = a2Socket.receive(myPort);
 		while(synack.getFlag() != Flag.SYN_ACK){
