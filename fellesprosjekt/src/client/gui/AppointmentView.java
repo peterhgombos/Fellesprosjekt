@@ -68,14 +68,13 @@ public class AppointmentView extends JPanel{
 
 	private Appointment appointment;
 
-	@SuppressWarnings("deprecation")
 	public AppointmentView(CalendarPanel calendarPanel, Appointment app) {
 		appointment = app;
 		calendarpanel = calendarPanel;
 		if(app instanceof Meeting){
 			System.out.println("constructor: " + ((Meeting)app).getAnswers());
 		}
-		
+
 
 		headline = new JLabel(appointmentName);
 		timeLabel = new JLabel("Tid");
@@ -110,11 +109,12 @@ public class AppointmentView extends JPanel{
 		accpectButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Meeting m = (Meeting)appointment;
+				m.changeParticipantAnswer(Client.getUser(), Meeting.SVAR_OK);
 				ServerData.requestUpdateAnswers(Client.getUser().getId(), m.getId(), Meeting.SVAR_OK);
 				//ServerData.getNewOldNotes(Client.getUser());
 				accpectButton.setEnabled(false);
-				rejectButton.setEnabled(false);
-				//setComponents();
+				rejectButton.setEnabled(true);
+				setComponents();
 				//calendarpanel.goToCalender();
 			}
 		});
@@ -124,9 +124,9 @@ public class AppointmentView extends JPanel{
 				m.changeParticipantAnswer(Client.getUser(), Meeting.SVAR_NEI);
 				ServerData.requestUpdateAnswers(Client.getUser().getId(), m.getId(), Meeting.SVAR_NEI);
 				//ServerData.getNewOldNotes(Client.getUser());
-				accpectButton.setEnabled(false);
+				accpectButton.setEnabled(true);
 				rejectButton.setEnabled(false);
-				//setComponents();
+				setComponents();
 				//calendarpanel.goToCalender();
 			}
 		});
@@ -221,8 +221,8 @@ public class AppointmentView extends JPanel{
 			notAnsweredListModel.clear();
 			acceptedListModel.clear();
 			deniedListModel.clear();
-			
-			
+
+
 			leaderListModel.addElement(m.getLeader());
 
 			for (Integer pid : m.getAnswers().keySet()) {
@@ -239,13 +239,7 @@ public class AppointmentView extends JPanel{
 				}
 			}
 
-			if(m.getRoom() == null){
-				placeInput.setText(m.getPlace());
-			}
-			else{
-				// TODO Lag Room()
-				// placeInput = m.getRoom().toString();
-			}
+			placeInput.setText(m.getPlace());
 		}
 		else{
 			placeInput.setText(appointment.getPlace());

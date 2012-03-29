@@ -10,8 +10,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.TimeZone;
-
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -25,15 +23,11 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-
-import com.toedter.calendar.JDateChooser;
-
 import client.Client;
 import client.connection.MessageListener;
 import client.connection.ServerData;
 
-
-import common.dataobjects.Appointment;
+import com.toedter.calendar.JDateChooser;
 import common.dataobjects.ComMessage;
 import common.dataobjects.Meeting;
 import common.dataobjects.Person;
@@ -114,10 +108,10 @@ public class NewMeeting extends JPanel implements MessageListener{
 		DateString edm = meet.getEndTime();
 
 		GregorianCalendar gcal = new GregorianCalendar();
-		gcal.set(sdm.getYear(), sdm.getMonth(), sdm.getDay(), sdm.getHour(), sdm.getMinute());
+		gcal.set(sdm.getYear(), sdm.getMonth()-1, sdm.getDay(), sdm.getHour(), sdm.getMinute());
 		datepicker.setDate(gcal.getTime());
 
-		gcal.set(edm.getYear(), edm.getMonth(), edm.getDay(), edm.getHour(), edm.getMinute());
+		gcal.set(edm.getYear(), edm.getMonth()-1, edm.getDay(), edm.getHour(), edm.getMinute());
 		datepickerDays.setDate(gcal.getTime());
 
 		headlineLabel.setText("Rediger: " + meet.getTitle());
@@ -196,6 +190,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 		severalDays = new JCheckBox();
 		severalDaysLabel = new JLabel("Flere dager");
 
+		
 		startTimeHoursField = new JComboBox(hours);
 		endTimeHoursField = new JComboBox(hours);
 		startTimeMinField = new JComboBox(min);
@@ -386,10 +381,10 @@ public class NewMeeting extends JPanel implements MessageListener{
 			public void actionPerformed(ActionEvent e) {
 				String title = nameField.getText();
 
-				String dateStart = datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + (isInEdit ? 0: 1)) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH);;
+				String dateStart = datepicker.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepicker.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + "-" + datepicker.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH);;
 				String dateEnd;
 				if(datepickerDays.isEnabled()  && datepickerDays.isVisible()){
-					dateEnd = datepickerDays.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepickerDays.getJCalendar().getCalendar().get(Calendar.MONTH) + (isInEdit ? 0: 1)) + "-" + datepickerDays.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); ;
+					dateEnd = datepickerDays.getJCalendar().getCalendar().get(Calendar.YEAR) + "-" + (datepickerDays.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + "-" + datepickerDays.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH); ;
 				}
 				else{
 					dateEnd = dateStart;
@@ -413,7 +408,7 @@ public class NewMeeting extends JPanel implements MessageListener{
 				if(title.trim().equals("")){
 					UserInformationMessages.showErrormessage("Du må lage en tittel");
 					return;
-				}else if(bookMeetingroomRadioButton.isSelected() && numberOfParticipants<1 ){
+				}else if(bookMeetingroomRadioButton.isSelected() && numberOfParticipants < 1 ){
 					UserInformationMessages.showErrormessage("Det må være minst 2 deltakere for å booke et møterom");
 					return;
 				}

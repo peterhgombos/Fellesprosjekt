@@ -63,9 +63,6 @@ public class Appointments extends JPanel implements MessageListener{
 	private LinkedList<Meeting> meetings;
 	private LinkedList<Appointment> nyliste = new LinkedList<Appointment>();
 
-	private Date defaultDate = new Date(System.currentTimeMillis());
-	private Date defaultendDate = new Date(System.currentTimeMillis() + 1000*60*60*24*7);
-
 	public Appointments(CalendarPanel calendarPanel) {
 		appointments = new LinkedList<Appointment>();
 		meetings = new LinkedList<Meeting>();
@@ -74,14 +71,16 @@ public class Appointments extends JPanel implements MessageListener{
 		calendarpanel = calendarPanel;
 
 		datepickerFromDate = new JDateChooser();
-		datepickerFromDate.setDate(defaultDate);
+		datepickerFromDate.getJCalendar().setDate(new Date(System.currentTimeMillis()));
+		datepickerFromDate.repaint();
 		datepickerToDate = new JDateChooser();
-		datepickerToDate.setDate(defaultendDate);
+		datepickerToDate.getJCalendar().setDate(new Date(System.currentTimeMillis() + 1000*60*60*24*7));
+		datepickerToDate.repaint();
 
 
 		datepickerFromDate.getJCalendar().addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent arg0) {
-				ChangeDateFilter();
+				changeDateFilter();
 			}
 		});
 		datepickerToDate.getJCalendar().addPropertyChangeListener(new PropertyChangeListener() {
@@ -97,12 +96,12 @@ public class Appointments extends JPanel implements MessageListener{
 				DateString ds = new DateString(dateStart);
 				DateString de = new DateString(dateEnd);
 				
-				if(ds.after(de)){
-					datepickerToDate.setDate(datepickerFromDate.getDate());
-					return;
-				}
+//				if(ds.after(de)){
+//					datepickerToDate.setDate(datepickerFromDate.getDate());
+//					return;
+//				}
 				
-				ChangeDateFilter();
+				changeDateFilter();
 			}
 		});
 
@@ -157,8 +156,6 @@ public class Appointments extends JPanel implements MessageListener{
 			}
 		});
 
-		ChangeDateFilter();
-		
 		displaydata();
 		add(headlineLabel);
 		add(dateLabel);
@@ -177,6 +174,8 @@ public class Appointments extends JPanel implements MessageListener{
 		resize();
 		Client.getFrame().resize(GuiConstants.FRAME_WIDTH+1, GuiConstants.FRAME_HEIGTH+1);
 		Client.getFrame().resize(GuiConstants.FRAME_WIDTH, GuiConstants.FRAME_HEIGTH);
+		
+		changeDateFilter();
 	}
 
 	public void resize(){
@@ -241,7 +240,7 @@ public class Appointments extends JPanel implements MessageListener{
 		Client.getFrame().resize(GuiConstants.FRAME_WIDTH, GuiConstants.FRAME_HEIGTH);
 	}
 
-	private void ChangeDateFilter(){
+	private void changeDateFilter(){
 		String dateStart = datepickerFromDate.getJCalendar().getCalendar().get(Calendar.YEAR) + 
 				"-" + (datepickerFromDate.getJCalendar().getCalendar().get(Calendar.MONTH) + 1) + 
 				"-" + datepickerFromDate.getJCalendar().getCalendar().get(Calendar.DAY_OF_MONTH) + " 00:00:00";
