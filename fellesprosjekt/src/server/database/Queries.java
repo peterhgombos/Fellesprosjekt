@@ -19,7 +19,7 @@ public class Queries {
 	public static String getRoom(String id){
 		return "SELECT MOTEROM.* " +
 				"FROM MOTEROM " +
-				"WHERE MOTEROM.ROMNR = '" + id + "';";
+				"WHERE MOTEROM.ROMNR = '" + clean(id) + "';";
 	}
 
 	public static String getMeetings(int personid){
@@ -86,13 +86,13 @@ public class Queries {
 	public static String loginAuthentication(String username, String passwordHash){
 		return 	"SELECT ANSATT.* " +
 				"FROM ANSATT " +
-				"WHERE ANSATT.BRUKERNAVN = \"" + username + "\" " +
+				"WHERE ANSATT.BRUKERNAVN = \"" + clean(username) + "\" " +
 				"AND ANSATT.PASSORD = \"" + passwordHash + "\";";
 	}
 
 	public static String newNote(String title, int appId){
 		return	"INSERT INTO VARSEL (TITTEL, AVTALEID) " +
-				"VALUES '" + title + "', " + appId +";"; 
+				"VALUES '" + clean(title) + "', " + appId +";"; 
 	}
 	public static String updateNote(int appId){
 		return	"UPDATE VARSEL " +
@@ -104,39 +104,16 @@ public class Queries {
 		return  "SELECT * FROM VARSEL " +
 				"ORDER BY TIDSENDT DESC LIMIT 1;";
 	}
-//
-//	public static String getNotes(int deltakerId, String filter){
-//		return	"SELECT VARSEL. * , HAR_MOTTATT.HAR_LEST " +
-//				"FROM VARSEL, DELTAKER, HAR_MOTTATT "+
-//				"WHERE " +
-//				"VARSEL.AVTALEID = DELTAKER.AVTALEID " +
-//				"AND DELTAKER.ANSATTNR = HAR_MOTTATT.ANSATTNR " +
-//				"AND VARSEL.VARSELID = HAR_MOTTATT.VARSELID " +
-//				"AND DELTAKER.ANSATTNR = " + deltakerId + " " +
-//				"AND VARSEL.TITTEL LIKE '%" + filter + "%'" +
-//				"ORDER  BY VARSEL.TIDSENDT;";
-//	}
-	
+
 	public static String getNotes(int deltakerId, String filter){
 		return	"SELECT VARSEL.* , HAR_MOTTATT.HAR_LEST " +
 				"FROM VARSEL, HAR_MOTTATT " +
 				"WHERE " +
 				"HAR_MOTTATT.ANSATTNR = " + deltakerId + " " +
-				"AND VARSEL.TITTEL LIKE '%" + filter + "%' " +
+				"AND VARSEL.TITTEL LIKE '%" + clean(filter) + "%' " +
 				"AND VARSEL.VARSELID = HAR_MOTTATT.VARSELID " +
-				"ORDER  BY VARSEL.TIDSENDT;";
+				"ORDER  BY VARSEL.TIDSENDT DESC;";
 	}
-	
-//	public static String getNotesAvlyst(int deltakerId, String filter){
-//		return	"SELECT VARSEL. * , HAR_MOTTATT.HAR_LEST " +
-//				"FROM VARSEL, HAR_MOTTATT "+
-//				"WHERE " +
-//				"VARSEL.AVTALEID = -1 " +
-//				"AND VARSEL.VARSELID = HAR_MOTTATT.VARSELID " +
-//				"AND HAR_MOTTATT.ANSATTNR = " + deltakerId + " " +
-//				"AND VARSEL.TITTEL LIKE '%" + filter + "%'" +
-//				"ORDER  BY VARSEL.TIDSENDT;";
-//	}	
 
 	public static String getLastAppointment(){
 		return	"SELECT * FROM AVTALE " +
@@ -162,7 +139,7 @@ public class Queries {
 	}
 	
 	public static String createNote(String title, int appID){
-		return "INSERT INTO VARSEL VALUES(NULL, '" + title + "', NULL, " + appID + 
+		return "INSERT INTO VARSEL VALUES(NULL, '" + clean(title) + "', NULL, " + appID + 
 				" );";
 	}
 	
@@ -184,22 +161,22 @@ public class Queries {
 
 	public static String getPersonsByFilter(String search){
 		return 	"SELECT ANSATT.* FROM ANSATT " + 
-				"WHERE (FORNAVN LIKE '%" + search + "%' " +
-				"OR ETTERNAVN LIKE '%" + search + "%') " +
+				"WHERE (FORNAVN LIKE '%" + clean(search) + "%' " +
+				"OR ETTERNAVN LIKE '%" + clean(search) + "%') " +
 				"OR (MATCH(FORNAVN,ETTERNAVN) " +
-				"AGAINST ('%" + search +"%' " +
+				"AGAINST ('%" + clean(search) +"%' " +
 				"IN BOOLEAN MODE));";
 	}
 
 	public static String createNewAppointment(String title, String description, DateString startTime, DateString endTime, String place, int leader){
 		return  "INSERT INTO AVTALE (TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED, LEDER) " +
-				"VALUES ('" + title + "', '" + description + "', '" + startTime.toString() +
-				"', '" + endTime.toString() + "', '" + place + "', '" + leader +"');";
+				"VALUES ('" + clean(title) + "', '" + clean(description) + "', '" + startTime.toString() +
+				"', '" + endTime.toString() + "', '" + clean(place) + "', '" + leader +"');";
 	}
 	public static String createNewMeeting(String title, String description, DateString startTime, DateString endTime, String place, String room, int leader){
 		return  "INSERT INTO AVTALE (TITTEL, BESKRIVELSE, TIDSPUNKT, SLUTTIDSPUNKT, STED, LEDER, ROMNR) " +
-				"VALUES ('" + title + "', '" + description + "', '" + startTime.toString() +
-				"', '" + endTime.toString() + "', '" + place + "', '" + leader +"', '" + room + "');";
+				"VALUES ('" + clean(title) + "', '" + clean(description) + "', '" + startTime.toString() +
+				"', '" + endTime.toString() + "', '" + clean(place) + "', '" + leader +"', '" + clean(room) + "');";
 	}
 
 	public static String addPersonToAttend(int personId, int appId){
@@ -229,7 +206,7 @@ public class Queries {
 
 	public static String bookRoom(int appId, String roomId){
 		return	"UPDATE AVTALE " +
-				"SET ROMNR = '" + roomId + "' " +
+				"SET ROMNR = '" + clean(roomId) + "' " +
 				"WHERE AVTALEID = '" + appId + "';";
 	}
 
@@ -247,15 +224,15 @@ public class Queries {
 
 	public static String updateAppointment(int appID, String title, String description, DateString start, DateString end, String place){
 		return 	"UPDATE AVTALE " +
-				"SET TITTEL = '" + title + "', BESKRIVELSE =  '" + description + "', TIDSPUNKT = '" + start + 
-				"', SLUTTIDSPUNKT= '" + end + "', STED= '" + place + "' " +
+				"SET TITTEL = '" + clean(title) + "', BESKRIVELSE =  '" + clean(description) + "', TIDSPUNKT = '" + start + 
+				"', SLUTTIDSPUNKT= '" + end + "', STED= '" + clean(place) + "' " +
 				"WHERE AVTALE.AVTALEID = " + appID + ";";
 	}
 	
 	public static String updateMeeting(int appID, String title, String description, DateString start, DateString end, String place, String room){
 		return 	"UPDATE AVTALE " + 
-				"SET TITTEL = '" + title + "', BESKRIVELSE =  '" + description + "', TIDSPUNKT = '" + start + 
-				"', SLUTTIDSPUNKT= '" + end + "', STED= '" + place + "' " +
+				"SET TITTEL = '" + clean(title) + "', BESKRIVELSE =  '" + clean(description) + "', TIDSPUNKT = '" + start + 
+				"', SLUTTIDSPUNKT= '" + end + "', STED= '" + clean(place) + "' " +
 				"WHERE AVTALE.AVTALEID = " + appID + ";";
 	}
 	
@@ -284,5 +261,10 @@ public class Queries {
 
 	public static String getNoteByAppId(int id){
 		return "SELECT * FROM VARSEL WHERE AVTALEID = " + id + ";";
+	}
+	
+	
+	private static String clean (String text){
+		return text.replaceAll(";", "");
 	}
 }

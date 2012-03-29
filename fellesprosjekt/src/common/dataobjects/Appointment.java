@@ -3,7 +3,6 @@ package common.dataobjects;
 import java.awt.Color;
 import java.io.Serializable;
 
-import xml.XMLElements;
 import client.gui.calendar.ColorPicker;
 
 import common.utilities.DateString;
@@ -84,22 +83,6 @@ public class Appointment implements Serializable, Comparable<Appointment> {
 	public Person getAppointmentLeader() {
 		return leader;
 	}
-
-	// makes XML for appointment class
-	public String toXML(){
-		StringBuilder xml = new StringBuilder();
-		xml.append(XMLElements.openXML(XMLElements.APPOINTMENT));
-		xml.append(XMLElements.openXML(XMLElements.APPOINTMENT_ID) + getId() + XMLElements.closeXML(XMLElements.APPOINTMENT_ID));
-		xml.append(XMLElements.openXML(XMLElements.LEADER) + getAppointmentLeader().toXML() + XMLElements.closeXML(XMLElements.LEADER));
-		xml.append(XMLElements.openXML(XMLElements.TITLE) + getTitle() + XMLElements.closeXML(XMLElements.TITLE));
-		xml.append(XMLElements.openXML(XMLElements.DESCRIPTION) + getDescription() + XMLElements.closeXML(XMLElements.DESCRIPTION));
-		xml.append(XMLElements.openXML(XMLElements.STARTTIME) + getStartTime() + XMLElements.closeXML(XMLElements.STARTTIME));
-		xml.append(XMLElements.openXML(XMLElements.ENDTIME) + getEndTime() + XMLElements.closeXML(XMLElements.ENDTIME));
-		xml.append(XMLElements.openXML(XMLElements.PLACE) + getPlace() + XMLElements.closeXML(XMLElements.PLACE));
-		xml.append(XMLElements.closeXML(XMLElements.APPOINTMENT));
-		return xml.toString();
-	}
-
 
 	public Person getLeader() {
 		return leader;
