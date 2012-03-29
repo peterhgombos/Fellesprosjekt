@@ -130,7 +130,5 @@ public class FpSocket extends AbstractConnection implements FpPacketReceiver{
 				//TODO
 			}
 		}
-		
 	}
-
 }
