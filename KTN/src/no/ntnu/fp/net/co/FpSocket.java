@@ -29,7 +29,7 @@ public class FpSocket extends AbstractConnection implements FpPacketReceiver{
 	}
 	
 	public void close(){
-
+		//TODO
 	}
 
 	public String receive(){
