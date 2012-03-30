@@ -795,3 +795,61 @@ Remote Port:52001
 15:27:28.551     CLSocket::receive                                                                                                                       Receiving at:32759                                
 15:27:28.551     SendTimer                localhost:32759          localhost:44065          924     SYN     -1                               0           Sending this datagram (try: 1)                    
 15:27:28.597     NETWORK                                                                                                                                 Packet 924 send!                                  
+10:54:55.417     CLSocket::receive                                                                                                                       Receiving at:44065                                
+10:54:59.582     CLSocket::receive                                                                                                                       Receiving at:32759                                
+10:54:59.582     SendTimer                localhost:32759          localhost:44065          2431    SYN     -1                               0           Sending this datagram (try: 1)                    
+10:54:59.597     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:50185
+10:54:59.613     NETWORK                                                                                                                                 Packet 2431 send!                                 
+10:54:59.629     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+10:54:59.629     CLSocket::receive                                                                                                                       Receiving at:44065                                
+10:54:59.629     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+10:54:59.629     SendTimer                78.91.18.193:44065       localhost:32759          0       SYN_ACK -1                               3550174854  Sending this datagram (try: 1)                    
+10:54:59.644     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 32759
+Remote Port:50186
+10:54:59.644     NETWORK                                                                                                                                 Packet 0 send!                                    
+10:54:59.644     CLSocket::receive                                                                                                                       Finished receiving at:32759                       
+10:54:59.661     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:50187
+10:54:59.661     NETWORK                                                                                                                                 Packet 0 send!                                    
+10:54:59.661     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+10:54:59.661     CLSocket::receive                                                                                                                       Receiving at:32759                                
+10:54:59.661     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+10:54:59.661     SendTimer                localhost:32759          localhost:44065          0       NONE    -1      Test                     2930920720  Sending this datagram (try: 1)                    
+10:54:59.676     NETWORK                                                                                                                                 Packet 0 send!                                    
+10:55:0.472      SendTimer                localhost:32759          localhost:44065          0       NONE    -1      Test                     2930920720  Sending this datagram (try: 2)                    
+10:55:0.472      NETWORK                                                                                                                                 Packet 0 send!                                    
+10:55:1.269      SendTimer                localhost:32759          localhost:44065          0       NONE    -1      Test                     2930920720  Sending this datagram (try: 3)                    
+10:55:1.269      NETWORK                                                                                                                                 Packet 0 send!                                    
+10:55:2.64       SendTimer                localhost:32759          localhost:44065          0       NONE    -1      Test                     2930920720  Sending this datagram (try: 4)                    
+10:55:2.64       NETWORK                                                                                                                                 Packet 0 send!                                    
+10:55:2.876      SendTimer                localhost:32759          localhost:44065          0       NONE    -1      Test                     2930920720  Sending this datagram (try: 5)                    
+10:55:2.876      NETWORK                                                                                                                                 Packet 0 send!                                    
+10:55:3.672      SendTimer                localhost:32759          localhost:44065          0       NONE    -1      Test                     2930920720  Sending this datagram (try: 6)                    
+10:55:3.672      NETWORK                                                                                                                                 Packet 0 send!                                    
+10:55:4.469      SendTimer                localhost:32759          localhost:44065          0       NONE    -1      Test                     2930920720  Sending this datagram (try: 7)                    
+10:55:4.469      NETWORK                                                                                                                                 Packet 0 send!                                    
+10:55:5.264      SendTimer                localhost:32759          localhost:44065          0       NONE    -1      Test                     2930920720  Sending this datagram (try: 8)                    
+10:55:5.264      NETWORK                                                                                                                                 Packet 0 send!                                    
+10:55:6.76       SendTimer                localhost:32759          localhost:44065          0       NONE    -1      Test                     2930920720  Sending this datagram (try: 9)                    
+10:55:6.76       NETWORK                                                                                                                                 Packet 0 send!                                    
+10:55:6.872      SendTimer                localhost:32759          localhost:44065          0       NONE    -1      Test                     2930920720  Sending this datagram (try: 10)                   
+10:55:6.872      NETWORK                                                                                                                                 Packet 0 send!                                    
+10:55:7.669      SendTimer                localhost:32759          localhost:44065          0       NONE    -1      Test                     2930920720  Sending this datagram (try: 11)                   
+10:55:7.669      NETWORK                                                                                                                                 Packet 0 send!                                    
+10:55:8.464      SendTimer                localhost:32759          localhost:44065          0       NONE    -1      Test                     2930920720  Sending this datagram (try: 12)                   
+10:55:8.464      NETWORK                                                                                                                                 Packet 0 send!                                    
+10:55:9.262      SendTimer                localhost:32759          localhost:44065          0       NONE    -1      Test                     2930920720  Sending this datagram (try: 13)                   
+10:55:9.262      NETWORK                                                                                                                                 Packet 0 send!                                    
