@@ -3,6 +3,7 @@ package test;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 
+import no.ntnu.fp.net.cl.ClException;
 import no.ntnu.fp.net.co.FpServerSocket;
 import no.ntnu.fp.net.co.FpSocket;
 
@@ -19,6 +20,9 @@ public class Server {
 			c.writeline(e.getMessage());
 			return;
 		}catch(IOException e){
+			c.writeline(e.getMessage());
+			return;
+		}catch(ClException e){
 			c.writeline(e.getMessage());
 			return;
 		}

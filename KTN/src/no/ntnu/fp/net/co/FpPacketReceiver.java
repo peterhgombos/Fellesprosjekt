@@ -1,9 +1,9 @@
 package no.ntnu.fp.net.co;
 
-import no.ntnu.fp.net.cl.KtnDatagram;
+import no.ntnu.fp.net.cl.ClSocket;
 
 public interface FpPacketReceiver {
 
-	void receivePacket(KtnDatagram packet);
+	ClSocket getA2Socket();
 	
 }

@@ -12,6 +12,7 @@ import java.util.Timer;
 import test.K;
 import test.Server;
 
+import no.ntnu.fp.net.cl.ClException;
 import no.ntnu.fp.net.cl.ClSocket;
 import no.ntnu.fp.net.cl.KtnDatagram;
 import no.ntnu.fp.net.cl.KtnDatagram.Flag;
@@ -64,7 +65,7 @@ public class FpServerSocket extends AbstractConnection{
 	}
 
 	@Override
-	public Connection accept() throws IOException, SocketTimeoutException {
+	public Connection accept() throws IOException, SocketTimeoutException, ClException {
 		this.state = State.LISTEN;
 
 		KtnDatagram receivedPacket = a2Socket.receive(myPort);
@@ -99,9 +100,9 @@ public class FpServerSocket extends AbstractConnection{
 		return newSocket;
 	}
 
-	private void broadCast(KtnDatagram packet){
+	private void broadCast(KtnDatagram packet) throws IOException, ClException{
 		for(FpPacketReceiver pr: listeners){
-			pr.receivePacket(packet);
+			pr.getA2Socket().send(packet);
 		}
 	}
 

@@ -69,7 +69,14 @@ public class FpSocket extends AbstractConnection implements FpPacketReceiver{
 		if(this.state != State.ESTABLISHED) throw new ConnectException();
 		KtnDatagram packet = K.makePacket(Flag.NONE, remotePort, remoteAddress, myPort, myAddress, msg, 0);
 		
-		sendDataPacketWithRetransmit(packet);
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new SendTimer(a2Socket, packet), 0, RETRANSMIT);
+		KtnDatagram ackpack = a2Socket.receive(myPort);
+		while(ackpack.getFlag() != Flag.ACK){
+			ackpack = a2Socket.receive(myPort);
+			Client.c.writeline("ACK");
+		}
+		timer.cancel();
 	}
 
 	@Override
@@ -84,9 +91,8 @@ public class FpSocket extends AbstractConnection implements FpPacketReceiver{
 	}
 
 	@Override
-	public void receivePacket(KtnDatagram packet){
-		// TODO Auto-generated method stub
-		
+	public ClSocket getA2Socket(){
+		return a2Socket;
 	}
 
 }
