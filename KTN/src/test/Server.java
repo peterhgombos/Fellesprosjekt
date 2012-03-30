@@ -29,7 +29,6 @@ public class Server implements MessageListener{
 				c.writeline("Connected");
 				s.addListener(this);
 			}
-			
 		}catch(SocketTimeoutException e){
 			c.writeline(e.getMessage());
 			return;

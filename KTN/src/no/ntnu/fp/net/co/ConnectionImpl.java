@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -213,7 +212,11 @@ public class ConnectionImpl extends AbstractConnection {
 			return true;
 		}
 		return false;
-		//throw new NotImplementedException();
+	}
+
+	@Override
+	public void connect(String remoteAddress, int remotePort)
+			throws IOException, SocketTimeoutException{
 	}
 
 }
