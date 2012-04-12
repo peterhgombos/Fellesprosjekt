@@ -50,6 +50,7 @@ public class Server {
 				c.writeline("trying to send");
 				socket.send("her er svar");
 				c.writeline("sendt YAY");
+				c.writeline(socket.receive());
 			
 			}catch(IOException e){
 				e.printStackTrace();

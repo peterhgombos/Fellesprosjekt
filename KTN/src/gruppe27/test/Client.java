@@ -35,6 +35,7 @@ public class Client {
 			c.writeline("receiving message");
 			c.writeline(socket.receive());
 			c.writeline("YAY");
+			socket.send("enda en melding");
 		}catch(ConnectException e){
 			e.printStackTrace();
 		}catch(IOException e){

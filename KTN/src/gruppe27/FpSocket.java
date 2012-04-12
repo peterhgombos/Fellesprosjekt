@@ -5,6 +5,7 @@ import gruppe27.test.Client;
 
 import java.io.IOException;
 import java.util.Timer;
+import java.util.TimerTask;
 
 import no.ntnu.fp.net.cl.ClException;
 import no.ntnu.fp.net.cl.ClSocket;
@@ -19,6 +20,7 @@ public class FpSocket {
 	}
 
 	//<HAXORZ>
+	private Object closeWaiter = new Object();
 	private Object waitObject = new Object();
 	private KtnDatagram serverSideNextDatagram = null;
 	//</HAXORZ>
@@ -43,9 +45,11 @@ public class FpSocket {
 		init(port);
 	}
 
-	public FpSocket(int port, boolean serverSide){
+	public FpSocket(int port, String remoteAddr, int remotePort, boolean serverSide){
 		this.serverSide = serverSide;
 		this.state = State.ESTABLISHED;
+		this.remoteAddress = remoteAddr;
+		this.remotePort = remotePort;
 		init(port);
 	}
 
@@ -59,74 +63,64 @@ public class FpSocket {
 		//TODO
 	}
 
+	private void remoteClose(KtnDatagram initialFin) throws IOException{
+		state = State.FIN_WAIT_1;
+
+		try{
+			sendACK(initialFin.getSeq_nr());
+		}catch(ClException e){
+			throw new IOException();
+		}
+
+		KtnDatagram fin = Util.makePacket(Flag.FIN, remotePort, remoteAddress, myPort, myAddress, "", seqCounter);
+
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new sendWithCounter(fin, 5), 0, Util.RETRANSMIT);
+		
+		Thread t = new readAckInThread();
+		t.start();
+		
+		synchronized(closeWaiter){
+			try{
+				closeWaiter.wait();
+			}catch(InterruptedException e){
+				e.printStackTrace();
+			}
+		}
+		
+		timer.cancel();
+		state = State.CLOSED;
+	}
+
+	private KtnDatagram getNextValidPackage() throws IOException{
+		KtnDatagram packet = nextPacket();
+		while(!(Util.isValid(packet) && packet.getSrc_addr().equals(remoteAddress) && packet.getSrc_port() == remotePort)){
+			packet = nextPacket();
+		}
+		return packet;
+	}
+
 	public String receive() throws IOException {
 
 		isReceiving = true;
 
-		KtnDatagram packet = null;
-		packet = nextPacket();
-
-		try{
-			sendACK(packet);
-		}catch(ClException e){
-			e.printStackTrace();
-		}
-		
-		System.out.println("sendt ack");
+		KtnDatagram packet = getNextValidPackage();
 
 		isReceiving = false;
-		return ""+packet.getPayload();
 
-		//System.out.println(packet.getPayload().toString());
-
-		//		if (isValid(packet) && packet.getSrc_addr() == remoteAddress) {
-		//			if (packet.getFlag() == Flag.NONE) {
-		//				try{
-		//					sendACK(packet.getSeq_nr());
-		//					System.out.println("sendt ack");
-		//				}catch(IOException e){
-		//					e.printStackTrace();
-		//				}catch(ClException e){
-		//					e.printStackTrace();
-		//				}
-		//				return ""+packet.getPayload();
-		//			}
-		//		}
-
-		//		if (isValid(packet) && packet.getDest_addr() == myAddress && packet.getDest_port() == myPort) {
-		//			
-		//			if (packet.getFlag() == Flag.NONE) {
-		//
-		//				return packet.getPayload().toString();
-		//
-		//			} else if (packet.getFlag() == Flag.ACK) {
-		//				
-		//				if (state == State.ESTABLISHED) {
-		//					//A previously sent packet has obviously been ack'd. Deal with it appropriately
-		//				} else if (state == State.FIN_WAIT_1) {		//FIN_WAIT_1 should be waiting for a FIN or FINACK
-		//					//Goto FIN_WAIT_2 (Waiting for a FIN)
-		//				} else {
-		//					//Something obviously went wrong. Do something about it
-		//				}
-		//				
-		//			} else if (packet.getFlag() == Flag.FIN) {
-		//				
-		//				if (state == State.ESTABLISHED) {
-		//					//Send FINACK - Go to LAST_ACK
-		//				}else if (state == State.FIN_WAIT_1) {
-		//					//Send FINACK
-		//					//Goto CLOSE_WAIT
-		//				}else if (state == State.FIN_WAIT_2) {
-		//					//Send FINACK
-		//					//Goto CLOSE_WAIT
-		//				}else {
-		//					//Something obviously went wrong. Do something about it
-		//				}
-		//				
-		//			}
-		//		}
-		//NOE VELDIG GALT
-		//		return null;
+		if (packet.getFlag() == Flag.NONE) {
+			try{
+				sendACK(packet.getSeq_nr());
+				return ""+packet.getPayload();
+			}catch(ClException e){
+				throw new IOException();
+			}
+		}else if(packet.getFlag() == Flag.FIN){
+			remoteClose(packet);
+			return null;
+		}else {
+			throw new IOException();
+		}
 	}
 
 	public void connect(String remoteAddress, int remotePort) throws IOException {
@@ -162,10 +156,8 @@ public class FpSocket {
 		this.state = State.ESTABLISHED;
 	}
 
-	private void sendACK(KtnDatagram packetToAck) throws IOException, ClException{
-		remoteAddress = packetToAck.getSrc_addr();
-		remotePort = packetToAck.getSrc_port();
-		KtnDatagram ack = Util.makeAckPack(remotePort, remoteAddress, myPort, myAddress, packetToAck.getSeq_nr());
+	private void sendACK(int seqToAck) throws IOException, ClException{
+		KtnDatagram ack = Util.makeAckPack(remotePort, remoteAddress, myPort, myAddress, seqToAck);
 		a2Socket.send(ack);
 	}
 
@@ -177,13 +169,12 @@ public class FpSocket {
 
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new SendTimer(a2Socket, packet), 0, Util.RETRANSMIT);
-		
+
 		isReceiving = true;
-		KtnDatagram ackpack = nextPacket();
+		KtnDatagram ackpack = getNextValidPackage();
 		while(ackpack.getFlag() != Flag.ACK || ackpack.getAck() != seqCounter){
-			ackpack = nextPacket();
+			ackpack = getNextValidPackage();
 		}
-		System.out.println("ACKED---------------------------------------------------------------------------------");
 		timer.cancel();
 		isReceiving = false;
 		seqCounter++;
@@ -197,7 +188,7 @@ public class FpSocket {
 			}
 		}
 	}
-	private KtnDatagram nextPacket() throws IOException{
+	private KtnDatagram nextPacket() throws IOException {
 		if(serverSide){
 			try{
 				synchronized (waitObject) {
@@ -212,5 +203,41 @@ public class FpSocket {
 			return a2Socket.receive(myPort);
 		}
 
+	}
+	private class readAckInThread extends Thread{
+		public void run(){
+			try{
+				KtnDatagram finack = getNextValidPackage();
+				while(finack.getFlag() != Flag.ACK || finack.getSeq_nr() == seqCounter){
+					finack = getNextValidPackage();
+					closeWaiter.notifyAll();
+				}
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private class sendWithCounter extends TimerTask{
+		int attempts = 0;
+		int limit;
+		KtnDatagram packet;
+		public sendWithCounter(KtnDatagram packet, int limit){
+			this.packet = packet;
+			this.limit = limit;
+		}
+		public void run(){
+			try{
+				a2Socket.send(packet);
+			}catch(IOException e){
+				e.printStackTrace();
+			}catch(ClException e){
+				e.printStackTrace();
+			}
+			attempts++;
+			if(attempts > limit){
+				closeWaiter.notifyAll();
+			}
+		}
 	}
 }

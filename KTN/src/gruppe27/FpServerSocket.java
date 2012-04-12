@@ -87,7 +87,7 @@ public class FpServerSocket {
 		}
 
 		timer.cancel();
-		FpSocket newSocket = new FpSocket(myPort, true);
+		FpSocket newSocket = new FpSocket(myPort, remoteAddress, remotePort, true);
 		listeners.add(newSocket);
 		return newSocket;
 	}
