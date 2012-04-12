@@ -47,14 +47,11 @@ public class Server {
 			try{
 				
 				c.writeline(socket.receive());
-				Thread.sleep(10);
 				c.writeline("trying to send");
 				socket.send("her er svar");
 				c.writeline("sendt YAY");
 			
 			}catch(IOException e){
-				e.printStackTrace();
-			}catch(InterruptedException e){
 				e.printStackTrace();
 			}
 			return;

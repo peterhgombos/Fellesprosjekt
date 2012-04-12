@@ -3992,3 +3992,217 @@ Remote Port:54860
 12:41:27.804     CLSocket::receive                                                                                                                       Finished receiving at:32759                       
 12:41:32.794     SendTimer                localhost:6789           localhost:32759          0       NONE    0       her er svar              2911531391  Sending this datagram (try: 2)                    
 12:41:32.796     NETWORK                                                                                                                                 Packet 0 send!                                    
+14:10:31.850     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:10:35.831     CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:10:35.831     SendTimer                localhost:32759          localhost:44065          0       SYN     0                                3550174854  Sending this datagram (try: 1)                    
+14:10:35.847     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:49373
+14:10:35.863     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:10:35.878     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:10:35.878     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:10:35.878     NETWORK                                                                                                                                 Packet 0 send!                                    
+14:10:35.894     SendTimer                78.91.16.147:44065       localhost:32759          0       SYN_ACK 0                                3550174854  Sending this datagram (try: 1)                    
+14:10:35.894     NETWORK                                                                                                                                 Packet 0 send!                                    
+14:10:35.909     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 32759
+Remote Port:49374
+14:10:35.910     CLSocket::receive                                                                                                                       Finished receiving at:32759                       
+14:10:35.910     NETWORK                                                                                                                                 Packet 0 send!                                    
+14:10:35.910     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:49375
+14:10:35.910     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:10:35.926     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:10:35.926     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:10:36.20      CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:10:36.20      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:10:36.20      SendTimer                localhost:32759          localhost:44065          0       NONE    0       dette er en melding fra klient til server1756626194  Sending this datagram (try: 1)                    
+14:10:36.20      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:49376
+14:10:36.20      NETWORK                                                                                                                                 Packet 0 send!                                    
+14:10:36.20      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:10:36.20      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 32759
+Remote Port:49377
+14:10:36.20      CLSocket::receive                                                                                                                       Finished receiving at:32759                       
+14:10:36.20      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:10:36.20      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:10:36.20      CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:10:36.35      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:10:36.35      NETWORK                                                                                                                                 Packet 0 send!                                    
+14:10:36.35      SendTimer                localhost:6789           localhost:32759          0       NONE    0       her er svar              2911531391  Sending this datagram (try: 1)                    
+14:10:36.35      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 32759
+Remote Port:49378
+14:10:36.51      CLSocket::receive                                                                                                                       Finished receiving at:32759                       
+14:10:36.51      NETWORK                                                                                                                                 Packet 0 send!                                    
+14:10:41.46      SendTimer                localhost:6789           localhost:32759          0       NONE    0       her er svar              2911531391  Sending this datagram (try: 2)                    
+14:10:41.46      NETWORK                                                                                                                                 Packet 0 send!                                    
+14:17:59.375     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:18:2.205      CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:18:2.205      SendTimer                localhost:32759          localhost:44065          0       SYN     0                                3550174854  Sending this datagram (try: 1)                    
+14:18:2.225      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:49425
+14:18:2.235      NETWORK                                                                                                                                 Packet 0 send!                                    
+14:18:2.255      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:18:2.265      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:18:2.265      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:18:2.265      SendTimer                78.91.16.147:44065       localhost:32759          0       SYN_ACK 0                                3550174854  Sending this datagram (try: 1)                    
+14:18:2.285      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 32759
+Remote Port:49426
+14:18:2.285      CLSocket::receive                                                                                                                       Finished receiving at:32759                       
+14:18:2.285      NETWORK                                                                                                                                 Packet 0 send!                                    
+14:18:2.285      NETWORK                                                                                                                                 Packet 0 send!                                    
+14:18:2.285      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:49427
+14:18:2.296      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:18:2.306      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:18:2.306      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:18:2.396      CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:18:2.396      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:18:2.396      SendTimer                localhost:32759          localhost:44065          0       NONE    0       dette er en melding fra klient til server1756626194  Sending this datagram (try: 1)                    
+14:18:2.406      NETWORK                                                                                                                                 Packet 0 send!                                    
+14:18:2.406      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:49428
+14:18:2.406      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:18:2.406      NETWORK                                                                                                                                 Packet 0 send!                                    
+14:18:2.416      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 32759
+Remote Port:49429
+14:18:2.416      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:18:2.416      CLSocket::receive                                                                                                                       Finished receiving at:32759                       
+14:18:2.416      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:18:2.426      CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:18:2.426      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:18:2.426      SendTimer                localhost:44065          localhost:32759          0       NONE    0       her er svar              2911531391  Sending this datagram (try: 1)                    
+14:18:2.436      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 32759
+Remote Port:49430
+14:18:2.436      CLSocket::receive                                                                                                                       Finished receiving at:32759                       
+14:18:2.436      NETWORK                                                                                                                                 Packet 0 send!                                    
+14:18:2.426      NETWORK                                                                                                                                 Packet 0 send!                                    
+14:18:2.456      CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:49431
+14:18:2.456      CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:18:2.456      CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:18:2.456      CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:28:45.858     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:28:48.160     CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:28:48.162     SendTimer                localhost:32759          localhost:44065          0       SYN     0                                3550174854  Sending this datagram (try: 1)                    
+14:28:48.175     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:49818
+14:28:48.185     NETWORK                                                                                                                                 Packet 0 send!                                    
+14:28:48.200     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:28:48.212     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:28:48.213     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:28:48.214     SendTimer                78.91.16.147:44065       localhost:32759          0       SYN_ACK 0                                3550174854  Sending this datagram (try: 1)                    
+14:28:48.219     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 32759
+Remote Port:49819
+14:28:48.220     NETWORK                                                                                                                                 Packet 0 send!                                    
+14:28:48.223     CLSocket::receive                                                                                                                       Finished receiving at:32759                       
+14:28:48.225     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:49820
+14:28:48.225     NETWORK                                                                                                                                 Packet 0 send!                                    
+14:28:48.226     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:28:48.233     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:28:48.234     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:28:48.337     CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:28:48.337     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:28:48.339     SendTimer                localhost:32759          localhost:44065          0       NONE    0       dette er en melding fra klient til server1756626194  Sending this datagram (try: 1)                    
+14:28:48.341     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:49821
+14:28:48.341     NETWORK                                                                                                                                 Packet 0 send!                                    
+14:28:48.344     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:28:48.346     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 32759
+Remote Port:49822
+14:28:48.346     NETWORK                                                                                                                                 Packet 0 send!                                    
+14:28:48.348     CLSocket::receive                                                                                                                       Finished receiving at:32759                       
+14:28:48.349     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:28:48.350     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:28:48.352     CLSocket::receive                                                                                                                       Receiving at:32759                                
+14:28:48.352     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:28:48.379     SendTimer                localhost:44065          localhost:32759          0       NONE    0       her er svar              2911531391  Sending this datagram (try: 1)                    
+14:28:48.381     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 32759
+Remote Port:49823
+14:28:48.382     NETWORK                                                                                                                                 Packet 0 send!                                    
+14:28:48.384     CLSocket::receive                                                                                                                       Finished receiving at:32759                       
+14:28:48.385     CLSocket::coReceive                                                                                                                     State of socket is:
+Bound:true
+Closed: false
+Connected: true
+Local Port: 44065
+Remote Port:49824
+14:28:48.387     CLSocket::receive                                                                                                                       Finished receiving at:44065                       
+14:28:48.388     CLSocket::receive                                                                                                                       Receiving at:44065                                
+14:28:48.388     CLSocket::coAccept                                                                                                                      Fant gjenbrukbar innsocket                        
+14:28:48.386     NETWORK                                                                                                                                 Packet 0 send!                                    
