@@ -1,57 +1,48 @@
 package test;
 
+import gruppe27.FpSocket;
+
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 
-import no.ntnu.fp.net.co.Connection;
-import no.ntnu.fp.net.co.FpSocket;
-import no.ntnu.fp.net.co.ReceiveMessageWorker.MessageListener;
 
-public class Client implements MessageListener{
+public class Client {
 	
 	public static Console c = new Console("Client");
 	
-	public static void main(String[] args){
+	public static void main(String[] args) throws InterruptedException{
 		Client client = new Client();
 		client.run();
 	}
 		
-	public void run(){
+	public void run() throws InterruptedException{
 		
 		FpSocket socket = new FpSocket(32759);
-		socket.addListener(this);
 		
 		try{
 			socket.connect("localhost", 44065);
+			c.writeline("Connected");
 		}catch(SocketTimeoutException e){
-			c.writeline(e.getMessage());
-			return;
+			e.printStackTrace();
 		}catch(IOException e){
-			c.writeline(e.getMessage());
-			return;
+			e.printStackTrace();
 		}
-		c.writeline("Connected");
+		
+		Thread.sleep(100);
 		
 		try{
-			socket.send("Test");
+			c.writeline("sending message");
+			socket.send("dette er en melding fra klient til server");
+			c.writeline("received ACK");
+			c.writeline("receiving message");
+			c.writeline(socket.receive());
+			c.writeline("YAY");
 		}catch(ConnectException e){
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}catch(IOException e){
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
-
-	@Override
-	public void messageReceived(String message) {		
-		c.writeline(message);
-	}
-
-	@Override
-	public void connectionClosed(Connection conn) {
-		c.writeline("Closed");
-	}
-	
 }

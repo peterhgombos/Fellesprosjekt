@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
   <errors>false</errors>
-  <loss>0.8</loss>
+  <loss>0.0</loss>
   <delay>0.0</delay>
   <ghost>0.0</ghost>
   <payload>0.0</payload>
