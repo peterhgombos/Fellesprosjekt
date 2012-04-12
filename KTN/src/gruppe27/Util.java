@@ -8,7 +8,7 @@ import no.ntnu.fp.net.cl.KtnDatagram.Flag;
 
 public class Util {
 	
-	public static final int RETRANSMIT = 50000;
+	public static final int RETRANSMIT = 5000;
 	
 	public static KtnDatagram makePacket(Flag flag, int remotePort, String remoteAddress, int srcPort, String srcAddress, String data, int seq) {
 		if(flag == Flag.ACK){
@@ -28,6 +28,7 @@ public class Util {
 		packet.setChecksum(packet.calculateChecksum());
 		return packet;
 	}
+	
 	public static KtnDatagram makeAckPack(int remotePort, String remoteAddress, int srcPort, String srcAddress, int ack) {
 		KtnDatagram packet = new KtnDatagram();
 		packet.setDest_port(remotePort);

@@ -1,4 +1,4 @@
-package test;
+package gruppe27.test;
 
 import gruppe27.FpServerSocket;
 import gruppe27.FpSocket;
@@ -48,8 +48,9 @@ public class Server {
 				
 				c.writeline(socket.receive());
 				Thread.sleep(10);
+				c.writeline("trying to send");
 				socket.send("her er svar");
-				
+				c.writeline("sendt YAY");
 			
 			}catch(IOException e){
 				e.printStackTrace();

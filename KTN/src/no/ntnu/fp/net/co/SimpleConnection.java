@@ -122,4 +122,11 @@ public class SimpleConnection implements Connection {
 		} 
 	}
 
+	@Override
+	public void connect(String remoteAddress, int remotePort)
+			throws IOException, SocketTimeoutException{
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -1,4 +1,4 @@
-package test;
+package gruppe27.test;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;

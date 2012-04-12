@@ -1,9 +1,9 @@
 package gruppe27;
 
 
+import gruppe27.test.Client;
+
 import java.io.IOException;
-import java.net.ConnectException;
-import java.net.SocketTimeoutException;
 import java.util.Timer;
 
 import no.ntnu.fp.net.cl.ClException;
@@ -11,7 +11,6 @@ import no.ntnu.fp.net.cl.ClSocket;
 import no.ntnu.fp.net.cl.KtnDatagram;
 import no.ntnu.fp.net.cl.KtnDatagram.Flag;
 import no.ntnu.fp.net.co.SendTimer;
-import test.Client;
 
 public class FpSocket {
 
@@ -40,6 +39,7 @@ public class FpSocket {
 	private boolean isReceiving = false;
 
 	public FpSocket(int port){
+		this.state = State.CLOSED;
 		init(port);
 	}
 
@@ -129,7 +129,7 @@ public class FpSocket {
 		//		return null;
 	}
 
-	public void connect(String remoteAddress, int remotePort) throws IOException, SocketTimeoutException {
+	public void connect(String remoteAddress, int remotePort) throws IOException {
 		//If state is not closed, no connect
 		if(this.state != State.CLOSED){
 			throw new IOException();
@@ -157,7 +157,7 @@ public class FpSocket {
 		try {
 			a2Socket.send(ack);
 		} catch (ClException e) {
-			e.printStackTrace();
+			throw new IOException();
 		}
 		this.state = State.ESTABLISHED;
 	}
@@ -177,12 +177,15 @@ public class FpSocket {
 
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new SendTimer(a2Socket, packet), 0, Util.RETRANSMIT);
+		
+		isReceiving = true;
 		KtnDatagram ackpack = nextPacket();
-		while(ackpack.getFlag() != Flag.ACK || ackpack.getSeq_nr() != seqCounter){
+		while(ackpack.getFlag() != Flag.ACK || ackpack.getAck() != seqCounter){
 			ackpack = nextPacket();
-			Client.c.writeline("ACK");
 		}
+		System.out.println("ACKED---------------------------------------------------------------------------------");
 		timer.cancel();
+		isReceiving = false;
 		seqCounter++;
 	}
 

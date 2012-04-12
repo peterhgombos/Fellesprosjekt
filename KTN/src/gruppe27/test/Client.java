@@ -1,10 +1,9 @@
-package test;
+package gruppe27.test;
 
 import gruppe27.FpSocket;
 
 import java.io.IOException;
 import java.net.ConnectException;
-import java.net.SocketTimeoutException;
 
 
 public class Client {
@@ -23,8 +22,6 @@ public class Client {
 		try{
 			socket.connect("localhost", 44065);
 			c.writeline("Connected");
-		}catch(SocketTimeoutException e){
-			e.printStackTrace();
 		}catch(IOException e){
 			e.printStackTrace();
 		}

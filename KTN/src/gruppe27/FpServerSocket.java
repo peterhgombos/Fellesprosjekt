@@ -1,6 +1,8 @@
 package gruppe27;
 
 
+import gruppe27.test.Server;
+
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.util.Collections;
@@ -14,7 +16,6 @@ import no.ntnu.fp.net.cl.ClSocket;
 import no.ntnu.fp.net.cl.KtnDatagram;
 import no.ntnu.fp.net.cl.KtnDatagram.Flag;
 import no.ntnu.fp.net.co.SendTimer;
-import test.Server;
 
 public class FpServerSocket {
 
