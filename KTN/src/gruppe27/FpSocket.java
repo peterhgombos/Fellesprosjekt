@@ -58,7 +58,12 @@ public class FpSocket {
 	}
 
 	public void close() throws IOException{
-		//TODO
+		
+		
+		
+		
+		
+		
 	}
 	private void internalClose() {
 		state = State.CLOSED;

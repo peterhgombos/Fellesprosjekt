@@ -45,7 +45,7 @@ public class FpServerSocket {
 		listeners = new LinkedList<FpSocket>();
 	}
 
-	public void close(){
+	public void close() {
 		for(FpSocket fps: listeners){
 			try{
 				fps.close();
@@ -73,7 +73,7 @@ public class FpServerSocket {
 		while(receivedPacket.getFlag() != Flag.SYN){
 			receivedPacket = nextPacket();
 		}
-
+		
 		remotePort = receivedPacket.getSrc_port();
 		remoteAddress = receivedPacket.getSrc_addr();
 
