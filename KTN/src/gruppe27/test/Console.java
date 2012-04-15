@@ -46,6 +46,7 @@ public class Console {
 	
 	private void init(){
 		frame = new JFrame();
+		frame.setAlwaysOnTop(true);
 		frame.setMinimumSize(new Dimension(300, 400));
 		frame.setLayout(new GridLayout(1,1));
 		

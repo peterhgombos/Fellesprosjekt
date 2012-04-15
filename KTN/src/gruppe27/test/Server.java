@@ -13,18 +13,17 @@ public class Server {
 	public static Console c = new Console("Server");
 	
 	public static void main(String[] args){
-		
-		Server server = new Server();
-		server.run();
+		new Server();
 	}
 	
-	public void run() {
+	public Server(){
 		FpServerSocket serverSocket = new FpServerSocket(44065);
 		
 		try{
 			while(true){
+				c.writeline("Listening...");
 				readThread leser = new readThread(serverSocket.accept());
-				c.writeline("got connection");
+				c.writeline("Connection Established");
 				leser.start();
 			}
 		}catch(SocketTimeoutException e){
@@ -45,18 +44,17 @@ public class Server {
 		
 		public void run(){
 			try{
-				
+				c.writeline("Receiving message...");
 				c.writeline(socket.receive());
-				c.writeline("trying to send");
+				c.writeline("Sending message...");
 				socket.send("her er svar");
-				c.writeline("sendt YAY");
+				c.writeline("Receiving message...");
 				c.writeline(socket.receive());
-			
+				c.writeline("DONE");
 			}catch(IOException e){
-				e.printStackTrace();
+				c.writeline("ERROR:" + e.getMessage());
 			}
 			return;
 		}
 	}
-	
 }

@@ -77,12 +77,12 @@ public class FpServerSocket {
 		remotePort = receivedPacket.getSrc_port();
 		remoteAddress = receivedPacket.getSrc_addr();
 
-		KtnDatagram synack = Util.makePacket(Flag.SYN_ACK, remotePort, remoteAddress, myPort, myAddress, "", 0);
+		KtnDatagram synack = Util.makeAckPack(true, remotePort, remoteAddress, myPort, myAddress, 0);
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new SendTimer(a2Socket, synack), 0, Util.RETRANSMIT);
 
 		KtnDatagram ack = nextPacket();
-		while(ack.getFlag() != Flag.ACK){
+		while(ack.getFlag() != Flag.ACK || ack.getAck() != 0){
 			ack = nextPacket();
 		}
 

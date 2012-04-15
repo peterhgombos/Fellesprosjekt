@@ -29,7 +29,7 @@ public class Util {
 		return packet;
 	}
 	
-	public static KtnDatagram makeAckPack(int remotePort, String remoteAddress, int srcPort, String srcAddress, int ack) {
+	public static KtnDatagram makeAckPack(boolean syn, int remotePort, String remoteAddress, int srcPort, String srcAddress, int ack) {
 		KtnDatagram packet = new KtnDatagram();
 		packet.setDest_port(remotePort);
 		packet.setDest_addr(remoteAddress);
@@ -37,7 +37,7 @@ public class Util {
 		packet.setSrc_port(srcPort);
 		packet.setSeq_nr(0);
 		packet.setAck(ack);
-		packet.setFlag(Flag.ACK);
+		packet.setFlag(syn ? Flag.SYN_ACK : Flag.ACK);
 		
 		packet.setChecksum(packet.calculateChecksum());
 		return packet;

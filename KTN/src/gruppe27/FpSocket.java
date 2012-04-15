@@ -1,8 +1,6 @@
 package gruppe27;
 
 
-import gruppe27.test.Client;
-
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -16,11 +14,10 @@ import no.ntnu.fp.net.co.SendTimer;
 public class FpSocket {
 
 	protected enum State {
-		CLOSED, LISTEN, SYN_SENT, SYN_RCVD, ESTABLISHED, FIN_WAIT_1, FIN_WAIT_2, TIME_WAIT, CLOSE_WAIT, LAST_ACK
+		CLOSED, SYN_SENT, SYN_RCVD, ESTABLISHED, FIN_WAIT_1, FIN_WAIT_2, TIME_WAIT, CLOSE_WAIT, LAST_ACK, FIN_RCVD, FIN_SENT, FINACK_SENT
 	}
 
 	//<HAXORZ>
-	private Object closeWaiter = new Object();
 	private Object waitObject = new Object();
 	private KtnDatagram serverSideNextDatagram = null;
 	//</HAXORZ>
@@ -36,12 +33,13 @@ public class FpSocket {
 
 	private State state;
 
-	private int seqCounter = 0;
+	private int sendSeq = 0;
+	private int receiveSeq = -1;
 
 	private boolean isReceiving = false;
 
 	public FpSocket(int port){
-		this.state = State.CLOSED;
+		state = State.CLOSED;
 		init(port);
 	}
 
@@ -55,41 +53,134 @@ public class FpSocket {
 
 	private void init(int port){
 		this.myPort = port;
-		this.myAddress = "localhost";
+		this.myAddress = Util.getIPv4Address();
 		this.a2Socket = new ClSocket();
 	}
 
 	public void close() throws IOException{
 		//TODO
 	}
+	private void internalClose() {
+		state = State.CLOSED;
+	}
 
 	private void remoteClose(KtnDatagram initialFin) throws IOException{
-		state = State.FIN_WAIT_1;
 
-		try{
-			sendACK(initialFin.getSeq_nr());
-		}catch(ClException e){
+		
+	}
+
+	public String receive() throws IOException {
+		if(state != State.ESTABLISHED){
 			throw new IOException();
 		}
 
-		KtnDatagram fin = Util.makePacket(Flag.FIN, remotePort, remoteAddress, myPort, myAddress, "", seqCounter);
+		while(true){
+			isReceiving = true;
+			KtnDatagram packet = getNextValidPackage();
+			isReceiving = false;
 
-		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new sendWithCounter(fin, 5), 0, Util.RETRANSMIT);
-		
-		Thread t = new readAckInThread();
-		t.start();
-		
-		synchronized(closeWaiter){
-			try{
-				closeWaiter.wait();
-			}catch(InterruptedException e){
-				e.printStackTrace();
+			if(state == State.ESTABLISHED){
+				if (packet.getFlag() == Flag.NONE) {
+					sendACK(packet.getSeq_nr());
+					if(receiveSeq < packet.getSeq_nr()){
+						receiveSeq = packet.getSeq_nr();
+						return packet.getPayload().toString();
+					}
+				}
+				else if(packet.getFlag() == Flag.FIN){
+					state = State.FIN_RCVD;
+					sendACK(packet.getSeq_nr());
+				}
+				else if(packet.getFlag() == Flag.SYN_ACK){
+					sendACK(0);
+				}
+			}
+			else if(state == State.FIN_RCVD){
+				
+				if(packet.getFlag() == Flag.FIN){
+					state = State.FIN_RCVD;
+					sendACK(packet.getSeq_nr());
+				}
+				else if(packet.getFlag() == Flag.ACK){
+					
+//					KtnDatagram fin = Util.makePacket(Flag.FIN, remotePort, remoteAddress, myPort, myAddress, "", sendSeq);
+//
+//					Timer timer = new Timer();
+//					timer.scheduleAtFixedRate(new sendWithCounter(fin, 5), 0, Util.RETRANSMIT);
+//
+//					Thread t = new readAckInThread();
+//					t.start();
+//
+//					synchronized(waitObject){
+//						try{
+//							waitObject.wait();
+//						}catch(InterruptedException e){
+//							e.printStackTrace();
+//						}
+//					}
+//
+//					timer.cancel();
+//					state = State.CLOSED;
+					
+					
+					
+				}
 			}
 		}
+	}
+
+	public void connect(String remoteAddress, int remotePort) throws IOException {
+		if(state != State.CLOSED){
+			throw new IOException();
+		}
+
+		this.remotePort = remotePort;
+		this.remoteAddress = remoteAddress.equalsIgnoreCase("localhost") ? Util.getIPv4Address() : remoteAddress;
+
+		KtnDatagram syn = Util.makePacket(Flag.SYN, remotePort, remoteAddress, myPort, myAddress, "", 0);
+
+		Timer syntimer = new Timer();
+		syntimer.scheduleAtFixedRate(new SendTimer(a2Socket, syn), 0, Util.RETRANSMIT);
+		//TODO ikke prøv evig mange ganger
 		
+		KtnDatagram synack = nextPacket();
+		while(synack.getFlag() != Flag.SYN_ACK || synack.getChecksum() != synack.calculateChecksum()){
+			synack = nextPacket();
+		}
+		syntimer.cancel();
+
+		sendACK(0);
+		state = State.ESTABLISHED;
+	}
+
+	private void sendACK(int seqToAck) throws IOException{
+		KtnDatagram ack = Util.makeAckPack(false, remotePort, remoteAddress, myPort, myAddress, seqToAck);
+		try{
+			a2Socket.send(ack);
+		}catch(ClException e){
+			throw new IOException();
+		}
+	}
+
+	public void send(String msg) throws IOException{
+		if(this.state != State.ESTABLISHED){
+			throw new IOException();
+		}
+
+		KtnDatagram packet = Util.makePacket(Flag.NONE, remotePort, remoteAddress, myPort, myAddress, msg, sendSeq);
+
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new SendTimer(a2Socket, packet), 0, Util.RETRANSMIT);
+
+		isReceiving = true;
+		KtnDatagram ackpack = getNextValidPackage();
+		while(ackpack.getFlag() != Flag.ACK || ackpack.getAck() != sendSeq){
+			ackpack = getNextValidPackage();
+		}
+		isReceiving = false;
+
 		timer.cancel();
-		state = State.CLOSED;
+		sendSeq++;
 	}
 
 	private KtnDatagram getNextValidPackage() throws IOException{
@@ -100,86 +191,6 @@ public class FpSocket {
 		return packet;
 	}
 
-	public String receive() throws IOException {
-
-		isReceiving = true;
-
-		KtnDatagram packet = getNextValidPackage();
-
-		isReceiving = false;
-
-		if (packet.getFlag() == Flag.NONE) {
-			try{
-				sendACK(packet.getSeq_nr());
-				return ""+packet.getPayload();
-			}catch(ClException e){
-				throw new IOException();
-			}
-		}else if(packet.getFlag() == Flag.FIN){
-			remoteClose(packet);
-			return null;
-		}else {
-			throw new IOException();
-		}
-	}
-
-	public void connect(String remoteAddress, int remotePort) throws IOException {
-		//If state is not closed, no connect
-		if(this.state != State.CLOSED){
-			throw new IOException();
-		}
-
-		this.remotePort = remotePort;
-		this.remoteAddress = remoteAddress;
-
-		//Send SYN with timer until SYNACK is received.
-		KtnDatagram syn = Util.makePacket(Flag.SYN, remotePort, remoteAddress, myPort, myAddress, "", 0);
-
-		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new SendTimer(a2Socket, syn), 0, Util.RETRANSMIT);
-		//TODO Make connection timeout/stop after a given number of attempts
-		this.state = State.SYN_SENT;
-		KtnDatagram synack = nextPacket();
-		while(synack.getFlag() != Flag.SYN_ACK){
-			Client.c.writeline(""+synack.getFlag());
-			synack = nextPacket();
-		}
-		timer.cancel();
-
-		//Send ACK after receiving SYNACK
-		KtnDatagram ack = Util.makeAckPack(remotePort, remoteAddress, myPort, myAddress, 0);
-		try {
-			a2Socket.send(ack);
-		} catch (ClException e) {
-			throw new IOException();
-		}
-		this.state = State.ESTABLISHED;
-	}
-
-	private void sendACK(int seqToAck) throws IOException, ClException{
-		KtnDatagram ack = Util.makeAckPack(remotePort, remoteAddress, myPort, myAddress, seqToAck);
-		a2Socket.send(ack);
-	}
-
-	public void send(String msg) throws IOException{
-		if(this.state != State.ESTABLISHED){
-			throw new IOException();
-		}
-		KtnDatagram packet = Util.makePacket(Flag.NONE, remotePort, remoteAddress, myPort, myAddress, msg, seqCounter);
-
-		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new SendTimer(a2Socket, packet), 0, Util.RETRANSMIT);
-
-		isReceiving = true;
-		KtnDatagram ackpack = getNextValidPackage();
-		while(ackpack.getFlag() != Flag.ACK || ackpack.getAck() != seqCounter){
-			ackpack = getNextValidPackage();
-		}
-		timer.cancel();
-		isReceiving = false;
-		seqCounter++;
-	}
-
 	public void receivePacket(KtnDatagram packet){
 		if(isReceiving){
 			serverSideNextDatagram = packet;
@@ -188,6 +199,7 @@ public class FpSocket {
 			}
 		}
 	}
+
 	private KtnDatagram nextPacket() throws IOException {
 		if(serverSide){
 			try{
@@ -204,13 +216,14 @@ public class FpSocket {
 		}
 
 	}
+
 	private class readAckInThread extends Thread{
 		public void run(){
 			try{
 				KtnDatagram finack = getNextValidPackage();
-				while(finack.getFlag() != Flag.ACK || finack.getSeq_nr() == seqCounter){
+				while(finack.getFlag() != Flag.ACK || finack.getSeq_nr() == sendSeq){
 					finack = getNextValidPackage();
-					closeWaiter.notifyAll();
+					waitObject.notifyAll();
 				}
 			}catch(IOException e){
 				e.printStackTrace();
@@ -236,7 +249,7 @@ public class FpSocket {
 			}
 			attempts++;
 			if(attempts > limit){
-				closeWaiter.notifyAll();
+				waitObject.notifyAll();
 			}
 		}
 	}
