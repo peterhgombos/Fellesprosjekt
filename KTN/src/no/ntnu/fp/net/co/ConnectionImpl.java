@@ -44,7 +44,6 @@ public class ConnectionImpl extends AbstractConnection {
 		return nextport;
 	}
 
-
 	/**
 	 * Initialise initial sequence number and setup state machine.
 	 * 
@@ -190,6 +189,9 @@ public class ConnectionImpl extends AbstractConnection {
 		try{
 			do{
 				packet = receivePacket(false);
+				if(lastValidPacketReceived != null && packet.getSeq_nr() == lastValidPacketReceived.getSeq_nr()){
+					sendAck(packet, false);
+				}
 			}while(!isValid(packet));
 		}catch(EOFException e){
 			//TODO GOT FIN, disconnect
@@ -199,7 +201,6 @@ public class ConnectionImpl extends AbstractConnection {
 		lastValidPacketReceived = packet;
 		return packet.getPayload().toString();
 	}
-
 
 	private KtnDatagram sendPacketWithTimeout(KtnDatagram packet) throws IOException {
 		int maxAttempts = 5;
@@ -270,7 +271,7 @@ public class ConnectionImpl extends AbstractConnection {
 			return false;
 		}
 		
-		if(lastValidPacketReceived != null && packet.getFlag() == Flag.NONE && packet.getSeq_nr() < lastValidPacketReceived.getSeq_nr()){
+		if(lastValidPacketReceived != null && packet.getFlag() == Flag.NONE && packet.getSeq_nr() <= lastValidPacketReceived.getSeq_nr()){
 			System.err.println("*******************************************OUT OF ORDER");
 			return false;
 		}
