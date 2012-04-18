@@ -6,6 +6,7 @@ package no.ntnu.fp.net.co;
 import java.io.EOFException;
 import java.io.IOException;
 import java.net.ConnectException;
+import java.net.SocketException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -92,7 +93,7 @@ public abstract class AbstractConnection implements Connection {
 	protected int disconnectSeqNo;
 	/** If a FIN has been received, it is stored in disconnectRequest. */
 	protected KtnDatagram disconnectRequest;
-
+	
 	/** Initialize variables to default values. */
 	public AbstractConnection() {
 		internalQueue = Collections.synchronizedList(new LinkedList<KtnDatagram>());
@@ -279,7 +280,7 @@ public abstract class AbstractConnection implements Connection {
 		 * failed - and write this to the Log.
 		 */
 
-		int tries = 3;
+		int tries = 4;
 		boolean sent = false;
 
 		KtnDatagram ackToSend = constructInternalPacket(synAck ? Flag.SYN_ACK : Flag.ACK);
@@ -292,12 +293,7 @@ public abstract class AbstractConnection implements Connection {
 			try {
 				new ClSocket().send(ackToSend);
 				sent = true;
-			}
-			catch (ClException e) {
-				e.printStackTrace();
-				Log.writeToLog(ackToSend, "CLException: Could not establish a connection to the specified address/port!", "AbstractConnection");
-			}
-			catch (ConnectException e) {
+			}catch(SocketException e){
 				// Silently ignore: Maybe recipient was processing and didn't
 				// manage to call receiveAck() before we were ready to send.
 				try {
@@ -305,6 +301,10 @@ public abstract class AbstractConnection implements Connection {
 				}
 				catch (InterruptedException ex) {
 				}
+			}
+			catch (ClException e) {
+				e.printStackTrace();
+				Log.writeToLog(ackToSend, "CLException: Could not establish a connection to the specified address/port!", "AbstractConnection");
 			}
 		}
 		while (!sent && (tries-- > 0));
@@ -481,6 +481,7 @@ public abstract class AbstractConnection implements Connection {
 					// Packet is internal
 					Log.writeToLog("Received an internal packet in doReceive", "AbstractConnection");
 
+					System.err.println("iabstract-1 " + incomingPacket.getSeq_nr() + " " +incomingPacket.getDest_port());
 					if (incomingPacket.getFlag() == Flag.FIN && state == State.ESTABLISHED) {
 						// A FIN-packet has arrived in established state,
 						// stop receiving and throw and exception
@@ -612,6 +613,8 @@ public abstract class AbstractConnection implements Connection {
 						synchronized (this) {
 							isReceiving = false;
 							notifyAll();
+							disconnectRequest = incomingPacket;
+							disconnectSeqNo = incomingPacket.getSeq_nr();
 							throw new EOFException("FIN packet received.");
 						}
 					}

@@ -14,25 +14,24 @@ public class TestCoClient {
 		
 		try {
 			for(int j = 0; j < 10; j++){
+				
 				Connection conn = new ConnectionImpl(4001);
 				conn.connect(InetAddress.getLocalHost(), 5555);
-
 				c.writeline("Connected");
 
-				for(int i = 0; i < 1; i++){
+				for(int i = 0; i < 2; i++){
 					String s = "Hi" + i + "!";
 					conn.send(s);
 					c.writeline("Sendt:" + s);
 				}
 				
-				for(int i = 0; i < 1; i++){
+				for(int i = 0; i < 2; i++){
 					String s = conn.receive();
 					c.writeline("Received:" + s);
 				}
 
 				try{Thread.sleep(10);}catch(InterruptedException e){}
 				
-				// write a message in the log and close the connection
 				conn.close();
 				c.writeline("Closed the connection");
 			}
