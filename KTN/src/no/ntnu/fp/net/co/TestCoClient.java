@@ -34,7 +34,7 @@ public class TestCoClient {
 				
 				// write a message in the log and close the connection
 				conn.close();
-				c.writeline("Closed");
+				c.writeline("Closed the connection");
 			}
 		}
 		catch (ConnectException e){

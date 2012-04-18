@@ -30,7 +30,7 @@ public class TestCoServer {
 
 				//wait for close
 				conn.receive();
-				c.writeline("Closed");
+				c.writeline("Connection closed by remote client");
 			}
 		}
 		catch (IOException e){

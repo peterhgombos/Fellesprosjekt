@@ -236,23 +236,29 @@ public class ConnectionImpl extends AbstractConnection {
 	
 	
 	public void remoteClose() throws IOException{
-		state = State.FIN_WAIT_2;
-		
-		KtnDatagram finack = constructInternalPacket(Flag.ACK);
-		while(true){
-			try{
-				simplySendPacket(finack);
-			}catch(ClException e){
-				e.printStackTrace();
+		try {
+			state = State.FIN_WAIT_2;
+			
+			KtnDatagram finack = constructInternalPacket(Flag.ACK);
+			while(true){
+				try{
+					simplySendPacket(finack);
+				}catch(ClException e){
+					e.printStackTrace();
+				}
+				
+				KtnDatagram fin = constructInternalPacket(Flag.FIN);
+				KtnDatagram lastAck = sendPacketWithTimeout(fin);
+				if(lastAck.getFlag() != Flag.FIN){
+					break;
+				}
+				internalClose();
 			}
 			
-			KtnDatagram fin = constructInternalPacket(Flag.FIN);
-			KtnDatagram kkkk = sendPacketWithTimeout(fin);
-			if(kkkk.getFlag() != Flag.FIN){
-				break;
-			}
-			internalClose();
+		} catch (Exception e) {
+			System.out.println("*********************************** Error after receiving FIN" + e);
 		}
+
 		
 	}
 
@@ -262,37 +268,42 @@ public class ConnectionImpl extends AbstractConnection {
 	 * @see Connection#close()
 	 */
 	public void close() throws IOException {
-		if(state != State.ESTABLISHED){
-			throw new IOException();
-		}
-		
-		KtnDatagram thisfin = constructInternalPacket(Flag.FIN);
-		state = State.FIN_WAIT_1;
-		
-		KtnDatagram finack;
-		KtnDatagram remotefin = null;
-		while(true){
-			finack = sendPacketWithTimeout(thisfin);
-			
-			if(isValid(finack) || finack.getFlag() == Flag.FIN){
-				break;
+		try {
+			if(state != State.ESTABLISHED){
+				throw new IOException();
 			}
-		}
-		state = State.LAST_ACK;
-		while(true){
-			while(!isValid(remotefin)){
+			
+			KtnDatagram thisfin = constructInternalPacket(Flag.FIN);
+			state = State.FIN_WAIT_1;
+			
+			KtnDatagram finack;
+			KtnDatagram remotefin = null;
+			while(true){
+				finack = sendPacketWithTimeout(thisfin);
+				
+				if(isValid(finack) || finack.getFlag() == Flag.FIN){
+					break;
+				}
+			}
+			state = State.LAST_ACK;
+			while(true){
+				while(!isValid(remotefin)){
+					remotefin = receiveAck();
+				}
+				
+				sendAck(remotefin, false);
+				state = State.CLOSE_WAIT;
 				remotefin = receiveAck();
+				if(remotefin == null){
+					break;
+				}
 			}
 			
-			sendAck(remotefin, false);
-			state = State.CLOSE_WAIT;
-			remotefin = receiveAck();
-			if(remotefin == null){
-				break;
-			}
+			internalClose();
+		} catch (Exception e) {
+			System.out.println("********************************************** Error while closing: " + e);
 		}
-		
-		internalClose();
+
 	}
 	
 	private void internalClose(){
