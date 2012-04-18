@@ -2,8 +2,6 @@ package no.ntnu.fp.net.co;
 
 import java.net.InetAddress;
 
-import no.ntnu.fp.net.cl.ClException;
-
 /**
  * Interface that defines the methods a Connection implementation must support.
  * 
@@ -24,7 +22,7 @@ public interface Connection {
      * @throws java.net.SocketTimeoutException
      *             if timeout expires before connection is completed.
      */
-    public void connect(String remoteAddress, int remotePort) throws java.io.IOException,
+    public void connect(InetAddress remoteAddress, int remotePort) throws java.io.IOException,
             java.net.SocketTimeoutException;
 
     /**
@@ -34,9 +32,8 @@ public interface Connection {
      *             if an I/O error occurs when waiting for a connection
      * @throws java.net.SocketTimeoutException
      *             if the timeout has been reached
-     * @throws ClException 
      */
-    public Connection accept() throws java.io.IOException, java.net.SocketTimeoutException, ClException;
+    public Connection accept() throws java.io.IOException, java.net.SocketTimeoutException;
 
     /**
      * Send a message to a remote instance.
