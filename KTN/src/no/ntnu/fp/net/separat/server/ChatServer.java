@@ -69,7 +69,11 @@ public class ChatServer extends JFrame {
 				run = true;
 				while (run) {
 					try {
-						User.this.recieve(User.this.conn.receive());
+						String rec = User.this.conn.receive();
+						if(rec == null){
+							return;
+						}
+						User.this.recieve(rec);
 					} catch (ConnectException e) {
 						e.printStackTrace();
 					}
@@ -84,8 +88,7 @@ public class ChatServer extends JFrame {
 							DBG("User.run(): Unable to remove 'this' from list " +"of users - expect errors!");
 						}
 						ChatServer.this.broadcast("***: " + User.this.name + " disconnected.");
-						ChatServer.this.
-						broadcast(ChatServer.this.getUsers().toString());
+						ChatServer.this.broadcast(ChatServer.this.getUsers().toString());
 					} catch (IOException e) {
 						DBG("User.run(): Error: " + e.getMessage());
 					}

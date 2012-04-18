@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.UIManager;
 
 public class Console {
 	
@@ -45,6 +46,7 @@ public class Console {
 	}
 	
 	private void init(){
+		try{UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}catch(Exception e){}
 		frame = new JFrame();
 		frame.setAlwaysOnTop(true);
 		frame.setMinimumSize(new Dimension(300, 400));

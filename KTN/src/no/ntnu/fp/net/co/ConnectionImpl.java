@@ -156,22 +156,28 @@ public class ConnectionImpl extends AbstractConnection {
 		KtnDatagram tosend = constructDataPacket(msg);
 		lastDataPacketSent = tosend;
 		KtnDatagram ack = sendDataPacketWithRetransmit(tosend);
-		int again = 5;
+		int again = 3;
 		while(!isValid(ack)){
 			if(ack == null){
 				if(again > 0){
-					ack = sendDataPacketWithRetransmit(tosend);
+					try{
+						ack = sendDataPacketWithRetransmit(tosend);
+					}catch(EOFException eof){
+						remoteClose();
+						return;
+					}
 					again--;
 				}else{
+					internalClose();
 					throw new IOException("Connection lost");
 				}
-				//TODO disconnect?? eller kanskje ikke, connection er jo lost, kanskje prøve uansett?
 			}else{
+				again = 3;
 				ack = sendDataPacketWithRetransmit(tosend);
 			}
 		}
 	}
-
+	
 	/**
 	 * Wait for incoming data.
 	 * 
@@ -194,7 +200,8 @@ public class ConnectionImpl extends AbstractConnection {
 				}
 			}while(!isValid(packet));
 		}catch(EOFException e){
-			//TODO GOT FIN, disconnect
+			remoteClose();
+			return null;
 		}
 
 		sendAck(packet, false);
@@ -215,7 +222,7 @@ public class ConnectionImpl extends AbstractConnection {
 			try{
 				ack = receiveAck();
 			}catch(EOFException e){
-				//TODO got FIN, disconnect
+				remoteClose();
 			}
 			
 			if(ack == null || !isValid(ack)){
@@ -226,6 +233,23 @@ public class ConnectionImpl extends AbstractConnection {
 		}
 		throw new IOException("Failed to send packet, connection timed out");
 	}
+	
+	
+	public void remoteClose() throws IOException{
+		state = State.FIN_WAIT_2;
+		
+		KtnDatagram finack = constructInternalPacket(Flag.ACK);
+	
+		try{
+			simplySendPacket(finack);
+		}catch(ClException e){
+			e.printStackTrace();
+		}
+		
+		KtnDatagram fin = constructInternalPacket(Flag.FIN);
+		sendPacketWithTimeout(fin);
+		internalClose();
+	}
 
 	/**
 	 * Close the connection.
@@ -233,7 +257,48 @@ public class ConnectionImpl extends AbstractConnection {
 	 * @see Connection#close()
 	 */
 	public void close() throws IOException {
+		if(state != State.ESTABLISHED){
+			throw new IOException();
+		}
+		
+		KtnDatagram thisfin = constructInternalPacket(Flag.FIN);
+		state = State.FIN_WAIT_1;
+		
+		KtnDatagram finack;
+		KtnDatagram remotefin = null;
+		while(true){
+			finack = sendPacketWithTimeout(thisfin);
+			
+			if(isValid(finack) || finack.getFlag() == Flag.FIN){
+				break;
+			}
+		}
+		state = State.LAST_ACK;
+		while(true){
+			while(!isValid(remotefin)){
+				remotefin = receiveAck();
+			}
+			
+			sendAck(remotefin, false);
+			state = State.CLOSE_WAIT;
+			remotefin = receiveAck();
+			if(remotefin == null){
+				break;
+			}
+		}
+		
+		internalClose();
+	}
+	
+	private void internalClose(){
+		usedPorts.remove(myPort);
 		state = State.CLOSED;
+		myPort = -1;
+		myAddress = null;
+		remotePort = -1;
+		remoteAddress = null;
+		lastDataPacketSent = null;
+		lastValidPacketReceived = null;
 	}
 
 	/**
@@ -264,9 +329,7 @@ public class ConnectionImpl extends AbstractConnection {
 			return false;
 		}
 		
-		//TODO sjekke at pakker kommer fra remoteaddr og port???
-
-		if(lastDataPacketSent != null && packet.getFlag() == Flag.ACK && packet.getAck() != lastDataPacketSent.getSeq_nr()){
+		if(lastDataPacketSent != null && state != State.FIN_WAIT_1 && state != State.FIN_WAIT_2 && packet.getFlag() == Flag.ACK && packet.getAck() != lastDataPacketSent.getSeq_nr()){
 			System.err.println("*******************************************WRONG ACKSEQ");
 			return false;
 		}
@@ -275,6 +338,8 @@ public class ConnectionImpl extends AbstractConnection {
 			System.err.println("*******************************************OUT OF ORDER");
 			return false;
 		}
+		
+		//TODO fingreier, sjekke at fin er fin osv
 			
 		return true;
 	}

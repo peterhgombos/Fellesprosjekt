@@ -1,80 +1,50 @@
-/*
- * Created on Oct 27, 2004
- *
- */
 package no.ntnu.fp.net.co;
+
+import gruppe27.test.Console;
 
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
-import no.ntnu.fp.net.admin.Log;
-import no.ntnu.fp.net.co.Connection;
-
-/**
- * Simplest possible test application, client part.
- *
- * @author seb, steinjak
- */
 public class TestCoClient {
 
-	/**
-	 * Empty.
-	 */
-	public TestCoClient() {
-	}
-
-	/**
-	 * Program Entry Point.
-	 */
 	public static void main (String args[]){
-
-		// Set up log
-		new Log();
-		Log.setLogName("Client");
-
-		// Connection object listening on 4001
-		Connection conn = new ConnectionImpl(4001);
-		InetAddress addr;  // will hold address of host to connect to
+		
+		Console c = new Console("Klient");
+		
 		try {
+			for(int j = 0; j < 10; j++){
+				Connection conn = new ConnectionImpl(4001);
+				conn.connect(InetAddress.getLocalHost(), 5555);
 
-			// get address of local host and connect
-			addr = InetAddress.getLocalHost();
-			conn.connect(addr, 5555);
+				c.writeline("Connected");
 
-			// send five messages to server
-			conn.send("Client: Hello Server! Are you there?");
-			conn.send("Client: Hi again!");
-			conn.send("Client: Hi 3!");
-			conn.send("Client: Hi 4!");
-			conn.send("Client: Hi 5!");
+				for(int i = 0; i < 1; i++){
+					String s = "Hi" + i + "!";
+					conn.send(s);
+					c.writeline("Sendt:" + s);
+				}
+				
+				for(int i = 0; i < 1; i++){
+					String s = conn.receive();
+					c.writeline("Received:" + s);
+				}
 
-			//receive two messages from server
-			String m1 = conn.receive();
-			Log.writeToLog("Message got through to server: " + m1, "TestServer");
-			String m2 = conn.receive();
-			Log.writeToLog("Message got through to server: " + m2, "TestServer");
-
-			// write a message in the log and close the connection
-			Log.writeToLog("Client is now closing the connection!","TestApplication");
-			conn.close();
+				try{Thread.sleep(10);}catch(InterruptedException e){}
+				
+				// write a message in the log and close the connection
+				conn.close();
+				c.writeline("Closed");
+			}
 		}
 		catch (ConnectException e){
-			Log.writeToLog(e.getMessage(),"TestApplication");
-			e.printStackTrace();
-		}
-		catch (UnknownHostException e){
-			Log.writeToLog(e.getMessage(),"TestApplication");
+			c.writeline("ERROR " + e.getMessage());
 			e.printStackTrace();
 		}
 		catch (IOException e){
-			Log.writeToLog(e.getMessage(),"TestApplication");
+			c.writeline("ERROR " + e.getMessage());
 			e.printStackTrace();
 		}
-
-		System.out.println("CLIENT TEST FINISHED");
-		Log.writeToLog("CLIENT TEST FINISHED","TestApplication");
 	}
 
 }

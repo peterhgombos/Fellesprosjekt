@@ -10,6 +10,8 @@ import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
+import javax.swing.JOptionPane;
+
 import no.ntnu.fp.net.admin.Log;
 import no.ntnu.fp.net.admin.Settings;
 import no.ntnu.fp.net.co.Connection;
@@ -63,7 +65,12 @@ public class ChatClient {
 			run = true;
 			while (run) {
 				try {
-					ChatClient.this.recieve(ChatClient.this.connection.receive());
+					String rec = ChatClient.this.connection.receive();
+					if(rec == null){
+						JOptionPane.showConfirmDialog(null, "disconnect :)");
+						return;
+					}
+					ChatClient.this.recieve(rec);
 				} catch (ConnectException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -131,7 +138,6 @@ public class ChatClient {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public static void main(String[] args) {
