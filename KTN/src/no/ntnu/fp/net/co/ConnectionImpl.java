@@ -239,16 +239,21 @@ public class ConnectionImpl extends AbstractConnection {
 		state = State.FIN_WAIT_2;
 		
 		KtnDatagram finack = constructInternalPacket(Flag.ACK);
-	
-		try{
-			simplySendPacket(finack);
-		}catch(ClException e){
-			e.printStackTrace();
+		while(true){
+			try{
+				simplySendPacket(finack);
+			}catch(ClException e){
+				e.printStackTrace();
+			}
+			
+			KtnDatagram fin = constructInternalPacket(Flag.FIN);
+			KtnDatagram kkkk = sendPacketWithTimeout(fin);
+			if(kkkk.getFlag() != Flag.FIN){
+				break;
+			}
+			internalClose();
 		}
 		
-		KtnDatagram fin = constructInternalPacket(Flag.FIN);
-		sendPacketWithTimeout(fin);
-		internalClose();
 	}
 
 	/**
