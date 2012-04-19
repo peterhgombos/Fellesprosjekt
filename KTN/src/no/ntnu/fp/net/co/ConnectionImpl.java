@@ -36,7 +36,6 @@ public class ConnectionImpl extends AbstractConnection {
 	/** Keeps track of the used ports for each server port. */
 	private static Map<Integer, Boolean> usedPorts = Collections.synchronizedMap(new HashMap<Integer, Boolean>());
 
-
 	private int randomPort(){
 		int nextport;
 		do{
@@ -79,6 +78,12 @@ public class ConnectionImpl extends AbstractConnection {
 	 * @see Connection#connect(InetAddress, int)
 	 */
 	public void connect(InetAddress remoteAddress, int remotePort) throws IOException, SocketTimeoutException {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if(state != State.CLOSED){
 			throw new IOException("Attempted connect on connected socket");
 		}
@@ -95,7 +100,7 @@ public class ConnectionImpl extends AbstractConnection {
 			state = State.ESTABLISHED;
 
 		}catch(IOException e){
-			state = State.CLOSED;
+			internalClose();
 			throw new IOException("Could not connect!");
 		}
 	}
@@ -154,6 +159,12 @@ public class ConnectionImpl extends AbstractConnection {
 		if(state != State.ESTABLISHED){
 			throw new IOException("Attempted send on disconnected socket");
 		}
+		
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+		}
+		
 		KtnDatagram tosend = constructDataPacket(msg);
 		lastDataPacketSent = tosend;
 		KtnDatagram ack = sendDataPacketWithRetransmit(tosend);
@@ -210,20 +221,21 @@ public class ConnectionImpl extends AbstractConnection {
 		return packet.getPayload().toString();
 	}
 
-	private KtnDatagram sendPacketWithTimeout(KtnDatagram packet) throws EOFException {
-		int maxAttempts = 8;
+	private KtnDatagram sendPacketWithTimeout(KtnDatagram packet) throws IOException {
+		int maxAttempts = 5;
 		int attempts = 0;
 		while(attempts < maxAttempts){
-
-			KtnDatagram ack = null;
 			try{
 				simplySendPacket(packet);
+			}catch(ClException e){
+				//prøver igjen
+			}
+			KtnDatagram ack = null;
+			try{
 				ack = receiveAck();
-			} catch (EOFException e) {
-				throw e;
-			} catch (Exception e) {
-				//ignore
-			} 
+			}catch(EOFException e){
+				remoteClose();
+			}
 
 			if(ack == null || !isValid(ack)){
 				attempts++;
@@ -231,84 +243,35 @@ public class ConnectionImpl extends AbstractConnection {
 				return ack;
 			}
 		}
-		return null;
+		throw new IOException("Failed to send packet, connection timed out");
 	}
 
 
 	public void remoteClose() throws IOException{
 		try {
-			Thread.sleep(10);
-		} catch (InterruptedException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-		sendAck(disconnectRequest, false);
-		state  = State.FIN_WAIT_2;
-		try {
-			Thread.sleep(10);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
-		KtnDatagram fin = constructInternalPacket(Flag.FIN);
-		try {
-			simplySendPacket(fin);
-		} catch (ClException e) {
-			// TODO Auto-generated catch block
+			state = State.FIN_WAIT_2;
+
+			KtnDatagram finack = constructInternalPacket(Flag.ACK);
+			while(true){
+				try{
+					simplySendPacket(finack);
+				}catch(ClException e){
+					e.printStackTrace();
+				}
+
+				KtnDatagram fin = constructInternalPacket(Flag.FIN);
+				Thread.sleep(100);
+				KtnDatagram lastAck = sendPacketWithTimeout(fin);
+				if(lastAck.getFlag() != Flag.FIN){
+					break;
+				}
+				internalClose();
+			}
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		KtnDatagram finack = receivePacket(true);
-		//System.err.println(finack.getFlag());
 		internalClose();
-
-
-		//		while(true){
-		//			sendAck(disconnectRequest, false);
-		//			state  = State.CLOSE_WAIT;
-		//			KtnDatagram finack = null;
-		//			try{
-		//				finack = receivePacket(true);
-		//			}catch(SocketException e){
-		//				
-		//			}
-		//			
-		//			if(finack != null && finack.getFlag() == Flag.FIN){
-		//				//ingenting
-		//			}else if(isValid(finack)){
-		//				break;
-		//			}
-		//		}
-		//		System.err.println("FORBI FØRSTE");
-		//		KtnDatagram fin = constructInternalPacket(Flag.FIN);
-		//		System.out.println(fin.getFlag());
-		//		KtnDatagram finack = sendPacketWithTimeout(fin);
-		//		System.out.println(finack.getFlag());
-		//		System.err.println("FERDIG");
-		//		internalClose();
-
-
-		//		state = State.FIN_WAIT_2;
-		//
-		//		while(true){
-		//			sendAck(disconnectRequest, false);
-		//
-		//			System.err.println("sendt ack");
-		//
-		//			KtnDatagram fin = constructInternalPacket(Flag.FIN);
-		//			KtnDatagram lastAck = null;
-		//			boolean tryagain = false;
-		//			try{
-		//				lastAck = sendPacketWithTimeout(fin);
-		//				System.err.println("received something" + lastAck);
-		//			}catch(EOFException e){
-		//				tryagain = true;
-		//				e.printStackTrace();
-		//			}
-		//
-		//			if(!tryagain){
-		//				internalClose();
-		//				break;
-		//			}
-		//		}
 	}
 
 	/**
@@ -317,114 +280,68 @@ public class ConnectionImpl extends AbstractConnection {
 	 * @see Connection#close()
 	 */
 	public void close() throws IOException {
-
-		if(state != State.ESTABLISHED){
-			throw new IOException();
-		}
-
-		state = State.FIN_WAIT_1;
-		KtnDatagram firstfin = constructInternalPacket(Flag.FIN);
-		while(true) {
-			try {
-				simplySendPacket(firstfin);
-			} catch (ClException e1) {
-				e1.printStackTrace();
+		try{Thread.sleep(100);}catch(InterruptedException e){}
+		try {
+			if(state != State.ESTABLISHED){
+				throw new IOException();
 			}
-			KtnDatagram finack = receiveAck();
-			//System.err.println("finack: " + finack.getFlag());
-			if (finack != null && finack.getFlag() == Flag.ACK && finack.getAck() == firstfin.getSeq_nr()) {
-				break;
+
+			KtnDatagram thisfin = constructInternalPacket(Flag.FIN);
+			state = State.FIN_WAIT_1;
+
+			KtnDatagram finack;
+			KtnDatagram remotefin = null;
+			while(true){
+				//finack = sendPacketWithTimeout(thisfin);
+								
+				try {
+					finack = sendPacketWithTimeout(thisfin);
+					if (isValid(finack)&& finack.getFlag() == Flag.ACK) {
+						System.err.println("****************************************************** FINACK received as expected");
+						state = State.FIN_WAIT_2;
+						break;
+					}
+					else if(isValid(finack) && finack.getFlag() == Flag.FIN){
+						System.err.println("****************************************** FIN received when FINACK expected");
+						remotefin = finack;
+						state = State.LAST_ACK;
+						break;
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
 			}
-		}
-		
-		KtnDatagram remotefin = null; // Send fin if no remotefin is received
-		do{
-			remotefin= receiveAck();
-			//System.err.println("FIN: " + remotefin.getFlag());
-		}while(remotefin == null || remotefin.getFlag() != Flag.FIN);
-		
-		sendAck(remotefin, false);
-		for(int i = 0; i < 3; i++) {
+			if (state == State.FIN_WAIT_2) {
+				while(true){
+					while(!isValid(remotefin)){
+						remotefin = receivePacket(true);
+					}
+
+					sendAck(remotefin, false);
+					state = State.CLOSE_WAIT;
+					remotefin = receiveAck();
+					if(remotefin == null){
+						break;
+					}
+				}
+			} else if (state == State.LAST_ACK) {
+				while (true) {
+					sendAck(remotefin, false);
+					state = State.CLOSE_WAIT;
+					remotefin = receiveAck();
+					if(remotefin == null){
+						break;
+					}
+				}
+			}
 			
-			try {
-				Thread.sleep(RETRANSMIT);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			try{
-				sendAck(remotefin, false);
-			}catch(Exception e){
-				e.printStackTrace();
-				break;
-			}
+
+			internalClose();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-
-		
-		
-		
-		
-		
-		
-//		int tries = 0;
-//		while (true) {
-//			KtnDatagram nyfin = receivePacket(true);
-//			//System.err.println("fin: " + remotefin.getFlag());
-//			
-//			if(remotefin != null && remotefin.getFlag() == Flag.FIN){
-//				sendAck(remotefin, false);
-//			}else if(remotefin == null){
-//				break;
-//			}
-//			tries++;
-//			if(tries > 5){
-//				break;
-//			}
-//		}
-
-		System.err.println("FERDIG");
 		internalClose();
-
-		//		try {
-		//			if(state != State.ESTABLISHED){
-		//				throw new IOException();
-		//			}
-		//
-		//			KtnDatagram firstfin = constructInternalPacket(Flag.FIN);
-		//			state = State.FIN_WAIT_1;
-		//
-		//			KtnDatagram finack;
-		//			KtnDatagram remotefin = null;
-		//			while(true){
-		//				finack = sendPacketWithTimeout(firstfin);
-		//				System.err.println("Q*******************************" + finack.getFlag());
-		//				if(isValid(finack) || finack.getFlag() == Flag.FIN){
-		//					break;
-		//				}
-		//			}
-		//			System.err.println("*******************************" + "GOTACK");
-		//			
-		//			//state = State.LAST_ACK;
-		//			while(true){
-		//				while(!isValid(remotefin)){
-		//					remotefin = receivePacket(true);
-		//					System.err.println("*******************************" + remotefin);
-		//				}
-		//
-		//				sendAck(remotefin, false);
-		//
-		//				state = State.CLOSE_WAIT;
-		//				remotefin = receiveAck();
-		//				System.err.println("*******************************" + remotefin);
-		//				if(remotefin == null){
-		//					break;
-		//				}
-		//			}
-		//
-		//			internalClose();
-		//		} catch (Exception e) {
-		//			e.printStackTrace();
-		//		}
-
 	}
 
 	private void internalClose(){
@@ -476,13 +393,6 @@ public class ConnectionImpl extends AbstractConnection {
 			return false;
 		}
 
-		//TODO fingreier, sjekke at fin er fin osv
-
-		//
-		//		if(packet.getFlag() == Flag.FIN){
-		//			disconnectRequest = packet;
-		//			disconnectSeqNo = packet.getSeq_nr();
-		//		}
 
 		return true;
 	}
