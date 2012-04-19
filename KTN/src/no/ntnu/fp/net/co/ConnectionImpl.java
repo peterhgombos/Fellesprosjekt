@@ -7,6 +7,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.InetAddress;
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Collections;
@@ -78,6 +79,7 @@ public class ConnectionImpl extends AbstractConnection {
 	 * @see Connection#connect(InetAddress, int)
 	 */
 	public void connect(InetAddress remoteAddress, int remotePort) throws IOException, SocketTimeoutException {
+
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e1) {
@@ -98,11 +100,14 @@ public class ConnectionImpl extends AbstractConnection {
 
 			sendAck(synack, false);
 			state = State.ESTABLISHED;
+			return;
 
 		}catch(IOException e){
+
 			internalClose();
 			throw new IOException("Could not connect!");
 		}
+
 	}
 
 	/**
@@ -159,15 +164,15 @@ public class ConnectionImpl extends AbstractConnection {
 		if(state != State.ESTABLISHED){
 			throw new IOException("Attempted send on disconnected socket");
 		}
-		
+
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
 		}
-		
+
 		KtnDatagram tosend = constructDataPacket(msg);
 		lastDataPacketSent = tosend;
-		KtnDatagram ack = sendDataPacketWithRetransmit(tosend);
+		KtnDatagram ack = null;
 		int again = 3;
 		while(!isValid(ack)){
 			if(ack == null){
@@ -234,6 +239,7 @@ public class ConnectionImpl extends AbstractConnection {
 			try{
 				ack = receiveAck();
 			}catch(EOFException e){
+				e.printStackTrace();
 				remoteClose();
 			}
 
@@ -255,7 +261,10 @@ public class ConnectionImpl extends AbstractConnection {
 			while(true){
 				try{
 					simplySendPacket(finack);
-				}catch(ClException e){
+				}catch (SocketException se) {
+					se.printStackTrace();
+				}
+				catch(ClException e){
 					e.printStackTrace();
 				}
 
@@ -265,7 +274,6 @@ public class ConnectionImpl extends AbstractConnection {
 				if(lastAck.getFlag() != Flag.FIN){
 					break;
 				}
-				internalClose();
 			}
 
 		} catch (Exception e) {
@@ -293,7 +301,7 @@ public class ConnectionImpl extends AbstractConnection {
 			KtnDatagram remotefin = null;
 			while(true){
 				//finack = sendPacketWithTimeout(thisfin);
-								
+
 				try {
 					finack = sendPacketWithTimeout(thisfin);
 					if (isValid(finack)&& finack.getFlag() == Flag.ACK) {
@@ -335,7 +343,7 @@ public class ConnectionImpl extends AbstractConnection {
 					}
 				}
 			}
-			
+
 
 			internalClose();
 		} catch (Exception e) {

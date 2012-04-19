@@ -15,7 +15,7 @@ public class TestCoClient {
 		try {
 			for(int j = 0; j < 20; j++){
 				
-				Connection conn = new ConnectionImpl(4001);
+				Connection conn = new ConnectionImpl(4001+j);
 				conn.connect(InetAddress.getLocalHost(), 5555);
 				c.writeline("Connected");
 
