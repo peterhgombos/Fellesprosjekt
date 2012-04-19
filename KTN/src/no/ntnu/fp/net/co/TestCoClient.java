@@ -19,18 +19,18 @@ public class TestCoClient {
 				conn.connect(InetAddress.getLocalHost(), 5555);
 				c.writeline("Connected");
 
-				for(int i = 0; i < 2; i++){
+				for(int i = 0; i < 1; i++){
 					String s = "Hi" + i + "!";
 					conn.send(s);
 					c.writeline("Sendt:" + s);
 				}
 				
-				for(int i = 0; i < 2; i++){
+				for(int i = 0; i < 1; i++){
 					String s = conn.receive();
 					c.writeline("Received:" + s);
 				}
 
-				try{Thread.sleep(10);}catch(InterruptedException e){}
+				//try{Thread.sleep(10);}catch(InterruptedException e){}
 				
 				conn.close();
 				c.writeline("Closed the connection");

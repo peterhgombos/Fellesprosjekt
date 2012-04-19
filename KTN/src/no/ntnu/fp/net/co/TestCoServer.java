@@ -16,12 +16,12 @@ public class TestCoServer {
 				Connection conn = server.accept();
 				c.writeline("Connected");
 				
-				for(int i = 0; i < 2; i++){
+				for(int i = 0; i < 1; i++){
 					String s = conn.receive();
 					c.writeline("Received:" + s);
 				}
 				
-				for(int i = 0; i < 2; i++){
+				for(int i = 0; i < 1; i++){
 					String s = "Hi" + i + "!";
 					conn.send(s);
 					c.writeline("Sendt:" + s);

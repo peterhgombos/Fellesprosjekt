@@ -7,7 +7,6 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.InetAddress;
-import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Collections;
@@ -18,7 +17,6 @@ import no.ntnu.fp.net.cl.ClException;
 import no.ntnu.fp.net.cl.ClSocket;
 import no.ntnu.fp.net.cl.KtnDatagram;
 import no.ntnu.fp.net.cl.KtnDatagram.Flag;
-import no.ntnu.fp.net.co.AbstractConnection.State;
 
 /**
  * Implementation of the Connection-interface. <br>
@@ -38,7 +36,7 @@ public class ConnectionImpl extends AbstractConnection {
 	/** Keeps track of the used ports for each server port. */
 	private static Map<Integer, Boolean> usedPorts = Collections.synchronizedMap(new HashMap<Integer, Boolean>());
 
-	
+
 	private int randomPort(){
 		int nextport;
 		do{
@@ -238,31 +236,54 @@ public class ConnectionImpl extends AbstractConnection {
 
 
 	public void remoteClose() throws IOException{
-
-		
-		while(true){
-			sendAck(disconnectRequest, false);
-			state  = State.CLOSE_WAIT;
-			KtnDatagram finack = null;
-			try{
-				finack = receivePacket(true);
-			}catch(SocketException e){
-				
-			}
-			
-			if(finack != null && finack.getFlag() == Flag.FIN){
-				//ingenting
-			}else if(isValid(finack)){
-				break;
-			}
+		try {
+			Thread.sleep(10);
+		} catch (InterruptedException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
 		}
-		System.err.println("FORBI FØRSTE");
+		sendAck(disconnectRequest, false);
+		state  = State.FIN_WAIT_2;
+		try {
+			Thread.sleep(10);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
 		KtnDatagram fin = constructInternalPacket(Flag.FIN);
-		System.out.println(fin.getFlag());
-		KtnDatagram finack = sendPacketWithTimeout(fin);
-		System.out.println(finack.getFlag());
-		System.err.println("FERDIG");
+		try {
+			simplySendPacket(fin);
+		} catch (ClException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		KtnDatagram finack = receivePacket(true);
+		//System.err.println(finack.getFlag());
 		internalClose();
+
+
+		//		while(true){
+		//			sendAck(disconnectRequest, false);
+		//			state  = State.CLOSE_WAIT;
+		//			KtnDatagram finack = null;
+		//			try{
+		//				finack = receivePacket(true);
+		//			}catch(SocketException e){
+		//				
+		//			}
+		//			
+		//			if(finack != null && finack.getFlag() == Flag.FIN){
+		//				//ingenting
+		//			}else if(isValid(finack)){
+		//				break;
+		//			}
+		//		}
+		//		System.err.println("FORBI FØRSTE");
+		//		KtnDatagram fin = constructInternalPacket(Flag.FIN);
+		//		System.out.println(fin.getFlag());
+		//		KtnDatagram finack = sendPacketWithTimeout(fin);
+		//		System.out.println(finack.getFlag());
+		//		System.err.println("FERDIG");
+		//		internalClose();
 
 
 		//		state = State.FIN_WAIT_2;
@@ -303,30 +324,63 @@ public class ConnectionImpl extends AbstractConnection {
 
 		state = State.FIN_WAIT_1;
 		KtnDatagram firstfin = constructInternalPacket(Flag.FIN);
-		KtnDatagram finack = sendPacketWithTimeout(firstfin);
-		System.err.println("GOTACK");
-
-		KtnDatagram remotefin = null;
-
-		do{
-			try{
-				remotefin = receivePacket(true);
-			}catch(SocketException e){
-				//Disse bare ødelegger, ser ut til å funke uten
+		while(true) {
+			try {
+				simplySendPacket(firstfin);
+			} catch (ClException e1) {
+				e1.printStackTrace();
 			}
-		}while(!isValid(remotefin));
-
-		System.err.println("FORBI");
-		for(int i = 0; i < 10; i++){
+			KtnDatagram finack = receiveAck();
+			//System.err.println("finack: " + finack.getFlag());
+			if (finack != null && finack.getFlag() == Flag.ACK && finack.getAck() == firstfin.getSeq_nr()) {
+				break;
+			}
+		}
+		
+		KtnDatagram remotefin = null; // Send fin if no remotefin is received
+		do{
+			remotefin= receiveAck();
+			//System.err.println("FIN: " + remotefin.getFlag());
+		}while(remotefin == null || remotefin.getFlag() != Flag.FIN);
+		
+		sendAck(remotefin, false);
+		for(int i = 0; i < 3; i++) {
+			
+			try {
+				Thread.sleep(RETRANSMIT);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			try{
 				sendAck(remotefin, false);
-			}catch(SocketException e){
-				//allerede closed, forhåpentligvis
-			}catch(IOException e){
-				//allerede closed, forhåpentligvis
+			}catch(Exception e){
+				e.printStackTrace();
+				break;
 			}
-			
 		}
+
+		
+		
+		
+		
+		
+		
+//		int tries = 0;
+//		while (true) {
+//			KtnDatagram nyfin = receivePacket(true);
+//			//System.err.println("fin: " + remotefin.getFlag());
+//			
+//			if(remotefin != null && remotefin.getFlag() == Flag.FIN){
+//				sendAck(remotefin, false);
+//			}else if(remotefin == null){
+//				break;
+//			}
+//			tries++;
+//			if(tries > 5){
+//				break;
+//			}
+//		}
+
 		System.err.println("FERDIG");
 		internalClose();
 
@@ -424,11 +478,11 @@ public class ConnectionImpl extends AbstractConnection {
 
 		//TODO fingreier, sjekke at fin er fin osv
 
-//
-//		if(packet.getFlag() == Flag.FIN){
-//			disconnectRequest = packet;
-//			disconnectSeqNo = packet.getSeq_nr();
-//		}
+		//
+		//		if(packet.getFlag() == Flag.FIN){
+		//			disconnectRequest = packet;
+		//			disconnectSeqNo = packet.getSeq_nr();
+		//		}
 
 		return true;
 	}
