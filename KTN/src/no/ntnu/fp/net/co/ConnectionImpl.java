@@ -120,6 +120,7 @@ public class ConnectionImpl extends AbstractConnection {
 		if(state != State.CLOSED){
 			throw new IOException("Attempted accept on connected socket");
 		}
+		//waits for incoming connections
 
 		while(true){
 			state = State.LISTEN;
@@ -131,16 +132,15 @@ public class ConnectionImpl extends AbstractConnection {
 				syn = receivePacket(true);
 			}
 
+			//when i new connection is received this method creates an instance of Conimpl and lets that instance handle the rest of the connection
 			ConnectionImpl c = new ConnectionImpl(randomPort());
 			c.state = State.SYN_RCVD;
 			c.remotePort = syn.getSrc_port();
 			c.remoteAddress = syn.getSrc_addr();
 			c.sendAck(syn, true);
 
-			//TODO hvis vi ikke får cack er den andre enden connaca mens denne ikke er det, vet ikke hvordan dette skal fikses
-			//derfor er det unødvendig med whileløkka den men på en annen side burde den ikke returne med mindre den faktisk har noe
-			KtnDatagram cack = c.receiveAck();
-			if(cack != null){
+			KtnDatagram synAck = c.receiveAck();
+			if(synAck != null){
 				c.state = State.ESTABLISHED;
 				state = State.CLOSED;
 				return c;
@@ -207,7 +207,7 @@ public class ConnectionImpl extends AbstractConnection {
 		if(state != State.ESTABLISHED){
 			throw new IOException("Attempted receive on disconnected socket");
 		}
-
+		
 		KtnDatagram packet = null;
 		try{
 			do{
@@ -262,15 +262,16 @@ public class ConnectionImpl extends AbstractConnection {
 				try{
 					simplySendPacket(finack);
 				}catch (SocketException se) {
-					se.printStackTrace();
+					//Ignore
 				}
 				catch(ClException e){
-					e.printStackTrace();
+					//Ignore
 				}
 
 				KtnDatagram fin = constructInternalPacket(Flag.FIN);
 				Thread.sleep(100);
-				KtnDatagram lastAck = sendPacketWithTimeout(fin);
+				KtnDatagram lastAck = sendPacketWithTimeout(fin); //Wait for the last ack before close
+				//Will do active close if receives ack. Times out to passive close otherwise
 				if(lastAck.getFlag() != Flag.FIN){
 					break;
 				}
@@ -300,8 +301,7 @@ public class ConnectionImpl extends AbstractConnection {
 			KtnDatagram finack;
 			KtnDatagram remotefin = null;
 			while(true){
-				//finack = sendPacketWithTimeout(thisfin);
-
+				
 				try {
 					finack = sendPacketWithTimeout(thisfin);
 					if (isValid(finack)&& finack.getFlag() == Flag.ACK) {
@@ -310,6 +310,7 @@ public class ConnectionImpl extends AbstractConnection {
 						break;
 					}
 					else if(isValid(finack) && finack.getFlag() == Flag.FIN){
+						//have received FIN when waiting for ack, but it's okay because FIN implies ACK. Just skips a step.
 						System.err.println("****************************************** FIN received when FINACK expected");
 						remotefin = finack;
 						state = State.LAST_ACK;
@@ -322,19 +323,22 @@ public class ConnectionImpl extends AbstractConnection {
 			}
 			if (state == State.FIN_WAIT_2) {
 				while(true){
+					//Waits for FIN from other side
 					while(!isValid(remotefin)){
 						remotefin = receivePacket(true);
 					}
 
-					sendAck(remotefin, false);
+					sendAck(remotefin, false); //Will send this ack every time the while loop runs.
 					state = State.CLOSE_WAIT;
-					remotefin = receiveAck();
+					remotefin = receiveAck(); //Will continue to listen for FIN's until none are received. This is in case the other side never received it's ack, and to increase chance of active disconnect
 					if(remotefin == null){
+						//Breaks while loop after TIMEOUT time
 						break;
 					}
 				}
 			} else if (state == State.LAST_ACK) {
 				while (true) {
+					//Repeats the behavior that's over, except the waiting for FIN part.
 					sendAck(remotefin, false);
 					state = State.CLOSE_WAIT;
 					remotefin = receiveAck();
